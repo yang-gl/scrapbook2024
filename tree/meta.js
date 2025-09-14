@@ -232,5 +232,113 @@ scrapbook.meta({
     "modify": "20250914150500933",
     "source": "https://threadreaderapp.com/thread/1967135994228166848.html",
     "icon": "favicon-32x32.png"
+  },
+  "20250914224619130": {
+    "index": "",
+    "title": "x1xhlol/system-prompts-and-models-of-ai-tools: FULL v0, Cursor, Manus, Augment Code, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Xcode, Trae AI, Cluely & Orchids.app (And other Open Sourced) System Prompts, Tools & AI Models.",
+    "type": "bookmark",
+    "create": "20250914224619130",
+    "modify": "20250914224619130",
+    "source": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png",
+    "comment": "这个仓库真牛逼，7500+行 Prompt，聚合了 v0、Cursor、Manus、http://Same.dev、Lovable、Devin、Replit Agent、Windsurf Agent、VSCode Agent、Dia Browser、Trae AI、Cluely等顶级AI工具的系统提示词，感觉合适搞 AI 工具的同学来学提示词工程。"
+  },
+  "20250914225020630": {
+    "index": "202509/20250914225020630-x.com/index.html",
+    "title": "宝玉 on X: \"简单说下 Cursor 和 Claude Code 什么区别 它们最大的不同是运行环境，一个是命令行，一个是在 IDE 里面，虽然 Claude Code 也能以插件集成到各种 IDE，但还是以命令行方式运行，而 Cursor 是 VSCode 的套客，在 VSCode 基础上集成了自己的 AI 功能。 其次的不同是计费方式和 Token 消耗。Cursor\" / X",
+    "type": "",
+    "create": "20250914225020630",
+    "modify": "20250914225020630",
+    "source": "https://x.com/dotey/status/1960170374219309333",
+    "icon": "twitter.3.ico"
+  },
+  "20250914225117930": {
+    "index": "20250914225117930/index.html",
+    "title": "Larus Canus@MrLarus·Aug 26补充几个tips： 1、Cursor省Token是刻在基因里的，因为他的收费模式基于对话次数，所以他的利润来源于更多的对话...",
+    "type": "note",
+    "create": "20250914225117930",
+    "modify": "20250914225117930"
+  },
+  "20250914225204012": {
+    "index": "20250914225204012/index.html",
+    "title": "宝玉@dotey·Aug 26简单说下 Cursor 和 Claude Code 什么区别 它们最大的不同是运行环境，一个是命令行，一个是在 IDE 里面，虽然 Claude Code 也...",
+    "type": "note",
+    "create": "20250914225204012",
+    "modify": "20250914225204012"
+  },
+  "20250914233109588": {
+    "index": "202509/20250914233109588-x.com/index.html",
+    "title": "BadUncle on X: \"RAG 向量 实时搜索大混战，cursor cline windsurf aider claude code大比拼 第一组：完全抛弃RAG的实时搜索派 Cline 和 Claude Code 相似点：都完全放弃了传统的RAG方法，采用实时动态搜索 区别： - Cline使用ripgrep等文件系统工具进行正则搜索，模拟人类开发者的代码探索方式 - Claude\" / X",
+    "type": "",
+    "create": "20250914233109588",
+    "modify": "20250914233109588",
+    "source": "https://x.com/BadUncleX/status/1933081602277716275",
+    "icon": "twitter-pip.3.ico"
+  },
+  "20250914233511537": {
+    "title": "prompt",
+    "type": "folder",
+    "create": "20250914233511537",
+    "modify": "20250914233511537"
+  },
+  "20250914233548515": {
+    "index": "202509/20250914233548515-x.com/index.html",
+    "title": "CharlesC.ai on X: \"写好prompt就需要做三件事情\" / X",
+    "type": "",
+    "create": "20250914233548515",
+    "modify": "20250914233548515",
+    "source": "https://x.com/CharlesC_ai/status/1915046292524507362",
+    "icon": "twitter.3.ico"
+  },
+  "20250914233730589": {
+    "index": "202509/20250914233730589-x.com/index.html",
+    "title": "katon on X: \"用好 Cursor = 高效、整洁的代码。 用不好 = AI 给你堆出一团乱麻的代码，够你收拾一礼拜。 下面是正确使用的 12 条准则： 1. 预先定好 5-10 条明确的项目规范，让 Cursor 知道你的项目结构和约束。对于老代码库，可以试试 /generate rules。 2.\" / X",
+    "type": "",
+    "create": "20250914233730589",
+    "modify": "20250914233730589",
+    "source": "https://x.com/hellokaton/status/1914487184423526633",
+    "icon": "twitter.3.ico"
+  },
+  "20250914233843980": {
+    "title": "cursor",
+    "type": "folder",
+    "create": "20250914233843980",
+    "modify": "20250914233843980"
+  },
+  "20250914234015553": {
+    "index": "20250914234015553/index.html",
+    "title": "LinearUncle@LinearUnclepython 包管理库uv作者昨天分享了他如何使用cursor，不出所料，和我之前分享前美团架构师Longyi使用cursor的方式如出一...",
+    "type": "note",
+    "create": "20250914234015553",
+    "modify": "20250914234015553",
+    "parent": "20250914233843980",
+    "recycled": "20250914234212207"
+  },
+  "20250914234156271": {
+    "index": "202509/20250914234156271-x.com/index.html",
+    "title": "LinearUncle on X: \"python 包管理库uv作者昨天分享了他如何使用cursor，不出所料，和我之前分享前美团架构师Longyi使用cursor的方式如出一辙，只用tab和cmd + K。 如此朴实无华，大道至简。 顶级头脑 &gt; agent。 程序员以前争论哪个编程语言是世界上最好的语言，如今又开始比较那个AI https://t.co/M3Vnd55cC3\" / X",
+    "type": "",
+    "create": "20250914234156271",
+    "modify": "20250914234156271",
+    "source": "https://x.com/LinearUncle/status/1911578090893189564",
+    "icon": "twitter.3.ico"
+  },
+  "20250914234315811": {
+    "index": "202509/20250914234315811-x.com/index.html",
+    "title": "yetone on X: \"@wwwyesterday 其实 cursor 的原理并不简单，真正实施起来那就更难了，而且它所有的工程难度恰恰就只是为了解决一个问题 ——「不要让用户手动复制粘贴代码」，所以它在用户体验上下了苦功夫，不仅在工程上要在传统代码编辑器上发明新的代码编辑的范式和工作流，还自己训练和部署了快速 edit 模型\" / X",
+    "type": "",
+    "create": "20250914234315811",
+    "modify": "20250914234315811",
+    "source": "https://x.com/yetone/status/1910326716293329364",
+    "icon": "twitter.3.ico"
+  },
+  "20250914234510538": {
+    "index": "202509/20250914234510538-x.com/index.html",
+    "title": "nazha on X: \"#分享 来晚了，Cursor 系统词研究第一波：深入了解 Cursor 的规则系统 Cursor 规则比想象中设计得要复杂，在 &gt; 0.45 的版本中，Cursor 总有有两类的规则： 1️⃣ User Rules 通过 Cursor Settings &gt; General &gt; Rules for AI 进行配置。自定义的全局偏好，这些规则应用于所有项目。 2️⃣ Project Rules https://t.co/s5OwBPGNzU\" / X",
+    "type": "",
+    "create": "20250914234510538",
+    "modify": "20250914234510538",
+    "source": "https://x.com/xiaokedada/status/1908530319856460282",
+    "icon": "twitter.3.ico"
   }
 })
