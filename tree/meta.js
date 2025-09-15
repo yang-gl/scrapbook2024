@@ -340,5 +340,201 @@ scrapbook.meta({
     "modify": "20250914234510538",
     "source": "https://x.com/xiaokedada/status/1908530319856460282",
     "icon": "twitter.3.ico"
+  },
+  "20250915143411902": {
+    "title": "misc",
+    "type": "folder",
+    "create": "20250915143411902",
+    "modify": "20250915143411902"
+  },
+  "20250915143420677": {
+    "title": "AI newbie",
+    "type": "folder",
+    "create": "20250915143420677",
+    "modify": "20250915143420677"
+  },
+  "20250915143558833": {
+    "index": "",
+    "title": "大模型专业名词傻傻分不清？最常用名词科普来了！量化、蒸馏、Token……一网打尽，新手也能听得懂哦_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250915143558833",
+    "modify": "20250915143558833",
+    "source": "https://www.bilibili.com/video/BV1LxYYznEpR/",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250915143918730": {
+    "index": "",
+    "title": "microsoft/generative-ai-for-beginners: 21 Lessons, Get Started Building with Generative AI",
+    "type": "bookmark",
+    "create": "20250915143918730",
+    "modify": "20250915143918730",
+    "source": "https://github.com/microsoft/generative-ai-for-beginners",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250915143944536": {
+    "index": "",
+    "title": "李宏毅: 生成式人工智能导论 (Introduction to Generative AI) 2024 Spring",
+    "type": "bookmark",
+    "create": "20250915143944536",
+    "modify": "20250915143944536",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+    "icon": "../tree/favicon/408e420dc33d725971e6858026fe27c51df096f5.ico"
+  },
+  "20250915144335178": {
+    "index": "",
+    "title": "MIT FUTURE OF AI",
+    "type": "bookmark",
+    "create": "20250915144335178",
+    "modify": "20250915144335178",
+    "source": "https://www.futureofai.mit.edu/",
+    "icon": "../tree/favicon/de4ee4b78e38b37af71e846bf17128b756d007e7.ico"
+  },
+  "20250915144603335": {
+    "index": "",
+    "title": "【2025版】不愧是李宏毅老师！一口气把agent讲的明明白白，简直不要太爽！（大模型丨manus丨深度学习丨机器学习丨AI人工智能）_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250915144603335",
+    "modify": "20250915144603335",
+    "source": "https://www.bilibili.com/video/BV1FCR3Y1EnJ/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250915144808588": {
+    "index": "",
+    "title": "李宏毅2024春《生成式人工智能导论》_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250915144808588",
+    "modify": "20250915144808588",
+    "source": "https://www.bilibili.com/video/BV1BJ4m1e7g8/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250915144906303": {
+    "index": "",
+    "title": "第一节 2021 - (上) - 机器学习基本概念简介_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250915144906303",
+    "modify": "20250915144906303",
+    "source": "https://www.bilibili.com/video/BV1Wv411h7kN/",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250915144921161": {
+    "index": "",
+    "title": "2021 - (下) - 深度学习基本概念简介_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250915144921161",
+    "modify": "20250915144921161",
+    "source": "https://www.bilibili.com/video/BV1Wv411h7kN/",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250915144942220": {
+    "title": "",
+    "type": "separator",
+    "create": "20250915144942220",
+    "modify": "20250915144942220"
+  },
+  "20250915145303659": {
+    "index": "",
+    "title": "Transformer和BERT看不懂来这里，告诉你他们的前世今生，必能懂_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250915145303659",
+    "modify": "20250915145303659",
+    "source": "https://www.bilibili.com/video/BV11v4y137sN/?spm_id_from=333.1387.favlist.content.click&vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250915145452711": {
+    "title": "RAG",
+    "type": "folder",
+    "create": "20250915145452711",
+    "modify": "20250915145452711"
+  },
+  "20250915145502389": {
+    "index": "",
+    "title": "吴恩达大佬又出新课了！《构建和评估高级的RAG模型应用》双语字幕，6讲全！收藏起来慢慢学习！-LLM、大模型、应用程序、rag、吴恩达、人工智能、检索增强生成_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250915145502389",
+    "modify": "20250915145502389",
+    "source": "https://www.bilibili.com/video/BV1RB421z7rS/?spm_id_from=333.1387.favlist.content.click&vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250915145656829": {
+    "index": "202509/20250915145656829-x.com/index.html",
+    "title": "Lance Martin on X: \"RAG From Scratch Here's a set of short (5-10 min videos) and notebooks explaining &gt; a dozen of my favorite RAG papers. Took a stab at implementing each idea myself (all code open source) and grouped according to the diagram. Repo: https://t.co/n2G5nT83vg Video playlist: https://t.co/iknVUPGuh2\" / X",
+    "type": "",
+    "create": "20250915145656829",
+    "modify": "20250915145656829",
+    "source": "https://x.com/RLanceMartin/status/1776301631652741167",
+    "icon": "twitter.3.ico"
+  },
+  "20250915145713378": {
+    "index": "",
+    "title": "NirDiamant/RAG_Techniques: This repository showcases various advanced techniques for Retrieval-Augmented Generation (RAG) systems. RAG systems combine information retrieval with generative models to provide accurate and contextually rich responses.",
+    "type": "bookmark",
+    "create": "20250915145713378",
+    "modify": "20250915145713378",
+    "source": "https://github.com/NirDiamant/RAG_Techniques",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png",
+    "comment": "一个RAG的集合库：RAG_Techniques，涵盖了从基础RAG到复杂任务处理的多种方法\n\n有详细文档、实现指南和示例，对需要深入了解RAG技术的开发者来说是个不错的选择\n\n包含比如，上下文丰富技术、多方面过滤、融合检索、智能重新排序、查询转换、分层索引、假设性问题 (HyDE方法)、自RAG等"
+  },
+  "20250915145953456": {
+    "index": "202509/20250915145953456-x.com/index.html",
+    "title": "Victoria Slocum on X: \"🌶️ Hot take: I'm tired of RAG systems that just grab the first document and call it done. 𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗥𝗔𝗚 is probably the only way RAG is 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 going to be useful. But what’s actually the difference? 𝗧𝗵𝗲 𝗣𝗿𝗼𝗯𝗹𝗲𝗺 𝘄𝗶𝘁𝗵 𝗡𝗮𝗶𝘃𝗲 𝗥𝗔𝗚: Traditional https://t.co/wAeaH1qxMk\" / X",
+    "type": "",
+    "create": "20250915145953456",
+    "modify": "20250915145953456",
+    "source": "https://x.com/victorialslocum/status/1960297539820720365",
+    "icon": "twitter.3.ico"
+  },
+  "20250915150042495": {
+    "index": "202509/20250915150042495-x.com/index.html",
+    "title": "Victoria Slocum on X: \"Think all embeddings work the same way? Think again. Here are 𝘀𝗶𝘅 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝘁𝘆𝗽𝗲𝘀 of embeddings you can use, each with their own strengths and trade-offs: 𝗦𝗽𝗮𝗿𝘀𝗲 𝗘𝗺𝗯𝗲𝗱𝗱𝗶𝗻𝗴𝘀 Think keyword-based representations where most values are zero. Great https://t.co/bU8smM5WqA\" / X",
+    "type": "",
+    "create": "20250915150042495",
+    "modify": "20250915150042495",
+    "source": "https://x.com/victorialslocum/status/1965380415335862277",
+    "icon": "twitter.3.ico"
+  },
+  "20250915150159583": {
+    "index": "202509/20250915150159583-threadreaderapp.com/index.html",
+    "title": "Thread by @dotey: 对于搭建企业本地知识库来说，比如使用 RAG 方式，关键在于应用端的调教” on Thread Reader App – Thread Reader App",
+    "type": "",
+    "create": "20250915150159583",
+    "modify": "20250915150159583",
+    "source": "https://threadreaderapp.com/thread/1780271840507654247?refresh=1757948500",
+    "icon": "favicon-32x32.png"
+  },
+  "20250915150337754": {
+    "index": "202509/20250915150337754-x.com/index.html",
+    "title": "Ahmad on X: \"...what all of this means\"",
+    "type": "",
+    "create": "20250915150337754",
+    "modify": "20250915150337754",
+    "source": "https://x.com/TheAhmadOsman/status/1967502168602165506",
+    "icon": "twitter.3.ico"
+  },
+  "20250915150516915": {
+    "index": "202509/20250915150516915-x.com/index.html",
+    "title": "meng shao on X: \"[实用指南] 从零开始成长为 AI 专家，总共分五步🏃🏻‍♀️🏃 核心思路：边做边学，实战出真知 作者 @vasumanmoza 的建议是通过实际动手做项目，逐步掌握 AI https://t.co/4eVdD1g6MO\" / X",
+    "type": "",
+    "create": "20250915150516915",
+    "modify": "20250915150740252",
+    "source": "https://x.com/shao__meng/status/1967452203846885497",
+    "icon": "twitter.3.ico"
+  },
+  "20250915150911850": {
+    "index": "202509/20250915150911850-x.com/index.html",
+    "title": "Elon Musk on X: \"@zephyr_z9 Good summary 😂\" / X",
+    "type": "",
+    "create": "20250915150911850",
+    "modify": "20250915150911850",
+    "source": "https://x.com/elonmusk/status/1967217038885331405",
+    "icon": "twitter.3.ico"
+  },
+  "20250915151027647": {
+    "index": "202509/20250915151027647-x.com/index.html",
+    "title": "meng shao on X: \"AI 正从“调个模型”演进到“全栈工程化”——只有把数据、训练、部署、监控、Agent 与商业闭环串成一条生产线，才算真正的 AI Engineering，下面 9 本书，AI Engineering 必备，能找到免费 PDF 我都扒出来了，其他的也有一些能在线阅读，等什么？学起来！ 1. AI Engineering – Chip Huyen 把 LLM https://t.co/oYSmkNzHLX\" / X",
+    "type": "",
+    "create": "20250915151027647",
+    "modify": "20250915151027647",
+    "source": "https://x.com/shao__meng/status/1967212895395365252",
+    "icon": "twitter.3.ico"
   }
 })
