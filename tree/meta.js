@@ -92,7 +92,7 @@ scrapbook.meta({
   },
   "20250914124439824": {
     "index": "202509/20250914124439824-www.anthropic.com/index.html",
-    "title": "Writing effective tools for AI agents—using AI agents \\ Anthropic",
+    "title": "Writing effective tools for AI agents—with agents \\ Anthropic",
     "type": "",
     "create": "20250914124439824",
     "modify": "20250914124439824",
@@ -268,7 +268,7 @@ scrapbook.meta({
   },
   "20250914233109588": {
     "index": "202509/20250914233109588-x.com/index.html",
-    "title": "BadUncle on X: \"RAG 向量 实时搜索大混战，cursor cline windsurf aider claude code大比拼 第一组：完全抛弃RAG的实时搜索派 Cline 和 Claude Code 相似点：都完全放弃了传统的RAG方法，采用实时动态搜索 区别： - Cline使用ripgrep等文件系统工具进行正则搜索，模拟人类开发者的代码探索方式 - Claude\" / X",
+    "title": "BadUncle on X: \"AI编辑器实时搜索大混战",
     "type": "",
     "create": "20250914233109588",
     "modify": "20250914233109588",
@@ -503,7 +503,7 @@ scrapbook.meta({
   },
   "20250915150337754": {
     "index": "202509/20250915150337754-x.com/index.html",
-    "title": "Ahmad on X: \"...what all of this means\"",
+    "title": "Ahmad on X: \"LLM Magic - from disk to talk...what all of this means\"",
     "type": "",
     "create": "20250915150337754",
     "modify": "20250915150337754",
@@ -530,11 +530,290 @@ scrapbook.meta({
   },
   "20250915151027647": {
     "index": "202509/20250915151027647-x.com/index.html",
-    "title": "meng shao on X: \"AI 正从“调个模型”演进到“全栈工程化”——只有把数据、训练、部署、监控、Agent 与商业闭环串成一条生产线，才算真正的 AI Engineering，下面 9 本书，AI Engineering 必备，能找到免费 PDF 我都扒出来了，其他的也有一些能在线阅读，等什么？学起来！ 1. AI Engineering – Chip Huyen 把 LLM https://t.co/oYSmkNzHLX\" / X",
+    "title": "meng shao on X: \"AI Engineering 9本必读书推荐\" / X",
     "type": "",
     "create": "20250915151027647",
     "modify": "20250915151027647",
     "source": "https://x.com/shao__meng/status/1967212895395365252",
     "icon": "twitter.3.ico"
+  },
+  "20250916142851226": {
+    "title": "claude code",
+    "type": "folder",
+    "create": "20250916142851226",
+    "modify": "20250916142851226"
+  },
+  "20250916143053010": {
+    "index": "",
+    "title": "【大模型教程】RAG 工作机制详解，20分钟带你详细解读RAG，一看就懂的知识库架构解读_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250916143053010",
+    "modify": "20250916143053010",
+    "source": "https://www.bilibili.com/video/BV1S9u4zYE53/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250916143140137": {
+    "index": "",
+    "title": "手把手教你用Dify搭建一个基于知识图谱的RAG系统，原理讲解+技术教学！_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250916143140137",
+    "modify": "20250916143140137",
+    "source": "https://www.bilibili.com/video/BV1xmT7zfE3T/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250916143150623": {
+    "index": "202509/20250916143150623-mp.weixin.qq.com/index.html",
+    "title": "AI 编程开发工具对比：Cursor、Gemini CLI 与 Claude Code",
+    "type": "",
+    "create": "20250916143150623",
+    "modify": "20250916143150623",
+    "source": "https://mp.weixin.qq.com/s/jD9uui-XLSRCmk1dOEoijA",
+    "icon": "NTI4MWU5.ico"
+  },
+  "20250916143248161": {
+    "title": "ReAct",
+    "type": "folder",
+    "create": "20250916143248161",
+    "modify": "20250916143248161"
+  },
+  "20250916143309235": {
+    "index": "202509/20250916143309235-www.bilibili.com/index.html",
+    "title": "Understanding ReACT with LangChain_哔哩哔哩_bilibili",
+    "type": "",
+    "create": "20250916143309235",
+    "modify": "20250916143309235",
+    "source": "https://www.bilibili.com/video/BV1dC4y1S76p/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "favicon.ico",
+    "parent": "root",
+    "recycled": "20250916143413746"
+  },
+  "20250916143421007": {
+    "index": "",
+    "title": "Understanding ReACT with LangChain_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250916143421007",
+    "modify": "20250916143421007",
+    "source": "https://www.bilibili.com/video/BV1dC4y1S76p/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250916143536827": {
+    "index": "202509/20250916143536827-react-lm.github.io/index.html",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "type": "",
+    "create": "20250916143536827",
+    "modify": "20250916143536827",
+    "source": "https://react-lm.github.io/",
+    "icon": "urn:scrapbook:download:error:https://react-lm.github.io/undefinedimages/favicon.ico"
+  },
+  "20250916143653995": {
+    "index": "202509/20250916143653995-baoyu.io/index.html",
+    "title": "为智能体进行规划 [译] | 宝玉的分享",
+    "type": "",
+    "create": "20250916143653995",
+    "modify": "20250916143653995",
+    "source": "https://baoyu.io/translations/langchain/planning-for-agents",
+    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+  },
+  "20250916143735928": {
+    "index": "202509/20250916143735928-baoyu.io/index.html",
+    "title": "AI 基础：究竟什么是“智能体”？ | 宝玉的分享",
+    "type": "",
+    "create": "20250916143735928",
+    "modify": "20250916143735928",
+    "source": "https://baoyu.io/translations/ai-fundamentals-agent-definitions",
+    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+  },
+  "20250916143855749": {
+    "index": "202509/20250916143855749-mp.weixin.qq.com/index.html",
+    "title": "ReAct 框架与 AI Agent：当 AI 学会自己思考和行动",
+    "type": "",
+    "create": "20250916143855749",
+    "modify": "20250916143855749",
+    "source": "https://mp.weixin.qq.com/s/h8Ftkv8C7bQ-Axm3swSDHg",
+    "icon": "NTI4MWU5.ico"
+  },
+  "20250916143950618": {
+    "index": "",
+    "title": "【大模型教程】RAG 工作机制详解，20分钟带你详细解读RAG，一看就懂的知识库架构解读_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250916143950618",
+    "modify": "20250916143950618",
+    "source": "https://www.bilibili.com/video/BV1S9u4zYE53/",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250916144116597": {
+    "index": "",
+    "title": "单元测试生成 - AI 辅助软件工程：实践与案例解析",
+    "type": "bookmark",
+    "create": "20250916144116597",
+    "modify": "20250916144116597",
+    "source": "https://aise.phodal.com/aise-test-code.html",
+    "icon": "../tree/favicon/28b274b53dc71d7d6be0ec8e6dce89577f0fc2b2.svg",
+    "parent": "root",
+    "recycled": "20250916144148867"
+  },
+  "20250916144129626": {
+    "index": "",
+    "title": "简介 - AI 辅助软件工程：实践与案例解析",
+    "type": "bookmark",
+    "create": "20250916144129626",
+    "modify": "20250916144129626",
+    "source": "https://aise.phodal.com/index.html",
+    "icon": "../tree/favicon/28b274b53dc71d7d6be0ec8e6dce89577f0fc2b2.svg"
+  },
+  "20250916144138881": {
+    "index": "202509/20250916144138881-aise.phodal.com/index.html",
+    "title": "单元测试生成 - AI 辅助软件工程：实践与案例解析",
+    "type": "",
+    "create": "20250916144138881",
+    "modify": "20250916144138881",
+    "source": "https://aise.phodal.com/aise-test-code.html",
+    "icon": "favicon.svg"
+  },
+  "20250916144212832": {
+    "index": "202509/20250916144212832-baoyu.io/index.html",
+    "title": "推理模型使用最佳实践 | 宝玉的分享",
+    "type": "",
+    "create": "20250916144212832",
+    "modify": "20250916144212832",
+    "source": "https://baoyu.io/translations/reasoning-best-practices",
+    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+  },
+  "20250916144308396": {
+    "index": "",
+    "title": "FudanSELab/Agent4SE-Paper-List: Repository for the paper \"Large Language Model-Based Agents for Software Engineering: A Survey\". Keep updating.",
+    "type": "bookmark",
+    "create": "20250916144308396",
+    "modify": "20250916144308396",
+    "source": "https://github.com/FudanSELab/Agent4SE-Paper-List",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250916144317588": {
+    "index": "",
+    "title": "codefuse-ai/Awesome-Code-LLM: [TMLR] A curated list of language modeling researches for code (and other software engineering activities), plus related datasets.",
+    "type": "bookmark",
+    "create": "20250916144317588",
+    "modify": "20250916144317588",
+    "source": "https://github.com/codefuse-ai/Awesome-Code-LLM",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250916144639852": {
+    "index": "202509/20250916144639852-threadreaderapp.com/index.html",
+    "title": "Thread by @dotey: Shopify 分享了他们构建 Agent 的经验",
+    "type": "",
+    "create": "20250916144639852",
+    "modify": "20250916144639852",
+    "source": "https://threadreaderapp.com/thread/1967786556288028720.html?utm_campaign=topunroll",
+    "icon": "favicon-32x32.png"
+  },
+  "20250916144751473": {
+    "title": "misc",
+    "type": "folder",
+    "create": "20250916144751473",
+    "modify": "20250916144751473"
+  },
+  "20250916145415295": {
+    "index": "202509/20250916145415295-x.com/index.html",
+    "title": "Daily Dose of Data Science on X: \"Traditional RAG vs Graph RAG, visually explained: https://t.co/XZ8MN0hW8q\" / X",
+    "type": "",
+    "create": "20250916145415295",
+    "modify": "20250916145415295",
+    "source": "https://x.com/DailyDoseOfDS_/status/1967521314631299381",
+    "icon": "twitter.3.ico"
+  },
+  "20250916145958204": {
+    "title": "Context Engineering",
+    "type": "folder",
+    "create": "20250916145958204",
+    "modify": "20250916145958204"
+  },
+  "20250916150010793": {
+    "index": "202509/20250916150010793-x.com/index.html",
+    "title": "Akshay 🚀 on X: \"What is context engineering❓ And why is everyone talking about it...👇 Context engineering is rapidly becoming a crucial skill for AI engineers. It's no longer just about clever prompting; it's about the systematic orchestration of context. 🔷 The Problem: Most AI agents https://t.co/2bkv48aC6D\" / X",
+    "type": "",
+    "create": "20250916150010793",
+    "modify": "20250916150010793",
+    "source": "https://x.com/akshay_pachaar/status/1949091155032871177",
+    "icon": "twitter.3.ico"
+  },
+  "20250916150051950": {
+    "index": "202509/20250916150051950-x.com/index.html",
+    "title": "Latent.Space on X: \"🆕 Everything you should know about Context Engineering https://t.co/oYuvYgtOVB Works like @trychroma's Context Rot research and @dbreunig's Context Fails show a lot of issues with naive long context usage: - Context Poisoning - Context Distraction - Context Confusion - Context\" / X",
+    "type": "",
+    "create": "20250916150051950",
+    "modify": "20250916150051950",
+    "source": "https://x.com/latentspacepod/status/1966180158609699289",
+    "icon": "twitter.3.ico"
+  },
+  "20250916150104883": {
+    "index": "202509/20250916150104883-x.com/index.html",
+    "title": "GitHubDaily on X: \"GitHub 上一个能极大提升我们 AI 编程效率的上下文工程模板：Context Engineering Template。 让 AI 编程助手能充分理解我们的项目规范、代码风格和架构模式，从而生成符合项目标准的高质量代码。 GitHub：https://t.co/pKYRo36lej 主要内容： - 提供完整的上下文工程模板和工作流程 - 支持 PRP https://t.co/uOd0Z0pQuV\" / X",
+    "type": "",
+    "create": "20250916150104883",
+    "modify": "20250916150104883",
+    "source": "https://x.com/GitHub_Daily/status/1942206975586255080",
+    "icon": "twitter.3.ico"
+  },
+  "20250916150206515": {
+    "index": "202509/20250916150206515-x.com/index.html",
+    "title": "AVB on X: \"This is an awesome article. The best part is their note to “build around the KV cache”. If your system prompt remains consistent, your tools remain constant, and you always append to conversation json… you will hit the KV cache often. Cutting down cost and latency. https://t.co/KpBtJvsdSX\" / X",
+    "type": "",
+    "create": "20250916150206515",
+    "modify": "20250916150206515",
+    "source": "https://x.com/neural_avb/status/1948774323679830382",
+    "icon": "twitter.3.ico"
+  },
+  "20250916150224662": {
+    "index": "202509/20250916150224662-x.com/index.html",
+    "title": "Victoria Slocum on X: \"Prompt engineering is dead. Long live 𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 (Well, not quite dead - but it's definitely evolving into something way more powerful) Meet 𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 - the art of building dynamic systems that give LLMs exactly what they https://t.co/0ufKMfGFnO\" / X",
+    "type": "",
+    "create": "20250916150224662",
+    "modify": "20250916150224662",
+    "source": "https://x.com/victorialslocum/status/1950841048491565500",
+    "icon": "twitter.3.ico"
+  },
+  "20250916150313048": {
+    "index": "202509/20250916150313048-x.com/index.html",
+    "title": "宝玉 on X: \"现在很多 Context Engineering 谈的是如何构建 AI Agents 用到的技术，对于普通人未必适用，我总结了一点普通人使用 AI 时用得上的 Context Engineering。 Context Engineering 核心是两点： 一、更少的上下文 二、更准确的上下文 一、更少的上下文\" / X",
+    "type": "",
+    "create": "20250916150313048",
+    "modify": "20250916150313048",
+    "source": "https://x.com/dotey/status/1951329808387821850",
+    "icon": "twitter.3.ico"
+  },
+  "20250916150342758": {
+    "index": "202509/20250916150342758-x.com/index.html",
+    "title": "GitHubDaily on X: \"如果大家想深入研究大语言模型（LLM）智能体这个领域，可以看下。 GitHub 上这份系统整理了关于 LLM Agent 领域的研究论文合集：Awesome-Agent-Papers。 精选了 200+ 篇高质量论文，涵盖 Agent 构建、协作机制、进化、工具使用、安全性、基准测试和应用等内容。 GitHub：https://t.co/qzVhL40qof https://t.co/t1RpM7H7li\" / X",
+    "type": "",
+    "create": "20250916150342758",
+    "modify": "20250916150342758",
+    "source": "https://x.com/GitHub_Daily/status/1907010047827395020",
+    "icon": "twitter.3.ico"
+  },
+  "20250916150349580": {
+    "index": "",
+    "title": "luo-junyu/Awesome-Agent-Papers: [Up-to-date] Large Language Model Agent: A Survey on Methodology, Applications and Challenges",
+    "type": "bookmark",
+    "create": "20250916150349580",
+    "modify": "20250916150349580",
+    "source": "https://github.com/luo-junyu/Awesome-Agent-Papers",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250916150822151": {
+    "index": "202509/20250916150822151-techdiylife.github.io/index.html",
+    "title": "OpenAI Function Calling最佳实践：16个问题带你入门到精通",
+    "type": "",
+    "create": "20250916150822151",
+    "modify": "20250916150822151",
+    "source": "https://techdiylife.github.io/blog/blog.html?category1=c01&blogid=0064"
+  },
+  "20250916151049478": {
+    "index": "202509/20250916151049478-medium.com/index.html",
+    "title": "Enhancing LLMs with Function Calling: A Practical Guide | by Olujare Dada | Medium",
+    "type": "",
+    "create": "20250916151049478",
+    "modify": "20250916151049478",
+    "source": "https://medium.com/@olujare.dada/enhancing-llms-with-function-calling-a-practical-guide-c4a757324c51",
+    "icon": "5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19.png"
   }
 })

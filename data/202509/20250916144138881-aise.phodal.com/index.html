@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="en" class="light" dir="ltr" data-eusoft-scrollable-element="1" data-scrapbook-source="https://aise.phodal.com/aise-test-code.html" data-scrapbook-create="20250916144138881"><head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>单元测试生成 - AI 辅助软件工程：实践与案例解析</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="rgb(255, 255, 255)">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="variables.css">
+        <link rel="stylesheet" href="general.css">
+        <link rel="stylesheet" href="chrome.css">
+        <link rel="stylesheet" href="print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="font-awesome.css">
+        <link rel="stylesheet" href="fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css" disabled="">
+        <link rel="stylesheet" href="ayu-highlight.css" disabled="">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="custom.css">
+
+    <style>.eudic-tippy-content-container[_ngcontent-ng-c3702610669]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c3702610669]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c3702610669]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c3702610669]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c3702610669]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head>
+    <body class="js sidebar-visible">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden" checked="">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents" aria-hidden="false" data-eusoft-scrollable-element="1">
+            <div class="sidebar-scrollbox" data-eusoft-scrollable-element="1">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="https://aise.phodal.com/index.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">2.</strong> 前言：AI4SE 的 2024 趋势</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se-2024-summary.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">3.</strong> 前言：AI4SE 的 2024 总结</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/design-aise.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">4.</strong> 第 1 部分：AI4SE 体系设计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se-design-principle.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">4.1.</strong> AI4SE 体系设计原则</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se-lifecycle.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">4.2.</strong> 软件生命周期驱动的 AI4SE</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se-tabnine-devops-driven.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">4.3.</strong> Tabnine：AI 工具与 DevOps 驱动的 AI4SE</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se-google-dev-activity-driven.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">4.4.</strong> Google：开发者活动驱动</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se-github-ai-platform.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">4.5.</strong> GitHub：AI 平台工程赋能开发者</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se-gitlab.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">4.6.</strong> Gitlab：赋能开发者的 AI4SE</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/practise-ai4se-landscape.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.</strong> 第 2 部分：AI IDE 辅助软件工程</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se-agentic-chat.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.1.</strong> Agentic Chat</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/windsurf-agentic-chat.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.1.1.</strong> WindSurf Agentic Chat</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/jetbrains-agentic-chat.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.1.2.</strong> JetBrains Agentic Chat</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/practise-ai4se-env-setup.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.2.</strong> 练习环境准备</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/design-example-refactor.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.2.1.</strong> 基于示例展示：重构代码</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-digital-engineering.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.3.</strong> 研发数字化</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-knowledge-management.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.3.1.</strong> 知识管理</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-commit-message.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.3.2.</strong> 关联的提交信息</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-requirement.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.3.3.</strong> 需求智能化</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-platform-engineering.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.3.4.</strong> 平台工程</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-ui-design.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.4.</strong> AI 低代码生成</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-ui-code-gen.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.4.1.</strong> UI 代码生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-ui-interaction-gen.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.4.2.</strong> UI 交互生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-low-code-gen.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.4.3.</strong> 低代码生成</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-dev.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.5.</strong> AI 辅助开发</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-code-completion.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.5.1.</strong> 代码补全</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-gen-comment.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.5.2.</strong> 代码注释生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-gen-snippet.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.5.3.</strong> 代码片段生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-gen-doc.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.5.4.</strong> 代码文档生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-gen-cli.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.5.5.</strong> CLI 命令生成</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-quality.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.6.</strong> AI 辅助软件质量</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-code-check.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.6.1.</strong> 代码质量检查</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-code-review.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.6.2.</strong> 代码检视</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-fix-issue.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.6.3.</strong> 问题修复</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-testing.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.7.</strong> AI 辅助测试</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-test-case.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.7.1.</strong> 测试用例生成</a></li><li class="chapter-item expanded "><a href="" class="active" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.7.2.</strong> 单元测试生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-api-test.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.7.3.</strong> API 测试生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-e2e-test.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.7.4.</strong> E2E 测试生成</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/gen-ci-cd.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.8.</strong> AI 辅助 CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/gen-ai-pipeline.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.8.1.</strong> 流水线生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/gen-cicd.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.8.2.</strong> CI/CD 流水线</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/aise-for-arch.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.9.</strong> AI 辅助架构设计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/gen-arch.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.9.1.</strong> 架构设计生成</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/gen-ai-for-ops.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.10.</strong> AI 运维</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/ai4se-sql.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.10.1.</strong> SQL 优化生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/gen-monitor.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.10.2.</strong> 辅助运维监控</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/gen-root-cause.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">5.10.3.</strong> 辅助根因分析</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/scenario-aise.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">6.</strong> 第 3 部分：面向场景定制 AI 插件能力</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/scenario-legacy-refactor.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">6.1.</strong> 遗留系统重构示例</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/scenario-legacy-transform.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">6.2.</strong> 系统迁移</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/scenario-team-ai.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">6.3.</strong> 团队 AI</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-for-aise.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.</strong> 第 4 部分：编程智能体辅助软件工程</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-infrastructure.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.1.</strong> 编码智能体基础设施</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-remote.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.2.</strong> 远程 AI 智能体</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-refactoring-test.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.2.1.</strong> 重构 AI 测试生成</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-onboarding.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.2.2.</strong> 场景：新人上手项目</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-in-local-design.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.3.</strong> 本地 AI 智能体</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-understand-rag.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.3.1.</strong> 理解 RAG 应用</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-coding-task.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.3.2.</strong> 编码任务 Agent</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-github-copilot-chat.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.3.3.</strong> Copilot Chat 是如何工作的</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-codebase-example.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.3.4.</strong> 代码问答 Agent 示例</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-copilot-workspace.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.3.5.</strong> Copilot Workspace</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-data-security.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.4.</strong> RAG 数据与 AI 安全</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/agent-debug.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">7.5.</strong> Agent 调试</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/flow-aise.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">8.</strong> 第 5 部分：AI 自动化编程</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/flow-in-aise.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">8.1.</strong> 理解 AI 自动化编程</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/flow-example-autocrud.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">8.2.</strong> 自动化 CRUD</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/metric.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">9.</strong> 第 6 部分：评估与度量</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="https://aise.phodal.com/metric-setup.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">9.1.</strong> AI4SE 度量设置</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/metric-evaluation.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">9.2.</strong> AI4SE 度量评估</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/metric-matrix.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">9.3.</strong> AI4SE 度量</a></li></ol></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/future.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">10.</strong> 未来展望</a></li><li class="chapter-item expanded "><a href="https://aise.phodal.com/reference.html" tabindex="0"><strong aria-hidden="true" data-eusoft-scrollable-element="1">11.</strong> 参考资料</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar" style="top: 0px;">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar" aria-expanded="true">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme theme-selected" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AI 辅助软件工程：实践与案例解析</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://aise.phodal.com/print.html" title="Print this book" aria-label="Print this book" data-eusoft-scrollable-element="1">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/phodal/aise" title="Git repository" aria-label="Git repository" data-eusoft-scrollable-element="1">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/phodal/aise/edit/master/src/aise-test-code.md" title="Suggest an edit" aria-label="Suggest an edit" data-eusoft-scrollable-element="1">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header" value="">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="ai-辅助软件工程单元测试生成"><a class="header" href="#ai-%E8%BE%85%E5%8A%A9%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%94%9F%E6%88%90" data-eusoft-scrollable-element="1">AI 辅助软件工程：单元测试生成</a></h1>
+<h2 id="示例"><a class="header" href="#%E7%A4%BA%E4%BE%8B" data-eusoft-scrollable-element="1">示例</a></h2>
+<h3 id="sourcegraph"><a class="header" href="#sourcegraph" data-eusoft-scrollable-element="1">SourceGraph</a></h3>
+<p><a href="https://sourcegraph.com/blog/how-to-write-unit-tests" data-eusoft-scrollable-element="1">How to write unit tests</a></p>
+<p><img src="sourcegraph-write-test.png" alt=""></p>
+<p>随着软件开发的发展，单元测试的实践也在不断进步。从手动测试到复杂的模拟框架和全面的代码覆盖率工具，单元测试正在不断改进，以应对复杂的软件架构和敏捷开发的需求。</p>
+<p>单元测试的演变过程如下：</p>
+<ol>
+<li>起初，手动测试是常态。测试人员需要手动审查和测试软件，模拟真实用户的行为，并在不使用自动化工具的情况下识别错误。</li>
+<li>框架的崛起：专门的测试工具和框架应运而生，如JUnit和NUnit，它们提供了结构和自动化，从而提高了效率和可重复性。</li>
+<li>关注模拟和存根：模拟框架变得流行，开发者可以模拟对模拟对象（如数据库、外部服务）的依赖，并隔离单元，以进行更有效的测试。</li>
+<li>测试驱动开发（TDD）：这种方法通过让开发者在编写代码之前先写测试，从而优化了典型的开发流程。</li>
+<li>现代时代：人工智能助手如Cody的出现，提供了自动化的单元测试，识别边缘情况，并简化了开发工作流程。</li>
+</ol>
+<h3 id="shire-示例"><a class="header" href="#shire-%E7%A4%BA%E4%BE%8B" data-eusoft-scrollable-element="1">Shire 示例</a></h3>
+<pre><div class="buttons"><button class="fa fa-copy clip-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="tooltiptext"></i></button></div><code class="hljs" data-eusoft-scrollable-element="1">---
+name: "Auto Test"
+description: "AutoTest"
+interaction: RunPanel
+actionLocation: ContextMenu
+when: $fileName.contains(".java") &amp;&amp; $filePath.contains("src/main/java")
+fileName-rules:
+  /.*Controller.java/: "When testing controller, you MUST use MockMvc and test API only."
+variables:
+  "extContext": /build\.gradle\.kts/ { cat | grep("org.springframework.boot:spring-boot-starter-jdbc") | print("This project use Spring Framework")}
+  "testTemplate": /\(.*\).java/ {
+    case "$1" {
+      "Controller" { cat(".shire/templates/ControllerTest.java") }
+      "Service" { cat(".shire/templates/ServiceTest.java") }
+      default  { cat(".shire/templates/DefaultTest.java") }
+    }
+  }
+onStreamingEnd: { parseCode | saveFile }
+---
+Write unit test for following ${context.language} code.
+
+${context.frameworkContext}
+
+#if($context.relatedClasses.length() &gt; 0 )
+Here is the relate code maybe you can use
+${context.relatedClasses}
+#end
+
+#if($context.currentClassName.length() &gt; 0 )
+This is the class where the source code resides:
+${context.currentClassCode}
+#end
+
+${context.extContext}
+
+Here is the imports to help you understand:
+
+${context.imports}
+
+Here is the source code to be tested:
+
+```${context.language}
+${context.selection}
+```
+
+#if($context.isNewFile)
+Start method test code with Markdown code block here:
+#else
+Start ${context.targetTestFileName} test code with Markdown code block here:
+#end
+</code></pre>
+<h2 id="示例-1"><a class="header" href="#%E7%A4%BA%E4%BE%8B-1" data-eusoft-scrollable-element="1">示例</a></h2>
+<h3 id="jetbrains"><a class="header" href="#jetbrains" data-eusoft-scrollable-element="1">JetBrains</a></h3>
+<h3 id="c-sharp"><a class="header" href="#c-sharp" data-eusoft-scrollable-element="1">C Sharp</a></h3>
+<pre><div class="buttons"><button class="fa fa-copy clip-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="tooltiptext"></i></button></div><code class="language-shire hljs" data-eusoft-scrollable-element="1">Generate test cases for the class $sourceFileClrName . Use the file $argetTestFileName as the starting point.
+Each generated test method MUST CONTAIN MAXIMUM number of test cases and corner cases for EACH method; use the corresponding attribute from test framework for it.
+You MUST generate corner cases. Test cases MUST be generated for EACH method from class and base classes. Do not remove existing functions.
+Reply ONLY with code snippet block with the FULL new content for the file without any additional text before or after, description, or commentary.
+
+$filesWithContent
+</code></pre>
+<h3 id="java"><a class="header" href="#java" data-eusoft-scrollable-element="1">Java</a></h3>
+<pre><div class="buttons"><button class="fa fa-copy clip-button" title="Copy to clipboard" aria-label="Copy to clipboard"><i class="tooltiptext"></i></button></div><code class="language-vm hljs" data-eusoft-scrollable-element="1">#if ($USER_DESCRIPTION)
+Read test description below and write new tests. Put new test methods inside the class `$TEST_CLASS`.
+
+*Test description:*
+$USER_DESCRIPTION
+#else
+Write tests for the `$METHOD_NAME` method in the `$CLASS_NAME` class. Put new test methods inside the class `$TEST_CLASS`.
+#end
+
+#if ($CREATE_NEW_FILE)
+*Guideline:*
+- Test file should be complete and compilable, without need for further actions.
+- Write a description of the class and the method being tested.
+- Ensure that each test focuses on a single use case to maintain clarity and readability.
+- Instead of using `@BeforeEach` methods for setup, include all necessary code initialization within each individual test method, do not write parametrized tests.
+#if ($LIBRARIES != "")
+- Use libraries available in the project: $LIBRARIES .
+#end
+#if ($SUGGESTED_FRAMEWORK == "Spring-test")
+- Use appropriate Spring test annotations such as `@MockBean`, `@Autowired`, `@WebMvcTest`, `@DataJpaTest`, `@AutoConfigureTestDatabase`, `@AutoConfigureMockMvc`, `@SpringBootTest` etc.
+- Assume that the database is empty before each test and create valid entities with consideration for data constraints (jakarta.validation.constraints).
+#end
+#end
+$CUSTOM_INSTRUCTIONS
+
+*Sources:*
+$SOURCES
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="https://aise.phodal.com/aise-test-case.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="https://aise.phodal.com/aise-api-test.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="https://aise.phodal.com/aise-test-case.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="https://aise.phodal.com/aise-api-test.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        
+
+
+        
+        
+        
+
+        
+        
+        
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    
+
+<script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c3702610669="" ng-version="18.2.13" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c3702610669=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c3702610669="" _nghost-ng-c3386348173="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c3702610669="" _nghost-ng-c1734916280="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c1734916280=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c3702610669="" class="eusoft-chrome-extension-capture-word-container ng-tns-c491067591-0 ng-star-inserted" data-eusoft-scrollable-element="1" data-scrapbook-shadowdom="<style>.eudic-tippy-content-container[_ngcontent-ng-c3702610669]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c3702610669]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c3702610669]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c3702610669]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c3702610669]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><!----><!----><div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c491067591-0&quot; data-content-script-theme=&quot;light&quot;><!----></div>"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c3702610669="" _nghost-ng-c3081775404="" data-eusoft-scrollable-element="1"><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>
