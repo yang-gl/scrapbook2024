@@ -52,7 +52,7 @@ scrapbook.meta({
     "create": "20250914124103875",
     "modify": "20250914124103875",
     "source": "https://baoyu.io/translations/building-effective-agents",
-    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+    "icon": "favicon.ico"
   },
   "20250914124146160": {
     "index": "202509/20250914124146160-x.com/index.html",
@@ -88,7 +88,7 @@ scrapbook.meta({
     "create": "20250914124350271",
     "modify": "20250914124350271",
     "source": "https://baoyu.io/translations/writing-tools-for-agents",
-    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+    "icon": "favicon.ico"
   },
   "20250914124439824": {
     "index": "202509/20250914124439824-www.anthropic.com/index.html",
@@ -106,7 +106,7 @@ scrapbook.meta({
     "create": "20250914124608496",
     "modify": "20250914124608496",
     "source": "https://baoyu.io/blog/claude-code-anthropic-ai-agent-development",
-    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+    "icon": "favicon.ico"
   },
   "20250914124905407": {
     "index": "202509/20250914124905407-x.com/index.html",
@@ -171,7 +171,7 @@ scrapbook.meta({
     "create": "20250914130554504",
     "modify": "20250914130554504",
     "source": "https://baoyu.io/translations/decoding-claude-code",
-    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+    "icon": "favicon.ico"
   },
   "20250914145031886": {
     "index": "202509/20250914145031886-threadreaderapp.com/index.html",
@@ -612,7 +612,7 @@ scrapbook.meta({
     "create": "20250916143653995",
     "modify": "20250916143653995",
     "source": "https://baoyu.io/translations/langchain/planning-for-agents",
-    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+    "icon": "favicon.ico"
   },
   "20250916143735928": {
     "index": "202509/20250916143735928-baoyu.io/index.html",
@@ -621,7 +621,7 @@ scrapbook.meta({
     "create": "20250916143735928",
     "modify": "20250916143735928",
     "source": "https://baoyu.io/translations/ai-fundamentals-agent-definitions",
-    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+    "icon": "favicon.ico"
   },
   "20250916143855749": {
     "index": "202509/20250916143855749-mp.weixin.qq.com/index.html",
@@ -677,7 +677,7 @@ scrapbook.meta({
     "create": "20250916144212832",
     "modify": "20250916144212832",
     "source": "https://baoyu.io/translations/reasoning-best-practices",
-    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+    "icon": "favicon.ico"
   },
   "20250916144308396": {
     "index": "",
@@ -747,7 +747,7 @@ scrapbook.meta({
   },
   "20250916150104883": {
     "index": "202509/20250916150104883-x.com/index.html",
-    "title": "GitHubDaily on X: \"GitHub 上一个能极大提升我们 AI 编程效率的上下文工程模板：Context Engineering Template。 让 AI 编程助手能充分理解我们的项目规范、代码风格和架构模式，从而生成符合项目标准的高质量代码。 GitHub：https://t.co/pKYRo36lej 主要内容： - 提供完整的上下文工程模板和工作流程 - 支持 PRP https://t.co/uOd0Z0pQuV\" / X",
+    "title": "GitHubDaily on X: \"GitHub 上一个能极大提升我们 AI 编程效率的上下文工程模板：Context Engineering Template\" / X",
     "type": "",
     "create": "20250916150104883",
     "modify": "20250916150104883",
@@ -761,7 +761,9 @@ scrapbook.meta({
     "create": "20250916150206515",
     "modify": "20250916150206515",
     "source": "https://x.com/neural_avb/status/1948774323679830382",
-    "icon": "twitter.3.ico"
+    "icon": "twitter.3.ico",
+    "parent": "20250916145958204",
+    "recycled": "20250917145746866"
   },
   "20250916150224662": {
     "index": "202509/20250916150224662-x.com/index.html",
@@ -815,5 +817,98 @@ scrapbook.meta({
     "modify": "20250916151049478",
     "source": "https://medium.com/@olujare.dada/enhancing-llms-with-function-calling-a-practical-guide-c4a757324c51",
     "icon": "5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19.png"
+  },
+  "20250917142554406": {
+    "index": "202509/20250917142554406-zhuanlan.zhihu.com/index.html",
+    "title": "一文入门智能体：dify 超快速构建AI agent - 知乎",
+    "type": "",
+    "create": "20250917142554406",
+    "modify": "20250917142554406",
+    "source": "https://zhuanlan.zhihu.com/p/25771359587",
+    "icon": "favicon.ico"
+  },
+  "20250917142702794": {
+    "index": "",
+    "title": "Cranot/claude-code-guide: Claude Code Comprehensive Guide",
+    "type": "bookmark",
+    "create": "20250917142702794",
+    "modify": "20250917142702794",
+    "source": "https://github.com/Cranot/claude-code-guide",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250917142725837": {
+    "title": "workflow",
+    "type": "folder",
+    "create": "20250917142725837",
+    "modify": "20250917142725837"
+  },
+  "20250917143253739": {
+    "index": "202509/20250917143253739-threadreaderapp.com/index.html",
+    "title": "Thread by @dotey: Workflow 和 Agent 到底什么关系",
+    "type": "",
+    "create": "20250917143253739",
+    "modify": "20250917143253739",
+    "source": "https://threadreaderapp.com/thread/1949852823891431839.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20250917143408026": {
+    "index": "202509/20250917143408026-x.com/index.html",
+    "title": "AI共创联盟 on X: \"@dongxi_nlp 梳理了下关系：代理(Agent)是一个代理系统(Agentic Systems)。代理工作流(Agent Workflow)也是一个代理系统(Agentic Systems)。 https://t.co/c4g6eT4MD2\" / X",
+    "type": "",
+    "create": "20250917143408026",
+    "modify": "20250917143408026",
+    "source": "https://x.com/Meta360DAO/status/1950114827482910800",
+    "icon": "twitter.3.ico"
+  },
+  "20250917143755800": {
+    "index": "202509/20250917143755800-jishuzhan.net/index.html",
+    "title": "ReAct Agent 分享回顾 - 技术栈",
+    "type": "",
+    "create": "20250917143755800",
+    "modify": "20250917143755800",
+    "source": "https://jishuzhan.net/article/1811002462383902721",
+    "icon": "favicon.ico"
+  },
+  "20250917144543617": {
+    "index": "202509/20250917144543617-baoyu.io/index.html",
+    "title": "上下文工程：为提示词注入工程学的严谨性 | 宝玉的分享",
+    "type": "",
+    "create": "20250917144543617",
+    "modify": "20250917144543617",
+    "source": "https://baoyu.io/translations/context-engineering-prompt-engineering-by-addy",
+    "icon": "favicon.ico"
+  },
+  "20250917144938058": {
+    "title": "AI4SE",
+    "type": "folder",
+    "create": "20250917144938058",
+    "modify": "20250917144938058"
+  },
+  "20250917145217597": {
+    "index": "202509/20250917145217597-baoyu.io/index.html",
+    "title": "AI的新技能不是提示词，而是上下文工程 | 宝玉的分享",
+    "type": "",
+    "create": "20250917145217597",
+    "modify": "20250917145217597",
+    "source": "https://baoyu.io/translations/the-new-skill-in-ai-is-context-engineering",
+    "icon": "favicon.ico"
+  },
+  "20250917145650111": {
+    "index": "202509/20250917145650111-www.marktechpost.com/index.html",
+    "title": "Context Engineering for AI Agents: Key Lessons from Manus - MarkTechPost",
+    "type": "",
+    "create": "20250917145650111",
+    "modify": "20250917145650111",
+    "source": "https://www.marktechpost.com/2025/07/22/context-engineering-for-ai-agents-key-lessons-from-manus/?amp",
+    "icon": "16X16-FAVICON-1-1.png"
+  },
+  "20250917145712696": {
+    "index": "202509/20250917145712696-baoyu.io/index.html",
+    "title": "AI 智能体的上下文工程：构建 Manus 的经验教训 | 宝玉的分享",
+    "type": "",
+    "create": "20250917145712696",
+    "modify": "20250917145712696",
+    "source": "https://baoyu.io/translations/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus",
+    "icon": "favicon.ico"
   }
 })
