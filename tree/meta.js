@@ -910,5 +910,130 @@ scrapbook.meta({
     "modify": "20250917145712696",
     "source": "https://baoyu.io/translations/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus",
     "icon": "favicon.ico"
+  },
+  "20250919142724813": {
+    "index": "202509/20250919142724813-blog.zippland.com/index.html",
+    "title": "Agent 架构：从 Prompt 到 Context | Zylan Blog",
+    "type": "",
+    "create": "20250919142724813",
+    "modify": "20250919142724813",
+    "source": "https://blog.zippland.com/article/2259db82-fa86-8039-b227-d6098faedd22",
+    "icon": "favicon.ico"
+  },
+  "20250919142928619": {
+    "index": "202509/20250919142928619-arxiv.org/index.html",
+    "title": "[2210.03629] ReAct: Synergizing Reasoning and Acting in Language Models",
+    "type": "",
+    "create": "20250919142928619",
+    "modify": "20250919142928619",
+    "source": "https://arxiv.org/abs/2210.03629",
+    "icon": "favicon-32x32.png"
+  },
+  "20250919143554313": {
+    "index": "",
+    "title": "Lordog/dive-into-llms: 《动手学大模型Dive into LLMs》系列编程实践教程",
+    "type": "bookmark",
+    "create": "20250919143554313",
+    "modify": "20250919143554313",
+    "source": "https://github.com/Lordog/dive-into-llms",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250919143746862": {
+    "index": "202509/20250919143746862-www.nazha.co/index.html",
+    "title": "智能体，从 ReAct 到多智能体",
+    "type": "",
+    "create": "20250919143746862",
+    "modify": "20250919143746862",
+    "source": "https://www.nazha.co/posts/what-is-agent",
+    "icon": "favicon.ico"
+  },
+  "20250919143932204": {
+    "index": "202509/20250919143932204-baoyu.io/index.html",
+    "title": "真正的AI智能体即将到来：告别死板提示词，迎接自主规划时代！ | 宝玉的分享",
+    "type": "",
+    "create": "20250919143932204",
+    "modify": "20250919143932204",
+    "source": "https://baoyu.io/translations/designing-llm-agents",
+    "icon": "favicon.ico"
+  },
+  "20250919144214445": {
+    "index": "202509/20250919144214445-arxiv.org/index.html",
+    "title": "[2404.04966] Advancing Code Coverage: Incorporating Program Analysis with Large Language Models",
+    "type": "",
+    "create": "20250919144214445",
+    "modify": "20250919144214445",
+    "source": "https://arxiv.org/abs/2404.04966",
+    "icon": "favicon-32x32.png"
+  },
+  "20250919144409961": {
+    "index": "202509/20250919144409961-www.infoq.cn/index.html",
+    "title": "AI 驱动的智能化单元测试生成：字节跳动的实践与创新_AI&大模型_Kitty_InfoQ精选文章",
+    "type": "",
+    "create": "20250919144409961",
+    "modify": "20250919144434604",
+    "source": "https://www.infoq.cn/article/8mVuhrLMMEJ8MDjo1U4e",
+    "icon": "share-default-5tgbiuhgfefgujjhg.png"
+  },
+  "20250919144458280": {
+    "index": "",
+    "title": "ZJU-ACES-ISE/ChatUniTest",
+    "type": "bookmark",
+    "create": "20250919144458280",
+    "modify": "20250919144458280",
+    "source": "https://github.com/ZJU-ACES-ISE/ChatUniTest",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250919144504434": {
+    "title": "",
+    "type": "separator",
+    "create": "20250919144504434",
+    "modify": "20250919144504434"
+  },
+  "20250919145000517": {
+    "index": "",
+    "title": "[2501.10200] Test Wars: A Comparative Study of SBST, Symbolic Execution, and LLM-Based Approaches to Unit Test Generation",
+    "type": "bookmark",
+    "create": "20250919145000517",
+    "modify": "20250919145000517",
+    "source": "https://arxiv.org/abs/2501.10200",
+    "icon": "../tree/favicon/185cd87ea27204d6927aaa0e1c1b38ca39fce70c.png",
+    "parent": "20250917144938058",
+    "recycled": "20250919145320651"
+  },
+  "20250919145046478": {
+    "index": "",
+    "title": "CodaMosa: Escaping Coverage Plateaus in Test Generation with Pre-Trained Large Language Models | Proceedings of the 45th International Conference on Software Engineering",
+    "type": "bookmark",
+    "create": "20250919145046478",
+    "modify": "20250919145046478",
+    "source": "https://dl.acm.org/doi/abs/10.1109/ICSE48619.2023.00085",
+    "icon": "../tree/favicon/cbc83183b310b9b1056546536ea45c9f970cea48.png"
+  },
+  "20250919145153696": {
+    "index": "202509/20250919145153696-arxiv.org/index.html",
+    "title": "[2501.10200] Test Wars: A Comparative Study of SBST, Symbolic Execution, and LLM-Based Approaches to Unit Test Generation",
+    "type": "",
+    "create": "20250919145153696",
+    "modify": "20250919145153696",
+    "source": "https://arxiv.org/abs/2501.10200",
+    "icon": "favicon-32x32.png"
+  },
+  "20250919145226473": {
+    "index": "202509/20250919145226473-papers.cool/index.html",
+    "title": "[2501.10200] Test Wars: A Comparative Study of SBST, Symbolic Execution, and LLM-Based Approaches to Unit Test Generation | Cool Papers - Immersive Paper Discovery",
+    "type": "",
+    "create": "20250919145226473",
+    "modify": "20250919145226473",
+    "source": "https://papers.cool/arxiv/2501.10200",
+    "icon": "favicon.ico"
+  },
+  "20250919145246020": {
+    "index": "202509/20250919145246020-papers.cool/index.html",
+    "title": "[2404.04966] Enhancing LLM-based Test Generation for Hard-to-Cover Branches via Program Analysis | Cool Papers - Immersive Paper Discovery",
+    "type": "",
+    "create": "20250919145246020",
+    "modify": "20250919145246020",
+    "source": "https://papers.cool/arxiv/2404.04966",
+    "icon": "favicon.ico"
   }
 })

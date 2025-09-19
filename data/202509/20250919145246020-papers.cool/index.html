@@ -1,0 +1,387 @@
+<!DOCTYPE html><html data-scrapbook-source="https://papers.cool/arxiv/2404.04966" data-scrapbook-create="20250919145246020"><head><meta charset="UTF-8">
+    <title>Enhancing LLM-based Test Generation for Hard-to-Cover Branches via Program Analysis | Cool Papers - Immersive Paper Discovery</title>
+    <meta name="description" content="Automatic test generation plays a critical role in software quality assurance. While the recent advances in Search-Based Software Testing (SBST) and Large Language Models (LLMs) have shown promise in generating useful tests, these techniques still struggle to cover certain branches. Reaching these hard-to-cover branches usually requires constructing complex objects and resolving intricate inter-procedural dependencies in branch conditions, which poses significant challenges for existing test generation techniques. In this work, we propose TELPA, a novel technique aimed at addressing these challenges. Its key insight lies in extracting real usage scenarios of the target method under test to learn how to construct complex objects and extracting methods entailing inter-procedural dependencies with hard-to-cover branches to learn the semantics of branch constraints. To enhance efficiency and effectiveness, TELPA identifies a set of ineffective tests as counter-examples for LLMs and employs a feedback-based process to iteratively refine these counter-examples. Then, TELPA integrates program analysis results and counter-examples into the prompt, guiding LLMs to gain deeper understandings of the semantics of the target method and generate diverse tests that can reach the hard-to-cover branches. Our experimental results on 27 open-source Python projects demonstrate that TELPA significantly outperforms the state-of-the-art SBST and LLM-based techniques, achieving an average improvement of 31.39% and 22.22% in terms of branch coverage.">
+    <meta name="keywords" content="Cool Papers, Immersive Discovery, arXiv Research, AI Paper Assistant, Paper FAQ, Kimi Chat, Scholarly Papers, Academic Research, Paper Screening AI, Conference Papers, Research Paper Exploration">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="citation_title" content="Enhancing LLM-based Test Generation for Hard-to-Cover Branches via Program Analysis">
+    <meta name="citation_authors" content="Chen Yang; Junjie Chen; Bin Lin; Jianyi Zhou; Ziqi Wang">
+    <meta name="citation_abstract" content="Automatic test generation plays a critical role in software quality assurance. While the recent advances in Search-Based Software Testing (SBST) and Large Language Models (LLMs) have shown promise in generating useful tests, these techniques still struggle to cover certain branches. Reaching these hard-to-cover branches usually requires constructing complex objects and resolving intricate inter-procedural dependencies in branch conditions, which poses significant challenges for existing test generation techniques. In this work, we propose TELPA, a novel technique aimed at addressing these challenges. Its key insight lies in extracting real usage scenarios of the target method under test to learn how to construct complex objects and extracting methods entailing inter-procedural dependencies with hard-to-cover branches to learn the semantics of branch constraints. To enhance efficiency and effectiveness, TELPA identifies a set of ineffective tests as counter-examples for LLMs and employs a feedback-based process to iteratively refine these counter-examples. Then, TELPA integrates program analysis results and counter-examples into the prompt, guiding LLMs to gain deeper understandings of the semantics of the target method and generate diverse tests that can reach the hard-to-cover branches. Our experimental results on 27 open-source Python projects demonstrate that TELPA significantly outperforms the state-of-the-art SBST and LLM-based techniques, achieving an average improvement of 31.39% and 22.22% in terms of branch coverage.">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2404.04966">
+    <meta name="citation_public_url" content="https://papers.cool/arxiv/2404.04966">
+    <meta name="citation_publisher" content="cs.SE - arXiv">
+    <meta name="citation_date" content="2024-04-07">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888; display: contents}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head>
+<body id="arxiv"><div id="MathJax_Message" style="display: none;"></div>
+    <h1 class="notranslate">2404.04966</h1>
+    <p class="info notranslate">
+        Total: 1
+    </p>
+    <div class="papers">
+        <div id="2404.04966" class="panel paper" keywords="telpa,branches,cover,sbst,hard,test,branch,counter,procedural,llm">
+            <h2 class="title">
+                <a href="https://arxiv.org/abs/2404.04966" target="_blank" title="1/1" data-eusoft-scrollable-element="1"><span class="index notranslate" data-eusoft-scrollable-element="1">#1</span></a>
+                <a id="title-2404.04966" class="title-link" href="" target="_blank" data-eusoft-scrollable-element="1">Enhancing LLM-based Test Generation for Hard-to-Cover Branches via Program Analysis</a>
+                <a id="pdf-2404.04966" class="title-pdf notranslate" data="https://arxiv.org/pdf/2404.04966" data-eusoft-scrollable-element="1">[PDF<sup id="pdf-stars-2404.04966" data-eusoft-scrollable-element="1">1</sup>]</a>
+                <a id="copy-2404.04966" class="title-copy notranslate" data-eusoft-scrollable-element="1">[Copy]</a>
+                <a id="kimi-2404.04966" class="title-kimi notranslate" data-eusoft-scrollable-element="1" data-clickable="true" style="">[Kimi<sup id="kimi-stars-2404.04966" data-eusoft-scrollable-element="1">5</sup>]</a>
+                <a id="rel-2404.04966" class="title-rel notranslate" data-eusoft-scrollable-element="1">[REL]</a>
+            </h2>
+            <p id="authors-2404.04966" class="metainfo authors notranslate"><strong data-eusoft-scrollable-element="1">Authors</strong>:
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Chen%20Yang" target="_blank" data-eusoft-scrollable-element="1">Chen Yang</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Junjie%20Chen" target="_blank" data-eusoft-scrollable-element="1">Junjie Chen</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Bin%20Lin" target="_blank" data-eusoft-scrollable-element="1">Bin Lin</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Jianyi%20Zhou" target="_blank" data-eusoft-scrollable-element="1">Jianyi Zhou</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Ziqi%20Wang" target="_blank" data-eusoft-scrollable-element="1">Ziqi Wang</a>
+            </p>
+            <p id="summary-2404.04966" class="summary">Automatic test generation plays a critical role in software quality assurance. While the recent advances in Search-Based Software Testing (SBST) and Large Language Models (LLMs) have shown promise in generating useful tests, these techniques still struggle to cover certain branches. Reaching these hard-to-cover branches usually requires constructing complex objects and resolving intricate inter-procedural dependencies in branch conditions, which poses significant challenges for existing test generation techniques. In this work, we propose TELPA, a novel technique aimed at addressing these challenges. Its key insight lies in extracting real usage scenarios of the target method under test to learn how to construct complex objects and extracting methods entailing inter-procedural dependencies with hard-to-cover branches to learn the semantics of branch constraints. To enhance efficiency and effectiveness, TELPA identifies a set of ineffective tests as counter-examples for LLMs and employs a feedback-based process to iteratively refine these counter-examples. Then, TELPA integrates program analysis results and counter-examples into the prompt, guiding LLMs to gain deeper understandings of the semantics of the target method and generate diverse tests that can reach the hard-to-cover branches. Our experimental results on 27 open-source Python projects demonstrate that TELPA significantly outperforms the state-of-the-art SBST and LLM-based techniques, achieving an average improvement of 31.39% and 22.22% in terms of branch coverage.</p>
+            <p id="subjects-2404.04966" class="metainfo subjects"><strong data-eusoft-scrollable-element="1">Subject</strong>:
+                <span class="interact-item" style="margin:0">
+                    <a class="subject-1" href="https://papers.cool/arxiv/cs.SE" target="_blank" data-eusoft-scrollable-element="1">Software Engineering</a>
+                    <i class="fa fa-plus-circle right-top" title="Add to watch list" value="cs.SE"></i>
+                    <i class="fa fa-minus-circle right-bottom" title="Add to exclusion list" value="cs.SE"></i>
+                </span>
+            </p>
+            <p id="date-2404.04966" class="metainfo date"><strong data-eusoft-scrollable-element="1">Publish</strong>: <span class="date-data" data-eusoft-scrollable-element="1">2024-04-07 14:08:28 UTC</span></p>
+            <div id="pdf-container-2404.04966" class="pdf-container" style="display:none"></div>
+            <div id="kimi-container-2404.04966" class="kimi-container notranslate" style="display: block;"><p class="faq-q"><strong>Q1</strong>: 这篇论文试图解决什么问题？</p>
+
+<div class="faq-a">
+
+<p>这篇论文试图解决的问题是自动测试生成中的一个挑战：如何有效地覆盖那些难以覆盖的代码分支。这些分支通常需要构建复杂的对象和解决复杂的程序间依赖关系，这对于现有的测试生成技术（如基于搜索的软件测试（SBST）和基于大型语言模型（LLMs）的技术）来说是一个难题。为了解决这个问题，论文提出了一个名为TELPA的新技术，旨在通过程序分析增强的提示（prompting）来提高LLMs生成测试用例的能力，从而更好地覆盖这些难以覆盖的分支。</p>
+</div>
+
+<p class="faq-q"><strong>Q2</strong>: 有哪些相关研究？</p>
+
+<div class="faq-a">
+
+<p>这篇论文提到了以下几类相关研究：</p>
+<ol>
+<li><p><strong>基于搜索的软件测试 (SBST)</strong>: 这是一类广泛研究的测试生成技术，通过搜索算法来探索大量的测试空间。论文中特别提到了Pynguin和EvoSuite作为SBST的代表技术。</p>
+</li>
+<li><p><strong>基于符号执行的测试生成</strong>: 这类技术使用符号执行来提高测试覆盖率。论文中提到了一些相关工作，如Pex和Galeotti等人的工作，它们将动态符号执行集成到测试生成过程中。</p>
+</li>
+<li><p><strong>基于深度学习的测试生成</strong>: 这类技术利用深度学习模型来生成测试用例。论文中提到了ATHENATest和A3Test作为这方面的研究。</p>
+</li>
+<li><p><strong>基于大型语言模型 (LLMs) 的测试生成</strong>: 这是最近兴起的一种技术，利用LLMs的代码理解能力来生成测试用例。论文中提到了CODAMOSA和ChatTester作为这方面的研究。</p>
+</li>
+<li><p><strong>测试生成中的提示增强方法</strong>: 这些方法旨在通过改进对LLMs的提示来提高测试生成的效果。论文中提到了Chain-of-Thought (CoT) 提示策略，以及其他一些后处理技术，如自我修复（self-repairing）。</p>
+</li>
+</ol>
+<p>这些相关研究为TELPA的提出提供了背景和对比，TELPA通过结合程序分析和LLMs的优势，尝试解决现有技术难以覆盖的分支问题。</p>
+</div>
+
+<p class="faq-q"><strong>Q3</strong>: 论文如何解决这个问题？</p>
+
+<div class="faq-a">
+
+<p>论文提出了一个名为TELPA（TEst generation via Llm and Program Analysis）的新技术来解决难以覆盖的代码分支问题。TELPA的主要解决思路包括以下几个方面：</p>
+<ol>
+<li><p><strong>程序分析</strong>: TELPA利用程序分析来提取目标方法的真实使用场景，学习如何构建复杂对象，并提取包含难以覆盖分支的程序间依赖性的方法，以学习分支约束的语义。这包括两种类型的分析：</p>
+<ul>
+<li><strong>后向方法调用分析</strong>：从目标方法的每个调用开始，提取所有以目标方法为终点的方法调用序列，以捕捉构建复杂对象的过程。</li>
+<li><strong>前向方法调用分析</strong>：从目标分支的每个变量和调用的方法开始，提取所有相关的方法，以理解分支条件的行为。</li>
+</ul>
+</li>
+<li><p><strong>无效测试用例作为反例</strong>: TELPA识别一组无效的测试用例作为反例，用于指导LLMs生成新的测试用例。这些反例作为反馈，帮助LLMs避免生成已经证明无效的测试用例。</p>
+</li>
+<li><p><strong>基于反馈的测试生成过程</strong>: TELPA将程序分析结果和反例整合到提示中，引导LLMs生成能够到达难以覆盖分支的多样化测试用例。这个过程是迭代的，可以根据最新的覆盖率结果更新反例，从而提高测试生成的效率和效果。</p>
+</li>
+<li><p><strong>成本效益</strong>: 由于使用LLMs的成本不小，TELPA定义了其使用场景，即当现有的（轻量级）测试生成工具（如Pynguin）在一定时间范围内无法提高测试覆盖率时，才激活TELPA。这确保了成本效益。</p>
+</li>
+</ol>
+<p>通过这些方法，TELPA旨在提高测试用例的多样性和覆盖率，特别是在覆盖那些难以通过传统技术覆盖的分支时。论文的实验结果表明，TELPA在27个开源Python项目上显著优于现有的SBST和基于LLMs的技术，平均提高了分支覆盖率。</p>
+</div>
+
+<p class="faq-q"><strong>Q4</strong>: 论文做了哪些实验？</p>
+
+<div class="faq-a">
+
+<p>论文进行了以下实验来评估TELPA的性能：</p>
+<ol>
+<li><p><strong>实验设置</strong>:</p>
+<ul>
+<li>实现了TELPA，并针对Python程序进行测试生成。</li>
+<li>使用了Hugging Face的Phind-CodeLlama-34B-v2作为LLM。</li>
+<li>选择了Pynguin和CODAMOSA作为初始测试生成工具。</li>
+<li>在27个开源Python项目上进行了评估，这些项目包含486个模块，共计42897行代码和4518个方法。</li>
+<li>使用分支覆盖和行覆盖作为评估指标。</li>
+<li>为每个项目分配了20分钟的测试生成时间，并进行了三次重复实验以减少随机性的影响。</li>
+</ul>
+</li>
+<li><p><strong>基线比较</strong> (RQ1):</p>
+<ul>
+<li>将TELPA与Pynguin和CODAMOSA进行比较，以评估TELPA在提高代码覆盖率方面的能力。</li>
+<li>比较了TELPA与一个新构建的基线BasicPrompt，该基线采用了与CODAMOSA相同的提示方法，以评估TELPA的提示方法的有效性。</li>
+</ul>
+</li>
+<li><p><strong>组件贡献分析</strong> (RQ2):</p>
+<ul>
+<li>构建了TELPA的多个变体，并与完整的TELPA进行比较，以评估TELPA中各个组件（如后向和前向方法调用分析、反例采样、基于覆盖率的反馈）的贡献。</li>
+</ul>
+</li>
+<li><p><strong>不同配置下的TELPA有效性</strong> (RQ3):</p>
+<ul>
+<li>评估了不使用初始测试生成工具（即从一开始就激活TELPA）的性能。</li>
+<li>评估了使用不同规模的LLM（如DeepSeekCoder-6.7B-instruct）对TELPA性能的影响。</li>
+</ul>
+</li>
+<li><p><strong>有效性评估</strong>:</p>
+<ul>
+<li>比较了TELPA在不同项目上的分支覆盖率和行覆盖率。</li>
+<li>使用Wilcoxon符号秩检验来确认TELPA与基线方法之间的统计显著性差异。</li>
+</ul>
+</li>
+<li><p><strong>威胁分析</strong>:</p>
+<ul>
+<li>讨论了可能影响实验结果有效性的威胁，如TELPA中的参数设置和使用的评估指标。</li>
+</ul>
+</li>
+</ol>
+<p>通过这些实验，论文全面地评估了TELPA在提高测试覆盖率方面的能力，并与现有的SBST和LLM-based技术进行了比较。实验结果表明，TELPA在覆盖难以覆盖的分支方面具有显著的优势。</p>
+</div>
+
+<p class="faq-q"><strong>Q5</strong>: 有什么可以进一步探索的点？</p>
+
+<div class="faq-a">
+
+<p>论文中提到了几个可以进一步探索的点：</p>
+<ol>
+<li><p><strong>参数设置的影响</strong>：论文中使用了特定的参数设置（如LLM的温度设置为1，测试时间预算为20分钟等）。不同的参数设置可能会对TELPA的效果产生影响，值得进一步研究。</p>
+</li>
+<li><p><strong>更多评估指标</strong>：除了分支覆盖率和行覆盖率，还可以使用其他评估指标，如测试的自然性（naturalness）和变异测试得分（mutation score）来更全面地评估生成的测试用例。</p>
+</li>
+<li><p><strong>幻觉问题</strong>：LLMs可能会产生错误的测试用例（幻觉问题）。研究如何通过微调LLMs或使用其他技术来减少幻觉问题的发生，可以进一步提高TELPA的有效性。</p>
+</li>
+<li><p><strong>与其他提示增强方法的结合</strong>：TELPA专注于改进测试生成的提示内容。将TELPA与其他提示增强技术（如Chain-of-Thought技术或后处理技术）结合，可能会进一步提高测试覆盖率。</p>
+</li>
+<li><p><strong>不同编程语言的适用性</strong>：虽然TELPA是在Python项目上进行评估的，但其核心思想并不局限于特定编程语言。探索TELPA在其他编程语言项目上的应用，以及如何将其扩展到这些语言，是一个有趣的研究方向。</p>
+</li>
+<li><p><strong>不同规模的LLMs</strong>：论文中提到了使用不同规模的LLMs对TELPA的影响。进一步研究不同规模的LLMs对TELPA性能的影响，以及如何选择合适的LLMs来最大化测试生成的效果，是值得探索的。</p>
+</li>
+<li><p><strong>集成其他测试生成技术</strong>：TELPA可以作为现有测试生成技术的一个增强步骤。研究如何将TELPA与其他测试生成技术（包括基于符号执行的技术）集成，以形成一个更全面的测试生成解决方案，可以提供更深入的见解。</p>
+</li>
+</ol>
+<p>这些探索点为未来的研究提供了方向，旨在进一步提高TELPA技术的效率、效果和适用性。</p>
+</div>
+
+<p class="faq-q"><strong>Q6</strong>: 总结一下论文的主要内容</p>
+
+<div class="faq-a">
+
+<p>这篇论文的主要内容可以总结如下：</p>
+<ol>
+<li><p><strong>问题定义</strong>：论文针对自动测试生成中的一个关键挑战——难以覆盖的代码分支——提出了解决方案。这些分支通常涉及复杂对象的构建和复杂的程序间依赖关系。</p>
+</li>
+<li><p><strong>技术提案</strong>：提出了名为TELPA的新技术，该技术结合了程序分析和大型语言模型（LLMs）以增强测试用例的生成。TELPA通过提取目标方法的真实使用场景和相关的程序间依赖方法来指导LLMs生成测试用例。</p>
+</li>
+<li><p><strong>方法细节</strong>：</p>
+<ul>
+<li>利用后向和前向方法调用分析来提取构建复杂对象和理解分支约束所需的信息。</li>
+<li>使用无效测试用例作为反例，通过基于覆盖率的反馈过程来迭代改进测试用例。</li>
+<li>定义了TELPA的使用场景，以确保在成本效益的前提下针对难以覆盖的分支进行测试生成。</li>
+</ul>
+</li>
+<li><p><strong>实验评估</strong>：在27个开源Python项目上进行了广泛的实验，以评估TELPA与现有SBST和LLM-based技术相比的性能。实验结果显示TELPA在提高分支覆盖率方面具有显著优势。</p>
+</li>
+<li><p><strong>进一步研究方向</strong>：论文讨论了未来可能的研究方向，包括参数调整、更多评估指标、幻觉问题的解决方案、与其他测试生成技术的集成等。</p>
+</li>
+</ol>
+<p>总体而言，论文提出了一个创新的方法来提高自动测试生成技术的覆盖率，特别是在处理难以覆盖的分支时，并通过实验验证了其有效性。</p>
+<p class="faq-q"><strong>Q7</strong>: 想要进一步了解论文</p>
+
+<div class="faq-a">
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a href="http://kimi.com/_prefill_chat?prefill_prompt=%20%E6%88%91%E4%BB%AC%E8%A6%81%E8%AE%A8%E8%AE%BA%E7%9A%84%E8%AE%BA%E6%96%87%E6%98%AFEnhancing%20LLM-based%20Test%20Generation%20for%20Hard-to-Cover%20Branches%20via%20Program%20Analysis%EF%BC%8C%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://arxiv.org/pdf/2404.04966%20%20%EF%BC%8C%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://papers.cool/arxiv/kimi?paper=2404.04966%20%20%E3%80%82%E8%AF%B7%E4%BB%A5%E6%AD%A4%E4%B8%BA%E5%9F%BA%E7%A1%80%EF%BC%8C%E7%BB%A7%E7%BB%AD%E5%9B%9E%E7%AD%94%E6%88%91%E5%90%8E%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82&amp;system_prompt=%E4%BD%A0%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AD%A6%E6%9C%AF%E5%8A%A9%E6%89%8B%EF%BC%8C%E5%90%8E%E9%9D%A2%E7%9A%84%E5%AF%B9%E8%AF%9D%E5%B0%86%E5%9B%B4%E7%BB%95%E7%9D%80%E4%BB%A5%E4%B8%8B%E8%AE%BA%E6%96%87%E5%86%85%E5%AE%B9%E8%BF%9B%E8%A1%8C%EF%BC%8C%E5%B7%B2%E7%BB%8F%E9%80%9A%E8%BF%87%E9%93%BE%E6%8E%A5%E7%BB%99%E5%87%BA%E4%BA%86%E8%AE%BA%E6%96%87%E7%9A%84PDF%E5%92%8C%E8%AE%BA%E6%96%87%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E3%80%82%E7%94%A8%E6%88%B7%E5%B0%86%E7%BB%A7%E7%BB%AD%E5%90%91%E4%BD%A0%E5%92%A8%E8%AF%A2%E8%AE%BA%E6%96%87%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%EF%BC%8C%E8%AF%B7%E4%BD%A0%E4%BD%9C%E5%87%BA%E4%B8%93%E4%B8%9A%E7%9A%84%E5%9B%9E%E7%AD%94%EF%BC%8C%E4%B8%8D%E8%A6%81%E5%87%BA%E7%8E%B0%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%EF%BC%8C%E5%BD%93%E6%B6%89%E5%8F%8A%E5%88%B0%E5%88%86%E7%82%B9%E5%9B%9E%E7%AD%94%E6%97%B6%EF%BC%8C%E9%BC%93%E5%8A%B1%E4%BD%A0%E4%BB%A5markdown%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA%E3%80%82&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false" target="_blank"><strong>这里 <i class="fa fa-external-link"></i></strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></div></div>
+            <hr id="fold-2404.04966" class="hr hr-fold" style="display: block;">
+        </div>
+    </div>
+    <div class="footer notranslate">
+        Designed by <a href="https://kexue.fm/" target="_blank" data-eusoft-scrollable-element="1">kexue.fm</a> | Powered by <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank" data-eusoft-scrollable-element="1">kimi.ai</a>
+    </div>
+    <div id="app-bar" class="app-bar panel notranslate" style="opacity: 0;">
+        <div id="app-bar-search" class="app-bar-content" style="display:none">
+            <div class="app-search-keywords">
+                <div class="keywords-included">
+                    <p>Include(<a id="logic-included" title="The logical relationship between keywords (OR/AND)">OR</a>):</p>
+                    <textarea id="keywords-included" class="text-input" placeholder="LLM
+Transformer
+Attention"></textarea>
+                </div>
+                <div class="keywords-excluded">
+                    <p>Exclude:</p>
+                    <textarea id="keywords-excluded" class="text-input"></textarea>
+                </div>
+            </div>
+            <div class="submit">
+                <p><button type="button">Search</button></p>
+                <p><label><input type="checkbox" id="search-filter">Filter</label></p>
+                <p><label><input type="checkbox" id="search-highlight" checked="true">Highlight</label></p>
+            </div>
+        </div>
+        <div id="app-bar-star" class="app-bar-content" style="display:none">
+            <p>Stared Paper(s):</p>
+            <div class="items">
+                <p id="app-bar-star-2404.04966" style="display: block;">
+                    <span class="i-index">#1</span>
+                    <a class="i-title" href="#2404.04966">Enhancing LLM-based Test Generation for Hard-to-Cover Branches via Program Analysis</a>
+                    <a class="i-star" style="display: block;"><i class="fa fa-star"></i></a>
+                    <a class="i-unstar" style="display:none"><i class="fa fa-star-o"></i></a>
+                </p>
+            </div>
+            <div class="submit">
+                <p><button type="button">Export</button></p>
+                <p id="export-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-config" class="app-bar-content" style="display:none">
+            <p>Magic Token:</p>
+            <input id="magic-token" class="text-input single-line" type="text" placeholder="If unsure, ignore it." value="">
+            <p>Kimi Language:</p>
+            <select id="kimi-lang" name="kimi-lang" class="text-input single-line">
+                <option value="zh" selected="">中文</option>
+                <option value="en">English</option>
+            </select>
+            <p>Desc Language:</p>
+            <select id="desc-lang" name="desc-lang" class="text-input single-line">
+                <option value="zh">中文</option>
+                <option value="en" selected="">English</option>
+            </select>
+            <div class="submit">
+                <p><button type="button" class="save-btn">Save</button></p>
+                <p id="config-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-bug" class="app-bar-content" style="display:none">
+            <p>Bug report? Issue submit? Please visit:</p>
+            <p id="github-url"><strong>Github: </strong><a href="https://github.com/bojone/papers.cool" target="_blank">https://github.com/bojone/papers.cool</a></p>
+            <p style="padding-top:15px">Please read our <a href="https://github.com/bojone/papers.cool/blob/main/Disclaimer/README_en.md" target="_blank">Disclaimer</a> before proceeding.</p>
+            <p>For more interesting features, please visit <a href="https://kexue.fm/" target="_blank">kexue.fm</a> and <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank">kimi.ai</a>.</p>
+        </div>
+        <a class="bar-app" href="https://papers.cool/" title="Home Page"><i class="fa fa-home" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="In-page Search"><i class="fa fa-search" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Stared Papers"><i class="fa fa-star" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Configuration"><i class="fa fa-cog" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Bug Report"><i class="fa fa-bug" data-eusoft-scrollable-element="1"></i></a>
+    </div>
+    <div id="scroll-btn" style="opacity: 0;">
+        <button id="totop" title="Go to top"><i class="fa fa-chevron-up" data-eusoft-scrollable-element="1"></i></button>
+        <button id="tobottom" title="Go to bottom"><i class="fa fa-chevron-down" data-eusoft-scrollable-element="1"></i></button>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+
+
+<!-- Google tag (gtag.js) -->
+
+
+
+
+
+<script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2787122990="" ng-version="18.2.13" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c2787122990=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c2787122990="" _nghost-ng-c3386348173="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2787122990="" _nghost-ng-c749930229="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c749930229=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c2787122990="" class="eusoft-chrome-extension-capture-word-container ng-tns-c4033922151-0 ng-star-inserted" data-eusoft-scrollable-element="1" data-scrapbook-shadowdom="<style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><!----><!----><div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c4033922151-0&quot; data-content-script-theme=&quot;light&quot;><!----></div>"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2787122990="" _nghost-ng-c3081775404="" data-eusoft-scrollable-element="1"><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>

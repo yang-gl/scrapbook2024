@@ -1,0 +1,459 @@
+<!DOCTYPE html><html data-scrapbook-source="https://papers.cool/arxiv/2501.10200" data-scrapbook-create="20250919145226473"><head><meta charset="UTF-8">
+    <title>Test Wars: A Comparative Study of SBST, Symbolic Execution, and LLM-Based Approaches to Unit Test Generation | Cool Papers - Immersive Paper Discovery</title>
+    <meta name="description" content="Generating tests automatically is a key and ongoing area of focus in software engineering research. The emergence of Large Language Models (LLMs) has opened up new opportunities, given their ability to perform a wide spectrum of tasks. However, the effectiveness of LLM-based approaches compared to traditional techniques such as search-based software testing (SBST) and symbolic execution remains uncertain. In this paper, we perform an extensive study of automatic test generation approaches based on three tools: EvoSuite for SBST, Kex for symbolic execution, and TestSpark for LLM-based test generation. We evaluate tools performance on the GitBug Java dataset and compare them using various execution-based and feature-based metrics. Our results show that while LLM-based test generation is promising, it falls behind traditional methods in terms of coverage. However, it significantly outperforms them in mutation scores, suggesting that LLMs provide a deeper semantic understanding of code. LLM-based approach also performed worse than SBST and symbolic execution-based approaches w.r.t. fault detection capabilities. Additionally, our feature-based analysis shows that all tools are primarily affected by the complexity and internal dependencies of the class under test (CUT), with LLM-based approaches being especially sensitive to the CUT size.">
+    <meta name="keywords" content="Cool Papers, Immersive Discovery, arXiv Research, AI Paper Assistant, Paper FAQ, Kimi Chat, Scholarly Papers, Academic Research, Paper Screening AI, Conference Papers, Research Paper Exploration">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="citation_title" content="Test Wars: A Comparative Study of SBST, Symbolic Execution, and LLM-Based Approaches to Unit Test Generation">
+    <meta name="citation_authors" content="Azat Abdullin; Pouria Derakhshanfar; Annibale Panichella">
+    <meta name="citation_abstract" content="Generating tests automatically is a key and ongoing area of focus in software engineering research. The emergence of Large Language Models (LLMs) has opened up new opportunities, given their ability to perform a wide spectrum of tasks. However, the effectiveness of LLM-based approaches compared to traditional techniques such as search-based software testing (SBST) and symbolic execution remains uncertain. In this paper, we perform an extensive study of automatic test generation approaches based on three tools: EvoSuite for SBST, Kex for symbolic execution, and TestSpark for LLM-based test generation. We evaluate tools performance on the GitBug Java dataset and compare them using various execution-based and feature-based metrics. Our results show that while LLM-based test generation is promising, it falls behind traditional methods in terms of coverage. However, it significantly outperforms them in mutation scores, suggesting that LLMs provide a deeper semantic understanding of code. LLM-based approach also performed worse than SBST and symbolic execution-based approaches w.r.t. fault detection capabilities. Additionally, our feature-based analysis shows that all tools are primarily affected by the complexity and internal dependencies of the class under test (CUT), with LLM-based approaches being especially sensitive to the CUT size.">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2501.10200">
+    <meta name="citation_public_url" content="https://papers.cool/arxiv/2501.10200">
+    <meta name="citation_publisher" content="cs.SE - arXiv">
+    <meta name="citation_date" content="2025-01-17">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888; display: contents}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head>
+<body id="arxiv"><div id="MathJax_Message" style="display: none;"></div>
+    <h1 class="notranslate">2501.10200</h1>
+    <p class="info notranslate">
+        Total: 1
+    </p>
+    <div class="papers">
+        <div id="2501.10200" class="panel paper" keywords="sbst,llm,execution,test,symbolic,based,approaches,generation,wars,tools">
+            <h2 class="title">
+                <a href="https://arxiv.org/abs/2501.10200" target="_blank" title="1/1" data-eusoft-scrollable-element="1"><span class="index notranslate" data-eusoft-scrollable-element="1">#1</span></a>
+                <a id="title-2501.10200" class="title-link" href="" target="_blank" data-eusoft-scrollable-element="1">Test Wars: A Comparative Study of SBST, Symbolic Execution, and LLM-Based Approaches to Unit Test Generation</a>
+                <a id="pdf-2501.10200" class="title-pdf notranslate" data="https://arxiv.org/pdf/2501.10200" data-eusoft-scrollable-element="1">[PDF<sup id="pdf-stars-2501.10200" data-eusoft-scrollable-element="1"></sup>]</a>
+                <a id="copy-2501.10200" class="title-copy notranslate" data-eusoft-scrollable-element="1">[Copy]</a>
+                <a id="kimi-2501.10200" class="title-kimi notranslate" data-eusoft-scrollable-element="1" data-clickable="true" style="">[Kimi<sup id="kimi-stars-2501.10200" data-eusoft-scrollable-element="1">3</sup>]</a>
+                <a id="rel-2501.10200" class="title-rel notranslate" data-eusoft-scrollable-element="1">[REL]</a>
+            </h2>
+            <p id="authors-2501.10200" class="metainfo authors notranslate"><strong data-eusoft-scrollable-element="1">Authors</strong>:
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Azat%20Abdullin" target="_blank" data-eusoft-scrollable-element="1">Azat Abdullin</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Pouria%20Derakhshanfar" target="_blank" data-eusoft-scrollable-element="1">Pouria Derakhshanfar</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Annibale%20Panichella" target="_blank" data-eusoft-scrollable-element="1">Annibale Panichella</a>
+            </p>
+            <p id="summary-2501.10200" class="summary">Generating tests automatically is a key and ongoing area of focus in software engineering research. The emergence of Large Language Models (LLMs) has opened up new opportunities, given their ability to perform a wide spectrum of tasks. However, the effectiveness of LLM-based approaches compared to traditional techniques such as search-based software testing (SBST) and symbolic execution remains uncertain. In this paper, we perform an extensive study of automatic test generation approaches based on three tools: EvoSuite for SBST, Kex for symbolic execution, and TestSpark for LLM-based test generation. We evaluate tools performance on the GitBug Java dataset and compare them using various execution-based and feature-based metrics. Our results show that while LLM-based test generation is promising, it falls behind traditional methods in terms of coverage. However, it significantly outperforms them in mutation scores, suggesting that LLMs provide a deeper semantic understanding of code. LLM-based approach also performed worse than SBST and symbolic execution-based approaches w.r.t. fault detection capabilities. Additionally, our feature-based analysis shows that all tools are primarily affected by the complexity and internal dependencies of the class under test (CUT), with LLM-based approaches being especially sensitive to the CUT size.</p>
+            <p id="subjects-2501.10200" class="metainfo subjects"><strong data-eusoft-scrollable-element="1">Subject</strong>:
+                <span class="interact-item" style="margin:0">
+                    <a class="subject-1" href="https://papers.cool/arxiv/cs.SE" target="_blank" data-eusoft-scrollable-element="1">Software Engineering</a>
+                    <i class="fa fa-plus-circle right-top" title="Add to watch list" value="cs.SE"></i>
+                    <i class="fa fa-minus-circle right-bottom" title="Add to exclusion list" value="cs.SE"></i>
+                </span>
+            </p>
+            <p id="date-2501.10200" class="metainfo date"><strong data-eusoft-scrollable-element="1">Publish</strong>: <span class="date-data" data-eusoft-scrollable-element="1">2025-01-17 13:48:32 UTC</span></p>
+            <div id="pdf-container-2501.10200" class="pdf-container" style="display:none"></div>
+            <div id="kimi-container-2501.10200" class="kimi-container notranslate" style="display: block;"><p class="faq-q"><strong>Q1</strong>: 这篇论文试图解决什么问题？</p>
+
+<div class="faq-a">
+
+<p>这篇论文试图解决的问题是：<strong>如何比较基于搜索的软件测试（SBST）、符号执行和基于大型语言模型（LLM）的自动单元测试生成方法的有效性</strong>。具体来说，论文的目标包括：</p>
+<ol>
+<li><strong>比较不同方法的性能</strong>：通过在相同的基准数据集上评估这些方法，确定它们在生成单元测试方面的相对性能。</li>
+<li><strong>分析各方法的优势和劣势</strong>：通过分析测试生成工具的性能与被测代码的特征之间的关系，揭示不同方法在不同场景下的表现，为开发混合方法提供依据。</li>
+<li><strong>解决现有比较研究的局限性</strong>：现有研究存在数据集污染、未与符号执行比较、缺乏统计分析等问题。论文通过使用新的基准数据集（GitBug Java）和严格的统计分析方法，克服这些局限性。</li>
+</ol>
+</div>
+
+<p class="faq-q"><strong>Q2</strong>: 有哪些相关研究？</p>
+
+<div class="faq-a">
+
+<p>论文中提到了以下几类相关研究：</p>
+<h3>传统测试生成方法</h3>
+<ul>
+<li><strong>基于搜索的软件测试（SBST）</strong>：使用元启发式优化方法（如遗传算法）生成测试用例/测试套件。EvoSuite和Pynguin是Java和Python中最流行的SBST工具，它们在SBFT/SBST单元测试竞赛中多次获奖。</li>
+<li><strong>符号执行</strong>：通过将输入值替换为符号变量来抽象执行目标程序，自动生成满足代码条件的输入。Klee、Kex和UtBot等工具在自动测试生成方面表现出色。</li>
+<li><strong>混合测试生成方法</strong>：结合LLM基础测试生成与传统自动测试生成方法。CodaMosa和CoverUp是此类方法的代表，它们在特定情况下结合了LLM和传统方法的优势。</li>
+</ul>
+<h3>LLM基础测试生成方法</h3>
+<ul>
+<li>TestSpark、ChatUniTest和TestPilot等工具利用LLM进行测试生成，主要通过收集提示、请求LLM和反馈循环来改进初始LLM响应。</li>
+<li>SymPrompt专注于在方法级别生成测试，使用代码感知提示来针对特定路径。</li>
+<li>AthenaTest为单个（焦点）方法生成测试，不包括LLM的反馈循环。</li>
+<li>AID使用程序规范作为LLM提示的一部分，并请求LLM提供测试输入生成器脚本，而非实际测试。</li>
+</ul>
+<h3>现有比较研究</h3>
+<ul>
+<li>近期的研究尝试对LLM基础测试生成与传统方法进行比较，主要关注ChatGPT 3.5与EvoSuite的对比。</li>
+<li>这些研究存在局限性，如仅关注特定LLM版本、使用可能存在数据泄露风险的数据集，以及未与符号执行方法进行比较。</li>
+</ul>
+<h3>其他相关工作</h3>
+<ul>
+<li><strong>代码理解与生成</strong>：LLM在代码完成、代码理解和代码生成等任务中表现出色，为测试生成提供了新的可能性。</li>
+<li><strong>测试生成工具的评估</strong>：包括对测试生成工具的性能评估，如代码覆盖率、变异分数等指标的使用，以及对工具非确定性的统计分析。</li>
+</ul>
+</div>
+
+<p class="faq-q"><strong>Q3</strong>: 论文如何解决这个问题？</p>
+
+<div class="faq-a">
+
+<p>为了解决如何比较基于搜索的软件测试（SBST）、符号执行和基于大型语言模型（LLM）的自动单元测试生成方法的有效性问题，论文采取了以下步骤：</p>
+<h3>1. <strong>选择和配置工具</strong></h3>
+<ul>
+<li><strong>SBST工具</strong>：选择了EvoSuite，因为它在Java测试生成领域表现突出，且在多次SBFT竞赛中获胜。</li>
+<li><strong>符号执行工具</strong>：选择了Kex，因为它在最新SBFT竞赛中表现出色，并且是唯一使用符号执行技术的参赛工具。</li>
+<li><strong>LLM基础工具</strong>：选择了TestSpark，因为它支持多种LLM模型，且可以灵活配置。在实验中，TestSpark配置了四种不同的LLM模型：ChatGPT-4、ChatGPT-4o、Llama Medium和Code Llama 70b。</li>
+</ul>
+<h3>2. <strong>选择基准数据集</strong></h3>
+<ul>
+<li>使用了<strong>GitBug Java数据集</strong>，这是一个包含2023年提交的199个Java错误的可复现基准。该数据集未包含在现代LLM的训练集中，从而避免了数据泄露问题。最终，论文选择了136个错误，涉及24个开源项目。</li>
+</ul>
+<h3>3. <strong>实验设计</strong></h3>
+<ul>
+<li><strong>重复实验</strong>：为了处理测试生成算法的非确定性，每种工具的实验重复了10次。</li>
+<li><strong>时间预算</strong>：设置了120秒的时间预算，以模拟实际开发场景中对快速反馈的需求。</li>
+<li><strong>默认参数</strong>：使用了每个工具的默认参数，以确保结果具有可比性。</li>
+</ul>
+<h3>4. <strong>评估指标</strong></h3>
+<ul>
+<li><strong>执行基础指标</strong>：包括编译率、代码覆盖率、变异分数和故障复现能力。</li>
+<li><strong>代码特征指标</strong>：分析了被测代码的复杂性、大小、语言特性等因素，以了解这些特征如何影响不同测试生成方法的性能。</li>
+</ul>
+<h3>5. <strong>统计分析</strong></h3>
+<ul>
+<li>使用了Mann-Whitney U检验和Vargha-Delaney A12度量来评估工具性能的统计显著性。</li>
+<li>运用了Spearman秩相关系数来分析工具性能与代码特征之间的相关性。</li>
+</ul>
+<h3>6. <strong>研究问题</strong></h3>
+<ul>
+<li><strong>RQ1</strong>：确定最适合自动单元测试生成的LLM模型。</li>
+<li><strong>RQ2</strong>：比较LLM基础方法与传统方法（SBST和符号执行）在大规模基准上的性能。</li>
+<li><strong>RQ3</strong>：分析被测代码的各种质量与不同测试生成技术性能之间的相关性。</li>
+</ul>
+<h3>7. <strong>实验结果与分析</strong></h3>
+<ul>
+<li><strong>RQ1结果</strong>：ChatGPT-4o在编译率、代码覆盖率和变异分数方面表现最佳，主要归功于其较大的上下文窗口（128k tokens）。</li>
+<li><strong>RQ2结果</strong>：EvoSuite和Kex在代码覆盖率方面表现相近，而TestSpark-ChatGPT-4o在变异分数方面表现更好，但在故障检测能力方面落后于传统方法。</li>
+<li><strong>RQ3结果</strong>：所有工具的性能都受到被测类的复杂性、内部依赖数量和代码大小的显著影响。LLM基础方法对代码大小和内部依赖更为敏感。</li>
+</ul>
+<h3>8. <strong>结论与未来工作</strong></h3>
+<ul>
+<li>论文得出结论，LLM基础方法在某些方面（如变异分数）显示出潜力，但在代码覆盖率和故障检测方面仍落后于传统方法。</li>
+<li>未来工作计划开发一种结合多种方法的混合测试生成工具，以利用不同方法的优势。</li>
+</ul>
+</div>
+
+<p class="faq-q"><strong>Q4</strong>: 论文做了哪些实验？</p>
+
+<div class="faq-a">
+
+<p>论文设计并执行了以下实验来比较基于搜索的软件测试（SBST）、符号执行和基于大型语言模型（LLM）的自动单元测试生成方法：</p>
+<h3>实验一：不同LLM模型的性能比较（RQ1）</h3>
+<ul>
+<li><strong>目的</strong>：确定最适合自动单元测试生成的LLM模型。</li>
+<li><strong>工具</strong>：TestSpark配置了四种不同的LLM模型：ChatGPT-4、ChatGPT-4o、Llama Medium和Code Llama 70b。</li>
+<li><strong>数据集</strong>：GitBug Java数据集，包含136个Java错误，涉及24个开源项目。</li>
+<li><strong>指标</strong>：编译率、代码覆盖率（行覆盖率和分支覆盖率）、变异分数。</li>
+<li><strong>方法</strong>：每种模型的实验重复10次，使用Mann-Whitney U检验和Vargha-Delaney A12度量进行统计分析。</li>
+<li><strong>结果</strong>：ChatGPT-4o在所有指标上表现最佳，主要归功于其较大的上下文窗口（128k tokens）。其他模型由于上下文限制表现较差。</li>
+</ul>
+<h3>实验二：LLM基础方法与传统方法的性能比较（RQ2）</h3>
+<ul>
+<li><strong>目的</strong>：比较LLM基础方法与传统方法（SBST和符号执行）在大规模基准上的性能。</li>
+<li><strong>工具</strong>：EvoSuite（SBST）、Kex（符号执行）和TestSpark-ChatGPT-4o（LLM基础）。</li>
+<li><strong>数据集</strong>：GitBug Java数据集。</li>
+<li><strong>指标</strong>：编译率、代码覆盖率（行覆盖率和分支覆盖率）、变异分数、故障复现能力。</li>
+<li><strong>方法</strong>：每种工具的实验重复10次，使用Mann-Whitney U检验和Vargha-Delaney A12度量进行统计分析。</li>
+<li><strong>结果</strong>：EvoSuite和Kex在代码覆盖率方面表现相近，TestSpark-ChatGPT-4o在变异分数方面表现更好，但在故障检测能力方面落后于传统方法。</li>
+</ul>
+<h3>实验三：代码特征与工具性能的相关性分析（RQ3）</h3>
+<ul>
+<li><strong>目的</strong>：分析被测代码的各种质量与不同测试生成技术性能之间的相关性。</li>
+<li><strong>工具</strong>：EvoSuite、Kex和TestSpark-ChatGPT-4o。</li>
+<li><strong>数据集</strong>：GitBug Java数据集。</li>
+<li><strong>指标</strong>：代码覆盖率（行覆盖率和分支覆盖率）、变异分数。</li>
+<li><strong>代码特征</strong>：包括被测类的复杂性（如圈复杂度）、大小（如代码行数）、语言特性（如注释和Java文档的存在）、依赖数量等。</li>
+<li><strong>方法</strong>：使用Spearman秩相关系数分析工具性能与代码特征之间的相关性。</li>
+<li><strong>结果</strong>：所有工具的性能都受到被测类的复杂性、内部依赖数量和代码大小的显著影响。LLM基础方法对代码大小和内部依赖更为敏感。</li>
+</ul>
+<h3>实验四：手动分析</h3>
+<ul>
+<li><strong>目的</strong>：通过手动分析部分基准，进一步了解不同工具在特定场景下的表现差异。</li>
+<li><strong>方法</strong>：手动分析了32个基准，这些基准在工具性能上表现出显著差异。</li>
+<li><strong>结果</strong>：提供了关于不同工具在处理特定类型代码（如字符串处理、复杂类等）时的优势和劣势的见解。</li>
+</ul>
+<p>这些实验涵盖了从模型选择到性能比较，再到代码特征影响的全面分析，为理解不同测试生成方法的优缺点提供了丰富的数据支持。</p>
+</div>
+
+<p class="faq-q"><strong>Q5</strong>: 有什么可以进一步探索的点？</p>
+
+<div class="faq-a">
+
+<p>论文在比较基于搜索的软件测试（SBST）、符号执行和基于大型语言模型（LLM）的自动单元测试生成方法方面做出了重要贡献，但仍有一些可以进一步探索的点：</p>
+<h3>1. <strong>混合方法的开发</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：开发结合SBST、符号执行和LLM的混合测试生成工具。</li>
+<li><strong>具体问题</strong>：如何有效地结合这些方法的优势，以提高测试生成的覆盖率、变异分数和故障检测能力？</li>
+</ul>
+<h3>2. <strong>LLM模型的改进</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：探索新的LLM模型或改进现有模型，以提高其在测试生成任务中的性能。</li>
+<li><strong>具体问题</strong>：如何解决LLM在处理大型代码时的上下文限制问题？如何减少LLM生成的幻觉（hallucinations）？</li>
+</ul>
+<h3>3. <strong>更广泛的代码特征分析</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：进一步分析代码特征对测试生成性能的影响。</li>
+<li><strong>具体问题</strong>：除了论文中提到的特征，还有哪些代码特征（如设计模式的使用、异常处理等）会影响测试生成的性能？</li>
+</ul>
+<h3>4. <strong>多语言支持</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：探索LLM在不同编程语言中的测试生成能力。</li>
+<li><strong>具体问题</strong>：LLM在生成不同编程语言的测试用例时的表现如何？是否需要针对不同语言进行特定的优化？</li>
+</ul>
+<h3>5. <strong>实时反馈机制</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：开发实时反馈机制，以提高LLM在测试生成中的适应性和准确性。</li>
+<li><strong>具体问题</strong>：如何设计有效的反馈机制，使LLM能够根据测试结果动态调整其生成策略？</li>
+</ul>
+<h3>6. <strong>行业应用</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：将这些测试生成方法应用于实际的工业项目中，评估其在实际开发环境中的有效性。</li>
+<li><strong>具体问题</strong>：在实际项目中，这些方法的表现如何？如何解决实际项目中的特定挑战，如复杂的依赖关系和大型代码库？</li>
+</ul>
+<h3>7. <strong>性能优化</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：优化测试生成工具的性能，以减少生成测试用例所需的时间。</li>
+<li><strong>具体问题</strong>：如何在保持高质量测试用例的同时，减少测试生成的时间开销？</li>
+</ul>
+<h3>8. <strong>故障检测能力的提升</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：提高测试生成工具的故障检测能力。</li>
+<li><strong>具体问题</strong>：如何改进测试生成策略，以提高检测实际软件故障的能力？</li>
+</ul>
+<h3>9. <strong>数据集的扩展</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：扩展和多样化测试生成的基准数据集。</li>
+<li><strong>具体问题</strong>：如何构建更具代表性和多样性的基准数据集，以更好地评估测试生成方法的性能？</li>
+</ul>
+<h3>10. <strong>用户交互和体验</strong></h3>
+<ul>
+<li><strong>研究方向</strong>：研究如何改善开发人员与测试生成工具的交互体验。</li>
+<li><strong>具体问题</strong>：如何设计用户友好的界面和交互机制，使开发人员能够更有效地利用自动测试生成工具？</li>
+</ul>
+<p>这些方向不仅有助于进一步理解不同测试生成方法的优势和局限性，还能为开发更高效、更可靠的自动测试生成工具提供新的思路。</p>
+</div>
+
+<p class="faq-q"><strong>Q6</strong>: 总结一下论文的主要内容</p>
+
+<div class="faq-a">
+
+<p>本文通过比较基于搜索的软件测试（SBST）、符号执行和基于大型语言模型（LLM）的自动单元测试生成方法，旨在评估这些方法在生成单元测试方面的有效性。研究使用了EvoSuite（SBST工具）、Kex（符号执行工具）和TestSpark（LLM基础工具）这三种工具，并在GitBug Java数据集上进行了广泛的实验。研究结果表明，尽管LLM在测试生成方面显示出潜力，但在代码覆盖率方面仍落后于传统方法。然而，LLM在变异分数方面表现更好，表明其对代码语义有更深入的理解。此外，LLM在故障检测能力方面表现不佳。研究还发现，所有工具的性能都受到被测类的复杂性和内部依赖的显著影响，而LLM对被测类大小特别敏感。</p>
+<h3>背景知识</h3>
+<p>软件质量保证是软件开发过程中的关键环节，而软件测试是确保软件质量的最广泛使用的方法之一。尽管自动化测试生成方法（如SBST和符号执行）已经取得了显著进展，但这些方法在工业界的采用仍然有限。随着LLM的出现，自动测试生成领域迎来了新的机遇。LLM在代码理解和生成方面表现出色，但它们在测试生成任务中面临上下文窗口限制和幻觉等问题。</p>
+<h3>研究方法</h3>
+<p>研究者设计了一个自动测试生成评估管道，包括基准数据集、运行器、工具和分析模块。基准数据集使用了GitBug Java，这是一个包含2023年提交的199个Java错误的可复现基准。研究者选择了136个错误，涉及24个开源项目。工具方面，研究者选择了EvoSuite、Kex和TestSpark，并为TestSpark配置了四种不同的LLM模型：ChatGPT-4、ChatGPT-4o、Llama Medium和Code Llama 70b。实验中，每种工具的实验重复了10次，以处理测试生成算法的非确定性，并设置了120秒的时间预算。</p>
+<h3>实验设计</h3>
+<p>实验分为三个部分，分别针对三个研究问题（RQ）：</p>
+<h4>RQ1: 最适合自动单元测试生成的LLM模型是什么？</h4>
+<p>实验结果表明，ChatGPT-4o在编译率、代码覆盖率和变异分数方面表现最佳，主要归功于其较大的上下文窗口（128k tokens）。其他模型由于上下文限制表现较差。</p>
+<h4>RQ2: LLM基础方法与传统方法在大规模基准上的性能如何？</h4>
+<p>实验结果显示，EvoSuite和Kex在代码覆盖率方面表现相近，而TestSpark-ChatGPT-4o在变异分数方面表现更好，但在故障检测能力方面落后于传统方法。</p>
+<h4>RQ3: 被测代码的各种质量与不同测试生成技术性能之间的相关性如何？</h4>
+<p>通过Spearman秩相关系数分析，研究发现所有工具的性能都受到被测类的复杂性、内部依赖数量和代码大小的显著影响。LLM基础方法对代码大小和内部依赖更为敏感。</p>
+<h3>关键结论</h3>
+<ul>
+<li><strong>LLM潜力与局限</strong>：LLM在变异分数方面表现出色，表明其对代码语义有更深入的理解，但在代码覆盖率和故障检测能力方面仍落后于传统方法。</li>
+<li><strong>工具性能差异</strong>：EvoSuite和Kex在代码覆盖率方面表现相近，而TestSpark-ChatGPT-4o在变异分数方面表现更好，但在故障检测能力方面落后于传统方法。</li>
+<li><strong>代码特征影响</strong>：所有工具的性能都受到被测类的复杂性、内部依赖数量和代码大小的显著影响，而LLM对代码大小和内部依赖更为敏感。</li>
+<li><strong>混合方法的必要性</strong>：鉴于每种方法都有其优势和局限性，开发结合SBST、符号执行和LLM的混合测试生成工具可能是未来研究的一个方向。</li>
+</ul>
+<h3>未来工作</h3>
+<p>研究者计划开发一种结合多种方法的混合测试生成工具，以利用不同方法的优势。此外，研究者还计划进一步探索LLM模型的改进、更广泛的代码特征分析、多语言支持、实时反馈机制、行业应用、性能优化、故障检测能力的提升、数据集的扩展以及用户交互和体验等方面。</p>
+<p class="faq-q"><strong>Q7</strong>: 想要进一步了解论文</p>
+
+<div class="faq-a">
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a href="http://kimi.com/_prefill_chat?prefill_prompt=%20%E6%88%91%E4%BB%AC%E8%A6%81%E8%AE%A8%E8%AE%BA%E7%9A%84%E8%AE%BA%E6%96%87%E6%98%AFTest%20Wars%3A%20A%20Comparative%20Study%20of%20SBST%2C%20Symbolic%20Execution%2C%20and%20LLM-Based%20Approaches%20to%20Unit%20Test%20Generation%EF%BC%8C%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://arxiv.org/pdf/2501.10200%20%20%EF%BC%8C%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://papers.cool/arxiv/kimi?paper=2501.10200%20%20%E3%80%82%E8%AF%B7%E4%BB%A5%E6%AD%A4%E4%B8%BA%E5%9F%BA%E7%A1%80%EF%BC%8C%E7%BB%A7%E7%BB%AD%E5%9B%9E%E7%AD%94%E6%88%91%E5%90%8E%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82&amp;system_prompt=%E4%BD%A0%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AD%A6%E6%9C%AF%E5%8A%A9%E6%89%8B%EF%BC%8C%E5%90%8E%E9%9D%A2%E7%9A%84%E5%AF%B9%E8%AF%9D%E5%B0%86%E5%9B%B4%E7%BB%95%E7%9D%80%E4%BB%A5%E4%B8%8B%E8%AE%BA%E6%96%87%E5%86%85%E5%AE%B9%E8%BF%9B%E8%A1%8C%EF%BC%8C%E5%B7%B2%E7%BB%8F%E9%80%9A%E8%BF%87%E9%93%BE%E6%8E%A5%E7%BB%99%E5%87%BA%E4%BA%86%E8%AE%BA%E6%96%87%E7%9A%84PDF%E5%92%8C%E8%AE%BA%E6%96%87%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E3%80%82%E7%94%A8%E6%88%B7%E5%B0%86%E7%BB%A7%E7%BB%AD%E5%90%91%E4%BD%A0%E5%92%A8%E8%AF%A2%E8%AE%BA%E6%96%87%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%EF%BC%8C%E8%AF%B7%E4%BD%A0%E4%BD%9C%E5%87%BA%E4%B8%93%E4%B8%9A%E7%9A%84%E5%9B%9E%E7%AD%94%EF%BC%8C%E4%B8%8D%E8%A6%81%E5%87%BA%E7%8E%B0%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%EF%BC%8C%E5%BD%93%E6%B6%89%E5%8F%8A%E5%88%B0%E5%88%86%E7%82%B9%E5%9B%9E%E7%AD%94%E6%97%B6%EF%BC%8C%E9%BC%93%E5%8A%B1%E4%BD%A0%E4%BB%A5markdown%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA%E3%80%82&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false" target="_blank"><strong>这里 <i class="fa fa-external-link"></i></strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></div></div>
+            <hr id="fold-2501.10200" class="hr hr-fold" style="display: block;">
+        </div>
+    </div>
+    <div class="footer notranslate">
+        Designed by <a href="https://kexue.fm/" target="_blank" data-eusoft-scrollable-element="1">kexue.fm</a> | Powered by <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank" data-eusoft-scrollable-element="1">kimi.ai</a>
+    </div>
+    <div id="app-bar" class="app-bar panel notranslate" style="opacity: 0;">
+        <div id="app-bar-search" class="app-bar-content" style="display:none">
+            <div class="app-search-keywords">
+                <div class="keywords-included">
+                    <p>Include(<a id="logic-included" title="The logical relationship between keywords (OR/AND)">OR</a>):</p>
+                    <textarea id="keywords-included" class="text-input" placeholder="LLM
+Transformer
+Attention"></textarea>
+                </div>
+                <div class="keywords-excluded">
+                    <p>Exclude:</p>
+                    <textarea id="keywords-excluded" class="text-input"></textarea>
+                </div>
+            </div>
+            <div class="submit">
+                <p><button type="button">Search</button></p>
+                <p><label><input type="checkbox" id="search-filter">Filter</label></p>
+                <p><label><input type="checkbox" id="search-highlight" checked="true">Highlight</label></p>
+            </div>
+        </div>
+        <div id="app-bar-star" class="app-bar-content" style="display:none">
+            <p>Stared Paper(s):</p>
+            <div class="items">
+                <p id="app-bar-star-2501.10200" style="display: block;">
+                    <span class="i-index">#1</span>
+                    <a class="i-title" href="#2501.10200">Test Wars: A Comparative Study of SBST, Symbolic Execution, and LLM-Based Approaches to Unit Test Generation</a>
+                    <a class="i-star" style="display: block;"><i class="fa fa-star"></i></a>
+                    <a class="i-unstar" style="display:none"><i class="fa fa-star-o"></i></a>
+                </p>
+            </div>
+            <div class="submit">
+                <p><button type="button">Export</button></p>
+                <p id="export-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-config" class="app-bar-content" style="display:none">
+            <p>Magic Token:</p>
+            <input id="magic-token" class="text-input single-line" type="text" placeholder="If unsure, ignore it." value="">
+            <p>Kimi Language:</p>
+            <select id="kimi-lang" name="kimi-lang" class="text-input single-line">
+                <option value="zh" selected="">中文</option>
+                <option value="en">English</option>
+            </select>
+            <p>Desc Language:</p>
+            <select id="desc-lang" name="desc-lang" class="text-input single-line">
+                <option value="zh">中文</option>
+                <option value="en" selected="">English</option>
+            </select>
+            <div class="submit">
+                <p><button type="button" class="save-btn">Save</button></p>
+                <p id="config-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-bug" class="app-bar-content" style="display:none">
+            <p>Bug report? Issue submit? Please visit:</p>
+            <p id="github-url"><strong>Github: </strong><a href="https://github.com/bojone/papers.cool" target="_blank">https://github.com/bojone/papers.cool</a></p>
+            <p style="padding-top:15px">Please read our <a href="https://github.com/bojone/papers.cool/blob/main/Disclaimer/README_en.md" target="_blank">Disclaimer</a> before proceeding.</p>
+            <p>For more interesting features, please visit <a href="https://kexue.fm/" target="_blank">kexue.fm</a> and <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank">kimi.ai</a>.</p>
+        </div>
+        <a class="bar-app" href="https://papers.cool/" title="Home Page"><i class="fa fa-home" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="In-page Search"><i class="fa fa-search" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Stared Papers"><i class="fa fa-star" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Configuration"><i class="fa fa-cog" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Bug Report"><i class="fa fa-bug" data-eusoft-scrollable-element="1"></i></a>
+    </div>
+    <div id="scroll-btn" style="opacity: 0;">
+        <button id="totop" title="Go to top"><i class="fa fa-chevron-up" data-eusoft-scrollable-element="1"></i></button>
+        <button id="tobottom" title="Go to bottom"><i class="fa fa-chevron-down" data-eusoft-scrollable-element="1"></i></button>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+
+
+<!-- Google tag (gtag.js) -->
+
+
+
+
+
+<script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2787122990="" ng-version="18.2.13" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c2787122990=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c2787122990="" _nghost-ng-c3386348173="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2787122990="" _nghost-ng-c749930229="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c749930229=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c2787122990="" class="eusoft-chrome-extension-capture-word-container ng-tns-c4033922151-0 ng-star-inserted" data-eusoft-scrollable-element="1" data-scrapbook-shadowdom="<style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><!----><!----><div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c4033922151-0&quot; data-content-script-theme=&quot;light&quot;><!----></div>"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2787122990="" _nghost-ng-c3081775404="" data-eusoft-scrollable-element="1"><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>
