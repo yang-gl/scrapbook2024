@@ -1,0 +1,694 @@
+<!DOCTYPE html><html lang="en" data-eusoft-scrollable-element="1" data-scrapbook-source="https://arxiv.org/abs/2408.13296" data-scrapbook-create="20250921121205201"><head><meta charset="UTF-8">  <title>The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research
+  Challenges and Opportunities | Abstract</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://arxiv.org/static/browse/0.3.4/images/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="https://arxiv.org/static/browse/0.3.4/images/icons/site.webmanifest">
+  <link rel="mask-icon" href="https://arxiv.org/static/browse/0.3.4/images/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" type="text/css" media="screen" href="arXiv.css">
+  <link rel="stylesheet" type="text/css" media="print" href="arXiv-print.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="browse_search.css">
+  
+  <link rel="canonical" href="https://arxiv.org/abs/2408.13296">
+  <meta name="description" content="Abstract page for arXiv paper 2408.13296: The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities"><meta property="og:type" content="website">
+<meta property="og:site_name" content="arXiv.org">
+<meta property="og:title" content="The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities">
+<meta property="og:url" content="https://arxiv.org/abs/2408.13296v3">
+<meta property="og:image" content="/static/browse/0.3.4/images/arxiv-logo-fb.png">
+<meta property="og:image:secure_url" content="/static/browse/0.3.4/images/arxiv-logo-fb.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="700">
+<meta property="og:image:alt" content="arXiv logo">
+<meta property="og:description" content="This report examines the fine-tuning of Large Language Models (LLMs), integrating theoretical insights with practical applications. It outlines the historical evolution of LLMs from traditional Natural Language Processing (NLP) models to their pivotal role in AI. A comparison of fine-tuning methodologies, including supervised, unsupervised, and instruction-based approaches, highlights their applicability to different tasks. The report introduces a structured seven-stage pipeline for fine-tuning LLMs, spanning data preparation, model initialization, hyperparameter tuning, and model deployment. Emphasis is placed on managing imbalanced datasets and optimization techniques. Parameter-efficient methods like Low-Rank Adaptation (LoRA) and Half Fine-Tuning are explored for balancing computational efficiency with performance. Advanced techniques such as memory fine-tuning, Mixture of Experts (MoE), and Mixture of Agents (MoA) are discussed for leveraging specialized networks and multi-agent collaboration. The report also examines novel approaches like Proximal Policy Optimization (PPO) and Direct Preference Optimization (DPO), which align LLMs with human preferences, alongside pruning and routing optimizations to improve efficiency. Further sections cover validation frameworks, post-deployment monitoring, and inference optimization, with attention to deploying LLMs on distributed and cloud-based platforms. Emerging areas such as multimodal LLMs, fine-tuning for audio and speech, and challenges related to scalability, privacy, and accountability are also addressed. This report offers actionable insights for researchers and practitioners navigating LLM fine-tuning in an evolving landscape.">
+<meta name="twitter:site" content="@arxiv">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Ultimate Guide to Fine-Tuning LLMs from Basics to...">
+<meta name="twitter:description" content="This report examines the fine-tuning of Large Language Models (LLMs), integrating theoretical insights with practical applications. It outlines the historical evolution of LLMs from traditional...">
+<meta name="twitter:image" content="https://static.arxiv.org/icons/twitter/arxiv-logo-twitter-square.png">
+<meta name="twitter:image:alt" content="arXiv logo">
+  <link rel="stylesheet" media="screen" type="text/css" href="tooltip.css"><link rel="stylesheet" media="screen" type="text/css" href="bibex.css">    
+  
+  
+  
+  <meta name="citation_title" content="The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities"><meta name="citation_author" content="Parthasarathy, Venkatesh Balavadhani"><meta name="citation_author" content="Zafar, Ahtsham"><meta name="citation_author" content="Khan, Aafaq"><meta name="citation_author" content="Shahid, Arsalan"><meta name="citation_date" content="2024/08/23"><meta name="citation_online_date" content="2024/10/30"><meta name="citation_pdf_url" content="http://arxiv.org/pdf/2408.13296"><meta name="citation_arxiv_id" content="2408.13296"><meta name="citation_abstract" content="This report examines the fine-tuning of Large Language Models (LLMs), integrating theoretical insights with practical applications. It outlines the historical evolution of LLMs from traditional Natural Language Processing (NLP) models to their pivotal role in AI. A comparison of fine-tuning methodologies, including supervised, unsupervised, and instruction-based approaches, highlights their applicability to different tasks. The report introduces a structured seven-stage pipeline for fine-tuning LLMs, spanning data preparation, model initialization, hyperparameter tuning, and model deployment. Emphasis is placed on managing imbalanced datasets and optimization techniques. Parameter-efficient methods like Low-Rank Adaptation (LoRA) and Half Fine-Tuning are explored for balancing computational efficiency with performance. Advanced techniques such as memory fine-tuning, Mixture of Experts (MoE), and Mixture of Agents (MoA) are discussed for leveraging specialized networks and multi-agent collaboration. The report also examines novel approaches like Proximal Policy Optimization (PPO) and Direct Preference Optimization (DPO), which align LLMs with human preferences, alongside pruning and routing optimizations to improve efficiency. Further sections cover validation frameworks, post-deployment monitoring, and inference optimization, with attention to deploying LLMs on distributed and cloud-based platforms. Emerging areas such as multimodal LLMs, fine-tuning for audio and speech, and challenges related to scalability, privacy, and accountability are also addressed. This report offers actionable insights for researchers and practitioners navigating LLM fine-tuning in an evolving landscape.">
+<style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><style>.eudic-chrome-extension-inner-icon[_ngcontent-ng-c3715780549]{display:flex;width:100%;height:100%}</style><style>svg[_ngcontent-ng-c1989239129]{width:100%;height:100%}</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-icon-svg","app-icon-en","app-arxiv-hint","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head>
+
+<body class="with-cu-identity"><div id="MathJax_Message" style="display: none;"></div>
+  
+  <div class="flex-wrap-footer">
+    <header>
+      <a href="#content" class="is-sr-only" data-eusoft-scrollable-element="1">Skip to main content</a>
+      <!-- start desktop header -->
+      <div class="columns is-vcentered is-hidden-mobile" id="cu-identity" data-eusoft-scrollable-element="1">
+        <div class="column" id="cu-logo">
+          <a href="https://www.cornell.edu/" data-eusoft-scrollable-element="1"><img src="cornell-reduced-white-SMALL.svg" alt="Cornell University"></a>
+        </div>
+
+
+        <!-- /from April 7 at 1:00 AM to May 29 at 21:40 --><!-- /from May 2 at 1:00 AM to May 5 at 9:45 AM --><div class="column" id="support-ack">
+          <span id="support-ack-url">We gratefully acknowledge support from the Simons Foundation, <a href="https://info.arxiv.org/about/ourmembers.html" data-eusoft-scrollable-element="1">member institutions</a>, and all contributors.</span>
+          <a href="https://info.arxiv.org/about/donate.html" class="btn-header-donate">Donate</a>
+        </div>
+      </div>
+
+      <div id="header" class="is-hidden-mobile">
+<a aria-hidden="true" tabindex="-1" href="https://arxiv.org/IgnoreMe" data-eusoft-scrollable-element="1"></a>
+  <div class="header-breadcrumbs is-hidden-mobile">
+    <a href="https://arxiv.org/"><img src="arxiv-logo-one-color-white.svg" alt="arxiv logo" style="height:40px;"></a> <span>&gt;</span> <a href="https://arxiv.org/list/cs/recent">cs</a> <span>&gt;</span> arXiv:2408.13296
+  </div>
+          <div class="search-block level-right">
+    <form class="level-item mini-search" method="GET" action="https://arxiv.org/search">
+      <div class="field has-addons">
+        <div class="control" data-eusoft-scrollable-element="1">
+          <input class="input is-small" type="text" name="query" placeholder="Search..." aria-label="Search term or terms" value="">
+          <p class="help"><a href="https://info.arxiv.org/help" data-eusoft-scrollable-element="1">Help</a> | <a href="https://arxiv.org/search/advanced" data-eusoft-scrollable-element="1">Advanced Search</a></p>
+        </div>
+        <div class="control">
+          <div class="select is-small" data-eusoft-scrollable-element="1">
+            <select name="searchtype" aria-label="Field to search">
+              <option value="all" selected="selected">All fields</option>
+              <option value="title">Title</option>
+              <option value="author">Author</option>
+              <option value="abstract">Abstract</option>
+              <option value="comments">Comments</option>
+              <option value="journal_ref">Journal reference</option>
+              <option value="acm_class">ACM classification</option>
+              <option value="msc_class">MSC classification</option>
+              <option value="report_num">Report number</option>
+              <option value="paper_id">arXiv identifier</option>
+              <option value="doi">DOI</option>
+              <option value="orcid">ORCID</option>
+              <option value="author_id">arXiv author ID</option>
+              <option value="help">Help pages</option>
+              <option value="full_text">Full text</option>
+            </select>
+          </div>
+        </div>
+        <input type="hidden" name="source" value="header">
+        <button class="button is-small is-cul-darker">Search</button>
+      </div>
+    </form>
+  </div>
+     </div><!-- /end desktop header -->
+
+      <div class="mobile-header">
+        <div class="columns is-mobile">
+          <div class="column logo-arxiv"><a href="https://arxiv.org/"><img src="arxiv-logomark-small-white.svg" alt="arXiv logo" style="height:60px;"></a></div>
+          <div class="column logo-cornell"><a href="https://www.cornell.edu/">
+            <picture>
+              <source media="(min-width: 501px)" srcset="cornell-reduced-white-SMALL.svg  400w" sizes="400w">
+              <source srcset="cornell_seal_simple_black.svg 2x">
+              <img src="cornell-reduced-white-SMALL.svg" alt="Cornell University Logo">
+            </picture>
+          </a></div>
+          <div class="column nav" id="toggle-container" role="menubar">
+            <button class="toggle-control"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon filter-white"><title>open search</title><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg></button>
+            <div class="mobile-toggle-block toggle-target">
+              <form class="mobile-search-form" method="GET" action="https://arxiv.org/search">
+                <div class="field has-addons">
+                  <input class="input" type="text" name="query" placeholder="Search..." aria-label="Search term or terms" value="">
+                  <input type="hidden" name="source" value="header">
+                  <input type="hidden" name="searchtype" value="all">
+                  <button class="button">GO</button>
+                </div>
+              </form>
+            </div>
+
+            <button class="toggle-control"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon filter-white" role="menu"><title>open navigation menu</title><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg></button>
+            <div class="mobile-toggle-block toggle-target">
+              <nav class="mobile-menu" aria-labelledby="mobilemenulabel">
+                <h2 id="mobilemenulabel">quick links</h2>
+                <ul>
+                    <li><a href="https://arxiv.org/login">Login</a></li>
+                    <li><a href="https://info.arxiv.org/help">Help Pages</a></li>
+                    <li><a href="https://info.arxiv.org/about">About</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div><!-- /end mobile-header -->
+    </header>
+
+    <main>
+      <div id="content" data-eusoft-scrollable-element="1">
+<!--
+rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+    <rdf:Description
+        rdf:about="/abs/2408.13296"
+        dc:identifier="/abs/2408.13296"
+        dc:title="The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities"
+        trackback:ping="/trackback/2408.13296" />
+    </rdf:RDF>
+--><div id="abs-outer">
+
+  <div class="leftcolumn">
+    <div class="subheader">
+      <h1>Computer Science &gt; Machine Learning</h1>
+    </div>
+
+    <div class="header-breadcrumbs-mobile">
+      <strong>arXiv:2408.13296</strong> (cs)
+    </div>
+<link rel="stylesheet" type="text/css" href="abs.css">
+<div id="content-inner" data-eusoft-scrollable-element="1">
+  <div id="abs">
+    <div class="dateline">
+  [Submitted on 23 Aug 2024 (<a href="https://arxiv.org/abs/2408.13296v1" data-eusoft-scrollable-element="1">v1</a>), last revised 30 Oct 2024 (this version, v3)]</div>
+    <h1 class="title mathjax"><span class="descriptor">Title:</span>The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities</h1>
+    <div class="authors"><span class="descriptor">Authors:</span><a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Parthasarathy,+V+B" rel="nofollow" data-eusoft-scrollable-element="1">Venkatesh Balavadhani Parthasarathy</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zafar,+A" rel="nofollow" data-eusoft-scrollable-element="1">Ahtsham Zafar</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Khan,+A" rel="nofollow" data-eusoft-scrollable-element="1">Aafaq Khan</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Shahid,+A" rel="nofollow" data-eusoft-scrollable-element="1">Arsalan Shahid</a></div>            <div id="download-button-info" hidden="">View a PDF of the paper titled The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities, by Venkatesh Balavadhani Parthasarathy and 3 other authors</div>
+    <a class="mobile-submission-download" href="https://arxiv.org/pdf/2408.13296">View PDF</a>
+    <a class="mobile-submission-download" href="https://arxiv.org/html/2408.13296v3">HTML (experimental)</a>
+
+
+
+    <blockquote class="abstract mathjax">
+            <span class="descriptor">Abstract:</span>This report examines the fine-tuning of Large Language Models (LLMs), integrating theoretical insights with practical applications. It outlines the historical evolution of LLMs from traditional Natural Language Processing (NLP) models to their pivotal role in AI. A comparison of fine-tuning methodologies, including supervised, unsupervised, and instruction-based approaches, highlights their applicability to different tasks. The report introduces a structured seven-stage pipeline for fine-tuning LLMs, spanning data preparation, model initialization, hyperparameter tuning, and model deployment. Emphasis is placed on managing imbalanced datasets and optimization techniques. Parameter-efficient methods like Low-Rank Adaptation (LoRA) and Half Fine-Tuning are explored for balancing computational efficiency with performance. Advanced techniques such as memory fine-tuning, Mixture of Experts (MoE), and Mixture of Agents (MoA) are discussed for leveraging specialized networks and multi-agent collaboration. The report also examines novel approaches like Proximal Policy Optimization (PPO) and Direct Preference Optimization (DPO), which align LLMs with human preferences, alongside pruning and routing optimizations to improve efficiency. Further sections cover validation frameworks, post-deployment monitoring, and inference optimization, with attention to deploying LLMs on distributed and cloud-based platforms. Emerging areas such as multimodal LLMs, fine-tuning for audio and speech, and challenges related to scalability, privacy, and accountability are also addressed. This report offers actionable insights for researchers and practitioners navigating LLM fine-tuning in an evolving landscape.
+    </blockquote>
+
+    <!--CONTEXT-->
+    <div class="metatable">
+      <table summary="Additional metadata"><tbody><tr>
+          <td class="tablecell label">Subjects:</td>
+          <td class="tablecell subjects">
+            <span class="primary-subject" data-eusoft-scrollable-element="1">Machine Learning (cs.LG)</span>; Computation and Language (cs.CL)</td>
+        </tr><tr>
+          <td class="tablecell label">Cite as:</td>
+          <td class="tablecell arxivid"><span class="arxivid" data-eusoft-scrollable-element="1"><a href="" data-eusoft-scrollable-element="1">arXiv:2408.13296</a> [cs.LG]</span></td>
+        </tr>
+        <tr>
+          <td class="tablecell label">&nbsp;</td>
+          <td class="tablecell arxividv">(or <span class="arxivid" data-eusoft-scrollable-element="1">
+              <a href="https://arxiv.org/abs/2408.13296v3" data-eusoft-scrollable-element="1">arXiv:2408.13296v3</a> [cs.LG]</span> for this version)
+          </td>
+        </tr>
+        <tr>
+          <td class="tablecell label">&nbsp;</td>
+          <td class="tablecell arxivdoi">              <a href="https://doi.org/10.48550/arXiv.2408.13296" id="arxiv-doi-link">https://doi.org/10.48550/arXiv.2408.13296</a><div class="button-and-tooltip">
+              <button class="more-info" aria-describedby="more-info-desc-1">
+                <svg height="15" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" class=""></path></svg>
+                <span class="visually-hidden" data-eusoft-scrollable-element="1">Focus to learn more</span>
+              </button>
+              <!-- tooltip description -->
+              <div role="tooltip" id="more-info-desc-1">
+                <span class="left-corner"></span>                  arXiv-issued DOI via DataCite</div>
+            </div>
+          </td>
+        </tr></tbody></table>
+    </div>
+  </div>
+</div>
+    <div class="submission-history">
+      <h2>Submission history</h2> From: Arsalan Shahid [<a href="https://arxiv.org/show-email/b7e5f345/2408.13296" rel="nofollow" data-eusoft-scrollable-element="1">view email</a>]      <br>            <strong data-eusoft-scrollable-element="1"><a href="https://arxiv.org/abs/2408.13296v1" rel="nofollow" data-eusoft-scrollable-element="1">[v1]</a></strong>
+        Fri, 23 Aug 2024 14:48:02 UTC (13,396 KB)<br>
+            <strong data-eusoft-scrollable-element="1"><a href="https://arxiv.org/abs/2408.13296v2" rel="nofollow" data-eusoft-scrollable-element="1">[v2]</a></strong>
+        Mon, 21 Oct 2024 11:10:00 UTC (13,398 KB)<br>
+    <strong data-eusoft-scrollable-element="1">[v3]</strong>
+        Wed, 30 Oct 2024 01:04:15 UTC (11,870 KB)<br>
+</div>
+  </div>
+  <!--end leftcolumn-->
+<div class="extra-services">    <div class="full-text">
+      <a name="other" data-eusoft-scrollable-element="1"></a>
+      <span class="descriptor">Full-text links:</span>
+      <h2>Access Paper:</h2>
+      <ul>
+  <div id="download-button-info" hidden="">
+View a PDF of the paper titled The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities, by Venkatesh Balavadhani Parthasarathy and 3 other authors</div><li><a href="https://arxiv.org/pdf/2408.13296" aria-describedby="download-button-info" accesskey="f" class="abs-button download-pdf" data-eusoft-scrollable-element="1">View PDF</a></li><li><a href="https://arxiv.org/html/2408.13296v3" class="abs-button" id="latexml-download-link" data-eusoft-scrollable-element="1">HTML (experimental)</a></li><li><a href="https://arxiv.org/src/2408.13296" class="abs-button download-eprint" data-eusoft-scrollable-element="1">TeX Source</a></li><li><a href="https://arxiv.org/format/2408.13296" class="abs-button download-format" data-eusoft-scrollable-element="1">Other Formats</a></li>     <li id="arxiv-utils-direct-download-li">       <a id="arxiv-utils-direct-download-a" data-eusoft-scrollable-element="1" href="#">Direct Download</a>     </li></ul>
+      <div class="abs-license"><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" title="Rights to this article" class="has_license">
+          <img alt="license icon" role="presentation" src="by-nc-nd-4.0.png">
+          <span>view license</span>
+        </a></div>
+    </div>
+    <!--end full-text-->    <div class="browse">
+    Current browse context: <div class="current">cs.LG</div>
+
+  <div class="prevnext">
+<span class="arrow" data-eusoft-scrollable-element="1">
+      <a class="abs-button prev-url" href="https://arxiv.org/prevnext?id=2408.13296&amp;function=prev&amp;context=cs.LG" accesskey="p" title="previous in cs.LG (accesskey p)" rel="nofollow" data-eusoft-scrollable-element="1">&lt;&nbsp;prev</a>
+    </span>
+    <span class="is-hidden-mobile" data-eusoft-scrollable-element="1">&nbsp; | &nbsp;</span>    <span class="arrow" data-eusoft-scrollable-element="1">
+      <a class="abs-button next-url" href="https://arxiv.org/prevnext?id=2408.13296&amp;function=next&amp;context=cs.LG" accesskey="n" title="next in cs.LG (accesskey n)" rel="nofollow" data-eusoft-scrollable-element="1">next&nbsp;&gt;</a>
+    </span><br>
+  </div><div class="list">
+    <a class="abs-button abs-button-grey abs-button-small context-new" href="https://arxiv.org/list/cs.LG/new" rel="nofollow" data-eusoft-scrollable-element="1">new</a>
+    <span class="is-hidden-mobile" data-eusoft-scrollable-element="1"> | </span>
+    <a class="abs-button abs-button-grey abs-button-small context-recent" href="https://arxiv.org/list/cs.LG/recent" rel="nofollow" data-eusoft-scrollable-element="1">recent</a>
+    <span class="is-hidden-mobile" data-eusoft-scrollable-element="1"> | </span><a class="abs-button abs-button-grey abs-button-small context-id" href="https://arxiv.org/list/cs.LG/2024-08" rel="nofollow" data-eusoft-scrollable-element="1">2024-08</a>
+  </div><div class="abs-switch-cat">
+    Change to browse by:
+    <div class="switch context-change">
+        <a href="https://arxiv.org/abs/2408.13296?context=cs" rel="nofollow" data-eusoft-scrollable-element="1">cs</a><br class="is-hidden-mobile">
+        <a class="subclass" href="https://arxiv.org/abs/2408.13296?context=cs.CL" rel="nofollow" data-eusoft-scrollable-element="1">cs.CL</a><br class="is-hidden-mobile">
+    </div>
+  </div>
+
+    </div>
+      <div class="extra-ref-cite">
+        <h3>References &amp; Citations</h3>
+        <ul>
+          <li><a class="abs-button abs-button-small cite-ads" href="https://ui.adsabs.harvard.edu/abs/arXiv:2408.13296" data-eusoft-scrollable-element="1">NASA ADS</a></li><li><a class="abs-button abs-button-small cite-google-scholar" href="https://scholar.google.com/scholar_lookup?arxiv_id=2408.13296" target="_blank" rel="noopener" data-eusoft-scrollable-element="1">Google Scholar</a></li>
+          <li><a class="abs-button abs-button-small cite-semantic-scholar" href="https://api.semanticscholar.org/arXiv:2408.13296" target="_blank" rel="noopener" data-eusoft-scrollable-element="1">Semantic Scholar</a></li>
+        </ul>
+        <div style="clear:both;"></div>
+      </div><div class="extra-ref-cite" id="arxiv-utils-extra-services-div">     <h3>Extra Services</h3>     <ul>       <li><a href="https://ar5iv.labs.arxiv.org/html/2408.13296" data-eusoft-scrollable-element="1">ar5iv (HTML 5)</a></li>       <li><a href="https://alphaxiv.org/abs/2408.13296" data-eusoft-scrollable-element="1">alphaXiv</a></li>       <li><a href="https://export.arxiv.org/api/query/id_list/2408.13296" data-eusoft-scrollable-element="1">RSS feed</a></li>     </ul></div>
+
+<div class="extra-ref-cite">
+    <a id="bib-cite-css" hidden="true" href="https://arxiv.org/static/browse/0.3.4/css/cite.css">a</a>
+
+    <span id="bib-cite-trigger" class="bib-cite-button abs-button">export BibTeX citation</span>
+    <span id="bib-cite-loading" hidden="true">Loading...</span>
+</div>
+
+<div id="bib-cite-modal" class="bib-modal" hidden="true">
+    <div class="bib-modal-content">
+        <div class="bib-modal-title">
+            <h2>BibTeX formatted citation</h2>
+            <span class="bib-modal-close">×</span>
+        </div>
+        <div>
+            <textarea id="bib-cite-target" class="bib-citation-content" aria-label="loading the citation">loading...</textarea>
+        </div>
+        <div>
+            <span>Data provided by: </span>
+            <a id="bib-cite-source-api"></a>
+        </div>
+    </div>
+</div><div class="bookmarks">
+  <div><h3>Bookmark</h3></div><a class="abs-button abs-button-grey abs-button-small" href="http://www.bibsonomy.org/BibtexHandler?requTask=upload&amp;url=https://arxiv.org/abs/2408.13296&amp;description=The%20Ultimate%20Guide%20to%20Fine-Tuning%20LLMs%20from%20Basics%20to%20Breakthroughs:%20An%20Exhaustive%20Review%20of%20Technologies,%20Research,%20Best%20Practices,%20Applied%20Research%20Challenges%20and%20Opportunities" title="Bookmark on BibSonomy" data-eusoft-scrollable-element="1">
+    <img src="bibsonomy.png" alt="BibSonomy logo">
+  </a>
+  <a class="abs-button abs-button-grey abs-button-small" href="https://reddit.com/submit?url=https://arxiv.org/abs/2408.13296&amp;title=The%20Ultimate%20Guide%20to%20Fine-Tuning%20LLMs%20from%20Basics%20to%20Breakthroughs:%20An%20Exhaustive%20Review%20of%20Technologies,%20Research,%20Best%20Practices,%20Applied%20Research%20Challenges%20and%20Opportunities" title="Bookmark on Reddit" data-eusoft-scrollable-element="1">
+    <img src="reddit.png" alt="Reddit logo">
+  </a>
+</div>  </div>
+  <!--end extra-services-->
+<!-- LABS AREA -->
+<div id="labstabs">
+  <div class="labstabs"><input type="radio" name="tabs" id="tabone" checked="checked">
+    <label for="tabone">Bibliographic Tools</label>
+    <div class="tab labs-display-bib">
+      <h1>Bibliographic and Citation Tools</h1>
+      <div class="toggle">
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="bibex-toggle" type="checkbox" class="lab-toggle" data-script-url="/static/browse/0.3.4/bibex/bibex.js?20241202">
+              <span class="slider"></span>
+              <span class="is-sr-only" data-eusoft-scrollable-element="1">Bibliographic Explorer Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-bibex" data-eusoft-scrollable-element="1">Bibliographic Explorer</span> <em data-eusoft-scrollable-element="1">(<a href="https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer" data-eusoft-scrollable-element="1">What is the Explorer?</a>)</em>
+          </div>
+        </div>
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="connectedpapers-toggle" type="checkbox" class="lab-toggle" data-script-url="/static/browse/0.3.4/js/connectedpapers.js" aria-labelledby="label-for-connected-papers">
+              <span class="slider"></span>
+              <span class="is-sr-only" data-eusoft-scrollable-element="1">Connected Papers Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-connected-papers" data-eusoft-scrollable-element="1">Connected Papers</span> <em data-eusoft-scrollable-element="1">(<a href="https://www.connectedpapers.com/about" target="_blank" data-eusoft-scrollable-element="1">What is Connected Papers?</a>)</em>
+          </div>
+        </div><div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="litmaps-toggle" type="checkbox" class="lab-toggle" data-script-url="/static/browse/0.3.4/js/litmaps.js?20210617" aria-labelledby="label-for-litmaps">
+              <span class="slider"></span>
+              <span class="is-sr-only" data-eusoft-scrollable-element="1">Litmaps Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-litmaps" data-eusoft-scrollable-element="1">Litmaps</span> <em data-eusoft-scrollable-element="1">(<a href="https://www.litmaps.co/" target="_blank" data-eusoft-scrollable-element="1">What is Litmaps?</a>)</em>
+          </div>
+        </div>
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="scite-toggle" type="checkbox" class="lab-toggle" data-script-url="/static/browse/0.3.4/js/scite.js?20210617" aria-labelledby="label-for-scite">
+              <span class="slider"></span>
+              <span class="is-sr-only" data-eusoft-scrollable-element="1">scite.ai Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-scite" data-eusoft-scrollable-element="1">scite Smart Citations</span> <em data-eusoft-scrollable-element="1">(<a href="https://www.scite.ai/" target="_blank" data-eusoft-scrollable-element="1">What are Smart Citations?</a>)</em>
+          </div>
+        </div>
+      </div>
+        <div class="labs-content-placeholder labs-display" style="display: none;"></div>
+        <div style="min-height: 15px" id="connectedpapers-output"></div>
+        <div style="min-height: 15px" id="litmaps-open-in"></div>
+        <div style="min-height: 15px" id="scite-open-in"></div>
+    </div>
+
+
+    <input type="radio" name="tabs" id="tabtwo">
+    <label for="tabtwo">Code, Data, Media</label>
+    <div class="tab">
+      <h1>Code, Data and Media Associated with this Article</h1>
+      <div class="toggle">
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="alphaxiv-toggle" data-script-url="/static/browse/0.3.4/js/alphaxiv.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-alphaxiv">
+              <span class="slider"></span>
+              <span class="is-sr-only">alphaXiv Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-alphaxiv">alphaXiv</span> <em>(<a href="https://alphaxiv.org/" target="_blank">What is alphaXiv?</a>)</em>
+          </div>
+        </div>
+
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="catalyzex-toggle" data-script-url="/static/browse/0.3.4/js/catalyzex.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-cx">
+              <span class="slider"></span>
+              <span class="is-sr-only">Links to Code Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-cx">CatalyzeX Code Finder for Papers</span> <em>(<a href="https://www.catalyzex.com/" target="_blank">What is CatalyzeX?</a>)</em>
+          </div>
+        </div>
+
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="dagshub-toggle" data-script-url="/static/browse/0.3.4/js/dagshub.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-dagshub">
+              <span class="slider"></span>
+              <span class="is-sr-only">DagsHub Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-dagshub">DagsHub</span> <em>(<a href="https://dagshub.com/" target="_blank">What is DagsHub?</a>)</em>
+          </div>
+        </div>
+  
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="gotitpub-toggle" data-script-url="/static/browse/0.3.4/js/gotitpub.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-gotitpub">
+              <span class="slider"></span>
+              <span class="is-sr-only">GotitPub Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-gotitpub">Gotit.pub</span> <em>(<a href="http://gotit.pub/faq" target="_blank">What is GotitPub?</a>)</em>
+          </div>
+        </div>
+
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="huggingface-toggle" data-script-url="/static/browse/0.3.4/js/huggingface.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-huggingface">
+              <span class="slider"></span>
+              <span class="is-sr-only">Huggingface Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-huggingface">Hugging Face</span> <em>(<a href="https://huggingface.co/huggingface" target="_blank">What is Huggingface?</a>)</em>
+          </div>
+        </div>
+
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="paperwithcode-toggle" data-script-url="/static/browse/0.3.4/js/paperswithcode.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-pwc">
+              <span class="slider"></span>
+              <span class="is-sr-only">Links to Code Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-pwc">Papers with Code</span> <em>(<a href="https://paperswithcode.com/" target="_blank">What is Papers with Code?</a>)</em>
+          </div>
+        </div>
+
+
+        <div class="columns is-mobile lab-row">
+          <div class="column lab-switch">
+            <label class="switch">
+              <input id="sciencecast-toggle" data-script-url="/static/browse/0.3.4/js/sciencecast.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-sciencecast">
+              <span class="slider"></span>
+              <span class="is-sr-only">ScienceCast Toggle</span>
+            </label>
+          </div>
+          <div class="column lab-name">
+            <span id="label-for-sciencecast">ScienceCast</span> <em>(<a href="https://sciencecast.org/welcome" target="_blank">What is ScienceCast?</a>)</em>
+          </div>
+        </div>
+      </div>
+
+      <div id="alphaxiv-output" style="display:none"></div>
+      <div id="catalyzex-output" style="display:none"></div>
+      <div id="dagshub-output" style="display:none"></div>
+      <div id="gotitpub-output" style="display:none"></div>
+      <div id="pwc-output" style="display:none"></div>
+      <div id="pwc-data-output" style="display:none"></div>
+      <div id="sciencecast-output" style="display:none"></div>
+      <div id="huggingface-output" style="display:none"></div>
+    </div>
+
+
+      <input type="radio" name="tabs" id="labstabs-demos-input">
+      <label for="labstabs-demos-input" id="labstabs-demos-label">Demos</label>
+      <div class="tab">
+        <h1>Demos</h1>
+        <div class="toggle">
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input id="replicate-toggle" data-script-url="/static/browse/0.3.4/js/replicate.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-replicate">
+                <span class="slider"></span>
+                <span class="is-sr-only">Replicate Toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-replicate">Replicate</span> <em>(<a href="https://replicate.com/docs/arxiv/about" target="_blank">What is Replicate?</a>)</em>
+            </div>
+          </div>
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input id="spaces-toggle" data-script-url="/static/browse/0.3.4/js/spaces.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-spaces">
+                <span class="slider"></span>
+                <span class="is-sr-only">Spaces Toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-spaces">Hugging Face Spaces</span> <em>(<a href="https://huggingface.co/docs/hub/spaces" target="_blank">What is Spaces?</a>)</em>
+            </div>
+          </div>
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input id="txyz-toggle" data-script-url="/static/browse/0.3.4/js/txyz.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-txyz">
+                <span class="slider"></span>
+                <span class="is-sr-only">Spaces Toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-txyz">TXYZ.AI</span> <em>(<a href="https://txyz.ai/" target="_blank">What is TXYZ.AI?</a>)</em>
+            </div>
+          </div>
+        </div>
+        <div id="replicate-output"></div>
+        <div id="spaces-output"></div>
+        <div id="txyz-output"></div>
+      </div>
+      <input type="radio" name="tabs" id="tabfour">
+      <label for="tabfour">Related Papers</label>
+      <div class="tab">
+        <h1>Recommenders and Search Tools</h1>
+        <div class="toggle">
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input id="influenceflower-toggle" data-script-url="/static/browse/0.3.4/js/influenceflower.js" type="checkbox" class="lab-toggle" aria-labelledby="label-for-influenceflower">
+                <span class="slider"></span>
+                <span class="is-sr-only">Link to Influence Flower</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-influenceflower">Influence Flower</span> <em>(<a href="https://influencemap.cmlab.dev/" target="_blank">What are Influence Flowers?</a>)</em>
+            </div>
+          </div>
+          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input id="core-recommender-toggle" type="checkbox" class="lab-toggle" aria-labelledby="label-for-core">
+                <span class="slider"></span>
+                <span class="is-sr-only">Core recommender toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-core">CORE Recommender</span> <em>(<a href="https://core.ac.uk/services/recommender">What is CORE?</a>)</em>
+            </div>
+          </div>          <div class="columns is-mobile lab-row">
+            <div class="column lab-switch">
+              <label class="switch">
+                <input id="iarxiv-toggle" type="checkbox" class="lab-toggle" data-script-url="/static/browse/0.3.4/js/iarxiv.js" aria-labelledby="label-for-iarxiv">
+                <span class="slider"></span>
+                <span class="is-sr-only">IArxiv recommender toggle</span>
+              </label>
+            </div>
+            <div class="column lab-name">
+              <span id="label-for-iarxiv">IArxiv Recommender</span>
+              <em>(<a href="https://iarxiv.org/about">What is IArxiv?</a>)</em>
+            </div>
+          </div>
+</div>
+        <div id="influenceflower-output"></div>
+        <div id="influenceflower-output-graph" style="display:none">
+          <ul class="flower-tabs">
+            <li class="active"><a class="btn tab-btn">Author</a></li>
+            <li><a class="btn tab-btn">Venue</a></li>
+            <li><a class="btn tab-btn">Institution</a></li>
+            <li><a class="btn tab-btn">Topic</a></li>
+          </ul>
+          <div class="flower-tab-content">
+            <div class="tab-flower active" id="tab-author"><svg id="flower-graph-author"></svg></div>
+            <div class="tab-flower" id="tab-venue"><svg id="flower-graph-venue"></svg></div>
+            <div class="tab-flower" id="tab-inst"><svg id="flower-graph-inst"></svg></div>
+            <div class="tab-flower" id="tab-topic"><svg id="flower-graph-topic"></svg></div>
+          </div>
+        </div>
+        <div id="coreRecommenderOutput"></div>
+        <div id="iarxivOutput"></div>
+      </div>
+
+      <input type="radio" name="tabs" id="tabfive">
+      <label for="tabfive">
+        About arXivLabs
+      </label>
+      <div class="tab">
+        <div class="columns">
+          <div class="column">
+            <h1>arXivLabs: experimental projects with community collaborators</h1>
+            <p>arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website.</p>
+            <p>Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them.</p>
+            <p>Have an idea for a project that will add value for arXiv's community? <a href="https://info.arxiv.org/labs/index.html"><strong>Learn more about arXivLabs</strong></a>.</p>
+          </div>
+          <div class="column is-narrow is-full-mobile">
+            <p class="icon-labs"><svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 635.572 811"><path d="M175.6 676v27h-27v-27zm-54 27v27h27v-27zm-27 27v27h27v-27zm396-54v27h-27v-27zm0 27v27h27v-27zm27 27v27h27v-27zm-27-414h27v27h-27zm27 0h27v-27h-27zm27-27h27v-27h-27zm-396 45h-27v-27h27zm-27-54h-27v27h27zm-27-27h-27v27h27z"></path><path d="M94.6 730v27h-27v-27zm477 0v27h-27v-27zm-27-495h27v27h-27zm-450 18h-27v-27h27zm477 9h27v27h-27zm-54 495h27v27h-27zm-423 0h27v27h-27zm-54-504h27v27h-27z" fill="#666"></path><path d="M67.6 730v27h-27v-27zm54 54v27h-27v-27zm0-108v27h27v-27zm-27 27v27h27v-27zm-81 0v27h27v-27zm585 27v27h-27v-27zm-108-54v27h27v-27zm27 27v27h27v-27zm81 0v27h27v-27zm-54-495h27v27h-27zm-54 108h27v-27h-27zm27-27h27v-27h-27zm0-81h27v-27h-27zm-423 18h-27v-27h27zm54 54h-27v27h27zm-27-27h-27v27h27zm0-81h-27v27h27zm423 612v27h-27v-27zm81-522v27h-27v-27zm-585-9v27h-27v-27z" fill="#999"></path><path d="M94.6 784v27h-27v-27zm-27-27v27h27v-27zm-27-54v27h27v-27zm27 0v27h27v-27zm0-27v27h27v-27zm27 0v27h27v-27zm0-27v27h27v-27zm27 0v27h27v-27zm-108 81v27h27v-27zm558 54v27h-27v-27zm-27-27v27h27v-27zm27-54v27h27v-27zm-27 0v27h27v-27zm0-27v27h27v-27zm-27 0v27h27v-27zm0-27v27h27v-27zm-27 0v27h27v-27zm108 81v27h27v-27zm0-495h27v27h-27zm-27 27h27v-27h-27zm-54-27h27v-27h-27zm0 27h27v-27h-27zm-27 0h27v-27h-27zm0 27h27v-27h-27zm-27 0h27v-27h-27zm0 27h27v-27h-27zm81-108h27v-27h-27zm-504 45h-27v-27h27zm27-27h-27v27h27zm54-27h-27v27h27zm0 27h-27v27h27zm27 0h-27v27h27zm0 27h-27v27h27zm27 0h-27v27h27zm0 27h-27v27h27zm-81-108h-27v27h27z" fill="#ccc"></path><path d="M598.6 665.1H41.5C-76.5 667 176 280.2 176 280.2h53a46.5 46.5 0 0162.8-56.3 29.2 29.2 0 1128.5 35.9h-1a46.5 46.5 0 01-1.5 20.3l142.5-.1s255.3 387 138.3 385.1zM291 181a29.3 29.3 0 10-29.2-29.3A29.3 29.3 0 00291 181zm65.4-66.8a22.4 22.4 0 10-22.5-22.4 22.4 22.4 0 0022.5 22.4z" fill="#fc0"></path><path d="M245.5 172V10h153v162s324 495 198 495h-558c-126 0 207-495 207-495zm126 54h56m-13 72h56m-9 72h56m-20 72h56m-22 72h56m-29 72h56m-457-45c20.8 41.7 87.3 81 160.7 81 72.1 0 142.1-38.2 163.4-81" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="20"></path><path d="M273.3 421.7c0 31-9.8 56.3-21.9 56.3s-21.8-25.2-21.8-56.3 9.8-56.3 21.8-56.3 21.9 25.2 21.9 56.3zm114.4-56.3c-12 0-21.8 25.2-21.8 56.3s9.7 56.3 21.8 56.3 21.9-25.2 21.9-56.3-9.8-56.3-21.9-56.3zM150.1 526.6c-18.2 6.7-27.5 22.9-23.2 30.2s14.8-5.5 33-12.2 37.4-4.9 33-12.2-24.5-12.6-42.8-5.8zm296 5.8c-4.2 7.3 14.9 5.5 33.1 12.2s28.7 19.5 33 12.2-5-23.5-23.2-30.2-38.5-1.5-42.8 5.8z"></path></svg></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+<!-- END LABS AREA -->
+  <div class="endorsers">
+    <a href="https://arxiv.org/auth/show-endorsers/2408.13296" class="endorser-who" rel="nofollow" data-eusoft-scrollable-element="1">Which authors of this paper are endorsers?</a> |
+    <a id="mathjax_toggle" href="javascript:" data-eusoft-scrollable-element="1">Disable MathJax</a> (<a href="https://info.arxiv.org/help/mathjax.html" data-eusoft-scrollable-element="1">What is MathJax?</a>)
+    <span class="help" style="font-style: normal; float: right; margin-top: 0; margin-right: 1em;"></span>
+  </div>
+  
+</div>
+      </div>
+    </main>
+
+    <footer style="clear: both;">
+      <div class="columns is-desktop" role="navigation" aria-label="Secondary" style="margin: -0.75em -0.75em 0.75em -0.75em">
+        <!-- Macro-Column 1 -->
+        <div class="column" style="padding: 0;">
+          <div class="columns">
+            <div class="column">
+              <ul style="list-style: none; line-height: 2;">
+                <li><a href="https://info.arxiv.org/about">About</a></li>
+                <li><a href="https://info.arxiv.org/help">Help</a></li>
+              </ul>
+            </div>
+            <div class="column">
+              <ul style="list-style: none; line-height: 2;">
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon filter-black" role="presentation"><title>contact arXiv</title><desc>Click here to contact arXiv</desc><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>
+                  <a href="https://info.arxiv.org/help/contact.html"> Contact</a>
+                </li>
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon filter-black" role="presentation"><title>subscribe to arXiv mailings</title><desc>Click here to subscribe</desc><path d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"></path></svg>
+                  <a href="https://info.arxiv.org/help/subscribe"> Subscribe</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- End Macro-Column 1 -->
+        <!-- Macro-Column 2 -->
+        <div class="column" style="padding: 0;">
+          <div class="columns">
+            <div class="column">
+              <ul style="list-style: none; line-height: 2;">
+                <li><a href="https://info.arxiv.org/help/license/index.html">Copyright</a></li>
+                <li><a href="https://info.arxiv.org/help/policies/privacy_policy.html">Privacy Policy</a></li>
+              </ul>
+            </div>
+            <div class="column sorry-app-links">
+              <ul style="list-style: none; line-height: 2;">
+                <li><a href="https://info.arxiv.org/help/web_accessibility.html">Web Accessibility Assistance</a></li>
+                <li>
+                  <p class="help">
+                    <a class="a11y-main-link" href="https://status.arxiv.org/" target="_blank" data-eusoft-scrollable-element="1">arXiv Operational Status <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="icon filter-dark_grey" role="presentation"><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg></a><br>
+                    Get status notifications via
+                    <a class="is-link" href="https://subscribe.sorryapp.com/24846f03/email/new" target="_blank" data-eusoft-scrollable-element="1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon filter-black" role="presentation"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg>email</a>
+                    or <a class="is-link" href="https://subscribe.sorryapp.com/24846f03/slack/new" target="_blank" data-eusoft-scrollable-element="1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon filter-black" role="presentation"><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1c0-25.9 21.16-47.06 47.06-47.06h47.06v47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V315.1zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06H164.9zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06H164.9zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06h-47.06V196.9zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06V196.9zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06v-47.06h47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06 0-25.9 21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06H283.1z"></path></svg>slack</a>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- end MetaColumn 2 -->
+        <!-- End Macro-Column 2 -->
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+
+<script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2787122990="" ng-version="18.2.13" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c2787122990=""></template><!----><!----><app-arxiv-hint _ngcontent-ng-c2787122990="" class="ng-star-inserted" data-eusoft-scrollable-element="1" data-scrapbook-shadowdom="<style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><style>.eusoft-eudic-chrome-extension-pdf-hint-container{position:absolute!important;padding:10px!important;border-radius:4px!important;right:16px!important;top:105px!important;z-index:2147483647!important;cursor:pointer!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;transition:background-color .3s ease-out!important}.eusoft-eudic-chrome-extension-pdf-hint-container:hover{background-color:#4d71ff!important}.eusoft-eudic-chrome-extension-pdf-hint-container:hover .eusoft-eudic-chrome-extension-pdf-hint-text{max-width:600px!important;opacity:1!important;visibility:visible!important}.eusoft-eudic-chrome-extension-pdf-hint-app-icon{width:30px!important;height:30px!important;max-width:30px!important;min-height:30px!important;min-width:30px!important;background-size:30px 30px!important}.eusoft-eudic-chrome-extension-pdf-hint-text{color:#fff!important;font-size:14px!important;margin-left:6px!important;overflow:hidden!important;white-space:nowrap!important;max-width:0!important;opacity:0!important;visibility:hidden!important;transition:max-width .3s ease-out}
+</style><div class=&quot;eusoft-eudic-chrome-extension-pdf-hint-container&quot;><app-icon-svg class=&quot;eusoft-eudic-chrome-extension-pdf-hint-app-icon&quot; _nghost-ng-c3715780549=&quot;&quot;><!----><!----><app-icon-en _ngcontent-ng-c3715780549=&quot;&quot; class=&quot;eudic-chrome-extension-inner-icon ng-star-inserted&quot; _nghost-ng-c1989239129=&quot;&quot;><svg _ngcontent-ng-c1989239129=&quot;&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 512 512&quot;><path _ngcontent-ng-c1989239129=&quot;&quot; d=&quot;M0 0 C3.82558721 0.00916456 7.65110552 -0.00497488 11.47667837 -0.01591969 C18.94485593 -0.03358956 26.41287154 -0.02991687 33.88105512 -0.01826912 C39.95739685 -0.00918923 46.0336936 -0.00803035 52.11004019 -0.01236439 C52.9789943 -0.01297732 53.8479484 -0.01359025 54.74323446 -0.01422176 C56.50918843 -0.01550082 58.27514238 -0.01679768 60.04109633 -0.01811212 C76.55182641 -0.02948413 93.06246726 -0.0164575 109.5731827 0.00508934 C123.70159186 0.02295724 137.82986949 0.01985218 151.95827627 0.0014143 C168.41498331 -0.02005239 184.87161239 -0.02838581 201.32833147 -0.01613665 C203.08733446 -0.01486262 204.84633747 -0.01360513 206.60534048 -0.01236439 C207.47052103 -0.01174729 208.33570158 -0.01113018 209.22709972 -0.01049438 C215.28730158 -0.00705883 221.34745348 -0.01283083 227.40764761 -0.0222826 C234.80568425 -0.0335687 242.20355141 -0.03032504 249.60156894 -0.00915962 C253.36709498 0.00126278 257.13233975 0.0056259 260.89786291 -0.00775623 C297.84597719 -0.12796836 327.72032925 8.14005281 354.60769033 34.46039867 C380.04378885 60.12155984 386.00416153 92.39384143 385.88058901 127.16520834 C385.87142445 130.99079555 385.88556389 134.81631386 385.89650869 138.64188671 C385.91417857 146.11006427 385.91050587 153.57807988 385.89885813 161.04626346 C385.88977824 167.12260519 385.88861936 173.19890194 385.8929534 179.27524853 C385.89356633 180.14420264 385.89417926 181.01315674 385.89481077 181.9084428 C385.89608983 183.67439677 385.89738669 185.44035072 385.89870113 187.20630467 C385.91007314 203.71703475 385.89704651 220.2276756 385.87549967 236.73839104 C385.85763177 250.8668002 385.86073683 264.99507783 385.87917471 279.12348461 C385.9006414 295.58019165 385.90897482 312.03682073 385.89672565 328.49353981 C385.89545163 330.2525428 385.89419414 332.01154581 385.8929534 333.77054882 C385.89233629 334.63572937 385.89171919 335.50090992 385.89108339 336.39230806 C385.88764783 342.45250992 385.89341983 348.51266182 385.90287161 354.57285595 C385.91415771 361.97089259 385.91091405 369.36875974 385.88974863 376.76677728 C385.87932623 380.53230331 385.8749631 384.29754809 385.88834524 388.06307125 C386.00855737 425.01118553 377.7405362 454.88553759 351.42019033 481.77289867 C325.75902917 507.20899719 293.48674758 513.16936987 258.71538067 513.04579735 C254.88979346 513.03663279 251.06427515 513.05077223 247.2387023 513.06171703 C239.77052474 513.07938691 232.30250912 513.07571421 224.83432555 513.06406647 C218.75798382 513.05498658 212.68168707 513.0538277 206.60534048 513.05816174 C205.73638637 513.05877467 204.86743226 513.0593876 203.97214621 513.06001911 C202.20619224 513.06129817 200.44023828 513.06259503 198.67428434 513.06390947 C182.16355426 513.07528148 165.65291341 513.06225485 149.14219797 513.04070801 C135.01378881 513.02284011 120.88551118 513.02594517 106.7571044 513.04438305 C90.30039736 513.06584974 73.84376828 513.07418316 57.3870492 513.06193399 C55.62804621 513.06065997 53.8690432 513.05940248 52.11004019 513.05816174 C51.24485964 513.05754463 50.37967909 513.05692753 49.48828095 513.05629173 C43.42807908 513.05285617 37.36792718 513.05862817 31.30773306 513.06807995 C23.90969642 513.07936605 16.51182926 513.07612239 9.11381173 513.05495697 C5.34828569 513.04453457 1.58304092 513.04017144 -2.18248224 513.05355358 C-39.13059652 513.17376571 -69.00494859 504.90574454 -95.89230967 478.58539867 C-121.32840818 452.92423751 -127.28878086 420.65195592 -127.16520834 385.88058901 C-127.15604378 382.0550018 -127.17018322 378.22948349 -127.18112803 374.40391064 C-127.1987979 366.93573308 -127.19512521 359.46771746 -127.18347746 351.99953389 C-127.17439757 345.92319216 -127.17323869 339.84689541 -127.17757273 333.77054882 C-127.17818566 332.90159471 -127.17879859 332.0326406 -127.1794301 331.13735455 C-127.18070916 329.37140058 -127.18200602 327.60544662 -127.18332046 325.83949268 C-127.19469247 309.3287626 -127.18166584 292.81812175 -127.160119 276.30740631 C-127.1422511 262.17899715 -127.14535616 248.05071952 -127.16379404 233.92231274 C-127.18526073 217.4656057 -127.19359415 201.00897662 -127.18134499 184.55225754 C-127.18007096 182.79325455 -127.17881347 181.03425154 -127.17757273 179.27524853 C-127.17695563 178.41006798 -127.17633852 177.54488743 -127.17570272 176.65348929 C-127.17226717 170.59328742 -127.17803917 164.53313552 -127.18749094 158.4729414 C-127.19877704 151.07490476 -127.19553338 143.6770376 -127.17436796 136.27902007 C-127.16394556 132.51349403 -127.15958244 128.74824926 -127.17296457 124.9827261 C-127.2931767 88.03461182 -119.02515553 58.16025975 -92.70480967 31.27289867 C-67.0436485 5.83680016 -34.77136691 -0.12357252 0 0 Z &quot; fill=&quot;#3154F5&quot; transform=&quot;translate(126.64230966567993,-0.5228986740112305)&quot;></path><path _ngcontent-ng-c1989239129=&quot;&quot; d=&quot;M0 0 C1.04285156 0.55300781 2.08570313 1.10601562 3.16015625 1.67578125 C38.56765647 21.22221418 63.79065133 55.98290908 76 94 C77.70206785 99.93126974 78.93172174 105.92653244 80 112 C80.33644531 113.80404297 80.33644531 113.80404297 80.6796875 115.64453125 C84.59638213 139.97632597 83.07802612 168.81955956 73.75 191.875 C69.90900243 201.77120536 72.31245111 212.24925196 74.4375 222.3125 C82.21195563 260.40079943 82.21195563 260.40079943 73 275 C68.7826014 281.21621531 63.85094559 285.00058104 57 288 C55.91138672 288.47953125 55.91138672 288.47953125 54.80078125 288.96875 C37.76375 295.21662564 17.43651806 289.27713622 0.2890625 286.37109375 C-7.64301531 285.47614435 -13.29795349 286.03622602 -20.625 289.25 C-28.65836988 292.55263528 -36.49031108 295.13769726 -45 297 C-45.66950684 297.14953125 -46.33901367 297.2990625 -47.02880859 297.453125 C-68.03810422 301.96936923 -91.06595847 301.89747443 -112 297 C-112.82870605 296.80664062 -113.65741211 296.61328125 -114.51123047 296.4140625 C-149.39479001 287.95585985 -182.28728038 267.88532358 -204 239 C-204.39783691 238.47712402 -204.79567383 237.95424805 -205.20556641 237.41552734 C-231.23542004 203.01712146 -242.25788664 161.52012088 -237.23095703 118.60400391 C-232.91027122 87.7546628 -220.05589729 59.70881028 -200 36 C-199.55930176 35.47809082 -199.11860352 34.95618164 -198.66455078 34.41845703 C-172.3810588 3.6910376 -133.81615011 -16.2709723 -93.4987793 -19.83666992 C-60.7580752 -21.97673158 -28.8351402 -15.84677601 0 0 Z &quot; fill=&quot;#3154F4&quot; transform=&quot;translate(334,109)&quot;></path><path _ngcontent-ng-c1989239129=&quot;&quot; d=&quot;M0 0 C1.04285156 0.55300781 2.08570313 1.10601562 3.16015625 1.67578125 C38.56765647 21.22221418 63.79065133 55.98290908 76 94 C77.70206785 99.93126974 78.93172174 105.92653244 80 112 C80.33644531 113.80404297 80.33644531 113.80404297 80.6796875 115.64453125 C84.59638213 139.97632597 83.07802612 168.81955956 73.75 191.875 C69.90900243 201.77120536 72.31245111 212.24925196 74.4375 222.3125 C82.21195563 260.40079943 82.21195563 260.40079943 73 275 C68.7826014 281.21621531 63.85094559 285.00058104 57 288 C55.91138672 288.47953125 55.91138672 288.47953125 54.80078125 288.96875 C37.76375 295.21662564 17.43651806 289.27713622 0.2890625 286.37109375 C-7.64301531 285.47614435 -13.29795349 286.03622602 -20.625 289.25 C-28.65836988 292.55263528 -36.49031108 295.13769726 -45 297 C-45.66950684 297.14953125 -46.33901367 297.2990625 -47.02880859 297.453125 C-68.03810422 301.96936923 -91.06595847 301.89747443 -112 297 C-112.82870605 296.80664062 -113.65741211 296.61328125 -114.51123047 296.4140625 C-149.39479001 287.95585985 -182.28728038 267.88532358 -204 239 C-204.39783691 238.47712402 -204.79567383 237.95424805 -205.20556641 237.41552734 C-231.23542004 203.01712146 -242.25788664 161.52012088 -237.23095703 118.60400391 C-232.91027122 87.7546628 -220.05589729 59.70881028 -200 36 C-199.55930176 35.47809082 -199.11860352 34.95618164 -198.66455078 34.41845703 C-172.3810588 3.6910376 -133.81615011 -16.2709723 -93.4987793 -19.83666992 C-60.7580752 -21.97673158 -28.8351402 -15.84677601 0 0 Z M-161 61 C-184.14530889 87.27170855 -193.73576153 117.32609712 -192 152 C-190.23117759 174.68174585 -179.90808502 197.00478308 -165 214 C-164.37609375 214.75539063 -163.7521875 215.51078125 -163.109375 216.2890625 C-147.83609306 234.35623748 -125.80845225 246.51825846 -103 252 C-101.73929688 252.33837891 -101.73929688 252.33837891 -100.453125 252.68359375 C-75.2901536 258.49351549 -48.9596064 252.17556718 -25.93823242 242.09741211 C-20.87114358 239.99587471 -16.40167534 239.49621401 -10.9375 239.5625 C-10.08768555 239.56572266 -9.23787109 239.56894531 -8.36230469 239.57226562 C-0.38628387 239.73993841 7.32251319 241.01483645 15.13305664 242.57641602 C20.54914505 243.65387955 25.47510865 244.20750766 31 244 C31.2840457 238.81616605 30.50198056 234.49508075 29.21972656 229.4777832 C24.30064883 209.98001411 23.78370741 192.387441 31.2421875 173.609375 C41.5428004 147.54914931 36.72531346 117.01977291 26 92 C13.29373311 64.13598539 -10.71595401 43.40699074 -38.98828125 32.46875 C-81.30258892 16.68885358 -129.81570373 28.56432747 -161 61 Z &quot; fill=&quot;#E7F3FE&quot; transform=&quot;translate(334,109)&quot;></path><path _ngcontent-ng-c1989239129=&quot;&quot; d=&quot;M0 0 C2.875 2.25 2.875 2.25 5 5 C5 6.32 5 7.64 5 9 C6.59654419 8.9685791 6.59654419 8.9685791 8.2253418 8.93652344 C12.18549066 8.86396038 16.1455811 8.81814149 20.10620117 8.78027344 C21.81821586 8.76019495 23.53016228 8.73292608 25.24194336 8.69824219 C27.70704008 8.64955599 30.1712279 8.62699427 32.63671875 8.609375 C33.39836838 8.58872986 34.16001801 8.56808472 34.94474792 8.54681396 C38.69058531 8.54524295 40.79091534 8.8667858 43.98120117 10.89941406 C46.14327755 13.14908212 46.68483545 13.93642521 46.625 17 C46.40460367 20.19276847 46.06973588 20.91547166 43.9375 23.5 C40.3957736 25.30854114 37.92556076 25.30788712 34 25 C33.814375 25.76957031 33.814375 25.76957031 33.625 26.5546875 C29.5240283 41.77954495 21.78291827 55.74569483 13.90454102 69.29272461 C12.8550849 71.16022861 12.8550849 71.16022861 12 74 C12.845625 74.680625 13.69125 75.36125 14.5625 76.0625 C17 79 17 79 17.125 82.5625 C15.78240253 86.66488116 14.82125828 88.00630003 11 90 C7.42015933 89.80473596 4.45091475 89.15350289 1.0625 88 C-2.59588486 88 -2.84443843 88.49553577 -5.375 90.9375 C-15.25833339 100.38536084 -30.00054392 105.78810926 -43.5 106.4375 C-46.63763575 106.316628 -47.82453753 106.10698931 -50.5625 104.4375 C-52.50090068 101.15064668 -53 98.8194882 -53 95 C-51.421875 92.328125 -51.421875 92.328125 -49 90 C-45.890625 89.35546875 -45.890625 89.35546875 -42.25 89.1875 C-35.90158355 88.66788998 -30.85300068 86.95402377 -25.1875 84.0625 C-24.50010742 83.71405029 -23.81271484 83.36560059 -23.10449219 83.0065918 C-19.85299465 81.27057414 -18.07699521 80.11549282 -16 77 C-16.68964844 76.36835938 -17.37929687 75.73671875 -18.08984375 75.0859375 C-25.48612901 68.0447551 -30.82471403 60.81335829 -36 52 C-36.3707666 51.38987061 -36.7415332 50.77974121 -37.12353516 50.15112305 C-39.70477026 45.82402813 -40.76615268 43.0757615 -40 38 C-38.4375 35.5625 -38.4375 35.5625 -36 34 C-31.93153158 33.33425062 -29.90731624 33.36487863 -26.5 35.75 C-23.3827841 39.33277412 -21.29130704 43.66373387 -18.97265625 47.78125 C-15.35447178 53.68498069 -10.89656254 59.10343746 -6 64 C-4.00503552 64.13498245 -4.00503552 64.13498245 -2 63 C-0.01091688 60.37063975 -0.01091688 60.37063975 1.75 57 C2.25889771 56.07852173 2.25889771 56.07852173 2.77807617 55.13842773 C8.08395819 45.3696999 12.63787949 35.21761409 17 25 C16.19677811 25.01110306 15.39355621 25.02220612 14.56599426 25.03364563 C6.98879159 25.13391613 -0.58808851 25.20999892 -8.16578197 25.25906086 C-12.06141191 25.28513253 -15.95649273 25.32048427 -19.85180664 25.37719727 C-23.61252026 25.43160664 -27.37270644 25.46143883 -31.13378334 25.47438622 C-32.56714492 25.48361035 -34.00047828 25.50162371 -35.43361473 25.52865028 C-37.44398106 25.56504759 -39.45488047 25.56704327 -41.46557617 25.56762695 C-42.60919113 25.57873001 -43.75280609 25.58983307 -44.93107605 25.60127258 C-48.97015835 24.80992373 -50.45714784 23.16507562 -53 20 C-53.625 17 -53.625 17 -53 14 C-51.02062095 11.37393853 -49.43493147 9.33204429 -46.11923218 8.56478882 C-43.86903998 8.42176827 -41.67148278 8.43749615 -39.41796875 8.51171875 C-38.60378983 8.51879349 -37.7896109 8.52586823 -36.95075989 8.53315735 C-34.36205357 8.56104402 -31.77554727 8.62376684 -29.1875 8.6875 C-27.42776572 8.7125905 -25.66799737 8.73540236 -23.90820312 8.75585938 C-19.60462704 8.81085128 -15.3026859 8.89708008 -11 9 C-10.86980469 8.04867187 -10.73960937 7.09734375 -10.60546875 6.1171875 C-10 3 -10 3 -8.3125 1.125 C-5.21507874 -0.38185358 -3.40864082 -0.55651279 0 0 Z &quot; fill=&quot;#F9F9FB&quot; transform=&quot;translate(238,194)&quot;></path><path _ngcontent-ng-c1989239129=&quot;&quot; d=&quot;M0 0 C0.99 -0.03287109 0.99 -0.03287109 2 -0.06640625 C6.75986783 1.43034906 9.32338392 7.61027033 11.6875 11.69140625 C12.19694908 12.56572296 12.19694908 12.56572296 12.71669006 13.45770264 C13.81517642 15.34448325 14.90799797 17.2344601 16 19.125 C17.5174491 21.74600378 19.03706353 24.36573831 20.55859375 26.984375 C20.93535751 27.6333223 21.31212128 28.28226959 21.70030212 28.95088196 C23.99675317 32.89032389 26.35662295 36.78051464 28.78515625 40.640625 C29.34396484 41.53579834 29.90277344 42.43097168 30.47851562 43.35327148 C31.50307184 44.9843814 32.54130806 46.60701212 33.59570312 48.21899414 C36.75345168 53.2797901 37.67185772 56.58684236 37 62.5625 C35.4375 65.0625 35.4375 65.0625 33 66.5625 C29.5 67.0625 29.5 67.0625 26 66.5625 C23.31341986 64.45680205 21.89932116 62.41148175 20 59.5625 C18.15274772 59.0892707 18.15274772 59.0892707 16.00927734 59.13012695 C15.18857758 59.11033279 14.36787781 59.09053864 13.52230835 59.07014465 C12.63580597 59.06375473 11.74930359 59.05736481 10.8359375 59.05078125 C9.92872955 59.03283005 9.02152161 59.01487885 8.08682251 58.99638367 C5.18292928 58.94210573 2.279202 58.90832927 -0.625 58.875 C-2.59116902 58.84184233 -4.55731609 58.80735413 -6.5234375 58.77148438 C-11.34883888 58.68636935 -16.17418955 58.61964194 -21 58.5625 C-21.29390625 59.35011719 -21.5878125 60.13773437 -21.890625 60.94921875 C-23.18547097 63.99940169 -24.08226066 65.02258202 -27 66.5625 C-29.9375 67.0625 -29.9375 67.0625 -33 66.5625 C-36.10226111 64.2695244 -37.76734159 62.83346867 -38.47265625 58.98046875 C-37.77045104 53.90253848 -35.25178391 50.30144523 -32.5625 46 C-31.37621535 44.05423146 -30.19139947 42.10756693 -29.0078125 40.16015625 C-28.36618164 39.11102051 -27.72455078 38.06188477 -27.06347656 36.98095703 C-24.82992024 33.28073748 -22.65399704 29.55098365 -20.4921875 25.80859375 C-20.11362106 25.15485275 -19.73505463 24.50111176 -19.34501648 23.82756042 C-17.83589913 21.22143014 -16.32681201 18.61533788 -14.82693481 16.00387573 C-13.77450479 14.17365374 -12.71424653 12.34817521 -11.65234375 10.5234375 C-11.04382568 9.46946777 -10.43530762 8.41549805 -9.80834961 7.32958984 C-5.01191602 -0.0097889 -5.01191602 -0.0097889 0 0 Z &quot; fill=&quot;#F9F9FB&quot; transform=&quot;translate(297,233.4375)&quot;></path><path _ngcontent-ng-c1989239129=&quot;&quot; d=&quot;M0 0 C3.32859708 3.04875927 5.50435293 6.21910958 7.75 10.125 C8.67039062 11.70667969 8.67039062 11.70667969 9.609375 13.3203125 C11 16 11 16 11 18 C4.07 18 -2.86 18 -10 18 C-6.72221994 11.96590489 -3.43533637 5.94577449 0 0 Z &quot; fill=&quot;#395AF6&quot; transform=&quot;translate(296,258)&quot;></path></svg></app-icon-en><!----><!----><!----><!----><!----><!----></app-icon-svg><div class=&quot;eusoft-eudic-chrome-extension-pdf-hint-text&quot;>Open In Eudic</div></div><style>.eudic-chrome-extension-inner-icon[_ngcontent-ng-c3715780549]{display:flex;width:100%;height:100%}</style><!----><style>svg[_ngcontent-ng-c1989239129]{width:100%;height:100%}</style>"></app-arxiv-hint><!----><app-word-hint-render _ngcontent-ng-c2787122990="" _nghost-ng-c3386348173="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2787122990="" _nghost-ng-c749930229="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c749930229=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c2787122990="" class="eusoft-chrome-extension-capture-word-container ng-tns-c4033922151-0 ng-star-inserted" data-eusoft-scrollable-element="1" data-scrapbook-shadowdom="<style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><!----><!----><div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c4033922151-0&quot; data-content-script-theme=&quot;light&quot;><!----></div><style>.eudic-chrome-extension-inner-icon[_ngcontent-ng-c3715780549]{display:flex;width:100%;height:100%}</style><style>svg[_ngcontent-ng-c1989239129]{width:100%;height:100%}</style>"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2787122990="" _nghost-ng-c3081775404="" data-eusoft-scrollable-element="1"><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>

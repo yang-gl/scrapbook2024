@@ -1,0 +1,891 @@
+<!DOCTYPE html><html lang="en" data-rh="lang" data-eusoft-scrollable-element="1" data-scrapbook-source="https://medium.com/@jaikumarsharma94130/foundations-of-large-language-models-0b79eda08d40" data-scrapbook-create="20250921124948200"><head><title>Foundations of Large Language Models | by Jatin Sharma | Sep, 2025 | Medium</title><meta data-rh="true" charset="UTF-8"><meta data-rh="true" name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1"><meta data-rh="true" name="theme-color" content="#000000"><meta data-rh="true" name="twitter:app:name:iphone" content="Medium"><meta data-rh="true" name="twitter:app:id:iphone" content="828256236"><meta data-rh="true" property="al:ios:app_name" content="Medium"><meta data-rh="true" property="al:ios:app_store_id" content="828256236"><meta data-rh="true" property="al:android:package" content="com.medium.reader"><meta data-rh="true" property="fb:app_id" content="542599432471018"><meta data-rh="true" property="og:site_name" content="Medium"><meta data-rh="true" name="apple-itunes-app" content="app-id=828256236, app-argument=/@jaikumarsharma94130/foundations-of-large-language-models-0b79eda08d40, affiliate-data=pt=698524&amp;ct=smart_app_banner&amp;mt=8"><meta data-rh="true" property="al:android:app_name" content="Medium"><link data-rh="true" rel="icon" href="5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19.png"><link data-rh="true" rel="search" type="application/opensearchdescription+xml" title="Medium" href="https://medium.com/osd.xml"><link data-rh="true" rel="manifest" href="https://medium.com/manifest.json"><link data-rh="true" id="glyph_link" rel="stylesheet" type="text/css" href="unbound.css"><style type="text/css" data-fela-rehydration="529" data-fela-type="STATIC">html{box-sizing:border-box;-webkit-text-size-adjust:100%}*, *:before, *:after{box-sizing:inherit}body{margin:0;padding:0;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;color:rgba(0,0,0,0.8);position:relative;min-height:100vh}h1, h2, h3, h4, h5, h6, dl, dd, ol, ul, menu, figure, blockquote, p, pre, form{margin:0}menu, ol, ul{padding:0;list-style:none;list-style-image:none}main{display:block}a{color:inherit;text-decoration:none}a, button, input{-webkit-tap-highlight-color:transparent}img, svg{vertical-align:middle}button{background:transparent;overflow:visible}button, input, optgroup, select, textarea{margin:0}:root{--reach-tabs:1;--reach-menu-button:1}#speechify-root{font-family:Sohne, sans-serif}div[data-popper-reference-hidden="true"]{visibility:hidden;pointer-events:none}.grecaptcha-badge{visibility:hidden}
+/*XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>*/.hljs {background: #fff;color: black;
+}/* Gray DOCTYPE selectors like WebKit */
+.xml .hljs-meta {color: #c0c0c0;
+}.hljs-comment,
+.hljs-quote {color: #007400;
+}.hljs-tag,
+.hljs-attribute,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-name {color: #aa0d91;
+}.hljs-variable,
+.hljs-template-variable {color: #3F6E74;
+}.hljs-code,
+.hljs-string,
+.hljs-meta .hljs-string {color: #c41a16;
+}.hljs-regexp,
+.hljs-link {color: #0E0EFF;
+}.hljs-title,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-number {color: #1c00cf;
+}.hljs-section,
+.hljs-meta {color: #643820;
+}.hljs-title.class_,
+.hljs-class .hljs-title,
+.hljs-type,
+.hljs-built_in,
+.hljs-params {color: #5c2699;
+}.hljs-attr {color: #836C28;
+}.hljs-subst {color: #000;
+}.hljs-formula {background-color: #eee;font-style: italic;
+}.hljs-addition {background-color: #baeeba;
+}.hljs-deletion {background-color: #ffc8bd;
+}.hljs-selector-id,
+.hljs-selector-class {color: #9b703f;
+}.hljs-doctag,
+.hljs-strong {font-weight: bold;
+}.hljs-emphasis {font-style: italic;
+}
+</style><style type="text/css" data-fela-rehydration="529" data-fela-type="KEYFRAME">@-webkit-keyframes k1{0%{opacity:0.8}50%{opacity:0.5}100%{opacity:0.8}}@-moz-keyframes k1{0%{opacity:0.8}50%{opacity:0.5}100%{opacity:0.8}}@keyframes k1{0%{opacity:0.8}50%{opacity:0.5}100%{opacity:0.8}}@-webkit-keyframes k2{0%{opacity:0}100%{opacity:1}}@-moz-keyframes k2{0%{opacity:0}100%{opacity:1}}@keyframes k2{0%{opacity:0}100%{opacity:1}}@-webkit-keyframes k3{0%{opacity:1}100%{opacity:0}}@-moz-keyframes k3{0%{opacity:1}100%{opacity:0}}@keyframes k3{0%{opacity:1}100%{opacity:0}}</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE">.a { font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; }
+.b { font-weight: 400; }
+.c { background-color: rgb(255, 255, 255); }
+.d { display: none; }
+.m { display: block; }
+.n { position: sticky; }
+.o { top: 0px; }
+.p { z-index: 500; }
+.q { padding: 0px 24px; }
+.r { align-items: center; }
+.s { border-bottom: 1px solid rgb(242, 242, 242); }
+.z { height: 41px; }
+.ab { line-height: 20px; }
+.ac { display: flex; }
+.ae { gap: 32px; }
+.af { height: 57px; }
+.ag { flex: 1 0 auto; }
+.ah { color: inherit; }
+.ai { fill: inherit; }
+.aj { font-size: inherit; }
+.ak { border: medium; }
+.al { font-family: inherit; }
+.am { letter-spacing: inherit; }
+.an { font-weight: inherit; }
+.ao { padding: 0px; }
+.ap { margin: 0px; }
+.aq { cursor: pointer; }
+.ar:disabled { cursor: not-allowed; }
+.as:disabled { color: rgb(107, 107, 107); }
+.at:disabled { fill: rgb(107, 107, 107); }
+.aw { width: auto; }
+.ax path { fill: rgb(36, 36, 36); }
+.ay { height: 25px; }
+.az { margin-left: 24px; }
+.ba { border-radius: 20px; }
+.bb { width: 240px; }
+.bc { background: rgb(249, 249, 249); }
+.bd path { fill: rgb(107, 107, 107); }
+.bf { outline: none; }
+.bg { font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.bh { font-size: 14px; }
+.bi { width: 100%; }
+.bj { padding: 10px 20px 10px 0px; }
+.bk { background-color: transparent; }
+.bl { color: rgb(36, 36, 36); }
+.bm::placeholder { color: rgb(107, 107, 107); }
+.bn { display: inline-block; }
+.bo { margin-left: 12px; }
+.bp { margin-right: 12px; }
+.bq { border-radius: 4px; }
+.br { height: 24px; }
+.bx { background-color: rgb(249, 249, 249); }
+.by { border-radius: 50%; }
+.bz { height: 32px; }
+.ca { width: 32px; }
+.cb { flex: 0 0 auto; }
+.cd { flex: 1 1 auto; }
+.ci { justify-content: center; }
+.co { max-width: 680px; }
+.cp { min-width: 0px; }
+.cq { animation: 1.2s ease-in-out infinite k1; }
+.cr { height: 100vh; }
+.cs { margin-bottom: 16px; }
+.ct { margin-top: 48px; }
+.cu { align-items: flex-start; }
+.cv { flex-direction: column; }
+.cw { justify-content: space-between; }
+.cx { margin-bottom: 24px; }
+.dd { width: 80%; }
+.de { background-color: rgb(242, 242, 242); }
+.dk { height: 44px; }
+.dl { width: 44px; }
+.dm { margin: auto 0px; }
+.dn { margin-bottom: 4px; }
+.do { height: 16px; }
+.dp { width: 120px; }
+.dq { width: 80px; }
+.dw { margin-bottom: 8px; }
+.dx { width: 96%; }
+.dy { width: 98%; }
+.dz { width: 81%; }
+.ea { margin-left: 8px; }
+.eb { color: rgb(107, 107, 107); }
+.ec { font-size: 13px; }
+.ed { height: 100%; }
+.ew { color: rgb(255, 255, 255); }
+.ex { fill: rgb(255, 255, 255); }
+.ey { background: rgb(26, 137, 23); }
+.ez { border-color: rgb(26, 137, 23); }
+.fd:disabled { cursor: inherit !important; }
+.fe:disabled { opacity: 0.3; }
+.ff:disabled:hover { background: rgb(26, 137, 23); }
+.fg:disabled:hover { border-color: rgb(26, 137, 23); }
+.fh { border-radius: 99em; }
+.fi { border-width: 1px; }
+.fj { border-style: solid; }
+.fk { box-sizing: border-box; }
+.fl { text-decoration: none; }
+.fm { text-align: center; }
+.fn { margin-left: 16px; }
+.fo { border: inherit; }
+.fr { position: relative; }
+.fs { fill: rgb(107, 107, 107); }
+.fv { margin-right: 32px; }
+.fw { background: transparent; }
+.fx svg { margin-left: 4px; }
+.fy svg { fill: rgb(107, 107, 107); }
+.ga { box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset; }
+.gb { position: absolute; }
+.gi { margin: 0px 24px; }
+.gm { background: rgb(255, 255, 255); }
+.gn { border: 1px solid rgb(242, 242, 242); }
+.go { box-shadow: rgb(242, 242, 242) 0px 1px 4px; }
+.gp { max-height: 100vh; }
+.gq { overflow-y: auto; }
+.gr { left: 0px; }
+.gs { top: calc(100px + 100vh); }
+.gt { bottom: calc(100px + 100vh); }
+.gu { width: 10px; }
+.gv { pointer-events: none; }
+.gw { word-break: break-word; }
+.gx { overflow-wrap: break-word; }
+.gy::after { display: block; }
+.gz::after { content: ""; }
+.ha::after { clear: both; }
+.hb { line-height: 1.23; }
+.hc { letter-spacing: 0px; }
+.hd { font-style: normal; }
+.he { font-weight: 700; }
+.io { gap: 12px; }
+.ip { align-items: baseline; }
+.iq { width: 36px; }
+.ir { height: 36px; }
+.is { border: 2px solid rgb(255, 255, 255); }
+.it { z-index: 0; }
+.iu { box-shadow: none; }
+.iv { border: 1px solid rgba(0, 0, 0, 0.05); }
+.iw { margin-bottom: 2px; }
+.ix { flex-wrap: nowrap; }
+.iz { width: 12px; }
+.ja { flex-wrap: wrap; }
+.jb { padding-left: 8px; }
+.jc { padding-right: 8px; }
+.kd > * { flex-shrink: 0; }
+.ke { overflow-x: scroll; }
+.kf::-webkit-scrollbar { display: none; }
+.kg { scrollbar-width: none; }
+.kh { }
+.ki { width: 74px; }
+.kj { flex-direction: row; }
+.kk { z-index: 2; }
+.kl { margin-right: 4px; }
+.ko { user-select: none; }
+.kp { border: 0px; }
+.kq { fill: rgb(117, 117, 117); }
+.kt { outline: 0px; }
+.ku { user-select: none; }
+.kv > svg { pointer-events: none; }
+.le { cursor: progress; }
+.lf { opacity: 1; }
+.lg { padding: 4px 0px; }
+.lj { margin-top: 0px; }
+.lk { width: 16px; }
+.lm { display: inline-flex; }
+.ls { max-width: 100%; }
+.lt { padding: 8px 2px; }
+.lu svg { color: rgb(107, 107, 107); }
+.ml { line-height: 1.58; }
+.mm { letter-spacing: -0.004em; }
+.mn { font-family: source-serif-pro, Georgia, Cambria, "Times New Roman", Times, serif; }
+.ni { margin-bottom: -0.46em; }
+.nj { margin-left: auto; }
+.nk { margin-right: auto; }
+.nl { max-width: 734px; }
+.nr { clear: both; }
+.nt { cursor: zoom-in; }
+.nu { z-index: auto; }
+.nw { width: 1px; }
+.nx { height: 1px; }
+.ny { margin: -1px; }
+.nz { overflow: hidden; }
+.oa { clip: rect(0px, 0px, 0px, 0px); }
+.ob { white-space: nowrap; }
+.oc { border-width: 0px; }
+.od { height: auto; }
+.oe { line-height: 1.12; }
+.of { letter-spacing: -0.022em; }
+.og { font-weight: 600; }
+.pb { margin-bottom: -0.28em; }
+.ph { max-width: 733px; }
+.pi { max-width: 739px; }
+.pj { list-style-type: disc; }
+.pk { margin-left: 30px; }
+.pl { padding-left: 0px; }
+.pm { padding: 2px 4px; }
+.pn { font-size: 75%; }
+.po > strong { font-family: inherit; }
+.pp { font-family: source-code-pro, Menlo, Monaco, "Courier New", Courier, monospace; }
+.pv { max-width: 746px; }
+.pw { max-width: 736px; }
+.px { list-style-type: decimal; }
+.py { max-width: 735px; }
+.pz { margin-top: 32px; }
+.qa { margin-bottom: 14px; }
+.qb { padding-top: 24px; }
+.qc { padding-bottom: 10px; }
+.qd { background-color: rgb(0, 0, 0); }
+.qe { height: 3px; }
+.qf { width: 3px; }
+.qg { margin-right: 20px; }
+.qm { border-top: medium; }
+.qn { margin-bottom: 50px; }
+.qo { height: 52px; }
+.qp { max-height: 52px; }
+.qq { box-sizing: content-box; }
+.qr { position: static; }
+.qs { z-index: 1; }
+.qu { max-width: 155px; }
+.ra { margin-bottom: 64px; }
+.rn { height: 48px; }
+.ro { width: 48px; }
+.rq { height: 64px; }
+.rr { width: 64px; }
+.rs { align-self: flex-end; }
+.ry { padding-right: 4px; }
+.rz { font-weight: 500; }
+.sm { margin-top: 8px; }
+.sn { white-space: pre-wrap; }
+.so { margin: 0px 8px; }
+.sp { margin-top: 16px; }
+.sq { margin-bottom: 54px; }
+.sr { height: 0px; }
+.ss { gap: 18px; }
+.st { fill: rgb(61, 61, 61); }
+.tf { border-bottom: 1px solid rgb(229, 229, 229); }
+.tg { margin-top: 72px; }
+.th { padding: 24px 0px; }
+.ti { margin-bottom: 0px; }
+.tj { margin-right: 16px; }
+.tk { padding: 24px; }
+.tl { border-bottom: 1px solid rgb(242, 242, 242); }
+.tm { border-top: 1px solid rgb(242, 242, 242); }
+.tn { margin-top: 24px; }
+.tt { font-family: gt-super, Georgia, Cambria, "Times New Roman", Times, serif; }
+.tu { font-size: 18px; }
+.tv { line-height: 21px; }
+.tw { letter-spacing: -0.015em; }
+.tx { font-feature-settings: "pnum", "lnum"; }
+.ty { color: rgb(0, 0, 0); }
+.tz button { border-radius: 0px; }
+.ua button { border-top-right-radius: 4px; }
+.ub button { border-bottom-right-radius: 4px; }
+.ug { width: 280px; }
+.uh { padding: 8px 12px; }
+.ui { border-color: transparent; }
+.uj input, textarea { padding: 0px; }
+.uq { background-color: inherit; }
+.ur { line-height: inherit; }
+.us { text-align: inherit; }
+.ut { flex: 1 1 0%; }
+.uu { color: rgb(255, 255, 255); }
+.uv { padding: 8px 16px; }
+.uw { fill: rgb(255, 255, 255); }
+.ux { background: rgb(25, 25, 25); }
+.uy { border-color: rgb(25, 25, 25); }
+.vb:disabled { opacity: 0.1; }
+.vc:disabled:hover { background: rgb(25, 25, 25); }
+.vd:disabled:hover { border-color: rgb(25, 25, 25); }
+.ve { top: 0px; }
+.vf { left: 0px; }
+.vg { position: fixed; }
+.vh { background-color: rgba(0, 0, 0, 0.08); }
+.vi { z-index: 510; }
+.vj { opacity: 0; }
+.vk { transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+.vl { width: 414px; }
+.vm { z-index: 520; }
+.vn { background-color: white; }
+.vo { left: 100%; }
+.vp { overflow: auto; }
+.vq { }
+.vr { box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px; }
+.vs { transform: translateX(0px); }
+.vt { transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+.vu { visibility: hidden; }
+.wc { justify-content: stretch; }
+.wd { flex-grow: 1; }
+.we { top: calc(195px + 100vh); }
+.wf { line-height: 24px; }
+.wg { padding-bottom: 0px; }
+.wh { transition: background-color 400ms, padding-bottom 400ms; }
+.wi { margin-left: 10px; }
+.wj { transition: opacity 400ms, max-height 400ms; }
+.wk { max-height: 0px; }
+.wl { padding: 0px 14px; }
+.wm button { border: medium; }
+.wn { margin-bottom: 20px; }
+.wo { margin-bottom: 12px; }
+.wp { margin: 0px 4px; }
+.wq { cursor: default; }
+.wr { opacity: 0.3; }
+.ws { padding: 6px; }
+.wt > svg > path { fill: rgb(117, 117, 117); }
+.wu > span > svg > path { fill: rgb(117, 117, 117); }
+.wv { border: 1px solid transparent; }
+.ww { padding: 5px 12px; }
+.wx { fill: rgb(36, 36, 36); }
+.wy { background: 0px center; }
+.wz { border-color: rgb(36, 36, 36); }
+.xa:disabled:hover { color: rgb(36, 36, 36); }
+.xb:disabled:hover { fill: rgb(36, 36, 36); }
+.xc:disabled:hover { border-color: rgb(36, 36, 36); }
+.xf { align-items: stretch; }
+.yn { flex-grow: 0; }
+.yt { display: grid; }
+.yu { grid-template-columns: repeat(12, 1fr); }
+.yv { grid-template-rows: auto 1fr; }
+.zg { grid-area: image; }
+.zh { grid-area: content; }
+.zm { aspect-ratio: 2 / 1; }
+.zn { object-fit: cover; }
+.zo { object-position: 50% 50%; }
+.zp a { position: relative; }
+.zq a { z-index: 2; }
+.zr button { position: relative; }
+.zs button { z-index: 2; }
+.zy { margin-right: 8px; }
+.zz { height: 20px; }
+.aba { width: 20px; }
+.abb { max-height: 20px; }
+.abc { text-overflow: ellipsis; }
+.abd { display: -webkit-box; }
+.abe { -webkit-line-clamp: 1; }
+.abf { -moz-box-orient: vertical; }
+.abg { word-break: break-all; }
+.abi { padding-bottom: 12px; }
+.abo a { position: static; }
+.abp a::before { content: ""; }
+.abq a::before { position: absolute; }
+.abr a::before { z-index: 1; }
+.abs a::before { top: 0px; }
+.abt a::before { left: 0px; }
+.abu a::before { bottom: 0px; }
+.abv a::before { right: 0px; }
+.acg { padding-top: 8px; }
+.ach { font-size: 16px; }
+.aci { max-height: 40px; }
+.acj { -webkit-line-clamp: 2; }
+.ack { max-width: 200px; }
+.acl { transition: opacity 300ms ease-out; }
+.acm { gap: 16px; }
+.acn { justify-content: flex-end; }
+.aco { flex: 0 0 0px; }
+.acp { padding: 12px; }
+.add { padding-bottom: 40px; }
+.ade { padding-top: 88px; }
+.adf { gap: 4px; }
+.adg { border-radius: 2px; }
+.adh { padding: 0px 4px; }
+.adi { margin-left: 2px; }
+.adj { margin-top: 2px; }
+.adk { cursor: initial; }
+.adl path { stroke: rgb(36, 36, 36); }
+.adm { border-radius: 24px; }
+.adn { width: 66px; }
+.ado { padding: 6px 12px; }
+.adp { word-break: keep-all; }
+.adq { margin-right: 0px; }
+.adr { border-radius: 19px; }
+.ads { padding: 9px 16px; }
+.adt { padding: 0px; }
+.adu { margin-top: auto; }
+.adv { margin-bottom: auto; }
+.adw { background-color: rgba(0, 0, 0, 0.3); }
+.adx { overflow-x: hidden; }
+.aeb { bottom: 0px; }
+.aec { right: 0px; }
+.aed { z-index: 800; }
+.aer { box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px; }
+.afc { margin: auto; }
+.afd { max-width: 630px; }
+.afe { gap: 24px; }
+.aff { background: white; }
+.afg { font-size: 28px; }
+.afh { line-height: 32px; }
+.afi { letter-spacing: -0.03em; }
+.afj { max-width: 480px; }
+.afk { text-align: left; }
+.afq { text-decoration: underline; }
+.afr { font-size: 11px; }
+.afs { line-height: 16px; }
+.aft { top: 12px; }
+.afu { right: 12px; }
+.au:hover:not(:disabled) { color: rgb(25, 25, 25); }
+.av:hover:not(:disabled) { fill: rgb(25, 25, 25); }
+.fa:hover { background: rgb(21, 109, 18); }
+.fb:hover { border-color: rgb(21, 109, 18); }
+.fc:hover { cursor: pointer; }
+.ft:hover { color: rgb(36, 36, 36); }
+.fu:hover { fill: rgb(36, 36, 36); }
+.fz:hover svg { fill: rgb(36, 36, 36); }
+.gc:hover { background-color: rgba(0, 0, 0, 0.1); }
+.iy:hover { text-decoration: underline; }
+.ks:hover { fill: rgb(8, 8, 8); }
+.lh:hover { fill: rgb(0, 0, 0); }
+.li:hover p { color: rgb(0, 0, 0); }
+.ll:hover { color: rgb(0, 0, 0); }
+.lv:hover svg { color: rgb(0, 0, 0); }
+.rp:hover { }
+.su:hover { fill: rgb(25, 25, 25); }
+.uz:hover { background: rgb(0, 0, 0); }
+.va:hover { border-color: rgb(36, 36, 36); }
+.be:focus-within path { fill: rgb(36, 36, 36); }
+.kr:focus { fill: rgb(8, 8, 8); }
+.lw:focus svg { color: rgb(0, 0, 0); }
+.nv:focus { transform: scale(1.01); }
+.kw:active { border-style: none; }</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="all and (min-width: 1080px)">.e { display: none; }
+.bw { width: 64px; }
+.cc { display: block; }
+.cn { margin: 0px 64px; }
+.dc { height: 48px; }
+.dj { margin-bottom: 52px; }
+.dv { margin-bottom: 48px; }
+.em { font-size: 14px; }
+.eo { line-height: 20px; }
+.eu { font-size: 13px; }
+.ev { padding: 5px 12px; }
+.fq { display: flex; }
+.gh { margin-bottom: 50px; }
+.gl { max-width: 680px; }
+.hz { font-size: 42px; }
+.ia { margin-top: 1.19em; }
+.ib { margin-bottom: 32px; }
+.ic { line-height: 52px; }
+.id { letter-spacing: -0.011em; }
+.im { align-items: center; }
+.in { flex-direction: row; }
+.jp { border-top: 1px solid rgb(242, 242, 242); }
+.jq { border-bottom: 1px solid rgb(242, 242, 242); }
+.jr { margin: 32px 0px 0px; }
+.js { padding: 3px 8px; }
+.kb > * { margin-right: 24px; }
+.kc > :last-child { margin-right: 0px; }
+.ld { margin-top: 0px; }
+.lr { margin: 0px; }
+.ne { font-size: 20px; }
+.nf { margin-top: 2.14em; }
+.ng { line-height: 32px; }
+.nh { letter-spacing: -0.003em; }
+.nq { margin-top: 56px; }
+.ox { font-size: 24px; }
+.oy { margin-top: 1.95em; }
+.oz { line-height: 30px; }
+.pa { letter-spacing: -0.016em; }
+.pg { margin-top: 0.94em; }
+.pu { margin-top: 1.14em; }
+.ql { margin-top: 1.25em; }
+.qz { display: inline-block; }
+.rd { margin-bottom: 0px; }
+.re { margin-right: 20px; }
+.rt { max-width: 500px; }
+.sk { line-height: 24px; }
+.sl { letter-spacing: 0px; }
+.sz { margin: 40px 0px 0px; }
+.te { padding-top: 72px; }
+.ts { margin-bottom: 12px; }
+.uo { border-top-right-radius: 0px; }
+.up { border-bottom-right-radius: 0px; }
+.xs { width: calc(100% + 32px); }
+.xt { margin-left: -16px; }
+.xu { margin-right: -16px; }
+.yj { padding-left: 16px; }
+.yk { padding-right: 16px; }
+.yl { flex-basis: 50%; }
+.ym { max-width: 50%; }
+.ys { padding-bottom: 56px; }
+.ze { gap: 24px 0px; }
+.zf { grid-template-areas: "image image image image image image image image image image image image" "content content content content content content content content content content content content"; }
+.zx { margin-bottom: 16px; }
+.abn { flex: 1 0 auto; }
+.ace { max-height: 48px; }
+.acf { -webkit-line-clamp: 2; }
+.acs { margin-bottom: 24px; }
+.acx { }
+.adc { margin-top: 96px; }
+.aep { border-radius: 4px; }
+.aeq { width: 678px; }
+.afa { padding: 56px 0px; }
+.afb { height: 100%; }
+.afp { width: 360px; }</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="all and (max-width: 1079.98px)">.f{display:none}.lc{margin-top:0px}.qy{display:inline-block}</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="all and (max-width: 903.98px)">.g{display:none}.lb{margin-top:0px}.qx{display:inline-block}</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="all and (max-width: 727.98px)">.h { display: none; }
+.kz { margin-top: 0px; }
+.la { margin-right: 0px; }
+.qw { display: inline-block; }
+.vv { left: 0px; }
+.vw { width: 100%; }
+.vx { border-top-left-radius: 20px; }
+.vy { border-top-right-radius: 20px; }
+.vz { height: calc(100% - 30px); }
+.wa { transform: translateY(100%); }
+.wb { }</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="all and (max-width: 551.98px)">.i { display: none; }
+.t { display: flex; }
+.u { justify-content: space-between; }
+.bs { width: 24px; }
+.ce { min-width: 100%; }
+.cj { margin: 0px 24px; }
+.cy { height: 40px; }
+.df { margin-bottom: 44px; }
+.dr { margin-bottom: 32px; }
+.ee { font-size: 13px; }
+.ef { line-height: 20px; }
+.ep { padding: 0px 8px 1px; }
+.gd { margin-bottom: 2px; }
+.hf { font-size: 32px; }
+.hg { margin-top: 1.01em; }
+.hh { margin-bottom: 24px; }
+.hi { line-height: 38px; }
+.hj { letter-spacing: -0.014em; }
+.ie { align-items: flex-start; }
+.if { flex-direction: column-reverse; }
+.jd { margin: 24px -24px 0px; }
+.je { padding: 0px; }
+.jt > * { margin-right: 8px; }
+.ju > :last-child { margin-right: 24px; }
+.km { margin-left: 0px; }
+.kx { margin-top: 0px; }
+.ky { margin-right: 0px; }
+.ln { margin: 0px; }
+.lx { border: 1px solid rgb(242, 242, 242); }
+.ly { border-radius: 99em; }
+.lz { padding: 0px 16px 0px 12px; }
+.ma { height: 38px; }
+.mb { align-items: center; }
+.md svg { margin-right: 8px; }
+.mo { font-size: 18px; }
+.mp { margin-top: 1.56em; }
+.mq { line-height: 28px; }
+.mr { letter-spacing: -0.003em; }
+.nm { margin-top: 40px; }
+.oh { font-size: 20px; }
+.oi { margin-top: 1.2em; }
+.oj { line-height: 24px; }
+.ok { letter-spacing: 0px; }
+.pc { margin-top: 0.67em; }
+.pq { margin-top: 1.34em; }
+.qh { margin-top: 0.93em; }
+.qv { display: inline-block; }
+.rc { flex-direction: column; }
+.rl { margin-bottom: 20px; }
+.rm { margin-right: 0px; }
+.rx { max-width: 100%; }
+.sa { font-size: 24px; }
+.sb { line-height: 30px; }
+.sc { letter-spacing: -0.016em; }
+.sv { margin: 32px 0px 0px; }
+.ta { padding-top: 48px; }
+.to { margin-bottom: 8px; }
+.uc { width: 280px; }
+.ud { gap: 16px; }
+.xd { margin-bottom: 40px; }
+.xg { width: calc(100% + 24px); }
+.xh { margin-left: -12px; }
+.xi { margin-right: -12px; }
+.xv { padding-left: 12px; }
+.xw { padding-right: 12px; }
+.xx { flex-basis: 100%; }
+.yo { padding-bottom: 32px; }
+.yw { gap: 24px 0px; }
+.yx { grid-template-areas: "image image image image image image image image image image image image" "content content content content content content content content content content content content"; }
+.zi { display: block; }
+.zt { margin-bottom: 16px; }
+.abj { flex: 1 0 auto; }
+.abw { max-height: 48px; }
+.abx { -webkit-line-clamp: 2; }
+.act { width: 100%; }
+.acy { margin-top: 72px; }
+.aee { border-radius: 0px; }
+.aef { height: 100vh !important; }
+.aeg { width: 100vw !important; }
+.aes { padding: 24px 32px 0px; }
+.aet { height: 100vh; }
+.afl { width: 270px; }
+.mc:hover { border-color: rgb(229, 229, 229); }</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="all and (min-width: 904px) and (max-width: 1079.98px)">.j { display: none; }
+.bv { width: 64px; }
+.ch { min-width: 100%; }
+.cm { margin: 0px 64px; }
+.db { height: 48px; }
+.di { margin-bottom: 52px; }
+.du { margin-bottom: 48px; }
+.ek { font-size: 14px; }
+.el { line-height: 20px; }
+.es { font-size: 13px; }
+.et { padding: 5px 12px; }
+.fp { display: flex; }
+.gg { margin-bottom: 50px; }
+.gk { max-width: 680px; }
+.hu { font-size: 42px; }
+.hv { margin-top: 1.19em; }
+.hw { margin-bottom: 32px; }
+.hx { line-height: 52px; }
+.hy { letter-spacing: -0.011em; }
+.ik { align-items: center; }
+.il { flex-direction: row; }
+.jl { border-top: 1px solid rgb(242, 242, 242); }
+.jm { border-bottom: 1px solid rgb(242, 242, 242); }
+.jn { margin: 32px 0px 0px; }
+.jo { padding: 3px 8px; }
+.jz > * { margin-right: 24px; }
+.ka > :last-child { margin-right: 0px; }
+.lq { margin: 0px; }
+.na { font-size: 20px; }
+.nb { margin-top: 2.14em; }
+.nc { line-height: 32px; }
+.nd { letter-spacing: -0.003em; }
+.np { margin-top: 56px; }
+.ot { font-size: 24px; }
+.ou { margin-top: 1.95em; }
+.ov { line-height: 30px; }
+.ow { letter-spacing: -0.016em; }
+.pf { margin-top: 0.94em; }
+.pt { margin-top: 1.14em; }
+.qk { margin-top: 1.25em; }
+.rf { margin-bottom: 0px; }
+.rg { margin-right: 20px; }
+.ru { max-width: 500px; }
+.si { line-height: 24px; }
+.sj { letter-spacing: 0px; }
+.sy { margin: 40px 0px 0px; }
+.td { padding-top: 72px; }
+.tr { margin-bottom: 12px; }
+.um { border-top-right-radius: 0px; }
+.un { border-bottom-right-radius: 0px; }
+.xp { width: calc(100% + 32px); }
+.xq { margin-left: -16px; }
+.xr { margin-right: -16px; }
+.yf { padding-left: 16px; }
+.yg { padding-right: 16px; }
+.yh { flex-basis: 50%; }
+.yi { max-width: 50%; }
+.yr { padding-bottom: 56px; }
+.zc { gap: 24px 0px; }
+.zd { grid-template-areas: "image image image image image image image image image image image image" "content content content content content content content content content content content content"; }
+.zl { display: block; }
+.zw { margin-bottom: 16px; }
+.abm { flex: 1 0 auto; }
+.acc { max-height: 48px; }
+.acd { -webkit-line-clamp: 2; }
+.acr { margin-bottom: 24px; }
+.acw { }
+.adb { margin-top: 96px; }
+.aen { border-radius: 4px; }
+.aeo { width: 678px; }
+.aey { padding: 56px 0px; }
+.aez { height: 100%; }
+.afo { width: 360px; }</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="all and (min-width: 728px) and (max-width: 903.98px)">.k { display: none; }
+.x { display: flex; }
+.y { justify-content: space-between; }
+.bu { width: 64px; }
+.cg { min-width: 100%; }
+.cl { margin: 0px 48px; }
+.da { height: 48px; }
+.dh { margin-bottom: 52px; }
+.dt { margin-bottom: 48px; }
+.ei { font-size: 13px; }
+.ej { line-height: 20px; }
+.er { padding: 0px 8px 1px; }
+.gf { margin-bottom: 50px; }
+.gj { max-width: 680px; }
+.hp { font-size: 42px; }
+.hq { margin-top: 1.19em; }
+.hr { margin-bottom: 32px; }
+.hs { line-height: 52px; }
+.ht { letter-spacing: -0.011em; }
+.ii { align-items: center; }
+.ij { flex-direction: row; }
+.jh { border-top: 1px solid rgb(242, 242, 242); }
+.ji { border-bottom: 1px solid rgb(242, 242, 242); }
+.jj { margin: 32px 0px 0px; }
+.jk { padding: 3px 8px; }
+.jx > * { margin-right: 24px; }
+.jy > :last-child { margin-right: 0px; }
+.lp { margin: 0px; }
+.mw { font-size: 20px; }
+.mx { margin-top: 2.14em; }
+.my { line-height: 32px; }
+.mz { letter-spacing: -0.003em; }
+.no { margin-top: 56px; }
+.op { font-size: 24px; }
+.oq { margin-top: 1.95em; }
+.or { line-height: 30px; }
+.os { letter-spacing: -0.016em; }
+.pe { margin-top: 0.94em; }
+.ps { margin-top: 1.14em; }
+.qj { margin-top: 1.25em; }
+.rh { margin-bottom: 0px; }
+.ri { margin-right: 20px; }
+.rv { max-width: 500px; }
+.sg { line-height: 24px; }
+.sh { letter-spacing: 0px; }
+.sx { margin: 40px 0px 0px; }
+.tc { padding-top: 72px; }
+.tq { margin-bottom: 12px; }
+.uk { border-top-right-radius: 0px; }
+.ul { border-bottom-right-radius: 0px; }
+.xm { width: calc(100% + 28px); }
+.xn { margin-left: -14px; }
+.xo { margin-right: -14px; }
+.yb { padding-left: 14px; }
+.yc { padding-right: 14px; }
+.yd { flex-basis: 50%; }
+.ye { max-width: 50%; }
+.yq { padding-bottom: 56px; }
+.za { gap: 24px 0px; }
+.zb { grid-template-areas: "image image image image image image image image image image image image" "content content content content content content content content content content content content"; }
+.zk { display: block; }
+.zv { margin-bottom: 16px; }
+.abl { flex: 1 0 auto; }
+.aca { max-height: 48px; }
+.acb { -webkit-line-clamp: 2; }
+.acq { margin-bottom: 24px; }
+.acv { }
+.ada { margin-top: 96px; }
+.aek { border-radius: 4px; }
+.ael { height: auto; }
+.aem { width: 600px; }
+.aew { padding: 24px 32px 0px; }
+.aex { height: 100vh; }
+.afn { width: 360px; }</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="all and (min-width: 552px) and (max-width: 727.98px)">.l { display: none; }
+.v { display: flex; }
+.w { justify-content: space-between; }
+.bt { width: 24px; }
+.cf { min-width: 100%; }
+.ck { margin: 0px 24px; }
+.cz { height: 40px; }
+.dg { margin-bottom: 44px; }
+.ds { margin-bottom: 32px; }
+.eg { font-size: 13px; }
+.eh { line-height: 20px; }
+.eq { padding: 0px 8px 1px; }
+.ge { margin-bottom: 2px; }
+.hk { font-size: 32px; }
+.hl { margin-top: 1.01em; }
+.hm { margin-bottom: 24px; }
+.hn { line-height: 38px; }
+.ho { letter-spacing: -0.014em; }
+.ig { align-items: flex-start; }
+.ih { flex-direction: column-reverse; }
+.jf { margin: 24px 0px 0px; }
+.jg { padding: 0px; }
+.jv > * { margin-right: 8px; }
+.jw > :last-child { margin-right: 8px; }
+.kn { margin-left: 0px; }
+.lo { margin: 0px; }
+.me { border: 1px solid rgb(242, 242, 242); }
+.mf { border-radius: 99em; }
+.mg { padding: 0px 16px 0px 12px; }
+.mh { height: 38px; }
+.mi { align-items: center; }
+.mk svg { margin-right: 8px; }
+.ms { font-size: 18px; }
+.mt { margin-top: 1.56em; }
+.mu { line-height: 28px; }
+.mv { letter-spacing: -0.003em; }
+.nn { margin-top: 40px; }
+.ol { font-size: 20px; }
+.om { margin-top: 1.2em; }
+.on { line-height: 24px; }
+.oo { letter-spacing: 0px; }
+.pd { margin-top: 0.67em; }
+.pr { margin-top: 1.34em; }
+.qi { margin-top: 0.93em; }
+.rb { flex-direction: column; }
+.rj { margin-bottom: 20px; }
+.rk { margin-right: 0px; }
+.rw { max-width: 100%; }
+.sd { font-size: 24px; }
+.se { line-height: 30px; }
+.sf { letter-spacing: -0.016em; }
+.sw { margin: 32px 0px 0px; }
+.tb { padding-top: 48px; }
+.tp { margin-bottom: 8px; }
+.ue { width: 280px; }
+.uf { gap: 16px; }
+.xe { margin-bottom: 40px; }
+.xj { width: calc(100% + 24px); }
+.xk { margin-left: -12px; }
+.xl { margin-right: -12px; }
+.xy { padding-left: 12px; }
+.xz { padding-right: 12px; }
+.ya { flex-basis: 100%; }
+.yp { padding-bottom: 32px; }
+.yy { gap: 24px 0px; }
+.yz { grid-template-areas: "image image image image image image image image image image image image" "content content content content content content content content content content content content"; }
+.zj { display: block; }
+.zu { margin-bottom: 16px; }
+.abk { flex: 1 0 auto; }
+.aby { max-height: 48px; }
+.abz { -webkit-line-clamp: 2; }
+.acu { width: 100%; }
+.acz { margin-top: 72px; }
+.aeh { border-radius: 0px; }
+.aei { height: 100vh !important; }
+.aej { width: 100vw !important; }
+.aeu { padding: 24px 32px 0px; }
+.aev { height: 100vh; }
+.afm { width: 270px; }
+.mj:hover { border-color: rgb(229, 229, 229); }</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="print">.qt{display:none}</style><style type="text/css" data-fela-rehydration="529" data-fela-type="RULE" media="(prefers-reduced-motion: no-preference)">.ns { transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1); }
+.ady { }
+.adz { scroll-behavior: smooth; }
+.aea { animation: 300ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards k2; }
+.afv { animation: 300ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards k3; }</style><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><link rel="apple-touch-icon" sizes="152x152" href="https://miro.medium.com/v2/resize:fill:190:190/10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156" data-rh="true"><link rel="apple-touch-icon" sizes="120x120" href="https://miro.medium.com/v2/resize:fill:150:150/10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156" data-rh="true"><link rel="apple-touch-icon" sizes="76x76" href="https://miro.medium.com/v2/resize:fill:95:95/10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156" data-rh="true"><link rel="apple-touch-icon" sizes="60x60" href="https://miro.medium.com/v2/resize:fill:75:75/10fd5c419ac61637245384e7099e131627900034828f4f386bdaa47a74eae156" data-rh="true"><link rel="mask-icon" href="https://miro.medium.com/v2/resize:fill:625:625/7*GAOKVe--MXbEJmV9230oOQ.png" color="#171717" data-rh="true"><link rel="author" href="https://medium.com/@jaikumarsharma94130" data-rh="true"><link rel="canonical" href="https://medium.com/@jaikumarsharma94130/foundations-of-large-language-models-0b79eda08d40" data-rh="true"><link rel="alternate" href="android-app://com.medium.reader/https/medium.com/p/0b79eda08d40" data-rh="true"><meta property="og:type" content="article" data-rh="true"><meta property="article:published_time" content="2025-09-17T07:45:20.638Z" data-rh="true"><meta name="title" content="Foundations of Large Language Models | by Jatin Sharma | Sep, 2025 | Medium" data-rh="true"><meta property="og:title" content="Foundations of Large Language Models" data-rh="true"><meta property="al:android:url" content="medium://p/0b79eda08d40" data-rh="true"><meta property="al:ios:url" content="medium://p/0b79eda08d40" data-rh="true"><meta name="description" content="Foundations of Large Language Models LLMs are trained algorithms that receive text input and predict and generate humanlike text output. Large The term “large” refers to the enormous scale of …" data-rh="true"><meta property="og:description" content="LLMs are trained algorithms that receive text input and predict and generate humanlike text output." data-rh="true"><meta property="og:url" content="https://medium.com/@jaikumarsharma94130/foundations-of-large-language-models-0b79eda08d40" data-rh="true"><meta property="al:web:url" content="https://medium.com/@jaikumarsharma94130/foundations-of-large-language-models-0b79eda08d40" data-rh="true"><meta property="og:image" content="https://miro.medium.com/v2/resize:fit:733/1*qWU5gmKVegDW7gsUufkNwg.png" data-rh="true"><meta property="article:author" content="https://medium.com/@jaikumarsharma94130" data-rh="true"><meta name="author" content="Jatin Sharma" data-rh="true"><meta name="robots" content="index,noarchive,follow,max-image-preview:large" data-rh="true"><meta name="referrer" content="unsafe-url" data-rh="true"><meta property="twitter:title" content="Foundations of Large Language Models" data-rh="true"><meta name="twitter:site" content="@Medium" data-rh="true"><meta name="twitter:app:url:iphone" content="medium://p/0b79eda08d40" data-rh="true"><meta property="twitter:description" content="LLMs are trained algorithms that receive text input and predict and generate humanlike text output." data-rh="true"><meta name="twitter:image:src" content="https://miro.medium.com/v2/resize:fit:733/1*qWU5gmKVegDW7gsUufkNwg.png" data-rh="true"><meta name="twitter:card" content="summary_large_image" data-rh="true"><meta name="twitter:label1" content="Reading time" data-rh="true"><meta name="twitter:data1" content="10 min read" data-rh="true"><style data-fela-type="RULE" type="text/css" media="(orientation: landscape) and (max-width: 903.98px)">.abh { max-height: none; }</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head><body style=""><div id="root"><div class="a b c"><a href="https://medium.com/sitemap/sitemap.xml" class="d">Sitemap</a><div class="e f g h i j k l"></div><div></div><div class="m c"><div class="m n o p c" style="transform: translateY(0px);"><div class="q r s t u v w x y j e z ab"><a class="eb ai ec bg am b ao ap aq ar as at au av t v x j e r ed ab" href="https://rsci.app.link/?%24canonical_url=https%3A%2F%2Fmedium.com%2Fp%2F0b79eda08d40&amp;%7Efeature=LoOpenInAppButton&amp;%7Echannel=ShowPostUnderUser&amp;%7Estage=mobileNavBar&amp;source=post_page---top_nav_layout_nav-----------------------------------------" rel="noopener follow">Open in app<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10" class="ea"><path fill="currentColor" d="M.985 8.485a.375.375 0 1 0 .53.53zM8.75 1.25h.375A.375.375 0 0 0 8.75.875zM8.375 6.5a.375.375 0 1 0 .75 0zM3.5.875a.375.375 0 1 0 0 .75zm-1.985 8.14 7.5-7.5-.53-.53-7.5 7.5zm6.86-7.765V6.5h.75V1.25zM3.5 1.625h5.25v-.75H3.5z"></path></svg></a><div class="ac r"><p class="bg b ee ef eg eh ei ej ek el em eo eb"><span data-dd-action-name="Susi presentation tracker global_nav"><button class="bg b ee ef ep eg eh eq ei ej er es el et eu eo ev ew ex ey ez fa fb fc fd fe ff fg fh fi fj fk bn fl fm" data-testid="headerSignUpButton">Sign up</button></span></p><div class="fn m"><p class="bg b ee ef eg eh ei ej ek el em eo eb"><span data-dd-action-name="Susi presentation tracker global_nav"><a class="ah ai aj fo al am an ao ap aq ar as at au av" data-testid="headerSignInButton" rel="noopener follow" href="https://medium.com/m/signin?operation=login&amp;redirect=https%3A%2F%2Fmedium.com%2F%40jaikumarsharma94130%2Ffoundations-of-large-language-models-0b79eda08d40&amp;source=post_page---top_nav_layout_nav-----------------------global_nav------------------" data-discover="true">Sign in</a></span></p></div></div></div><div class="q r s ac ae af"><div class="ac r ag"><a class="ah ai aj ak al am an ao ap aq ar as at au av ac" aria-label="Homepage" data-testid="headerMediumLogo" rel="noopener follow" href="https://medium.com/?source=post_page---top_nav_layout_nav-----------------------------------------" data-discover="true"><svg xmlns="http://www.w3.org/2000/svg" width="719" height="160" fill="none" aria-labelledby="wordmark-medium-desc" viewBox="0 0 719 160" class="aw ax ay"><desc id="wordmark-medium-desc">Medium Logo</desc><path fill="#242424" d="m174.104 9.734.215-.047V8.02H130.39L89.6 103.89 48.81 8.021H1.472v1.666l.212.047c8.018 1.81 12.09 4.509 12.09 14.242V137.93c0 9.734-4.087 12.433-12.106 14.243l-.212.047v1.671h32.118v-1.665l-.213-.048c-8.018-1.809-12.089-4.509-12.089-14.242V30.586l52.399 123.305h2.972l53.925-126.743V140.75c-.687 7.688-4.721 10.062-11.982 11.701l-.215.05v1.652h55.948v-1.652l-.215-.05c-7.269-1.639-11.4-4.013-12.087-11.701l-.037-116.774h.037c0-9.733 4.071-12.432 12.087-14.242m25.555 75.488c.915-20.474 8.268-35.252 20.606-35.507 3.806.063 6.998 1.312 9.479 3.714 5.272 5.118 7.751 15.812 7.368 31.793zm-.553 5.77h65.573v-.275c-.186-15.656-4.721-27.834-13.466-36.196-7.559-7.227-18.751-11.203-30.507-11.203h-.263c-6.101 0-13.584 1.48-18.909 4.16-6.061 2.807-11.407 7.003-15.855 12.511-7.161 8.874-11.499 20.866-12.554 34.343q-.05.606-.092 1.212a50 50 0 0 0-.065 1.151 85.807 85.807 0 0 0-.094 5.689c.71 30.524 17.198 54.917 46.483 54.917 25.705 0 40.675-18.791 44.407-44.013l-1.886-.664c-6.557 13.556-18.334 21.771-31.738 20.769-18.297-1.369-32.314-19.922-31.042-42.395m139.722 41.359c-2.151 5.101-6.639 7.908-12.653 7.908s-11.513-4.129-15.418-11.63c-4.197-8.053-6.405-19.436-6.405-32.92 0-28.067 8.729-46.22 22.24-46.22 5.657 0 10.111 2.807 12.236 7.704zm43.499 20.008c-8.019-1.897-12.089-4.722-12.089-14.951V1.309l-48.716 14.353v1.757l.299-.024c6.72-.543 11.278.386 13.925 2.83 2.072 1.915 3.082 4.853 3.082 8.987v18.66c-4.803-3.067-10.516-4.56-17.448-4.56-14.059 0-26.909 5.92-36.176 16.672-9.66 11.205-14.767 26.518-14.767 44.278-.003 31.72 15.612 53.039 38.851 53.039 13.595 0 24.533-7.449 29.54-20.013v16.865h43.711v-1.746zM424.1 19.819c0-9.904-7.468-17.374-17.375-17.374-9.859 0-17.573 7.632-17.573 17.374s7.721 17.374 17.573 17.374c9.907 0 17.375-7.47 17.375-17.374m11.499 132.546c-8.019-1.897-12.089-4.722-12.089-14.951h-.035V43.635l-43.714 12.551v1.705l.263.024c9.458.842 12.047 4.1 12.047 15.152v81.086h43.751v-1.746zm112.013 0c-8.018-1.897-12.089-4.722-12.089-14.951V43.635l-41.621 12.137v1.71l.246.026c7.733.813 9.967 4.257 9.967 15.36v59.279c-2.578 5.102-7.415 8.131-13.274 8.336-9.503 0-14.736-6.419-14.736-18.073V43.638l-43.714 12.55v1.703l.262.024c9.459.84 12.05 4.097 12.05 15.152v50.17a56.3 56.3 0 0 0 .91 10.444l.787 3.423c3.701 13.262 13.398 20.197 28.59 20.197 12.868 0 24.147-7.966 29.115-20.43v17.311h43.714v-1.747zm169.818 1.788v-1.749l-.213-.05c-8.7-2.006-12.089-5.789-12.089-13.49v-63.79c0-19.89-11.171-31.761-29.883-31.761-13.64 0-25.141 7.882-29.569 20.16-3.517-13.01-13.639-20.16-28.606-20.16-13.146 0-23.449 6.938-27.869 18.657V43.643L545.487 55.68v1.715l.263.024c9.345.829 12.047 4.181 12.047 14.95v81.784h40.787v-1.746l-.215-.053c-6.941-1.631-9.181-4.606-9.181-12.239V66.998c1.836-4.289 5.537-9.37 12.853-9.37 9.086 0 13.692 6.296 13.692 18.697v77.828h40.797v-1.746l-.215-.053c-6.94-1.631-9.18-4.606-9.18-12.239V75.066a42 42 0 0 0-.578-7.26c1.947-4.661 5.86-10.177 13.475-10.177 9.214 0 13.691 6.114 13.691 18.696v77.828z"></path></svg></a><div class="az i"><div class="ac ak ba bb bc r bd be"><div class="bn" aria-hidden="false" aria-describedby="searchResults" aria-labelledby="searchResults" aria-haspopup="listbox" role="listbox"></div><div class="bo bp ac"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M4.092 11.06a6.95 6.95 0 1 1 13.9 0 6.95 6.95 0 0 1-13.9 0m6.95-8.05a8.05 8.05 0 1 0 5.13 14.26l3.75 3.75a.56.56 0 1 0 .79-.79l-3.73-3.73A8.05 8.05 0 0 0 11.042 3z" clip-rule="evenodd"></path></svg></div><input role="combobox" aria-controls="searchResults" aria-expanded="false" aria-label="search" data-testid="headerSearchInput" tabindex="0" class="ak bf bg bh ab bi bj bk bl bm" placeholder="Search" value=""></div></div></div><div class="i l x fp fq"><span data-dd-action-name="Susi presentation tracker new_post_topnav"><a class="ah ai aj fo al am an ao ap aq ar as at au av" data-testid="headerWriteButton" rel="noopener follow" href="https://medium.com/m/signin?operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2Fnew-story&amp;source=---top_nav_layout_nav-----------------------new_post_topnav------------------" data-discover="true" data-eusoft-scrollable-element="1"><div class="bg b bh ab eb fr fs ac r ft fu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-label="Write"><path fill="currentColor" d="M14 4a.5.5 0 0 0 0-1zm7 6a.5.5 0 0 0-1 0zm-7-7H4v1h10zM3 4v16h1V4zm1 17h16v-1H4zm17-1V10h-1v10zm-1 1a1 1 0 0 0 1-1h-1zM3 20a1 1 0 0 0 1 1v-1zM4 3a1 1 0 0 0-1 1h1z"></path><path stroke="currentColor" d="m17.5 4.5-8.458 8.458a.25.25 0 0 0-.06.098l-.824 2.47a.25.25 0 0 0 .316.316l2.47-.823a.25.25 0 0 0 .098-.06L19.5 6.5m-2-2 2.323-2.323a.25.25 0 0 1 .354 0l1.646 1.646a.25.25 0 0 1 0 .354L19.5 6.5m-2-2 2 2"></path></svg><div class="ea m">Write</div></div></a></span></div><div class="l k j e"><a class="ah ai aj fo al am an ao ap aq ar as at au av" data-testid="headerSearchButton" rel="noopener follow" href="https://medium.com/search?source=post_page---top_nav_layout_nav-----------------------------------------" data-discover="true"><div class="bg b bh ab eb fr fs ac r ft fu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" aria-label="Search"><path fill="currentColor" fill-rule="evenodd" d="M4.092 11.06a6.95 6.95 0 1 1 13.9 0 6.95 6.95 0 0 1-13.9 0m6.95-8.05a8.05 8.05 0 1 0 5.13 14.26l3.75 3.75a.56.56 0 1 0 .79-.79l-3.73-3.73A8.05 8.05 0 0 0 11.042 3z" clip-rule="evenodd"></path></svg></div></a></div><div class="fv i l k"><div class="ac r"><p class="bg b ee ef eg eh ei ej ek el em eo eb"><span data-dd-action-name="Susi presentation tracker global_nav" data-eusoft-scrollable-element="1"><button class="bg b ee ef ep eg eh eq ei ej er es el et eu eo ev ew ex ey ez fa fb fc fd fe ff fg fh fi fj fk bn fl fm" data-testid="headerSignUpButton">Sign up</button></span></p><div class="fn m"><p class="bg b ee ef eg eh ei ej ek el em eo eb"><span data-dd-action-name="Susi presentation tracker global_nav" data-eusoft-scrollable-element="1"><a class="ah ai aj fo al am an ao ap aq ar as at au av" data-testid="headerSignInButton" rel="noopener follow" href="https://medium.com/m/signin?operation=login&amp;redirect=https%3A%2F%2Fmedium.com%2F%40jaikumarsharma94130%2Ffoundations-of-large-language-models-0b79eda08d40&amp;source=post_page---top_nav_layout_nav-----------------------global_nav------------------" data-discover="true" data-eusoft-scrollable-element="1">Sign in</a></span></p></div></div></div><div class="m" aria-hidden="false"><div><div class="bn" aria-hidden="false" role="tooltip" aria-describedby="1" aria-labelledby="1"><div tabindex="-1" class="bf"><button class="ak fw ao ac r aq fr fx fy fz" aria-label="user options menu" data-testid="headerUserIcon"><div class="m fr"><img alt="" class="m fk by bz ca de" width="32" height="32" loading="lazy" role="presentation" src="1_dmbNkD5D-u45r44go_cf0g.png"><div class="ga by m bz ca gb o ak gc"></div></div></button></div></div></div></div></div></div><div class="ac"><div class="cb i l k j cc" style="width: 0px;"></div><div class="cd bi ce cf cg ch" style="width: calc(100% - 0px);"><div class="m"><div data-focus-guard="true" tabindex="-1" style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"></div><div data-focus-lock-disabled="disabled"><div class="qt" role="dialog" aria-modal="true" tabindex="-1"><div class="ve vf bi ed vg vh vi aq vj gv vk" aria-hidden="true" role="presentation"></div><div class="vl vg vm vn vo ve ed fk vp vq vr lf vs vt vu vv vw vx vy vz wa wb ac cv wc" aria-hidden="true"><div class="wd gq"></div></div></div></div><div data-focus-guard="true" tabindex="-1" style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"></div><div class="gd ge gf gg gh m"><div class="ac ci"><div class="cp bi gi gj gk gl"></div></div><article><div class="m"><div class="m"><span class="m"></span><section><div><div class="gb gr we gt gu gv"></div><div class="gw gx gy gz ha"><div class="ac ci"><div class="cp bi gi gj gk gl"><div><h1 id="237c" class="pw-post-title hb hc hd bg he hf hg hh hi hj hk hl hm hn ho hp hq hr hs ht hu hv hw hx hy hz ia ib ic id bl" data-testid="storyTitle" data-selectable-paragraph="">Foundations of Large Language Models</h1><div><div class="speechify-ignore ac cw"><div class="speechify-ignore bi m"><div class="ac ie if ig ih ii ij ik il im in io"><div class="ac r io"><div class="ac ip"><div><div class="bn" aria-hidden="false" aria-describedby="5" aria-labelledby="5" role="tooltip"><div tabindex="-1" class="bf"><a rel="noopener follow" href="https://medium.com/@jaikumarsharma94130?source=post_page---byline--0b79eda08d40---------------------------------------" data-discover="true"><div class="m iq ir by is it"><div class="m fr"><img alt="Jatin Sharma" class="m fk by bz ca de" width="32" height="32" loading="lazy" data-testid="authorPhoto" src="1_xrtULdme3beYldqEjUkhbw.png"><div class="iu by m bz ca gb o iv gc"></div></div></div></a></div></div></div></div><span class="bg b bh ab bl"><div class="iw ac r"><div class="ac r ix"><div class="ac r"><div><div class="bn" aria-hidden="false" aria-describedby="6" aria-labelledby="6" role="tooltip"><div tabindex="-1" class="bf"><span class="bg b bh ab bl"><a class="ah ai aj fo al am an ao ap aq ar as at iy" data-testid="authorName" rel="noopener follow" href="https://medium.com/@jaikumarsharma94130?source=post_page---byline--0b79eda08d40---------------------------------------" data-discover="true">Jatin Sharma</a></span></div></div></div></div><div class="iz bn"></div><button style="border: 1px solid rgb(36, 36, 36);" class="wy adl aq ac ci r adm adn ado"><span class="bg b bh ab bl bi"><span class="bn adp">Follow</span></span></button></div></div></span></div><div class="ac r ja"><span class="bg b bh ab eb"><div class="ac ag"><span data-testid="storyReadTime">10 min read</span><div class="jb jc m" aria-hidden="true"><span class="m" aria-hidden="true"><span class="bg b bh ab eb">·</span></span></div>4 days ago</div></span></div></div><div class="ac cw jd je jf jg jh ji jj jk jl jm jn jo jp jq jr js"><div class="i l x fp fq r"><div class="ki m"><div class="ac r kj kk"><div class="pw-multi-vote-icon fr adq km kn ko"><span data-dd-action-name="Susi presentation tracker clap_footer"><a class="ah ai aj fo al am an ao ap aq ar as at au av" data-testid="headerClapButton" rel="noopener follow" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2F0b79eda08d40&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40jaikumarsharma94130%2Ffoundations-of-large-language-models-0b79eda08d40&amp;user=Jatin+Sharma&amp;userId=38add89aab50&amp;source=---header_actions--0b79eda08d40---------------------clap_footer------------------" data-discover="true"><div><div class="bn" aria-hidden="false" aria-describedby="7" aria-labelledby="7" role="tooltip"><div tabindex="-1" class="bf"><div class="kp aq kq kr ks kt ao ku kv kw ko" role="presentation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-label="clap"><path fill-rule="evenodd" d="M11.37.828 12 3.282l.63-2.454zM13.916 3.953l1.523-2.112-1.184-.39zM8.589 1.84l1.522 2.112-.337-2.501zM18.523 18.92c-.86.86-1.75 1.246-2.62 1.33a6 6 0 0 0 .407-.372c2.388-2.389 2.86-4.951 1.399-7.623l-.912-1.603-.79-1.672c-.26-.56-.194-.98.203-1.288a.7.7 0 0 1 .546-.132c.283.046.546.231.728.5l2.363 4.157c.976 1.624 1.141 4.237-1.324 6.702m-10.999-.438L3.37 14.328a.828.828 0 0 1 .585-1.408.83.83 0 0 1 .585.242l2.158 2.157a.365.365 0 0 0 .516-.516l-2.157-2.158-1.449-1.449a.826.826 0 0 1 1.167-1.17l3.438 3.44a.363.363 0 0 0 .516 0 .364.364 0 0 0 0-.516L5.293 9.513l-.97-.97a.826.826 0 0 1 0-1.166.84.84 0 0 1 1.167 0l.97.968 3.437 3.436a.36.36 0 0 0 .517 0 .366.366 0 0 0 0-.516L6.977 7.83a.82.82 0 0 1-.241-.584.82.82 0 0 1 .824-.826c.219 0 .43.087.584.242l5.787 5.787a.366.366 0 0 0 .587-.415l-1.117-2.363c-.26-.56-.194-.98.204-1.289a.7.7 0 0 1 .546-.132c.283.046.545.232.727.501l2.193 3.86c1.302 2.38.883 4.59-1.277 6.75-1.156 1.156-2.602 1.627-4.19 1.367-1.418-.236-2.866-1.033-4.079-2.246M10.75 5.971l2.12 2.12c-.41.502-.465 1.17-.128 1.89l.22.465-3.523-3.523a.8.8 0 0 1-.097-.368c0-.22.086-.428.241-.584a.847.847 0 0 1 1.167 0m7.355 1.705c-.31-.461-.746-.758-1.23-.837a1.44 1.44 0 0 0-1.11.275c-.312.24-.505.543-.59.881a1.74 1.74 0 0 0-.906-.465 1.47 1.47 0 0 0-.82.106l-2.182-2.182a1.56 1.56 0 0 0-2.2 0 1.54 1.54 0 0 0-.396.701 1.56 1.56 0 0 0-2.21-.01 1.55 1.55 0 0 0-.416.753c-.624-.624-1.649-.624-2.237-.037a1.557 1.557 0 0 0 0 2.2c-.239.1-.501.238-.715.453a1.56 1.56 0 0 0 0 2.2l.516.515a1.556 1.556 0 0 0-.753 2.615L7.01 19c1.32 1.319 2.909 2.189 4.475 2.449q.482.08.971.08c.85 0 1.653-.198 2.393-.579.231.033.46.054.686.054 1.266 0 2.457-.52 3.505-1.567 2.763-2.763 2.552-5.734 1.439-7.586z" clip-rule="evenodd"></path></svg></div></div></div></div></a></span></div></div></div><div><div class="bn" aria-hidden="false" aria-describedby="8" aria-labelledby="8" role="tooltip"><div tabindex="-1" class="bf"><button class="aq kp lf lg ac r fs lh li" aria-label="responses"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="lj"><path d="M18.006 16.803c1.533-1.456 2.234-3.325 2.234-5.321C20.24 7.357 16.709 4 12.191 4S4 7.357 4 11.482c0 4.126 3.674 7.482 8.191 7.482.817 0 1.622-.111 2.393-.327.231.2.48.391.744.559 1.06.693 2.203 1.044 3.399 1.044.224-.008.4-.112.486-.287a.49.49 0 0 0-.042-.518c-.495-.67-.845-1.364-1.04-2.057a4 4 0 0 1-.125-.598zm-3.122 1.055-.067-.223-.315.096a8 8 0 0 1-2.311.338c-4.023 0-7.292-2.955-7.292-6.587 0-3.633 3.269-6.588 7.292-6.588 4.014 0 7.112 2.958 7.112 6.593 0 1.794-.608 3.469-2.027 4.72l-.195.168v.255c0 .056 0 .151.016.295.025.231.081.478.154.733.154.558.398 1.117.722 1.659a5.3 5.3 0 0 1-2.165-.845c-.276-.176-.714-.383-.941-.59z"></path></svg></button></div></div></div></div><div class="ac r jt ju jv jw jx jy jz ka kb kc kd ke kf kg kh"><div class="lk l k j e"></div><div class="i l"><div><div class="bn" aria-hidden="false" aria-describedby="9" aria-labelledby="9" role="tooltip"><div tabindex="-1" class="bf"><span data-dd-action-name="Susi presentation tracker bookmark_footer"><a class="ah ai aj fo al am an ao ap aq ar as at au av" data-testid="headerBookmarkButton" rel="noopener follow" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F0b79eda08d40&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40jaikumarsharma94130%2Ffoundations-of-large-language-models-0b79eda08d40&amp;source=---header_actions--0b79eda08d40---------------------bookmark_footer------------------" data-discover="true"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 25 25" class="eb ll" aria-label="Add to list bookmark button"><path fill="currentColor" d="M18 2.5a.5.5 0 0 1 1 0V5h2.5a.5.5 0 0 1 0 1H19v2.5a.5.5 0 1 1-1 0V6h-2.5a.5.5 0 0 1 0-1H18zM7 7a1 1 0 0 1 1-1h3.5a.5.5 0 0 0 0-1H8a2 2 0 0 0-2 2v14a.5.5 0 0 0 .805.396L12.5 17l5.695 4.396A.5.5 0 0 0 19 21v-8.5a.5.5 0 0 0-1 0v7.485l-5.195-4.012a.5.5 0 0 0-.61 0L7 19.985z"></path></svg></a></span></div></div></div></div><div class="fk lm cu"><div class="m ag"><div class="ac ci"><div class="ln lo lp lq lr ls cp bi"><div class="ac"><span data-dd-action-name="Susi presentation tracker post_audio_button"><a class="ah ai aj fo al am an ao ap aq ar as at au av" rel="noopener follow" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2Fplans%3Fdimension%3Dpost_audio_button%26postId%3D0b79eda08d40&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40jaikumarsharma94130%2Ffoundations-of-large-language-models-0b79eda08d40&amp;source=---header_actions--0b79eda08d40---------------------post_audio_button------------------" data-discover="true"><div><div class="bn" aria-hidden="false" aria-describedby="10" aria-labelledby="10" role="tooltip"><div tabindex="-1" class="bf"><button aria-label="Listen" data-testid="audioPlayButton" class="ah fs aj fo al am an lt ap aq ar fe lu lv li lw lx ly lz ma t mb mc md me mf mg mh v mi mj mk"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M3 12a9 9 0 1 1 18 0 9 9 0 0 1-18 0m9-10C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2m3.376 10.416-4.599 3.066a.5.5 0 0 1-.777-.416V8.934a.5.5 0 0 1 .777-.416l4.599 3.066a.5.5 0 0 1 0 .832" clip-rule="evenodd"></path></svg><div class="k j e"><p class="bg b bh ab eb">Listen</p></div></button></div></div></div></a></span></div></div></div></div></div><div class="bn" aria-hidden="false" aria-describedby="postFooterSocialMenu" aria-labelledby="postFooterSocialMenu"><div><div class="bn" aria-hidden="false" aria-describedby="11" aria-labelledby="11" role="tooltip"><div tabindex="-1" class="bf"><button aria-controls="postFooterSocialMenu" aria-expanded="false" aria-label="Share Post" data-testid="headerSocialShareButton" class="ah fs aj fo al am an lt ap aq ar fe lu lv li lw lx ly lz ma t mb mc md me mf mg mh v mi mj mk"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M15.218 4.931a.4.4 0 0 1-.118.132l.012.006a.45.45 0 0 1-.292.074.5.5 0 0 1-.3-.13l-2.02-2.02v7.07c0 .28-.23.5-.5.5s-.5-.22-.5-.5v-7.04l-2 2a.45.45 0 0 1-.57.04h-.02a.4.4 0 0 1-.16-.3.4.4 0 0 1 .1-.32l2.8-2.8a.5.5 0 0 1 .7 0l2.8 2.79a.42.42 0 0 1 .068.498m-.106.138.008.004v-.01zM16 7.063h1.5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-11c-1.1 0-2-.9-2-2v-10a2 2 0 0 1 2-2H8a.5.5 0 0 1 .35.15.5.5 0 0 1 .15.35.5.5 0 0 1-.15.35.5.5 0 0 1-.35.15H6.4c-.5 0-.9.4-.9.9v10.2a.9.9 0 0 0 .9.9h11.2c.5 0 .9-.4.9-.9v-10.2c0-.5-.4-.9-.9-.9H16a.5.5 0 0 1 0-1" clip-rule="evenodd"></path></svg><div class="k j e"><p class="bg b bh ab eb">Share</p></div></button></div></div></div></div></div></div></div></div></div></div><p id="d88d" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">LLMs are trained algorithms that receive text input and predict and generate humanlike text output.</p><figure class="nm nn no np nq nr nj nk paragraph-image"><div role="button" tabindex="0" class="ns nt fr nu bi nv"><span class="gb nw nx ao ny nz oa ob oc speechify-ignore">Press enter or click to view image in full size</span><div class="nj nk nl"><picture><source srcset="1_cCvUttcP2geBCCwJnEo2cw-2.webp 640w, 1_cCvUttcP2geBCCwJnEo2cw-3.webp 720w, 1_cCvUttcP2geBCCwJnEo2cw-5.webp 750w, 1_cCvUttcP2geBCCwJnEo2cw-6.webp 786w, 1_cCvUttcP2geBCCwJnEo2cw-1.webp 828w, 1_cCvUttcP2geBCCwJnEo2cw.webp 1100w, 1_cCvUttcP2geBCCwJnEo2cw-4.webp 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"><source data-testid="og" srcset="1_cCvUttcP2geBCCwJnEo2cw-6.png 640w, 1_cCvUttcP2geBCCwJnEo2cw.png 720w, 1_cCvUttcP2geBCCwJnEo2cw-3.png 750w, 1_cCvUttcP2geBCCwJnEo2cw-7.png 786w, 1_cCvUttcP2geBCCwJnEo2cw-2.png 828w, 1_cCvUttcP2geBCCwJnEo2cw-4.png 1100w, 1_cCvUttcP2geBCCwJnEo2cw-5.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bi ls od c" width="700" height="588" loading="eager" role="presentation" src="1_cCvUttcP2geBCCwJnEo2cw-1.png"></picture></div></div></figure><h2 id="0eda" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Large</h2><p id="b4f7" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">The term <strong class="mn he">“large”</strong> refers to the enormous scale of these models, both in terms of the <strong class="mn he">training data</strong> they’re trained on and the number of <strong class="mn he">parameters</strong> they contain. For example, some models are trained on <strong class="mn he">terabytes of text data</strong> and can have <strong class="mn he">billions or even trillions of parameters</strong>. These parameters are essentially the numbers that the model learns to adjust during its training to control the output of each neuron and the strength of the connections between them, ultimately allowing the model to make accurate predictions.</p><h2 id="337b" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Language model</h2><p id="f4f9" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">refers to a computer algorithm trained to receive written text (in English or other languages) and produce output also as written text (in the same language or a different one). These are neural networks, a type of ML model which resembles a stylized conception of the human brain, with the final output resulting from the combination of the individual outputs of many simple mathematical functions, called neurons, and their interconnections. If many of these neurons are organized in specific ways, with the right training process and the right training data, this produces a model that is capable of interpreting the meaning of individual words and sentences, which makes it possible to use them for generating plausible, readable, written text.</p><h2 id="762b" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Let’s say we instruct an LLM to complete the following sentence:</h2><p id="f118" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">The capital of INDIA is _______.</strong></p><figure class="nm nn no np nq nr nj nk paragraph-image"><div role="button" tabindex="0" class="ns nt fr nu bi nv"><span class="gb nw nx ao ny nz oa ob oc speechify-ignore">Press enter or click to view image in full size</span><div class="nj nk ph"><picture><source srcset="1_qWU5gmKVegDW7gsUufkNwg-6.webp 640w, 1_qWU5gmKVegDW7gsUufkNwg-3.webp 720w, 1_qWU5gmKVegDW7gsUufkNwg-4.webp 750w, 1_qWU5gmKVegDW7gsUufkNwg-5.webp 786w, 1_qWU5gmKVegDW7gsUufkNwg-1.webp 828w, 1_qWU5gmKVegDW7gsUufkNwg.webp 1100w, 1_qWU5gmKVegDW7gsUufkNwg-2.webp 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"><source data-testid="og" srcset="1_qWU5gmKVegDW7gsUufkNwg-3.png 640w, 1_qWU5gmKVegDW7gsUufkNwg-7.png 720w, 1_qWU5gmKVegDW7gsUufkNwg-6.png 750w, 1_qWU5gmKVegDW7gsUufkNwg.png 786w, 1_qWU5gmKVegDW7gsUufkNwg-1.png 828w, 1_qWU5gmKVegDW7gsUufkNwg-4.png 1100w, 1_qWU5gmKVegDW7gsUufkNwg-2.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bi ls od c" width="700" height="271" loading="lazy" role="presentation" src="1_qWU5gmKVegDW7gsUufkNwg-5.png"></picture></div></div></figure><p id="4e3b" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">The LLM will take that input text and predict the correct output answer as New Delhi. <strong class="mn he">This looks like magic, but it’s not. Under the hood, the LLM estimates the probability of a sequence of word(s) given a previous sequence of words.</strong></p><h2 id="d5ff" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">How LLMs Understand Language?</h2><p id="6e3a" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">LLMs don’t read words the way we do. Instead, they break down text into smaller, numerical units called tokens. Think of tokens as the basic building blocks of language for an AI.</strong></p><p id="4624" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">What are tokens?</strong></p><p id="8317" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">A token can be a whole word, part of a word, a single character, or even a punctuation mark. The goal of a tokenizer the tool that converts text into tokens is to represent common words as a single token. This makes processing more efficient..</p><figure class="nm nn no np nq nr nj nk paragraph-image"><div role="button" tabindex="0" class="ns nt fr nu bi nv"><span class="gb nw nx ao ny nz oa ob oc speechify-ignore">Press enter or click to view image in full size</span><div class="nj nk pi"><picture><source srcset="1_sbKnESIrGd_EEGmDyf7eSw-3.webp 640w, 1_sbKnESIrGd_EEGmDyf7eSw-1.webp 720w, 1_sbKnESIrGd_EEGmDyf7eSw-4.webp 750w, 1_sbKnESIrGd_EEGmDyf7eSw-5.webp 786w, 1_sbKnESIrGd_EEGmDyf7eSw-6.webp 828w, 1_sbKnESIrGd_EEGmDyf7eSw.webp 1100w, 1_sbKnESIrGd_EEGmDyf7eSw-2.webp 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"><source data-testid="og" srcset="1_sbKnESIrGd_EEGmDyf7eSw-2.png 640w, 1_sbKnESIrGd_EEGmDyf7eSw-5.png 720w, 1_sbKnESIrGd_EEGmDyf7eSw-4.png 750w, 1_sbKnESIrGd_EEGmDyf7eSw.png 786w, 1_sbKnESIrGd_EEGmDyf7eSw-6.png 828w, 1_sbKnESIrGd_EEGmDyf7eSw-1.png 1100w, 1_sbKnESIrGd_EEGmDyf7eSw-3.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bi ls od c" width="700" height="216" loading="lazy" role="presentation" src="1_sbKnESIrGd_EEGmDyf7eSw-7.png"></picture></div></div></figure><p id="6cbb" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">While we see “<strong class="mn he">good morning chai peelo</strong>” as four words, an LLM sees a sequence of tokens. For example, a tokenizer might break it down like this:</p><ul class=""><li id="a1ea" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph=""><code class="de pm pn po pp b">Good</code> (a single token)</li><li id="d8f0" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><code class="de pm pn po pp b">morning</code> (another single token)</li><li id="ee4a" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><code class="de pm pn po pp b">chai</code> (a single token)</li><li id="2834" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><code class="de pm pn po pp b">peelo</code> (might be broken into two tokens: <code class="de pm pn po pp b">pe</code> and <code class="de pm pn po pp b">elo</code>)</li></ul><h2 id="220f" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Why tokens matter?</h2><p id="6ced" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">By using tokens, models can handle a massive vocabulary more efficiently. Common words get their own unique token, while less common or more complex words are broken down into smaller pieces. This allows the model to work with a manageable number of tokens rather than an overwhelming number of unique words. On average, a single token represents about four characters of text in English, or about three-quarters of a word.</p><h2 id="1bfd" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">The “Brain” Behind the Model: The Transformer</h2><figure class="nm nn no np nq nr nj nk paragraph-image"><div role="button" tabindex="0" class="ns nt fr nu bi nv"><span class="gb nw nx ao ny nz oa ob oc speechify-ignore">Press enter or click to view image in full size</span><div class="nj nk pv"><picture><source srcset="1_W0fCWxYdsPrie6O83K4dHA-4.webp 640w, 1_W0fCWxYdsPrie6O83K4dHA-2.webp 720w, 1_W0fCWxYdsPrie6O83K4dHA-6.webp 750w, 1_W0fCWxYdsPrie6O83K4dHA-5.webp 786w, 1_W0fCWxYdsPrie6O83K4dHA-3.webp 828w, 1_W0fCWxYdsPrie6O83K4dHA.webp 1100w, 1_W0fCWxYdsPrie6O83K4dHA-1.webp 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"><source data-testid="og" srcset="1_W0fCWxYdsPrie6O83K4dHA-2.png 640w, 1_W0fCWxYdsPrie6O83K4dHA-3.png 720w, 1_W0fCWxYdsPrie6O83K4dHA.png 750w, 1_W0fCWxYdsPrie6O83K4dHA-1.png 786w, 1_W0fCWxYdsPrie6O83K4dHA-4.png 828w, 1_W0fCWxYdsPrie6O83K4dHA-6.png 1100w, 1_W0fCWxYdsPrie6O83K4dHA-7.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bi ls od c" width="700" height="455" loading="lazy" role="presentation" src="1_W0fCWxYdsPrie6O83K4dHA-5.png"></picture></div></div></figure><p id="b109" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">Think of the <strong class="mn he">transformer</strong> as the engine that gives LLMs their incredible power. Its main job is to understand how words relate to each other in a sentence, no matter how far apart they are. For example, in the sentence, “The dog, which was barking loudly, was chasing the ball,” the transformer understands that “was barking” is connected to “the dog,” and “was chasing” is also connected to “the dog.” It’s this ability to grasp the full context of a sentence that allows it to make accurate predictions.</p><h2 id="6d98" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">How the Model Learns to Predict</h2><p id="6966" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">An LLM’s knowledge isn’t magic; it comes from a massive amount of training. By reading countless sentences from the internet, books, and articles, it learns patterns. When it sees “The capital of <strong class="mn he">India</strong> is…”, it has seen similar phrases many times. It has also seen that “<strong class="mn he">India</strong>” is frequently mentioned with “<strong class="mn he">New Delhi</strong>,” just as “France” is with “Paris.” This constant exposure and repetition allow it to predict that “<strong class="mn he">New Delhi</strong>” is the most likely and logical word to follow.</p><figure class="nm nn no np nq nr nj nk paragraph-image"><div role="button" tabindex="0" class="ns nt fr nu bi nv"><span class="gb nw nx ao ny nz oa ob oc speechify-ignore">Press enter or click to view image in full size</span><div class="nj nk pw"><picture><source srcset="1_He1Ovy8hwfwZrzdmcPhOiw-2.webp 640w, 1_He1Ovy8hwfwZrzdmcPhOiw-6.webp 720w, 1_He1Ovy8hwfwZrzdmcPhOiw-3.webp 750w, 1_He1Ovy8hwfwZrzdmcPhOiw-5.webp 786w, 1_He1Ovy8hwfwZrzdmcPhOiw-4.webp 828w, 1_He1Ovy8hwfwZrzdmcPhOiw.webp 1100w, 1_He1Ovy8hwfwZrzdmcPhOiw-1.webp 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"><source data-testid="og" srcset="1_He1Ovy8hwfwZrzdmcPhOiw-4.png 640w, 1_He1Ovy8hwfwZrzdmcPhOiw-6.png 720w, 1_He1Ovy8hwfwZrzdmcPhOiw-5.png 750w, 1_He1Ovy8hwfwZrzdmcPhOiw.png 786w, 1_He1Ovy8hwfwZrzdmcPhOiw-2.png 828w, 1_He1Ovy8hwfwZrzdmcPhOiw-3.png 1100w, 1_He1Ovy8hwfwZrzdmcPhOiw-7.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bi ls od c" width="700" height="650" loading="lazy" role="presentation" src="1_He1Ovy8hwfwZrzdmcPhOiw-1.png"></picture></div></div></figure><h2 id="3ef5" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">The Art of “Prompting”</h2><p id="b2c2" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">The instructions you give an LLM are called a <strong class="mn he">prompt</strong>. The quality of the output you get depends heavily on the quality of your prompt. Crafting a good prompt is like giving a good set of instructions to a person. A clear, specific, and well-designed prompt will almost always lead to a better response.</p><h2 id="627d" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Types of LLMs</h2><p id="8705" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">The most basic type of LLM is a <strong class="mn he">pretrained model</strong>. It’s the starting point for all other models.</p><p id="a61d" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">How it learns:</strong> These models learn in a “self-supervised” way. This is different from traditional training where you need a human to label every single piece of data.</p><p id="bb3a" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Two key learning techniques:</strong></p><ol class=""><li id="c8ee" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni px pk pl bl" data-selectable-paragraph=""><strong class="mn he">Predicting the next word:</strong> The model is given a sentence and its task is to fill in the blank at the end. For example, it sees “The capital of <strong class="mn he">India</strong> is ___” and learns to correctly predict “<strong class="mn he">New Delhi</strong>.”</li><li id="9205" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni px pk pl bl" data-selectable-paragraph=""><strong class="mn he">Predicting a missing word:</strong> The model is given a sentence with a word taken out from the middle, like “The ___ of <strong class="mn he">India</strong> is <strong class="mn he">New Delhi</strong>.” It then learns to figure out that the missing word is “capital.”</li></ol><p id="85f0" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">These foundational models are powerful, but they are raw. They need a little help (a suitable prefix or prompt) to guide them to give the right kind of answer. The other types of LLMs that come later are built on this base, but with additional training to make them more user-friendly and reliable.</p><h2 id="69b2" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Instruction-Tuned LLMs</h2><figure class="nm nn no np nq nr nj nk paragraph-image"><div role="button" tabindex="0" class="ns nt fr nu bi nv"><span class="gb nw nx ao ny nz oa ob oc speechify-ignore">Press enter or click to view image in full size</span><div class="nj nk py"><picture><source srcset="1_8PuQh8kAHRyIGIwwTm0vHA-5.webp 640w, 1_8PuQh8kAHRyIGIwwTm0vHA-1.webp 720w, 1_8PuQh8kAHRyIGIwwTm0vHA-3.webp 750w, 1_8PuQh8kAHRyIGIwwTm0vHA-4.webp 786w, 1_8PuQh8kAHRyIGIwwTm0vHA-6.webp 828w, 1_8PuQh8kAHRyIGIwwTm0vHA.webp 1100w, 1_8PuQh8kAHRyIGIwwTm0vHA-2.webp 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"><source data-testid="og" srcset="1_8PuQh8kAHRyIGIwwTm0vHA-7.png 640w, 1_8PuQh8kAHRyIGIwwTm0vHA-5.png 720w, 1_8PuQh8kAHRyIGIwwTm0vHA-1.png 750w, 1_8PuQh8kAHRyIGIwwTm0vHA.png 786w, 1_8PuQh8kAHRyIGIwwTm0vHA-2.png 828w, 1_8PuQh8kAHRyIGIwwTm0vHA-4.png 1100w, 1_8PuQh8kAHRyIGIwwTm0vHA-3.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bi ls od c" width="700" height="413" loading="lazy" role="presentation" src="1_8PuQh8kAHRyIGIwwTm0vHA-6.png"></picture></div></div></figure><p id="686a" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">Instruction-tuned LLMs are a type of pretrained model that has undergone <strong class="mn he">additional training</strong>, or <strong class="mn he">fine-tuning</strong>, to make them more user-friendly and effective. This process helps the models respond better to direct questions and instructions, rather than just completing sentences.</p><h2 id="5000" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">How They Are Trained</h2><ol class=""><li id="522d" class="ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni px pk pl bl" data-selectable-paragraph=""><strong class="mn he">Task-Specific Datasets:</strong> Researchers create small, high-quality datasets by manually providing examples of good questions and their correct answers. This is different from the massive, self-supervised pretraining data.</li><li id="cefa" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni px pk pl bl" data-selectable-paragraph=""><strong class="mn he">Example:</strong> A dataset might contain the pair:</li></ol><ul class=""><li id="7e52" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">Q:</strong> What is the capital of India?</li><li id="4d77" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">A:</strong> The capital of India is New Delhi.</li><li id="3661" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph="">This focused training teaches the model to understand the relationship between a question and a specific, helpful answer.</li></ul><ol class=""><li id="6b24" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni px pk pl bl" data-selectable-paragraph=""><strong class="mn he">Reinforcement Learning from Human Feedback (RLHF):</strong> This is a powerful technique where the model learns from human preferences. The manually assembled datasets are enhanced with feedback from users.</li><li id="63a3" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni px pk pl bl" data-selectable-paragraph=""><strong class="mn he">Example:</strong> For the question “What is the capital of India?”, a user might prefer the answer “<strong class="mn he">The capital of India is New Delhi</strong>” over a different one like “<strong class="mn he">New Delhi is the capital of India</strong>.”</li></ol><ul class=""><li id="1946" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph="">The model learns from this feedback to produce responses that are not just factually correct but also more helpful and aligned with human expectations.</li></ul><p id="0a91" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">This instruction-tuning process has been crucial in making LLMs accessible to a wider audience, as users can now simply ask a question like “What is the capital of India?” and receive a high-quality, direct response.</p><h2 id="73f6" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Dialogue-Tuned LLMs</h2><p id="73e5" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">Dialogue-tuned LLMs are built for conversation, trained specifically to handle a back-and-forth chat about anything from recipes to travel tips.</p><p id="83cd" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Dialogue Datasets</strong>: To learn how to chat, these models are fine-tuned on examples of full conversations. This helps them understand the flow of a multi-turn chat, such as when a user asks for a <strong class="mn he">chai</strong> recipe and then asks a follow-up question.</p><div class="tk tl tm tn ac r cv"><div class="to tp tq tr ts m fm"><h2 class="tt b tu tv tw tx ty">Get Jatin Sharma’s stories in&nbsp;your&nbsp;inbox</h2></div><div class="cs m fm"><p class="bg b bh ab eb">Join Medium for free to get updates from&nbsp;this&nbsp;writer.</p></div><div class="uc rc ud ue rb uf ac"><span class="bg b bh ab bl"><div class="ug ac cv"><div class="ac ug fj fi bq uh ui de lf uj uk ul um un uo up"><input class="uq al aj an ur us oc kt bm ut bi" placeholder="Enter your email" type="text" value=""></div></div></span><div class="i l rs cb"><div class="tz ua ub"><button class="bg b bh ab uu uv uw ux uy uz va fc fd vb vc vd fh fi fj fk bn fl fm">Subscribe</button></div></div><div class="bi k j e"><button class="bg b bh ab uu uv uw ux uy uz va fc fd vb vc vd fh bi fi fj fk bn fl fm">Subscribe</button></div></div><div class="sm m"><div id="g-recaptcha"></div></div></div><p id="72a6" class="pw-post-body-paragraph ml mm hd mn b mo mq mr ms mu mv mw my mz na nc nd ne ng nh tn ni gw bl" data-selectable-paragraph=""><strong class="mn he">Chat Format</strong>: These models use a special, structured format for input and output, which helps them keep track of the conversation’s roles:</p><ul class=""><li id="856b" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">System</strong>: Sets the ground rules. Example: “You are a helpful assistant for all things related to chai.”</li><li id="a901" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">User</strong>: Your turn to talk. Example: “What’s the best way to make a strong cup of chai?”</li><li id="31f8" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">Assistant</strong>: The model’s response. Example: “For a strong cup, use fresh, whole spices and let the mixture simmer for a longer time.”</li></ul><p id="c61b" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">This structure helps prevent the model from getting confused and ensures it stays on topic.</p><h2 id="c977" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Fine-Tuned LLMs</h2><p id="cde7" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">A fine-tuned LLM is a model trained for a very specific job. While dialogue models are a type of fine-tuned model, this term usually refers to a model tailored for a niche task.</p><ul class=""><li id="acf0" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">Example</strong>: You could fine-tune a model to analyze social media posts about your new brand of <strong class="mn he">chai mix</strong>. The model’s job would be to scan thousands of comments and extract only the customer sentiment and common feedback, like “love the ginger flavor” or “wished it was less sweet.” This model would be an expert at that one task, even if it’s less capable of writing a poem.</li></ul></div></div></div><div class="ac ci pz qa qb qc" role="separator"><span class="qd by bn qe qf qg"></span><span class="qd by bn qe qf qg"></span><span class="qd by bn qe qf"></span></div><div class="gw gx gy gz ha"><div class="ac ci"><div class="cp bi gi gj gk gl"><h2 id="d5f1" class="oe of hd bg og oh qh oj ok ol qi on oo op qj or os ot qk ov ow ox ql oz pa pb bl" data-selectable-paragraph="">The Art of Prompt Engineering</h2><p id="2554" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">Prompt engineering is the craft of writing the perfect prompt to get the best possible result from a pre-existing LLM. It’s how you turn a powerful tool into a reliable assistant for your specific task.</p><h2 id="931f" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Zero-Shot Prompting</h2><p id="05c0" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">This is the most direct approach: you simply ask a question without providing any examples.</p><ul class=""><li id="a7c6" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">Example Prompt</strong>: “What are the key spices in a traditional masala chai?”</li><li id="6f56" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">How it works</strong>: This often works because the model has seen this information many times during its training.</li></ul><h2 id="a8c2" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Chain-of-Thought (CoT)</h2><p id="8905" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">This technique instructs the model to “think step-by-step,” which often leads to more accurate and logical answers, especially for tasks that require a sequence of actions.</p><ul class=""><li id="d00d" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">Example Prompt</strong>: “Think step by step. How do you make a perfect cup of ginger chai at home?”</li><li id="ba92" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">How it works</strong>: The model will break down the process into a logical sequence: “First, crush the ginger,” “Next, boil the water and add spices,” “Then, add the tea leaves,” etc. This process helps it avoid skipping steps and provides a complete, easy-to-follow recipe.</li></ul><h2 id="9eea" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Retrieval-Augmented Generation (RAG)</h2><p id="3c80" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">RAG involves providing the model with specific, factual information, or “context,” in the prompt itself to help it give a more accurate answer.</p><ul class=""><li id="28cc" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">Example Prompt</strong>: “Context: In Kashmiri Kahwa, green tea leaves are brewed with saffron, cardamom, and cinnamon, and often garnished with slivered almonds. Based on this, how is Kashmiri Kahwa different from a typical Indian masala chai?”</li><li id="85d8" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">How it works</strong>: By giving the model this context, you ensure its answer is based on the specific details you provided, preventing it from confusing Kahwa with other types of chai.</li></ul><h2 id="bd9d" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Tool Calling</h2><p id="0d10" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">This technique gives the model access to an external tool, like a calculator, to perform a specific function that it’s not good at on its own.</p><p id="d8f5" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Example</strong> You could give the model access to a <code class="de pm pn po pp b">calculator</code> tool and ask: "I want to make 50 cups of chai, and each cup needs 2 teaspoons of tea leaves. How many teaspoons do I need in total?"</p><p id="4bd5" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">How it works</strong></p><p id="de2e" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">The model would recognize the need for a calculation and signal to use the tool, perhaps outputting <code class="de pm pn po pp b">calculator(50 * 2)</code>. Your program would then execute this command and give the model the result (100), which it can then use to form its final response.</p><h2 id="114c" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Few-Shot Prompting</h2><p id="c8ed" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">This method involves providing a few examples of how you want the model to respond. It helps the model understand the desired format without extensive training.</p><p id="e351" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Example Prompt</strong></p><ul class=""><li id="86ae" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph="">“Ingredients: ginger, cardamom, cinnamon. Output: Spiced Ginger Chai”</li><li id="51b9" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph="">“Ingredients: rose petals, green tea. Output: Rose Green Tea Kahwa”</li><li id="0f38" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph="">“Ingredients: black tea, milk, sugar. Output: Simple Milk Chai”</li></ul><p id="ecc6" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">How it works</strong> By showing the model a few examples, it learns the pattern taking a list of ingredients and turning it into a creative recipe name and can apply that pattern to new inputs.</p></div></div></div><div class="ac ci pz qa qb qc" role="separator"><span class="qd by bn qe qf qg"></span><span class="qd by bn qe qf qg"></span><span class="qd by bn qe qf"></span></div><div class="gw gx gy gz ha"><div class="ac ci"><div class="cp bi gi gj gk gl"><h2 id="510f" class="oe of hd bg og oh qh oj ok ol qi on oo op qj or os ot qk ov ow ox ql oz pa pb bl" data-selectable-paragraph="">LangChain and Why It’s Important</h2><p id="a91b" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">LangChain is an open-source library that helps developers build applications powered by large language models (LLMs). It provides the essential building blocks and tools to connect different components, making it easier to create complex, reliable applications. LangChain has become incredibly popular, with millions of monthly downloads and a massive community of developers. Its goal is to allow engineers without a machine learning background to harness the power of LLMs for a wide range of applications, from simple chatbots to advanced AI agents.</p><h2 id="97ea" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Why LangChain is a Game Changer</h2><p id="2f36" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">LangChain’s core idea is that combining different prompting techniques makes them far more effective. It provides simple <strong class="mn he">abstractions Python and JavaScript</strong> functions and classes that encapsulate these techniques, making them easy to use and combine. This modular approach allows for the creation of sophisticated applications that would be difficult to build from scratch.</p><h2 id="3bb7" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">Key Features and Components</h2><p id="5d06" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">LLM Integrations</strong></p><p id="0778" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">LangChain acts as a bridge to many different LLM providers, including both commercial services like <strong class="mn he">OpenAI, Anthropic, and Google</strong>, and open-source models like <strong class="mn he">Llama and Gemma</strong>. This common interface means you can easily switch between models without being locked into a single provider.</p><p id="eb00" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Prompt Templates</strong></p><p id="c59a" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">These allow you to reuse prompts by separating the static text from variable placeholders. This is crucial for creating applications where the same prompt structure is used repeatedly with different inputs.</p><p id="c4b4" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Tools</strong></p><p id="6ddf" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">LangChain provides integrations with a huge number of third-party services (like Google Sheets, Wolfram Alpha, and Zapier) as <strong class="mn he">tools</strong>. These are functions that an LLM agent can call to perform actions or retrieve information from the outside world.</p><p id="bce1" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Retrieval-Augmented Generation (RAG)</strong></p><p id="d870" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">For RAG, LangChain offers integrations with essential components:</p><p id="cc59" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Embedding Models</strong> These convert text into numerical representations (vectors) that capture its meaning.</p><figure class="nm nn no np nq nr nj nk paragraph-image"><div role="button" tabindex="0" class="ns nt fr nu bi nv"><span class="gb nw nx ao ny nz oa ob oc speechify-ignore">Press enter or click to view image in full size</span><div class="nj nk py"><picture><source srcset="1_HFF4MzoA48NKyLt453XgSA-6.webp 640w, 1_HFF4MzoA48NKyLt453XgSA-4.webp 720w, 1_HFF4MzoA48NKyLt453XgSA-3.webp 750w, 1_HFF4MzoA48NKyLt453XgSA-5.webp 786w, 1_HFF4MzoA48NKyLt453XgSA-2.webp 828w, 1_HFF4MzoA48NKyLt453XgSA.webp 1100w, 1_HFF4MzoA48NKyLt453XgSA-1.webp 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px" type="image/webp"><source data-testid="og" srcset="1_HFF4MzoA48NKyLt453XgSA-1.png 640w, 1_HFF4MzoA48NKyLt453XgSA-2.png 720w, 1_HFF4MzoA48NKyLt453XgSA-4.png 750w, 1_HFF4MzoA48NKyLt453XgSA-7.png 786w, 1_HFF4MzoA48NKyLt453XgSA-3.png 828w, 1_HFF4MzoA48NKyLt453XgSA-5.png 1100w, 1_HFF4MzoA48NKyLt453XgSA-6.png 1400w" sizes="(min-resolution: 4dppx) and (max-width: 700px) 50vw, (-webkit-min-device-pixel-ratio: 4) and (max-width: 700px) 50vw, (min-resolution: 3dppx) and (max-width: 700px) 67vw, (-webkit-min-device-pixel-ratio: 3) and (max-width: 700px) 65vw, (min-resolution: 2.5dppx) and (max-width: 700px) 80vw, (-webkit-min-device-pixel-ratio: 2.5) and (max-width: 700px) 80vw, (min-resolution: 2dppx) and (max-width: 700px) 100vw, (-webkit-min-device-pixel-ratio: 2) and (max-width: 700px) 100vw, 700px"><img alt="" class="bi ls od c" width="700" height="437" loading="lazy" role="presentation" src="1_HFF4MzoA48NKyLt453XgSA.png"></picture></div></div></figure><p id="27d2" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Agents and CoT (Chain-of-Thought)</strong></p><p id="5c1d" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph="">Using its LangGraph library, LangChain provides agent abstractions that combine <strong class="mn he">chain-of-thought reasoning</strong> with tool calling. This enables LLM applications to:</p><ol class=""><li id="67b7" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni px pk pl bl" data-selectable-paragraph="">Figure out the steps needed to complete a task.</li><li id="c6b5" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni px pk pl bl" data-selectable-paragraph="">Translate those steps into calls to external tools.</li><li id="149e" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni px pk pl bl" data-selectable-paragraph="">Process the results from those tools.</li><li id="20bb" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni px pk pl bl" data-selectable-paragraph="">Repeat this process until the task is done.</li></ol><p id="dd66" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Memory</strong> For chatbot applications, LangChain provides <strong class="mn he">memory</strong> features to keep track of past conversations. This allows the LLM to generate more relevant and coherent responses by remembering previous interactions.</p><p id="97b1" class="pw-post-body-paragraph ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni gw bl" data-selectable-paragraph=""><strong class="mn he">Composition</strong> LangChain provides the tools to assemble all these building blocks into complete and cohesive applications.</p><h2 id="608a" class="oe of hd bg og oh oi oj ok ol om on oo op oq or os ot ou ov ow ox oy oz pa pb bl" data-selectable-paragraph="">The LangChain Ecosystem</h2><p id="397f" class="pw-post-body-paragraph ml mm hd mn b mo pc mq mr ms pd mu mv mw pe my mz na pf nc nd ne pg ng nh ni gw bl" data-selectable-paragraph="">In addition to the core library, the LangChain team has developed related platforms that enhance the developer experience:</p><ul class=""><li id="d3e6" class="ml mm hd mn b mo mp mq mr ms mt mu mv mw mx my mz na nb nc nd ne nf ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">LangSmith</strong>: A platform for debugging, testing, deploying, and monitoring your AI workflows, helping you ensure your applications are reliable.</li><li id="1047" class="ml mm hd mn b mo pq mq mr ms pr mu mv mw ps my mz na pt nc nd ne pu ng nh ni pj pk pl bl" data-selectable-paragraph=""><strong class="mn he">LangGraph Platform</strong>: A platform specifically for deploying and scaling agents built with the LangGraph library</li></ul></div></div></div></div></section></div></div></article></div><div class="m"></div><footer class="qm qn qo qp qq ac r qr qs c"><div class="m ag"><div class="ac ci"><div class="cp bi gi gj gk gl"><div class="ac cw qt"><div class="ac r kj"><div class="qu m"><span class="m qv qw qx f e"><div class="ac r kj kk"><div class="pw-multi-vote-icon fr adq km kn ko"><span data-dd-action-name="Susi presentation tracker clap_footer"><a class="ah ai aj fo al am an ao ap aq ar as at au av" data-testid="footerClapButton" rel="noopener follow" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2F0b79eda08d40&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40jaikumarsharma94130%2Ffoundations-of-large-language-models-0b79eda08d40&amp;user=Jatin+Sharma&amp;userId=38add89aab50&amp;source=---footer_actions--0b79eda08d40---------------------clap_footer------------------" data-discover="true"><div><div class="bn" aria-hidden="false" aria-describedby="12" aria-labelledby="12" role="tooltip"><div tabindex="-1" class="bf"><div class="kp aq kq kr ks kt ao ku kv kw ko" role="presentation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-label="clap"><path fill-rule="evenodd" d="M11.37.828 12 3.282l.63-2.454zM13.916 3.953l1.523-2.112-1.184-.39zM8.589 1.84l1.522 2.112-.337-2.501zM18.523 18.92c-.86.86-1.75 1.246-2.62 1.33a6 6 0 0 0 .407-.372c2.388-2.389 2.86-4.951 1.399-7.623l-.912-1.603-.79-1.672c-.26-.56-.194-.98.203-1.288a.7.7 0 0 1 .546-.132c.283.046.546.231.728.5l2.363 4.157c.976 1.624 1.141 4.237-1.324 6.702m-10.999-.438L3.37 14.328a.828.828 0 0 1 .585-1.408.83.83 0 0 1 .585.242l2.158 2.157a.365.365 0 0 0 .516-.516l-2.157-2.158-1.449-1.449a.826.826 0 0 1 1.167-1.17l3.438 3.44a.363.363 0 0 0 .516 0 .364.364 0 0 0 0-.516L5.293 9.513l-.97-.97a.826.826 0 0 1 0-1.166.84.84 0 0 1 1.167 0l.97.968 3.437 3.436a.36.36 0 0 0 .517 0 .366.366 0 0 0 0-.516L6.977 7.83a.82.82 0 0 1-.241-.584.82.82 0 0 1 .824-.826c.219 0 .43.087.584.242l5.787 5.787a.366.366 0 0 0 .587-.415l-1.117-2.363c-.26-.56-.194-.98.204-1.289a.7.7 0 0 1 .546-.132c.283.046.545.232.727.501l2.193 3.86c1.302 2.38.883 4.59-1.277 6.75-1.156 1.156-2.602 1.627-4.19 1.367-1.418-.236-2.866-1.033-4.079-2.246M10.75 5.971l2.12 2.12c-.41.502-.465 1.17-.128 1.89l.22.465-3.523-3.523a.8.8 0 0 1-.097-.368c0-.22.086-.428.241-.584a.847.847 0 0 1 1.167 0m7.355 1.705c-.31-.461-.746-.758-1.23-.837a1.44 1.44 0 0 0-1.11.275c-.312.24-.505.543-.59.881a1.74 1.74 0 0 0-.906-.465 1.47 1.47 0 0 0-.82.106l-2.182-2.182a1.56 1.56 0 0 0-2.2 0 1.54 1.54 0 0 0-.396.701 1.56 1.56 0 0 0-2.21-.01 1.55 1.55 0 0 0-.416.753c-.624-.624-1.649-.624-2.237-.037a1.557 1.557 0 0 0 0 2.2c-.239.1-.501.238-.715.453a1.56 1.56 0 0 0 0 2.2l.516.515a1.556 1.556 0 0 0-.753 2.615L7.01 19c1.32 1.319 2.909 2.189 4.475 2.449q.482.08.971.08c.85 0 1.653-.198 2.393-.579.231.033.46.054.686.054 1.266 0 2.457-.52 3.505-1.567 2.763-2.763 2.552-5.734 1.439-7.586z" clip-rule="evenodd"></path></svg></div></div></div></div></a></span></div></div></span><span class="m i h g qy qz"><div class="ac r kj kk"><div class="pw-multi-vote-icon fr adq km kn ko"><span data-dd-action-name="Susi presentation tracker clap_footer"><a class="ah ai aj fo al am an ao ap aq ar as at au av" data-testid="footerClapButton" rel="noopener follow" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2F0b79eda08d40&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40jaikumarsharma94130%2Ffoundations-of-large-language-models-0b79eda08d40&amp;user=Jatin+Sharma&amp;userId=38add89aab50&amp;source=---footer_actions--0b79eda08d40---------------------clap_footer------------------" data-discover="true"><div><div class="bn" aria-hidden="false" aria-describedby="13" aria-labelledby="13" role="tooltip"><div tabindex="-1" class="bf"><div class="kp aq kq kr ks kt ao ku kv kw ko" role="presentation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-label="clap"><path fill-rule="evenodd" d="M11.37.828 12 3.282l.63-2.454zM13.916 3.953l1.523-2.112-1.184-.39zM8.589 1.84l1.522 2.112-.337-2.501zM18.523 18.92c-.86.86-1.75 1.246-2.62 1.33a6 6 0 0 0 .407-.372c2.388-2.389 2.86-4.951 1.399-7.623l-.912-1.603-.79-1.672c-.26-.56-.194-.98.203-1.288a.7.7 0 0 1 .546-.132c.283.046.546.231.728.5l2.363 4.157c.976 1.624 1.141 4.237-1.324 6.702m-10.999-.438L3.37 14.328a.828.828 0 0 1 .585-1.408.83.83 0 0 1 .585.242l2.158 2.157a.365.365 0 0 0 .516-.516l-2.157-2.158-1.449-1.449a.826.826 0 0 1 1.167-1.17l3.438 3.44a.363.363 0 0 0 .516 0 .364.364 0 0 0 0-.516L5.293 9.513l-.97-.97a.826.826 0 0 1 0-1.166.84.84 0 0 1 1.167 0l.97.968 3.437 3.436a.36.36 0 0 0 .517 0 .366.366 0 0 0 0-.516L6.977 7.83a.82.82 0 0 1-.241-.584.82.82 0 0 1 .824-.826c.219 0 .43.087.584.242l5.787 5.787a.366.366 0 0 0 .587-.415l-1.117-2.363c-.26-.56-.194-.98.204-1.289a.7.7 0 0 1 .546-.132c.283.046.545.232.727.501l2.193 3.86c1.302 2.38.883 4.59-1.277 6.75-1.156 1.156-2.602 1.627-4.19 1.367-1.418-.236-2.866-1.033-4.079-2.246M10.75 5.971l2.12 2.12c-.41.502-.465 1.17-.128 1.89l.22.465-3.523-3.523a.8.8 0 0 1-.097-.368c0-.22.086-.428.241-.584a.847.847 0 0 1 1.167 0m7.355 1.705c-.31-.461-.746-.758-1.23-.837a1.44 1.44 0 0 0-1.11.275c-.312.24-.505.543-.59.881a1.74 1.74 0 0 0-.906-.465 1.47 1.47 0 0 0-.82.106l-2.182-2.182a1.56 1.56 0 0 0-2.2 0 1.54 1.54 0 0 0-.396.701 1.56 1.56 0 0 0-2.21-.01 1.55 1.55 0 0 0-.416.753c-.624-.624-1.649-.624-2.237-.037a1.557 1.557 0 0 0 0 2.2c-.239.1-.501.238-.715.453a1.56 1.56 0 0 0 0 2.2l.516.515a1.556 1.556 0 0 0-.753 2.615L7.01 19c1.32 1.319 2.909 2.189 4.475 2.449q.482.08.971.08c.85 0 1.653-.198 2.393-.579.231.033.46.054.686.054 1.266 0 2.457-.52 3.505-1.567 2.763-2.763 2.552-5.734 1.439-7.586z" clip-rule="evenodd"></path></svg></div></div></div></div></a></span></div></div></span></div><div class="az ac"><div><div class="bn" aria-hidden="false" aria-describedby="14" aria-labelledby="14" role="tooltip"><div tabindex="-1" class="bf"><button class="aq kp lf lg ac r fs lh li" aria-label="responses"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="lj"><path d="M18.006 16.803c1.533-1.456 2.234-3.325 2.234-5.321C20.24 7.357 16.709 4 12.191 4S4 7.357 4 11.482c0 4.126 3.674 7.482 8.191 7.482.817 0 1.622-.111 2.393-.327.231.2.48.391.744.559 1.06.693 2.203 1.044 3.399 1.044.224-.008.4-.112.486-.287a.49.49 0 0 0-.042-.518c-.495-.67-.845-1.364-1.04-2.057a4 4 0 0 1-.125-.598zm-3.122 1.055-.067-.223-.315.096a8 8 0 0 1-2.311.338c-4.023 0-7.292-2.955-7.292-6.587 0-3.633 3.269-6.588 7.292-6.588 4.014 0 7.112 2.958 7.112 6.593 0 1.794-.608 3.469-2.027 4.72l-.195.168v.255c0 .056 0 .151.016.295.025.231.081.478.154.733.154.558.398 1.117.722 1.659a5.3 5.3 0 0 1-2.165-.845c-.276-.176-.714-.383-.941-.59z"></path></svg></button></div></div></div></div></div><div class="ac r"><div class="qg m cb"><div><div class="bn" aria-hidden="false" aria-describedby="15" aria-labelledby="15" role="tooltip"><div tabindex="-1" class="bf"><span data-dd-action-name="Susi presentation tracker bookmark_footer"><a class="ah ai aj fo al am an ao ap aq ar as at au av" data-testid="footerBookmarkButton" rel="noopener follow" href="https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F0b79eda08d40&amp;operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40jaikumarsharma94130%2Ffoundations-of-large-language-models-0b79eda08d40&amp;source=---footer_actions--0b79eda08d40---------------------bookmark_footer------------------" data-discover="true"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 25 25" class="eb ll" aria-label="Add to list bookmark button"><path fill="currentColor" d="M18 2.5a.5.5 0 0 1 1 0V5h2.5a.5.5 0 0 1 0 1H19v2.5a.5.5 0 1 1-1 0V6h-2.5a.5.5 0 0 1 0-1H18zM7 7a1 1 0 0 1 1-1h3.5a.5.5 0 0 0 0-1H8a2 2 0 0 0-2 2v14a.5.5 0 0 0 .805.396L12.5 17l5.695 4.396A.5.5 0 0 0 19 21v-8.5a.5.5 0 0 0-1 0v7.485l-5.195-4.012a.5.5 0 0 0-.61 0L7 19.985z"></path></svg></a></span></div></div></div></div><div class="qg m cb"><div class="bn" aria-hidden="false" aria-describedby="postFooterSocialMenu" aria-labelledby="postFooterSocialMenu"><div><div class="bn" aria-hidden="false" aria-describedby="16" aria-labelledby="16" role="tooltip"><div tabindex="-1" class="bf"><button aria-controls="postFooterSocialMenu" aria-expanded="false" aria-label="Share Post" data-testid="footerSocialShareButton" class="ah fs aj fo al am an lt ap aq ar fe lu lv li lw"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M15.218 4.931a.4.4 0 0 1-.118.132l.012.006a.45.45 0 0 1-.292.074.5.5 0 0 1-.3-.13l-2.02-2.02v7.07c0 .28-.23.5-.5.5s-.5-.22-.5-.5v-7.04l-2 2a.45.45 0 0 1-.57.04h-.02a.4.4 0 0 1-.16-.3.4.4 0 0 1 .1-.32l2.8-2.8a.5.5 0 0 1 .7 0l2.8 2.79a.42.42 0 0 1 .068.498m-.106.138.008.004v-.01zM16 7.063h1.5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-11c-1.1 0-2-.9-2-2v-10a2 2 0 0 1 2-2H8a.5.5 0 0 1 .35.15.5.5 0 0 1 .15.35.5.5 0 0 1-.15.35.5.5 0 0 1-.35.15H6.4c-.5 0-.9.4-.9.9v10.2a.9.9 0 0 0 .9.9h11.2c.5 0 .9-.4.9-.9v-10.2c0-.5-.4-.9-.9-.9H16a.5.5 0 0 1 0-1" clip-rule="evenodd"></path></svg></button></div></div></div></div></div></div></div></div></div></div></footer><div class="ra m"><div class="ac ci"><div class="cp bi gi gj gk gl"><div class="ac in il ij rb rc"><div class="rd re rf rg rh ri rj rk rl rm ac cw"><div class="i l"><a tabindex="0" rel="noopener follow" href="https://medium.com/@jaikumarsharma94130?source=post_page---post_author_info--0b79eda08d40---------------------------------------" data-discover="true"><div class="m fr"><img alt="Jatin Sharma" class="m fk by rn ro de" width="48" height="48" loading="lazy" src="1_xrtULdme3beYldqEjUkhbw-1.png"><div class="ga by m rn ro gb o ak rp"></div></div></a></div><div class="k j e"><a tabindex="0" rel="noopener follow" href="https://medium.com/@jaikumarsharma94130?source=post_page---post_author_info--0b79eda08d40---------------------------------------" data-discover="true"><div class="m fr"><img alt="Jatin Sharma" class="m fk by rq rr de" width="64" height="64" loading="lazy" src="1_xrtULdme3beYldqEjUkhbw-2.png"><div class="ga by m rq rr gb o ak rp"></div></div></a></div><div class="k j e rs cb"><div class="ac"><button style="border: 1px solid rgb(36, 36, 36);" class="wy adl aq ac ci r adr ki ads"><span class="bg b bh ab bl bi"><span class="bn adp">Follow</span></span></button></div></div></div><div class="ac cv cd"><div class="rt ru rv rw rx m"><a class="ah ai aj al am an ao ap aq ar as at au av ac r" rel="noopener follow" href="https://medium.com/@jaikumarsharma94130?source=post_page---post_author_info--0b79eda08d40---------------------------------------" data-discover="true"><h2 class="pw-author-name bg rz sa sb sc sd se sf mw sg sh na si sj ne sk sl bl"><span class="gw ry">Written by Jatin Sharma</span></h2></a><div class="sm ac ip"><div class="m cb"><span class="pw-follower-count bg b bh ab eb"><a class="ah ai aj fo al am an ao ap aq ar as at iy" rel="noopener follow" href="https://medium.com/@jaikumarsharma94130/followers?source=post_page---post_author_info--0b79eda08d40---------------------------------------" data-discover="true">27 followers</a></span></div><div class="bg b bh ab eb ac sn"><span class="so m" aria-hidden="true"><span class="bg b bh ab eb">·</span></span><a class="ah ai aj fo al am an ao ap aq ar as at iy" rel="noopener follow" href="https://medium.com/@jaikumarsharma94130/following?source=post_page---post_author_info--0b79eda08d40---------------------------------------" data-discover="true">27 following</a></div></div><div class="sp m"><p class="bg b bh ab bl"><span class="gw">Building cool stuff, writing tech content, and creating 3D art. @ChaiCodeHQ @100xengineers @namastedev</span></p></div></div></div><div class="i l"><div class="ac"><button style="border: 1px solid rgb(36, 36, 36);" class="wy adl aq ac ci r adr ki ads"><span class="bg b bh ab bl bi"><span class="bn adp">Follow</span></span></button></div></div></div></div></div></div><div class="sq m"><div class="sr bi s ra"></div><div class="ac ci"><div class="cp bi gi gj gk gl"><div class="ac r cw"><h2 class="bg rz oh oj ok ol on oo op or os ot ov ow ox oz pa bl">No responses yet</h2><div class="ac ss"><div><div class="bn" aria-hidden="false" aria-describedby="17" aria-labelledby="17" role="tooltip"><div tabindex="-1" class="bf"><a class="st su" href="https://policy.medium.com/medium-rules-30e5502c4eb4?source=post_page---post_responses--0b79eda08d40---------------------------------------" rel="noopener follow" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" aria-label="Shield with a checkmark" viewBox="0 0 25 25"><path fill-rule="evenodd" d="M11.987 5.036a.754.754 0 0 1 .914-.01c.972.721 1.767 1.218 2.6 1.543.828.322 1.719.485 2.887.505a.755.755 0 0 1 .741.757c-.018 3.623-.43 6.256-1.449 8.21-1.034 1.984-2.662 3.209-4.966 4.083a.75.75 0 0 1-.537-.003c-2.243-.874-3.858-2.095-4.897-4.074-1.024-1.951-1.457-4.583-1.476-8.216a.755.755 0 0 1 .741-.757c1.195-.02 2.1-.182 2.923-.503.827-.322 1.6-.815 2.519-1.535m.468.903c-.897.69-1.717 1.21-2.623 1.564-.898.35-1.856.527-3.026.565.037 3.45.469 5.817 1.36 7.515.884 1.684 2.25 2.762 4.284 3.571 2.092-.81 3.465-1.89 4.344-3.575.886-1.698 1.299-4.065 1.334-7.512-1.149-.039-2.091-.217-2.99-.567-.906-.353-1.745-.873-2.683-1.561m-.009 9.155a2.672 2.672 0 1 0 0-5.344 2.672 2.672 0 0 0 0 5.344m0 1a3.672 3.672 0 1 0 0-7.344 3.672 3.672 0 0 0 0 7.344m-1.813-3.777.525-.526.916.917 1.623-1.625.526.526-2.149 2.152z" clip-rule="evenodd"></path></svg></a></div></div></div></div></div><div class="sv sw sx sy sz m"><div><div class="bg b bh ab bl"><div class="wf"><div class="wn m"><div class="wo ac r"><div class="m fr"><img alt="" class="m fk by bz ca de" width="32" height="32" loading="lazy" role="presentation" src="1_dmbNkD5D-u45r44go_cf0g.png"><div class="ga by m bz ca gb o ak rp"></div></div><div class="bo ac cu cv ci"><p class="bg b bh ab eb">Write a response</p></div></div><div class="de bq ac cv wg wh"><div class="ac cv fr"><span data-dd-action-name="Susi presentation tracker respond_sidebar"><a class="ah ai aj fo al am an ao ap aq ar as at au av" rel="noopener follow" href="https://medium.com/m/signin?operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F%40jaikumarsharma94130%2Ffoundations-of-large-language-models-0b79eda08d40&amp;source=---post_responses--0b79eda08d40---------------------respond_sidebar------------------" data-discover="true"><div class="uh m"><p class="bg b bh ab eb">What are your thoughts?</p></div></a></span><div class="cw wi eb ac wj vj wk"><span class="bg b bh ab eb"><div class="ac"><div><div class="bn" aria-hidden="false" aria-describedby="30" aria-labelledby="30" role="tooltip"><div tabindex="-1" class="bf"><span role="button" aria-label="Bold (⌘B)" class="wp wq wr ws bq lm ci wt wu wv" tabindex="0"><svg width="21" height="21"><path fill-rule="evenodd" d="M10.308 17.993h-5.92l.11-.894.783-.12c.56-.11.79-.224.79-.448V5.37c0-.225-.113-.336-.902-.448H4.5l-.114-.894h6.255c4.02 0 5.58 1.23 5.58 3.13 0 1.896-1.78 3.125-3.79 3.463v.11c2.69.34 4.25 1.56 4.25 3.57 0 2.35-2.01 3.69-6.37 3.69l.02.01h-.02zm-.335-12.96H8.967V10.5h1.23c1.788 0 2.79-1.23 2.79-2.683 0-1.685-1.004-2.803-3.006-2.803v.02zm-.223 6.36h-.783v5.588l1.225.23h.22c1.67 0 3.01-1.004 3.01-2.792 0-2.122-1.566-3.016-3.69-3.016h.018z"></path></svg></span></div></div></div><div><div class="bn" aria-hidden="false" aria-describedby="31" aria-labelledby="31" role="tooltip"><div tabindex="-1" class="bf"><span role="button" aria-label="Italic (⌘I)" class="wp wq wr ws bq lm ci wt wu wv" tabindex="0"><svg width="21" height="21"><path fill-rule="evenodd" d="M9.847 18.04c-.533 0-2.027-.64-1.92-.853l2.027-7.68-.64-.214-1.387 1.494-.427-.427c.534-1.173 1.707-2.667 2.774-2.667.533 0 2.24.534 2.133.854l-2.133 7.786.533.214 1.6-1.067.427.427c-.64 1.066-1.92 2.133-2.987 2.133m2.347-11.733c-.96 0-1.387-.64-1.387-1.387 0-1.067.747-1.92 1.493-1.92.854 0 1.387.64 1.387 1.493-.107 1.067-.747 1.814-1.493 1.814"></path></svg></span></div></div></div></div></span><div class="wl rs ac wj vj wk"><div class="wm"><button class="bg b ec ab bl ww wx wy wz ll lh va fc fd fe xa xb xc fh fi fj fk bn fl fm" data-testid="CancelResponseButton">Cancel</button></div><button class="bg b ec ab uu ww uw ux uy uz va fc fd vb vc vd fh fi fj fk bn fl fm" disabled="" data-testid="ResponseRespondButton">Respond</button></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: medium; visibility: hidden;" src="index_1.html"></iframe>
+<div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;" data-eusoft-scrollable-element="1"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60" role="presentation" name="a-j00l9sdf2xb7" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="index_3.html"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;" src="index_2.html"></iframe></div><script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2787122990="" ng-version="18.2.13" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c2787122990=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c2787122990="" _nghost-ng-c3386348173="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2787122990="" _nghost-ng-c749930229="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c749930229=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c2787122990="" class="eusoft-chrome-extension-capture-word-container ng-tns-c4033922151-0 ng-star-inserted" data-eusoft-scrollable-element="1" data-scrapbook-shadowdom="<style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><!----><!----><div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c4033922151-0&quot; data-content-script-theme=&quot;light&quot;><!----></div>"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2787122990="" _nghost-ng-c3081775404="" data-eusoft-scrollable-element="1"><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>

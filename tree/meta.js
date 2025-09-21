@@ -192,7 +192,7 @@ scrapbook.meta({
     "icon": "favicon-32x32.png"
   },
   "20250914145335226": {
-    "title": "Tool Calling",
+    "title": "LLM Tool Calling",
     "type": "folder",
     "create": "20250914145335226",
     "modify": "20250914145335226"
@@ -767,7 +767,7 @@ scrapbook.meta({
   },
   "20250916150224662": {
     "index": "202509/20250916150224662-x.com/index.html",
-    "title": "Victoria Slocum on X: \"Prompt engineering is dead. Long live 𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 (Well, not quite dead - but it's definitely evolving into something way more powerful) Meet 𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 - the art of building dynamic systems that give LLMs exactly what they https://t.co/0ufKMfGFnO\" / X",
+    "title": "Victoria Slocum on X: \"Prompt engineering is dead. Long live 𝗖𝗼𝗻𝘁𝗲𝘅𝘁 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴",
     "type": "",
     "create": "20250916150224662",
     "modify": "20250916150224662",
@@ -1016,7 +1016,9 @@ scrapbook.meta({
     "create": "20250919145153696",
     "modify": "20250919145153696",
     "source": "https://arxiv.org/abs/2501.10200",
-    "icon": "favicon-32x32.png"
+    "icon": "favicon-32x32.png",
+    "parent": "20250917144938058",
+    "recycled": "20250921123458511"
   },
   "20250919145226473": {
     "index": "202509/20250919145226473-papers.cool/index.html",
@@ -1035,5 +1037,153 @@ scrapbook.meta({
     "modify": "20250919145246020",
     "source": "https://papers.cool/arxiv/2404.04966",
     "icon": "favicon.ico"
+  },
+  "20250921120419261": {
+    "index": "",
+    "title": "agents-course (Hugging Face Agents Course)",
+    "type": "bookmark",
+    "create": "20250921120419261",
+    "modify": "20250921120419261",
+    "source": "https://huggingface.co/agents-course",
+    "icon": "../tree/favicon/6399bc3a59046b9c43519097cf326a4abd52470f.ico"
+  },
+  "20250921120534325": {
+    "title": "LLM",
+    "type": "folder",
+    "create": "20250921120534325",
+    "modify": "20250921120534325"
+  },
+  "20250921120544769": {
+    "title": "fine-tuning",
+    "type": "folder",
+    "create": "20250921120544769",
+    "modify": "20250921120544769"
+  },
+  "20250921120610470": {
+    "index": "",
+    "title": "smol-course (the comprehensive (and smollest) course to Fine-Tuning Language Models!)",
+    "type": "bookmark",
+    "create": "20250921120610470",
+    "modify": "20250921120610470",
+    "source": "https://huggingface.co/smol-course",
+    "icon": "../tree/favicon/6399bc3a59046b9c43519097cf326a4abd52470f.ico"
+  },
+  "20250921120723101": {
+    "index": "",
+    "title": "Lordog/dive-into-llms: 《动手学大模型Dive into LLMs》系列编程实践教程",
+    "type": "bookmark",
+    "create": "20250921120723101",
+    "modify": "20250921120723101",
+    "source": "https://github.com/Lordog/dive-into-llms",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png",
+    "parent": "20250921120534325",
+    "recycled": "20250921125113657"
+  },
+  "20250921120957764": {
+    "index": "",
+    "title": "Tutorials: How To Fine-tune & Run LLMs | Unsloth Documentation",
+    "type": "bookmark",
+    "create": "20250921120957764",
+    "modify": "20250921120957764",
+    "source": "https://docs.unsloth.ai/models/tutorials-how-to-fine-tune-and-run-llms",
+    "icon": "../tree/favicon/98ed985e5c4b5010b52d038c92ab036159b75354.jpg"
+  },
+  "20250921121205201": {
+    "index": "202509/20250921121205201-arxiv.org/index.html",
+    "title": "The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities | Abstract",
+    "type": "",
+    "create": "20250921121205201",
+    "modify": "20250921121205201",
+    "source": "https://arxiv.org/abs/2408.13296",
+    "icon": "favicon-32x32.png"
+  },
+  "20250921121710735": {
+    "index": "",
+    "title": "qibin0506/Cortex: 个人构建MoE大模型：从预训练到DPO的完整实践",
+    "type": "bookmark",
+    "create": "20250921121710735",
+    "modify": "20250921121710735",
+    "source": "https://github.com/qibin0506/Cortex",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250921121913593": {
+    "index": "",
+    "title": "Fine-tuning LLMs Guide | Unsloth Documentation",
+    "type": "bookmark",
+    "create": "20250921121913593",
+    "modify": "20250921121913593",
+    "source": "https://docs.unsloth.ai/get-started/fine-tuning-llms-guide",
+    "icon": "../tree/favicon/98ed985e5c4b5010b52d038c92ab036159b75354.jpg"
+  },
+  "20250921122155943": {
+    "index": "202509/20250921122155943-papers.cool/index.html",
+    "title": "[2402.07927] A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications | Cool Papers - Immersive Paper Discovery",
+    "type": "",
+    "create": "20250921122155943",
+    "modify": "20250921122155943",
+    "source": "https://papers.cool/arxiv/2402.07927",
+    "icon": "favicon.ico"
+  },
+  "20250921122338033": {
+    "index": "",
+    "title": "bbruceyuan/LLMs-Zero-to-Hero: 从无名小卒到大模型（LLM）大英雄~ 欢迎关注后续！！！",
+    "type": "bookmark",
+    "create": "20250921122338033",
+    "modify": "20250921122338033",
+    "source": "https://github.com/bbruceyuan/LLMs-Zero-to-Hero",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250921122703854": {
+    "index": "",
+    "title": "The Ultra-Scale Playbook: Training LLMs on GPU Clusters",
+    "type": "bookmark",
+    "create": "20250921122703854",
+    "modify": "20250921122703854",
+    "source": "https://nanotron-ultrascale-playbook.static.hf.space/index.html#high-level_overview",
+    "icon": "../tree/favicon/6399bc3a59046b9c43519097cf326a4abd52470f.ico"
+  },
+  "20250921122731555": {
+    "index": "",
+    "title": "终极训练指南：在大规模 GPU 集群上训练大语言模型",
+    "type": "bookmark",
+    "create": "20250921122731555",
+    "modify": "20250921122731555",
+    "source": "https://ki-seki-ultrascale-playbook-zh-cn.static.hf.space/index.html",
+    "icon": "../tree/favicon/6399bc3a59046b9c43519097cf326a4abd52470f.ico"
+  },
+  "20250921122752232": {
+    "title": "train",
+    "type": "folder",
+    "create": "20250921122752232",
+    "modify": "20250921122752232"
+  },
+  "20250921123235345": {
+    "index": "202509/20250921123235345-arxiv.org/index.html",
+    "title": "[2210.03629] ReAct: Synergizing Reasoning and Acting in Language Models",
+    "type": "",
+    "create": "20250921123235345",
+    "modify": "20250921123235345",
+    "source": "https://arxiv.org/abs/2210.03629",
+    "icon": "favicon-32x32.png",
+    "parent": "20250916143248161",
+    "recycled": "20250921123245815"
+  },
+  "20250921123352253": {
+    "index": "202509/20250921123352253-papers.cool/index.html",
+    "title": "[2506.05614] Which Prompting Technique Should I Use? An Empirical Investigation of Prompting Techniques for Software Engineering Tasks | Cool Papers - Immersive Paper Discovery",
+    "type": "",
+    "create": "20250921123352253",
+    "modify": "20250921123352253",
+    "source": "https://papers.cool/arxiv/2506.05614",
+    "icon": "favicon.ico"
+  },
+  "20250921124948200": {
+    "index": "202509/20250921124948200-medium.com/index.html",
+    "title": "Foundations of Large Language Models | by Jatin Sharma | Sep, 2025 | Medium",
+    "type": "",
+    "create": "20250921124948200",
+    "modify": "20250921124948200",
+    "source": "https://medium.com/@jaikumarsharma94130/foundations-of-large-language-models-0b79eda08d40",
+    "icon": "5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19.png"
   }
 })
