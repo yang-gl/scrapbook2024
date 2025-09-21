@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="en" data-scrapbook-source="https://www.nazha.co/posts/how-cline-works" data-scrapbook-create="20250921144134677"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@xiaokedada"><meta name="twitter:creator" content="@xiaokedada"><meta property="og:site_name" content="https://www.nazha.co/"><title>AI Coding 编辑器没有那么神秘 - How Cline works</title><meta name="robots" content="index,follow"><meta name="googlebot" content="index,follow"><meta property="og:title" content="AI Coding 编辑器没有那么神秘 - How Cline works"><meta property="og:url" content="https://www.nazha.co/posts/how-cline-works"><link rel="canonical" href="https://www.nazha.co/posts/how-cline-works"><meta name="twitter:title" content="AI Coding 编辑器没有那么神秘 - How Cline works"><meta name="twitter:description"><link rel="stylesheet" href="prism.css"><meta name="next-head-count" content="17"><link rel="stylesheet" href="ca8d3c889c791772.css" data-n-g=""><noscript data-n-css=""></noscript><link rel="shortcut icon" href="favicon.ico"></head><body class="dark"><div id="__next"><div class="__variable_01c7eb __variable_7f5870 __variable_67000f __variable_e46616 __variable_74288c __variable_8aa8e3 __variable_4bc053 __variable_8ff147 __variable_25ee46 w-full h-full"><header class="relative w-full h-40 sm:h-20"><div class="md:fixed sm:h-20 h-40 z-40 w-full flex justify-between backdrop-blur-[20px] backdrop-saturate-150 bg-white/50 dark:bg-[#0D0D1050]"><nav class="w-full sm:max-w-[75ch] m-auto sm:grid md:flex px-5 justify-between items-center "><div class="hover:cursor-pointer px-2 py-1 flex items-center"><a href="https://www.nazha.co/"><div class="flex items-center"><img alt="portrait" loading="lazy" width="32" height="32" decoding="async" data-nimg="1" class="w-8 h-8 rounded-full overflow-hidden" style="color:transparent" srcset="logo.jpg 1x, logo-1.jpg 2x" src="logo-1.jpg"><h6 class="ml-2 text-lg font-catamaran">nazha</h6></div></a></div><div class="flex items-center flex-wrap gap-5"><a class="capitalize opacity-70 font-gothamsm tracking-[1.8px] text-sm hover:opacity-100" href="https://quaily.com/nazha">Newsletter</a><a class="capitalize opacity-70 font-gothamsm tracking-[1.8px] text-sm hover:opacity-100" href="https://garden.nazha.co/">Garden</a><div class="flex items-center w-5 h-5 bg-transparent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" color="white" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" style="cursor:pointer;transform:rotate(40deg)"><mask id="circle-mask-0"><rect x="0" y="0" width="100%" height="100%" fill="white"></rect><circle style="cx:50%;cy:23%" r="9" fill="black"></circle></mask><circle cx="12" cy="12" fill="white" style="r:9px" mask="url(#circle-mask-0)"></circle><g stroke="currentColor" style="opacity:0"><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></g></svg></div><a href="https://www.nazha.co/rss.xml"><span class="cursor-pointer"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6.25 3A3.25 3.25 0 0 0 3 6.25v11.5A3.25 3.25 0 0 0 6.25 21h11.5A3.25 3.25 0 0 0 21 17.75V6.25A3.25 3.25 0 0 0 17.75 3H6.25Zm.5 4.5c-.405 0-.75-.317-.75-.722v-.055c0-.393.305-.721.698-.723h.052C12.963 6 18 11.037 18 17.25v.052a.711.711 0 0 1-.723.698h-.055c-.405 0-.722-.345-.722-.75A9.75 9.75 0 0 0 6.75 7.5ZM13.294 18h-.09c-.399 0-.704-.351-.704-.75a5.75 5.75 0 0 0-5.75-5.75c-.399 0-.75-.305-.75-.704v-.09c0-.38.287-.701.666-.705L6.75 10A7.25 7.25 0 0 1 14 17.334c-.005.379-.327.666-.706.666ZM7.5 18a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3Z"></path></svg></span></a><a href="https://twitter.com/xiaokedada"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m19 4-5.93 6.93M5 20l5.93-6.93m0 0 5.795 6.587c.19.216.483.343.794.343h1.474c.836 0 1.307-.85.793-1.435L13.07 10.93m-2.14 2.14L4.214 5.435C3.7 4.85 4.17 4 5.007 4h1.474c.31 0 .604.127.794.343l5.795 6.587"></path></svg></a></div></nav></div></header><main class="w-full h-full mt-2"><article class="max-w-[85ch] mx-auto pt-10 pb-5 px-5 prose dark:prose-invert"><div><h1 class="mb-1 text-3xl font-black capitalize md:text-4xl">AI Coding 编辑器没有那么神秘 - How Cline works</h1><div class="flex flex-col pt-4 pb-4 text-sm font-thin uppercase text-warmGray-500 dark:text-warmGray-400"><time datetime="2025-01-24">2025/01/24</time></div><div class="pb-8">This post was created without the involvement of AI.</div><div class="flex justify-center mb-10 sm:mb-12"><div class="hr dark:hr-dark w-64"></div></div></div><p>没想到，AI 在编程领域掀起了半变天。从 <a href="https://v0.dev/" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">v0</a> 、<a href="https://bolt.new/" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">bolt.new</a> 再到各类结合 Agant 的编程工具 <a href="https://www.cursor.com/" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">Cursor</a>、<a href="https://codeium.com/windsurf" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">Windsurf</a>，AI Coding 已经具备 idea MVP 的巨大潜力。从传统的 AI 辅助编码，到如今的直接项目生成的背后，到底是怎么实现的？</p>
+<p>本文会从开源产品 <a href="https://github.com/cline/cline" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">Cline</a> 开始，从中窥探现阶段 AI Coding 产品的一些实现思路。同时了解更深层的原理，也能更好地使用 AI 编辑器。</p>
+<blockquote>
+<p>各个 AI Coding 编辑器的最终实现可能不太一致。另外，本文也不会深入到 Tool Use 的实现细节。</p>
+</blockquote>
+<p>Cline 整体的流程我画了一张草图：</p>
+<p></p><div class="my-10"><img src="how-cline-works.png" alt="how-cline-works" layout="fill"></div><p></p>
+<p><mark>Cline 的核心是依赖系统提示词以及大语言模型的指令遵循能力</mark>。在编程任务启动的时，收集系统提示词、用户自定义提示、用户的输入、以及所在项目的环境信息（哪些文件、打开的 Tab 等等），提交给 LLM。LLM 按照指令输出解决方案和操作。Cline 通过解析返回的操作指令（比如  <code>&lt;execute_command /&gt;</code>、<code>&lt;read_file /&gt;</code>），调用编写好的 Tool Use 能力进行处理，并将处理结果交给 LLM 处理。<mark>Cline 会多次调用 LLM 来完成单次任务</mark>。</p>
+<h2 id="系统提示词">系统提示词<a class="anchor" style="color:#0070F3" href="#%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D">#</a></h2>
+<p>Cline 的 <a href="https://github.com/cline/cline/blob/main/src/core/prompts/system.ts" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">系统提示词</a> 是类 <a href="https://github.com/sharkqwy/v0prompt" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">v0</a> 提示词，使用 Markdown 和 XML 编写。其中详细定义了 LLM Tool Use 规则和用法示例：</p>
+<div class="remark-highlight"><pre class="language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> Tool Use Formatting</span>
+
+Tool use is formatted using XML-style tags. The tool name is enclosed in opening and closing tags, and each parameter is similarly enclosed within its own set of tags. Here's the structure:
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tool_name</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parameter1_name</span><span class="token punctuation">&gt;</span></span>value1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parameter1_name</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parameter2_name</span><span class="token punctuation">&gt;</span></span>value2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parameter2_name</span><span class="token punctuation">&gt;</span></span>
+...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tool_name</span><span class="token punctuation">&gt;</span></span>
+
+For example:
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>read_file</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span><span class="token punctuation">&gt;</span></span>src/main.js<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>path</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>read_file</span><span class="token punctuation">&gt;</span></span>
+
+Always adhere to this format for the tool use to ensure proper parsing and execution.
+
+<span class="token title important"><span class="token punctuation">#</span> Tools</span>
+
+<span class="token title important"><span class="token punctuation">##</span> execute_command</span>
+<span class="token title important"><span class="token punctuation">##</span> write_to_file</span>
+...
+
+<span class="token title important"><span class="token punctuation">##</span> Example 4: Requesting to use an MCP tool</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>use_mcp_tool</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>server_name</span><span class="token punctuation">&gt;</span></span>weather-server<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>server_name</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tool_name</span><span class="token punctuation">&gt;</span></span>get_forecast<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tool_name</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>arguments</span><span class="token punctuation">&gt;</span></span>
+	{
+	  "city": "San Francisco",
+	  "days": 5
+	}
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>arguments</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>use_mcp_tool</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div>
+<p><a href="https://www.anthropic.com/news/model-context-protocol" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">MCP</a> 服务器也会注入系统提示词中。</p>
+<div class="remark-highlight"><pre class="language-markdown"><code class="language-markdown">MCP SERVERS
+
+The Model Context Protocol (MCP) enables communication between the system and locally running MCP servers that provide additional tools and resources to extend your capabilities.
+
+<span class="token title important"><span class="token punctuation">#</span> Connected MCP Servers</span>
+...
+</code></pre></div>
+<p>用户指令也可以通过 <code>.clinerules</code> 注入到系统系统提示词中。</p>
+<blockquote>
+<p>从这我们可以大胆推测，Cursor 和 WindSurf 注入 .cursorrules 也是类似的</p>
+</blockquote>
+<p>由此可以看出，Cline 核心是依赖 LLM 的指令遵循能力，因此模型的 <a href="https://platform.openai.com/docs/api-reference/chat/create" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">temperature</a> 被设置成了 <code>0</code>。</p>
+<div class="remark-highlight"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> stream <span class="token operator">=</span> <span class="token keyword control-flow">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">client</span><span class="token punctuation">.</span><span class="token property-access">chat</span><span class="token punctuation">.</span><span class="token property-access">completions</span><span class="token punctuation">.</span><span class="token method function property-access">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+	<span class="token literal-property property">model</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">options</span><span class="token punctuation">.</span><span class="token property-access">openAiModelId</span> <span class="token operator">??</span> <span class="token string">""</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">messages</span><span class="token operator">:</span> openAiMessages<span class="token punctuation">,</span>
+	<span class="token literal-property property">temperature</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// 被设置成了 0</span>
+	<span class="token literal-property property">stream</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">stream_options</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token literal-property property">include_usage</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div>
+<h2 id="第一轮输入">第一轮输入<a class="anchor" style="color:#0070F3" href="#%E7%AC%AC%E4%B8%80%E8%BD%AE%E8%BE%93%E5%85%A5">#</a></h2>
+<p>用户存在多种输入，分别有：</p>
+<ol>
+<li>直接输入的文案，用 <code>&lt;task /&gt;</code> 包含</li>
+<li>通过 <code>@</code> 输入的文件目录、文件和 url</li>
+</ol>
+<p>在 Cline 中，<code>@</code> 没有什么太多的科技含量，对于文件目录，列出文件目录结构；文件，读取文件内容；url，则直接 puppeteer 读取内容。然后把这些内容和用户输入，输出给 LLM。</p>
+<p>一个示例输入如下：</p>
+<div class="remark-highlight"><pre class="language-markdown"><code class="language-markdown"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>task</span><span class="token punctuation">&gt;</span></span>实现一个太阳系的 3D 环绕效果 'app/page.tsx' (see below for file content)  'https://stackoverflow.com/questions/23673275/orbital-mechanics-for-a-solar-system-visualisation-in-three-js-x-y-z-for-planet' (see below for site content)
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>task</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file_content</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app/page.tsx<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	import Image from "next/image";
+	export default function Home() {...}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>file_content</span>
+<span class="token attr-name">&lt;site_content</span><span class="token punctuation">&gt;</span></span>
+...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>site_content</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div>
+<p>用户输入还包含一类信息，就是项目环境信息，有当前的工作目录的文件列表、vscode 打开的 tab 等等。</p>
+<p>一个简单的任务给 LLM 的输入如下：</p>
+<div class="remark-highlight"><pre class="language-markdown"><code class="language-markdown"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>task</span><span class="token punctuation">&gt;</span></span>
+实现一个太阳系的 3D 环绕效果
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>task</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>environment_details</span><span class="token punctuation">&gt;</span></span>
+<span class="token title important"><span class="token punctuation">#</span> VSCode Visible Files</span>
+(No visible files)
+
+<span class="token title important"><span class="token punctuation">#</span> VSCode Open Tabs</span>
+(No open tabs)
+
+<span class="token title important"><span class="token punctuation">#</span> Current Time</span>
+1/23/2025, 4:41:03 PM (Asia/Shanghai, UTC+8:00)
+
+<span class="token title important"><span class="token punctuation">#</span> Current Working Directory (/Users/nazha/nazha-all/cline-dev/nazha) Files</span>
+.gitignore
+eslint.config.mjs
+next.config.ts
+package-lock.json
+package.json
+postcss.config.mjs
+README.md
+tailwind.config.ts
+tsconfig.json
+app/
+app/favicon.ico
+app/globals.css
+app/layout.tsx
+app/page.tsx
+public/
+public/file.svg
+public/globe.svg
+public/next.svg
+public/vercel.svg
+public/window.svg
+
+<span class="token title important"><span class="token punctuation">#</span> Current Mode</span>
+ACT MODE
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>environment_details</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div>
+<blockquote>
+<p>从这里可以看到，其他 AI Coding 编辑器（比如 Cursor）<strong>有可能</strong>对代码库进行<a href="https://docs.cursor.com/context/codebase-indexing" style="color:#0070F3" class="hover:underline hover:opacity-80" target="_blank" rel="noopener noreferrer">嵌入</a>，但 cline 比较粗暴直接。</p>
+</blockquote>
+<h2 id="第一轮返回">第一轮返回<a class="anchor" style="color:#0070F3" href="#%E7%AC%AC%E4%B8%80%E8%BD%AE%E8%BF%94%E5%9B%9E">#</a></h2>
+<p>LLM 按照指令要求返回（temperature 被设置为 0），一般包含 <code>&lt;thinking /&gt;</code> 和操作两个部分。比如：</p>
+<div class="remark-highlight"><pre class="language-markdown"><code class="language-markdown"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>thinking</span><span class="token punctuation">&gt;</span></span>
+	分析任务需求:
+	<span class="token list punctuation">1.</span> 需要创建一个3D太阳系环绕效果
+	<span class="token list punctuation">2.</span> 当前项目是一个Next.js项目（根据next.config.ts和app目录结构判断）
+	<span class="token list punctuation">3.</span> 需要添加3D功能，可以使用Three.js库
+	<span class="token list punctuation">4.</span> 需要创建新的组件来展示3D效果
+	下一步行动：
+	<span class="token list punctuation">1.</span> 安装Three.js依赖
+	<span class="token list punctuation">2.</span> 创建一个新的组件来展示3D太阳系
+	<span class="token list punctuation">3.</span> 在页面中引入该组件
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>thinking</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>execute_command</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>command</span><span class="token punctuation">&gt;</span></span>npm install three @types/three<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>command</span><span class="token punctuation">&gt;</span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>requires_approval</span><span class="token punctuation">&gt;</span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>requires_approval</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>execute_command</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div>
+<p>在这个例子，Cline 通过解析 LLM 输出的指令，调用各类系统操作，包括但不限于：</p>
+<ol>
+<li>执行指令</li>
+<li>读写文件</li>
+<li>搜索内容</li>
+<li>MCP 操作</li>
+</ol>
+<p>同时，Cline 会收集各类操作操作状态信息。</p>
+<h2 id="第二轮输入">第二轮输入<a class="anchor" style="color:#0070F3" href="#%E7%AC%AC%E4%BA%8C%E8%BD%AE%E8%BE%93%E5%85%A5">#</a></h2>
+<p>接下来，Cline 会把上一步用户的操作行为，操作输出状态和结果，包含之前的系统 prompt、用户输入，再次输出给 LLM，请求 LLM 给出下一步执行的指导。如此往复。</p>
+<div class="remark-highlight"><pre class="language-text"><code class="language-text">
+role: system
+content: [...省略]
+
+role: user
+content: [
+  {
+    type: &amp;#39;text&amp;#39;,
+    text: &amp;#39;&amp;lt;task&amp;gt;\n实现一个太阳系的 3D 环绕效果\n&amp;lt;/task&amp;gt;&amp;#39;
+  },
+  {
+    type: &amp;#39;text&amp;#39;,
+    text: &amp;quot;&amp;lt;environment_details&amp;gt;...&amp;lt;/environment_details&amp;gt;&amp;quot;
+  }
+
+]
+
+role: &amp;#39;assistant&amp;#39;,
+content: &amp;#39;&amp;lt;thinking&amp;gt;\n分析任务需求：\n1. 需要创建一个3D太阳系环绕效果\n2. 当前项目是一个Next.js项目（根据next.config.ts和app目录结构判断）\n3. 需要添加3D功能，可以使用Three.js库\n4. 需要创建新的组件来展示3D效果\n\n下一步行动：\n1. 安装Three.js依赖\n2. 创建一个新的组件来展示3D太阳系\n3. 在页面中引入该组件\n&amp;lt;/thinking&amp;gt;\n\n&amp;lt;execute_command&amp;gt;\n&amp;lt;command&amp;gt;npm install three @types/three&amp;lt;/command&amp;gt;\n&amp;lt;requires_approval&amp;gt;false&amp;lt;/requires_approval&amp;gt;\n&amp;lt;/execute_command&amp;gt;&amp;#39;
+
+role: &amp;#39;user&amp;#39;,
+content: [
+  {
+    type: &amp;#39;text&amp;#39;,
+    text: &amp;#39;[execute_command for &amp;#39;npm install three @types/three&amp;#39;] Result:&amp;#39;
+  },
+  {
+    type: &amp;#39;text&amp;#39;,
+    text: &amp;#39;Command executed.\nOutput:\n⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏\nadded 9 packages and audited 385 packages in 5s\n⠏\n⠏142 packages are looking for funding\n⠏  run `npm fund` for details\n⠏\nfound 0 vulnerabilities\n⠏&amp;#39;
+  },
+{
+  type: &amp;#39;text&amp;#39;,
+  content: &amp;#39;&amp;lt;environment_details&amp;gt;\n# VSCode Visible Files\n(No visible files)\n\n# VSCode Open Tabs\n(No open tabs)\n\n# Current Time\n1/23/2025, 10:01:33 PM (Asia/Shanghai, UTC+8:00)\n\n# Current Mode\nACT MODE\n&amp;lt;/environment_details&amp;gt;&amp;#39;
+
+}]</code></pre></div>
+<p>可以看到，处理单个任务需要往复循环调用多次 LLM，直至任务结束。另外一点是，Cline 基本上就是把所有内容都一股脑塞给 LLM，一次任务的 Token 的使用量非常高。</p>
+<p>另外的一个问题就是很容易触发 LLM 的上下文窗口限制，Cline 的处理策略就是暴力截断。</p>
+<blockquote>
+<p>这估计也是其他 AI Coding 编辑器的处理方式。之前在使用 windsurf 的时候，就很好奇为什么不受 LLM 上下文窗口的限制。但是，在后面的问答中往往又重复了之前的回答。</p>
+</blockquote><div class="flex justify-center mt-10 sm:mb-12"><div class="hr dark:hr-dark w-64"></div></div></article><div class="gap-2 flex flex-wrap mt-4 justify-center"><a href="https://twitter.com/xiaokedada"><button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 w-56"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m19 4-5.93 6.93M5 20l5.93-6.93m0 0 5.795 6.587c.19.216.483.343.794.343h1.474c.836 0 1.307-.85.793-1.435L13.07 10.93m-2.14 2.14L4.214 5.435C3.7 4.85 4.17 4 5.007 4h1.474c.31 0 .604.127.794.343l5.795 6.587"></path></svg><span class="inline-block ml-2">Find me on Twitter</span></button></a><button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-56"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0m5-5.5-5 3.5m5 7.5-5-3.5m10 4.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0m0-13a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"></path></svg><span class="inline-block ml-2">Share this post</span></button></div><div class="mt-10"><iframe src="index_1.html" data-theme="light" width="100%" height="350px" title="Quail Widget" frameborder="0" allow="web-share" allowfullscreen=""></iframe></div></main></div></div></body></html>

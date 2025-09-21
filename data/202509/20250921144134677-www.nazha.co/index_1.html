@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh" data-scrapbook-source="https://quaily.com/nazha/widget.external?theme=light&amp;list_slug=nazha&amp;layout=subscribe_form&amp;lang=zh"><head>
+    
+    <meta charset="UTF-8">
+    <title>那吒</title>
+    <meta name="description" content="Follow me on X @xiaokedada">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="style.css">
+
+    
+    
+    <link media="print" rel="stylesheet" href="css2.css">
+
+    <style>
+      body {
+        font-family: "Noto Sans",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",Arial,sans-serif !important;
+      }
+      a, .tab {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-tap-highlight-color: transparent;  
+      }
+    </style>
+
+    
+    
+    
+    
+    
+
+    <meta name="robots" content="noindex">
+    
+    
+    
+    
+
+<style>
+  html,
+  body {
+    font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
+      Oxygen, Ubuntu, Cantarell, fira sans, droid sans, helvetica neue,
+      sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    height: 96px;
+    overflow: hidden;
+    background: transparent;
+  }
+  body.light {
+     
+  }
+  body.dark {
+     
+  }
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .button {
+    min-width: 80px;
+  }
+
+  .list {
+    display: none;
+  }
+  .list.show {
+    display: block;
+  }
+
+  .list.with-info {
+    margin: 0 auto;
+    padding: 16px;
+    align-items: center;
+    border-radius: 6px;
+    background-color: var(--q-bg-light);
+    box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5);
+  }
+
+  .list.with-info.show {
+    display: flex;
+  }
+
+  .list.with-info .list-avatar {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .list.with-info .list-content {
+    margin-left: 1rem;
+    flex: 1;
+    align-self: flex-start;
+  }
+  .list.with-info .list-content-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.2rem;
+    height: 32px;
+  }
+  .list.with-info .widget-list-description {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .list.with-info .widget-list-description a {
+    color: var(--vt-c-blue);
+    text-decoration: underline;
+  }
+
+  .dark .list.with-info {
+    background-color: #131722;
+    color: var(--q-c-dark);
+    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.6);
+  }
+  .dark .list.with-info .button {
+    font-weight: 500;
+    color: var(--q-c-dark);
+    border: 1px solid #6a6a6a;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .dark .list.with-info .button:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+   
+
+  .hint-divider {
+    position: relative;
+    display: block;
+  }
+  .widget-subscribe-section {
+    min-height: 320px;
+  }
+  .widget-subscribe-section .widget-form-wrapper {
+    margin: 0 auto;
+    max-width: 720px;
+    opacity: 0;
+  }
+  .widget-subscribe-section .widget-form-wrapper.show {
+    animation: fadeIn 0.5s;
+    animation-fill-mode: forwards;
+  }
+
+  .widget-subscribe-section .form {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 760px;
+    padding: 1rem;
+    z-index: 2;
+    position: relative;
+  }
+  .widget-subscribe-section .form h2 {
+    margin: 0 auto;
+    font-weight: 700;
+  }
+  .widget-subscribe-section .form .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .widget-subscribe-section .form .stat {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .widget-subscribe-section .form .form-row {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  .widget-subscribe-section .form .widget-action-wrapper {
+    display: flex; justify-content: center; margin-bottom: 1rem;
+  }
+  .widget-subscribe-section .form .widget-action-wrapper .q-text-field-with-button {
+    width: 300px;
+  }
+  .light .widget-subscribe-section {
+    color: #000;
+    background: transparent;
+  }
+  .light .widget-subscribe-section .widget-form-wrapper {
+    background: var(--q-bg-light);
+  }
+  .light .widget-subscribe-section .form {
+    background: var(--q-bg-light);;
+  }
+  .light .widget-subscribe-section .form .subtitle {
+    color: var(--vt-c-text-light-3);
+  }
+
+  .light .post-toc {
+    border-left: 1px solid var(--vt-c-divider-light-3);
+  }
+  .light .post-toc .post-toc-outline-marker {
+    background: var(--vt-c-black-soft);
+  }
+  .light .post-toc a {
+    color: var(--vt-c-text-light-3);
+  }
+  .light .post-toc a:hover {
+    color: var(--vt-c-text-light-2);
+  }
+  .light .post-toc a.active {
+    color: var(--vt-c-text-light-1);
+  }
+  .light .post-toc .post-toc-title .line {
+    background: var(--vt-c-white-mute);
+  }
+
+  .dark .q-avatar.border-solid {
+    border-color: #262b33;
+    box-shadow: 0 0 1px #423c3b,0 1px 2px #000;
+  }
+
+  .dark .widget-subscribe-section {
+    color: var(--q-c-light);
+    background: var(--q-c-dark);
+  }
+  .dark .widget-subscribe-section .widget-form-wrapper {
+    background: var(--q-c-dark);
+  }
+  .dark .widget-subscribe-section .form {
+    background: var(--q-c-dark);
+  }
+  .dark .widget-subscribe-section .form .subtitle {
+    color: var(--vt-c-text-dark-3);
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+
+
+    
+
+
+
+    
+
+
+    <style></style>
+  <link rel="shortcut icon" href="favicon-1.ico"></head>
+  <body>
+    <div id="app" data-list-id="287" data-list-slug="nazha" class="container ">
+      <div class="list-wrapper">
+        <div class="list with-info">
+          <a href="https://quaily.com/nazha" title="那吒" target="_blank">
+            <div class="list-avatar widget-list-avatar">
+              <q-avatar src="https://images.quaily.com/Aw-YMn0XXrazaWeFFzem7-FwwW_pAaPdi40qKyCj7cI/rs:fill:42:42:1:0/f:webp/dpr:2/plain/https://static.quail.ink/media/wwdwt8g5.webp" alt="那吒" variant="rounded" border-type="solid" :size="60">
+            </q-avatar></div>
+          </a>
+          <div class="list-content widget-list-content">
+            <div class="list-content-top widget-list-content-top">
+              <h1 class="list-title widget-list-title">那吒</h1>
+              <div class="list-stat widget-list-stat">
+                <a href="https://quaily.com/nazha" title="那吒" target="_blank">
+                  <q-button class="xs outlined" v-text="t('common.view')"></q-button>
+                </a>
+              </div>
+            </div>
+            <div class="widget-list-description"><p>Follow me on X @xiaokedada</p>
+</div>
+          </div>
+        </div>
+        <div class="list with-subscribe-form">
+          
+<div class="widget-subscribe-section">
+  <div class="widget-form-wrapper" :class="initiated ? 'show': '' ">
+    <div class="widget-form form">
+      
+      <template v-if="!isJustSubscribed">
+        
+        <div class="widget-action-wrapper">
+          <q-text-field-with-button v-model="emailInput" type="email" layout="horizontal" :placeholder="t('common.email')" :glow="isDark ? 'matrix':''" :action-label="subscribing ? t('common.loading') : t('common.subscribe')" :loading="subscribing" @submit="doSubscribe">
+          </q-text-field-with-button>
+        </div>
+      </template>
+
+      <template v-if="hasSubscribeError">
+        <div class="form-row hint widget-error-hint-form-row mt-2">
+          <div class="form-error" v-text="`${errorInfo.code} - ${t(errorInfo.message)}`"></div>
+        </div>
+      </template>
+
+      
+      <div class="form-row widget-turnstile-form-row" style="margin-bottom: 0;">
+        <div id="turnstile-container"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  
+
+</body></html>

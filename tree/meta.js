@@ -268,12 +268,14 @@ scrapbook.meta({
   },
   "20250914233109588": {
     "index": "202509/20250914233109588-x.com/index.html",
-    "title": "BadUncle on X: \"AI编辑器实时搜索大混战",
+    "title": "BadUncle on X: \"AI编辑器实时搜索大混战，cursor cline windsurf aider claude code大比拼",
     "type": "",
     "create": "20250914233109588",
     "modify": "20250914233109588",
     "source": "https://x.com/BadUncleX/status/1933081602277716275",
-    "icon": "twitter-pip.3.ico"
+    "icon": "twitter-pip.3.ico",
+    "parent": "20250914123600496",
+    "recycled": "20250921144738344"
   },
   "20250914233511537": {
     "title": "prompt",
@@ -1185,5 +1187,74 @@ scrapbook.meta({
     "modify": "20250921124948200",
     "source": "https://medium.com/@jaikumarsharma94130/foundations-of-large-language-models-0b79eda08d40",
     "icon": "5d8de952517e8160e40ef9841c781cdc14a5db313057fa3c3de41c6f5b494b19.png"
+  },
+  "20250921143954038": {
+    "title": "cline",
+    "type": "folder",
+    "create": "20250921143954038",
+    "modify": "20250921143954038"
+  },
+  "20250921144029078": {
+    "index": "202509/20250921144029078-cline.bot/index.html",
+    "title": "Why Cline Doesn't Index Your Codebase (And Why That's a Good Thing) - Cline Blog",
+    "type": "",
+    "create": "20250921144029078",
+    "modify": "20250921144029078",
+    "source": "https://cline.bot/blog/why-cline-doesnt-index-your-codebase-and-why-thats-a-good-thing",
+    "icon": "favicon-16x16.png"
+  },
+  "20250921144134677": {
+    "index": "202509/20250921144134677-www.nazha.co/index.html",
+    "title": "AI Coding 编辑器没有那么神秘 - How Cline works",
+    "type": "",
+    "create": "20250921144134677",
+    "modify": "20250921144134677",
+    "source": "https://www.nazha.co/posts/how-cline-works",
+    "icon": "favicon.ico"
+  },
+  "20250921144643614": {
+    "index": "202509/20250921144643614-threadreaderapp.com/index.html",
+    "title": "Thread by @BadUncleX：RAG 向量 实时搜索大混战，cursor cline windsurf aider claude code大比拼",
+    "type": "",
+    "create": "20250921144643614",
+    "modify": "20250921144643614",
+    "source": "https://threadreaderapp.com/thread/1933081602277716275.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20250921144939331": {
+    "index": "202509/20250921144939331-threadreaderapp.com/index.html",
+    "title": "Thread by @cline: how you can use Memory Bank ",
+    "type": "",
+    "create": "20250921144939331",
+    "modify": "20250921144939331",
+    "source": "https://threadreaderapp.com/thread/1899432119790964947.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20250921145246027": {
+    "index": "20250921145246027/index.html",
+    "title": "Ashpreet Bedi@ashpreetbediGrifters like this are wasting your time and their Dunning-Kruger opinions should be ignored by serious builders. You eit...",
+    "type": "note",
+    "create": "20250921145246027",
+    "modify": "20250921145246027",
+    "parent": "20250916144751473",
+    "recycled": "20250921145359398"
+  },
+  "20250921145300631": {
+    "index": "202509/20250921145300631-x.com/index.html",
+    "title": "Ashpreet Bedi on X: \"Grifters like this are wasting your time and their Dunning-Kruger opinions should be ignored by serious builders. You either build on a framework or live long enough to roll your own (which is fine btw). Here’s why: 1. The \"LLM API in a while loop\" is your underlying agentic https://t.co/s22H4iaOqG\" / X",
+    "type": "",
+    "create": "20250921145300631",
+    "modify": "20250921145300631",
+    "source": "https://x.com/ashpreetbedi/status/1964362446627299598",
+    "icon": "twitter.3.ico"
+  },
+  "20250921145356229": {
+    "index": "",
+    "title": "agno-agi/agno: High-performance runtime for multi-agent systems. Build, run and manage secure multi-agent systems in your cloud.",
+    "type": "bookmark",
+    "create": "20250921145356229",
+    "modify": "20250921145356229",
+    "source": "https://github.com/agno-agi/agno",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
   }
 })
