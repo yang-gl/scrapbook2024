@@ -450,7 +450,7 @@ scrapbook.meta({
   },
   "20250915145502389": {
     "index": "",
-    "title": "吴恩达大佬又出新课了！《构建和评估高级的RAG模型应用》双语字幕，6讲全！收藏起来慢慢学习！-LLM、大模型、应用程序、rag、吴恩达、人工智能、检索增强生成_哔哩哔哩_bilibili",
+    "title": "吴恩达大佬又出新课了！《构建和评估高级的RAG模型应用》双语字幕，6讲全！bilibili",
     "type": "bookmark",
     "create": "20250915145502389",
     "modify": "20250915145502389",
@@ -459,7 +459,7 @@ scrapbook.meta({
   },
   "20250915145656829": {
     "index": "202509/20250915145656829-x.com/index.html",
-    "title": "Lance Martin on X: \"RAG From Scratch Here's a set of short (5-10 min videos) and notebooks explaining &gt; a dozen of my favorite RAG papers. Took a stab at implementing each idea myself (all code open source) and grouped according to the diagram. Repo: https://t.co/n2G5nT83vg Video playlist: https://t.co/iknVUPGuh2\" / X",
+    "title": "Lance Martin on X: \"RAG From Scratch Here's a set of short (5-10 min videos) \" / X",
     "type": "",
     "create": "20250915145656829",
     "modify": "20250915145656829",
@@ -487,7 +487,7 @@ scrapbook.meta({
   },
   "20250915150042495": {
     "index": "202509/20250915150042495-x.com/index.html",
-    "title": "Victoria Slocum on X: \"Think all embeddings work the same way? Think again. Here are 𝘀𝗶𝘅 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝘁𝘆𝗽𝗲𝘀 of embeddings you can use, each with their own strengths and trade-offs: 𝗦𝗽𝗮𝗿𝘀𝗲 𝗘𝗺𝗯𝗲𝗱𝗱𝗶𝗻𝗴𝘀 Think keyword-based representations where most values are zero. Great https://t.co/bU8smM5WqA\" / X",
+    "title": "Victoria Slocum on X: \"Think all embeddings work the same way? Think again. Here are 𝘀𝗶𝘅 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝘁𝘆𝗽𝗲𝘀...\" / X",
     "type": "",
     "create": "20250915150042495",
     "modify": "20250915150042495",
@@ -1256,5 +1256,125 @@ scrapbook.meta({
     "modify": "20250921145356229",
     "source": "https://github.com/agno-agi/agno",
     "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250922234412990": {
+    "title": "量化",
+    "type": "folder",
+    "create": "20250922234412990",
+    "modify": "20250922234412990"
+  },
+  "20250922234534090": {
+    "index": "202509/20250922234534090-x.com/index.html",
+    "title": "GitHubDaily on X: \"在 GitHub 上看到一份学习 RAG（检索增强生成）比较好的教程：arxiv-paper-curator https://t.co/UAlWu5Om0m\" / X",
+    "type": "",
+    "create": "20250922234534090",
+    "modify": "20250922234534090",
+    "source": "https://x.com/GitHub_Daily/status/1969920181171552527",
+    "icon": "twitter.3.ico"
+  },
+  "20250923132659667": {
+    "index": "",
+    "title": "HKUDS/RAG-Anything: \"RAG-Anything: All-in-One RAG Framework\"",
+    "type": "bookmark",
+    "create": "20250923132659667",
+    "modify": "20250923132659667",
+    "source": "https://github.com/HKUDS/RAG-Anything",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250923133345340": {
+    "index": "202509/20250923133345340-www.jamesflare.com/index.html",
+    "title": "为 Llama.cpp 选择理想的量化类型 - FlareBlog",
+    "type": "",
+    "create": "20250923133345340",
+    "modify": "20250923133345340",
+    "source": "https://www.jamesflare.com/zh-cn/quantization-type-llama-cpp/",
+    "icon": "favicon.ico"
+  },
+  "20250923134135771": {
+    "index": "202509/20250923134135771-github.com/index.html",
+    "title": "什么是大语言模型量化? 每个量化精度都代表什么? one-small-step/20250129-what-is-quantization-in-LLM/what-is-quantization-in-LLM.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250923134135771",
+    "modify": "20250923134135771",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250129-what-is-quantization-in-LLM/what-is-quantization-in-LLM.md",
+    "icon": "favicon.png"
+  },
+  "20250923134313117": {
+    "index": "202509/20250923134313117-github.com/index.html",
+    "title": "什么是 LLM 微调技术? one-small-step/20250208-what-is-LLM-fine-tuning/what-is-LLM-fine-tuning.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250923134313117",
+    "modify": "20250923134313117",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250208-what-is-LLM-fine-tuning/what-is-LLM-fine-tuning.md",
+    "icon": "favicon.png"
+  },
+  "20250923134433666": {
+    "index": "202509/20250923134433666-github.com/index.html",
+    "title": "大模型微调最佳实践指南 one-small-step/20250210-LLM-fine-tuning-summary/LLM-fine-tuning-summary.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250923134433666",
+    "modify": "20250923134433666",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250210-LLM-fine-tuning-summary/LLM-fine-tuning-summary.md",
+    "icon": "favicon.png"
+  },
+  "20250923134530309": {
+    "index": "202509/20250923134530309-github.com/index.html",
+    "title": "什么是向量嵌入 one-small-step/20250307-what-is-vector-embedding/what-is-vector-embedding.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250923134530309",
+    "modify": "20250923134530309",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250307-what-is-vector-embedding/what-is-vector-embedding.md",
+    "icon": "favicon.png"
+  },
+  "20250923134606429": {
+    "title": "embeddings",
+    "type": "folder",
+    "create": "20250923134606429",
+    "modify": "20250923134606429"
+  },
+  "20250923134659246": {
+    "index": "202509/20250923134659246-github.com/index.html",
+    "title": "什么时候应该微调, 什么时候不应该微调? one-small-step/20250530-When-to-Use-Fine-Tuning-and-When-Not-To/When-to-Use-Fine-Tuning-and-When-Not-To.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250923134659246",
+    "modify": "20250923134659246",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250530-When-to-Use-Fine-Tuning-and-When-Not-To/When-to-Use-Fine-Tuning-and-When-Not-To.md",
+    "icon": "favicon.png"
+  },
+  "20250923134958714": {
+    "index": "202509/20250923134958714-threadreaderapp.com/index.html",
+    "title": "Thread by @9hills: 有同学问我，一直都在用别人量化好的模型，如何量化自己的模型？",
+    "type": "",
+    "create": "20250923134958714",
+    "modify": "20250923134958714",
+    "source": "https://threadreaderapp.com/thread/1970165707708186880.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20250923135154451": {
+    "index": "202509/20250923135154451-threadreaderapp.com/index.html",
+    "title": "Thread by @Sumanth_077: Hands-On Guide to Building AI Agents!",
+    "type": "",
+    "create": "20250923135154451",
+    "modify": "20250923135154451",
+    "source": "https://threadreaderapp.com/thread/1964688697091359034.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20250923135344142": {
+    "index": "202509/20250923135344142-threadreaderapp.com/index.html",
+    "title": "Thread by @alex_prompter: prompt techniques leaked from OpenAI & Anthropic engineers",
+    "type": "",
+    "create": "20250923135344142",
+    "modify": "20250923135344142",
+    "source": "https://threadreaderapp.com/thread/1967201114820161814.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20250923135455701": {
+    "index": "202509/20250923135455701-www.philschmid.de/index.html",
+    "title": "Zero to One: Learning Agentic Patterns",
+    "type": "",
+    "create": "20250923135455701",
+    "modify": "20250923135455701",
+    "source": "https://www.philschmid.de/agentic-pattern",
+    "icon": "favicon.ico"
   }
 })

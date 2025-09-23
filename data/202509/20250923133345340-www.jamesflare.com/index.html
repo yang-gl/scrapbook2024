@@ -1,0 +1,297 @@
+<!DOCTYPE html><html itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN" data-eusoft-scrollable-element="1" data-scrapbook-source="https://www.jamesflare.com/zh-cn/quantization-type-llama-cpp/" data-scrapbook-create="20250923133345340"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp">
+    <title>为 Llama.cpp 选择理想的量化类型 - FlareBlog</title><meta name="author" content="James">
+<meta name="description" content="这篇博客文章比较了 llama.cpp 中不同的量化类型，分析了它们对模型大小和困惑度的影响。文章提供了基于质量和性能平衡来选择最佳量化类型的建议。"><meta name="keywords" content="llama.cpp, 量化, 对比, perplexity">
+  <meta itemprop="name" content="为 llama.cpp 选择理想的量化类型">
+  <meta itemprop="description" content="这篇博客文章比较了 llama.cpp 中不同的量化类型，分析了它们对模型大小和困惑度的影响。文章提供了基于质量和性能平衡来选择最佳量化类型的建议。">
+  <meta itemprop="datePublished" content="2024-03-15T19:43:54-04:00">
+  <meta itemprop="dateModified" content="2024-03-15T19:43:54-04:00">
+  <meta itemprop="wordCount" content="1195">
+  <meta itemprop="keywords" content="llama.cpp,量化,对比,perplexity"><meta property="og:url" content="https://www.jamesflare.com/zh-cn/quantization-type-llama-cpp/">
+  <meta property="og:site_name" content="FlareBlog">
+  <meta property="og:title" content="为 llama.cpp 选择理想的量化类型">
+  <meta property="og:description" content="这篇博客文章比较了 llama.cpp 中不同的量化类型，分析了它们对模型大小和困惑度的影响。文章提供了基于质量和性能平衡来选择最佳量化类型的建议。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-03-15T19:43:54-04:00">
+    <meta property="article:modified_time" content="2024-03-15T19:43:54-04:00">
+    <meta property="article:tag" content="大语言模型">
+    <meta property="article:tag" content="Llama.cpp">
+    <meta property="article:tag" content="量化">
+    <meta property="article:tag" content="Ollama">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="为 llama.cpp 选择理想的量化类型">
+  <meta name="twitter:description" content="这篇博客文章比较了 llama.cpp 中不同的量化类型，分析了它们对模型大小和困惑度的影响。文章提供了基于质量和性能平衡来选择最佳量化类型的建议。">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="https://www.jamesflare.com/apple-touch-icon.png"><link rel="mask-icon" href="https://www.jamesflare.com/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://www.jamesflare.com/zh-cn/quantization-type-llama-cpp/" title="为 llama.cpp 选择理想的量化类型 - FlareBlog"><link rel="prev" type="text/html" href="https://www.jamesflare.com/zh-cn/csci-1100-exam-2-overview/" title="CSCI 1100 - 测试 2 概览与练习题"><link rel="next" type="text/html" href="https://www.jamesflare.com/zh-cn/csci-1100-exam-3-overview/" title="CSCI 1100 - 测试 3 概览与练习题"><link rel="alternate" type="text/markdown" href="https://www.jamesflare.com/zh-cn/quantization-type-llama-cpp/index.md" title="为 llama.cpp 选择理想的量化类型 - FlareBlog"><link rel="stylesheet" href="config.min.css"><link rel="stylesheet" href="style.min.css"><link rel="stylesheet" href="all.min.css" as="style">
+    <noscript><link rel="stylesheet" href="all.min.css"></noscript><link rel="stylesheet" href="animate.min.css" as="style">
+    <noscript><link rel="stylesheet" href="animate.min.css"></noscript><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style></head><body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="wide"><main class="fi-container"><article class="page single"><!--scrapbook-capture-selected--><div class="header"><h1 class="single-title animate__animated animate__flipInX"><span data-eusoft-scrollable-element="1">为 llama.cpp 选择理想的量化类型</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://www.jamesflare.com/" title="作者" target="_blank" rel="external nofollow noopener noreferrer author" class="author" data-eusoft-scrollable-element="1"><img loading="lazy" src="site-logo.avif" alt="James" width="16" height="16" class="avatar" title="James" data-lazyloaded="">&nbsp;James</a></span><span class="post-included-in">&nbsp;收录于 <a href="https://www.jamesflare.com/zh-cn/categories/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" class="post-category" title="分类 - 大语言模型" data-eusoft-scrollable-element="1"><i class="fa-regular fa-folder fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i> 大语言模型</a> 和 <a href="https://www.jamesflare.com/zh-cn/collections/llm/" class="post-collection" title="合集 - LLM" data-eusoft-scrollable-element="1"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i> LLM</a></span></div><div class="post-meta-line"><span title="发布于 2024-03-15 19:43:54"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true" data-eusoft-scrollable-element="1"></i><time datetime="2024-03-15" data-eusoft-scrollable-element="1">2024-03-15</time></span>&nbsp;<span title="1195 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true" data-eusoft-scrollable-element="1"></i>约 1200 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true" data-eusoft-scrollable-element="1"></i>预计阅读 3 分钟</span>&nbsp;
+      </div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"></div>
+      </div><div class="content" id="content"><div class="expiration-reminder details admonition warning open">
+      <div class="details-summary admonition-title">
+        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i>
+      </div>
+      <div class="details-content">
+        <div class="admonition-content">本文最后更新于 2024-03-15，文中内容可能已过时。</div>
+      </div>
+    </div><p>当我们部署 llama.cpp 或 Ollama 实例时，我们更倾向于运行量化模型以节省内存并加速推理。</p>
+<p>但是，量化模型的质量并不总是很好。我们需要选择合适的量化类型来平衡质量和性能。</p>
+<h2 class="heading-element" id="llamacpp-中的量化类型"><span>llama.cpp 中的量化类型</span>
+  <a href="#llamacpp-%e4%b8%ad%e7%9a%84%e9%87%8f%e5%8c%96%e7%b1%bb%e5%9e%8b" class="heading-mark">
+    </a></h2><!--scrapbook-capture-selected--><p>llama.cpp 中有许多量化类型。当你尝试量化模型时，可以看到以下打印信息。</p>
+<div class="highlight"><div class="chroma" data-init="true"><div class="code-header language-text"><span class="code-title"><i class="arrow fa-solid fa-chevron-right fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i></span><span class="ellipses"><i class="fa-solid fa-ellipsis-h fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i></span><span class="copy" title="复制到剪贴板"><i class="fa-regular fa-copy fa-fw" aria-hidden="true"></i></span></div>
+<div class="table-wrapper" data-eusoft-scrollable-element="1"><table class="lntable"><tbody><tr><td class="lntd">
+</td><td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text" data-eusoft-scrollable-element="1"><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">Allowed quantization types:
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">   2  or  Q4_0    :  3.56G, +0.2166 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">   3  or  Q4_1    :  3.90G, +0.1585 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">   8  or  Q5_0    :  4.33G, +0.0683 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">   9  or  Q5_1    :  4.70G, +0.0349 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  19  or  IQ2_XXS :  2.06 bpw quantization
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  20  or  IQ2_XS  :  2.31 bpw quantization
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  24  or  IQ1_S   :  1.56 bpw quantization
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  10  or  Q2_K    :  2.63G, +0.6717 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  21  or  Q2_K_S  :  2.16G, +9.0634 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  23  or  IQ3_XXS :  3.06 bpw quantization
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  26  or  IQ3_S   :  3.44 bpw quantization
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  27  or  IQ3_M   :  3.66 bpw quantization mix
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  12  or  Q3_K    : alias for Q3_K_M
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  22  or  Q3_K_XS : 3-bit extra small quantization
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  11  or  Q3_K_S  :  2.75G, +0.5551 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  12  or  Q3_K_M  :  3.07G, +0.2496 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  13  or  Q3_K_L  :  3.35G, +0.1764 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  25  or  IQ4_NL  :  4.25 bpw non-linear quantization
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  15  or  Q4_K    : alias for Q4_K_M
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  14  or  Q4_K_S  :  3.59G, +0.0992 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  15  or  Q4_K_M  :  3.80G, +0.0532 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  17  or  Q5_K    : alias for Q5_K_M
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  16  or  Q5_K_S  :  4.33G, +0.0400 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  17  or  Q5_K_M  :  4.45G, +0.0122 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">  18  or  Q6_K    :  5.15G, +0.0008 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">   7  or  Q8_0    :  6.70G, +0.0004 ppl @ LLaMA-v1-7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">   1  or  F16     : 13.00G              @ 7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">   0  or  F32     : 26.00G              @ 7B
+</span></span><span class="line" data-eusoft-scrollable-element="1"><span class="cl" data-eusoft-scrollable-element="1">          COPY    : only copy tensors, no quantizing</span></span></code></pre></td></tr></tbody></table></div>
+</div>
+</div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><h2 class="heading-element" id="量化类型比较"><span>量化类型比较</span>
+  <a href="#%e9%87%8f%e5%8c%96%e7%b1%bb%e5%9e%8b%e6%af%94%e8%be%83" class="heading-mark">
+    </a></h2><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p>为了帮助我们比较量化类型，我制作了一个表格来显示每种量化类型的大小和 ppl（困惑度）变化。ppl 变化越小意味着质量越好。困惑度通常衡量模型预测结果的置信度。困惑度越低，模型越好。</p>
+<div class="table-wrapper"><table>
+  <thead data-eusoft-scrollable-element="1">
+      <tr data-eusoft-scrollable-element="1">
+          <th style="text-align: center">Q Type</th>
+          <th style="text-align: center">Size</th>
+          <th style="text-align: center">ppl Change</th>
+          <th style="text-align: center">Note</th>
+      </tr>
+  </thead>
+  <tbody data-eusoft-scrollable-element="1">
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q2_K_S</td>
+          <td style="text-align: center">2.16G</td>
+          <td style="text-align: center">+9.0634</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q2_K</td>
+          <td style="text-align: center">2.63G</td>
+          <td style="text-align: center">+0.6717</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q3_K_S</td>
+          <td style="text-align: center">2.75G</td>
+          <td style="text-align: center">+0.5551</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q3_K</td>
+          <td style="text-align: center">-</td>
+          <td style="text-align: center">-</td>
+          <td style="text-align: center">alias for Q3_K_M</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q3_K_M</td>
+          <td style="text-align: center">3.07G</td>
+          <td style="text-align: center">+0.2496</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q3_K_L</td>
+          <td style="text-align: center">3.35G</td>
+          <td style="text-align: center">+0.1764</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q4_0</td>
+          <td style="text-align: center">3.56G</td>
+          <td style="text-align: center">+0.2166</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q4_K_S</td>
+          <td style="text-align: center">3.59G</td>
+          <td style="text-align: center">+0.0992</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q4_K</td>
+          <td style="text-align: center">-</td>
+          <td style="text-align: center">-</td>
+          <td style="text-align: center">alias for Q4_K_M</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q4_K_M</td>
+          <td style="text-align: center">3.80G</td>
+          <td style="text-align: center">+0.0532</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q4_1</td>
+          <td style="text-align: center">3.90G</td>
+          <td style="text-align: center">+0.1585</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q5_0</td>
+          <td style="text-align: center">4.33G</td>
+          <td style="text-align: center">+0.0683</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q5_K_S</td>
+          <td style="text-align: center">4.33G</td>
+          <td style="text-align: center">+0.0400</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q5_1</td>
+          <td style="text-align: center">4.70G</td>
+          <td style="text-align: center">+0.0349</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q5_K</td>
+          <td style="text-align: center">-</td>
+          <td style="text-align: center">-</td>
+          <td style="text-align: center">alias for Q5_K_M</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q5_K_M</td>
+          <td style="text-align: center">4.45G</td>
+          <td style="text-align: center">+0.0122</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q6_K</td>
+          <td style="text-align: center">5.15G</td>
+          <td style="text-align: center">+0.0008</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+      <tr data-eusoft-scrollable-element="1">
+          <td style="text-align: center">Q8_0</td>
+          <td style="text-align: center">6.70G</td>
+          <td style="text-align: center">+0.0004</td>
+          <td style="text-align: center">@ LLaMA-v1-7B</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>为了帮助我们理解大小和 ppl 变化之间的关系，我制作了一个象限图来显示这种关系。</p>
+<div class="diagram-container">
+  <pre class="mermaid" data-processed="true"><svg id="mermaid-1758634397090" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width: 500px;" viewBox="0 0 500 500" role="graphics-document document" aria-roledescription="quadrantChart"><style>#mermaid-1758634397090{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-1758634397090 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-1758634397090 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-1758634397090 .error-icon{fill:#552222;}#mermaid-1758634397090 .error-text{fill:#552222;stroke:#552222;}#mermaid-1758634397090 .edge-thickness-normal{stroke-width:1px;}#mermaid-1758634397090 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1758634397090 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1758634397090 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-1758634397090 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1758634397090 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1758634397090 .marker{fill:#333333;stroke:#333333;}#mermaid-1758634397090 .marker.cross{stroke:#333333;}#mermaid-1758634397090 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-1758634397090 p{margin:0;}</style><g></g><g class="main"><g class="quadrants"><!--scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#131300" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(379, 50) rotate(0)">最差模型</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#0e0e00" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 50) rotate(0)">有潜力</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#090900" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 262) rotate(0)">最佳模型</text></g><!--/scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#040400" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(379, 262) rotate(0)">低优先级</text></g></g><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><g class="data-points"><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(471.8, 452.79999999999995) rotate(0)">Q8_0</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(355.8, 440.08000000000004) rotate(0)">Q6_K</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(239.8, 389.20000000000005) rotate(0)">Q5_K_M</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(263, 346.79999999999995) rotate(0)">Q5_1</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(216.6, 325.6) rotate(0)">Q5_K_S</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(216.6, 283.20000000000005) rotate(0)">Q5_0</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(170.2, 177.20000000000002) rotate(0)">Q4_1</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 304.4) rotate(0)">Q4_K_M</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(123.8, 240.79999999999998) rotate(0)">Q4_K_S</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(100.6, 113.60000000000001) rotate(0)">Q4_0</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(77.4, 134.79999999999998) rotate(0)">Q3_K_L</text></g><!--/scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#131300" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(54.2, 71.20000000000002) rotate(0)">Q3_K_M</text></g></g><g class="labels"><g class="label"><text x="0" y="0" fill="#131300" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 479) rotate(0)">体积小</text></g><g class="label"><text x="0" y="0" fill="#131300" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(379, 479) rotate(0)">体积大</text></g><g class="label"><text x="0" y="0" fill="#131300" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(5, 363) rotate(-90)">困惑度小</text></g><g class="label"><text x="0" y="0" fill="#131300" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(5, 151) rotate(-90)">困惑度大</text></g></g><g class="title"><text x="0" y="0" fill="#131300" font-size="20" dominant-baseline="hanging" text-anchor="middle" transform="translate(250, 10) rotate(0)">大小与困惑度变化对比</text></g></g></svg></pre><!--scrapbook-capture-selected-->
+  <pre class="mermaid-dark" data-processed="true" data-eusoft-scrollable-element="1"><svg id="mermaid-1758634397402" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width: 500px;" viewBox="0 0 500 500" role="graphics-document document" aria-roledescription="quadrantChart"><style>#mermaid-1758634397402{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#ccc;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-1758634397402 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-1758634397402 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-1758634397402 .error-icon{fill:#a44141;}#mermaid-1758634397402 .error-text{fill:#ddd;stroke:#ddd;}#mermaid-1758634397402 .edge-thickness-normal{stroke-width:1px;}#mermaid-1758634397402 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1758634397402 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1758634397402 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-1758634397402 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1758634397402 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1758634397402 .marker{fill:lightgrey;stroke:lightgrey;}#mermaid-1758634397402 .marker.cross{stroke:lightgrey;}#mermaid-1758634397402 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-1758634397402 p{margin:0;}</style><g></g><g class="main"><g class="quadrants"><!--scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#e0dfdf" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(379, 50) rotate(0)">最差模型</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#dbdada" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 50) rotate(0)">有潜力</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#d6d5d5" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 262) rotate(0)">最佳模型</text></g><!--/scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#d1d0d0" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(379, 262) rotate(0)">低优先级</text></g></g><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><g class="data-points"><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(471.8, 452.79999999999995) rotate(0)">Q8_0</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(355.8, 440.08000000000004) rotate(0)">Q6_K</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(239.8, 389.20000000000005) rotate(0)">Q5_K_M</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(263, 346.79999999999995) rotate(0)">Q5_1</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(216.6, 325.6) rotate(0)">Q5_K_S</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(216.6, 283.20000000000005) rotate(0)">Q5_0</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(170.2, 177.20000000000002) rotate(0)">Q4_1</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 304.4) rotate(0)">Q4_K_M</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(123.8, 240.79999999999998) rotate(0)">Q4_K_S</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(100.6, 113.60000000000001) rotate(0)">Q4_0</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(77.4, 134.79999999999998) rotate(0)">Q3_K_L</text></g><!--/scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#e0dfdf" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(54.2, 71.20000000000002) rotate(0)">Q3_K_M</text></g></g><g class="labels"><g class="label"><text x="0" y="0" fill="#e0dfdf" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 479) rotate(0)">体积小</text></g><g class="label"><text x="0" y="0" fill="#e0dfdf" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(379, 479) rotate(0)">体积大</text></g><g class="label"><text x="0" y="0" fill="#e0dfdf" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(5, 363) rotate(-90)">困惑度小</text></g><g class="label"><text x="0" y="0" fill="#e0dfdf" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(5, 151) rotate(-90)">困惑度大</text></g></g><g class="title"><text x="0" y="0" fill="#e0dfdf" font-size="20" dominant-baseline="hanging" text-anchor="middle" transform="translate(250, 10) rotate(0)">大小与困惑度变化对比</text></g></g></svg></pre><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected-->
+  <pre class="mermaid-neutral" data-processed="true" data-eusoft-scrollable-element="1"><svg id="mermaid-1758634397415" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="max-width: 500px;" viewBox="0 0 500 500" role="graphics-document document" aria-roledescription="quadrantChart"><style>#mermaid-1758634397415{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-1758634397415 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-1758634397415 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-1758634397415 .error-icon{fill:#552222;}#mermaid-1758634397415 .error-text{fill:#552222;stroke:#552222;}#mermaid-1758634397415 .edge-thickness-normal{stroke-width:1px;}#mermaid-1758634397415 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1758634397415 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1758634397415 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-1758634397415 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1758634397415 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1758634397415 .marker{fill:#666;stroke:#666;}#mermaid-1758634397415 .marker.cross{stroke:#666;}#mermaid-1758634397415 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-1758634397415 p{margin:0;}</style><g></g><g class="main"><g class="quadrants"><!--scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#111111" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(379, 50) rotate(0)">最差模型</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#0c0c0c" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 50) rotate(0)">有潜力</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#070707" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 262) rotate(0)">最佳模型</text></g><!--/scrapbook-capture-selected--><g class="quadrant"><text x="0" y="0" fill="#020202" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(379, 262) rotate(0)">低优先级</text></g></g><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><g class="data-points"><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(471.8, 452.79999999999995) rotate(0)">Q8_0</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(355.8, 440.08000000000004) rotate(0)">Q6_K</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(239.8, 389.20000000000005) rotate(0)">Q5_K_M</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(263, 346.79999999999995) rotate(0)">Q5_1</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(216.6, 325.6) rotate(0)">Q5_K_S</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(216.6, 283.20000000000005) rotate(0)">Q5_0</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(170.2, 177.20000000000002) rotate(0)">Q4_1</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 304.4) rotate(0)">Q4_K_M</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(123.8, 240.79999999999998) rotate(0)">Q4_K_S</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(100.6, 113.60000000000001) rotate(0)">Q4_0</text></g><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(77.4, 134.79999999999998) rotate(0)">Q3_K_L</text></g><!--/scrapbook-capture-selected--><g class="data-point"><text x="0" y="0" fill="#111111" font-size="12" dominant-baseline="hanging" text-anchor="middle" transform="translate(54.2, 71.20000000000002) rotate(0)">Q3_K_M</text></g></g><g class="labels"><g class="label"><text x="0" y="0" fill="#111111" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(147, 479) rotate(0)">体积小</text></g><g class="label"><text x="0" y="0" fill="#111111" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(379, 479) rotate(0)">体积大</text></g><g class="label"><text x="0" y="0" fill="#111111" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(5, 363) rotate(-90)">困惑度小</text></g><g class="label"><text x="0" y="0" fill="#111111" font-size="16" dominant-baseline="hanging" text-anchor="middle" transform="translate(5, 151) rotate(-90)">困惑度大</text></g></g><g class="title"><text x="0" y="0" fill="#111111" font-size="20" dominant-baseline="hanging" text-anchor="middle" transform="translate(250, 10) rotate(0)">大小与困惑度变化对比</text></g></g></svg></pre><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected-->
+<template></template>
+</div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><h2 class="heading-element" id="总结"><span>总结</span>
+  <a href="#%e6%80%bb%e7%bb%93" class="heading-mark">
+    </a></h2><!--/scrapbook-capture-selected--><p>从表格和散点图中，我们可以看出 Q8_0 质量最好，但大小也最大。Q2_K_S 质量最差，但大小最小。Q4_K_M 在质量和大小之间取得了最佳平衡。但我推荐 Q5_K_M，它具有良好的质量和合理的大小。</p>
+<p>对于小模型，如 7B、14B，我推荐 Q6_K，即使它比 Q5_K_M 大，但 ppl 变化非常小。对于像 RTX 4090 这样的 GPU，24GB 显存绰绰有余。但对于 GPU，其他量化类型如 exl2 可能是更好的选择。</p></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod"><span title="更新于 2024-03-15 19:43:54" data-eusoft-scrollable-element="1">更新于 2024-03-15&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span data-eusoft-scrollable-element="1"><a href="https://www.jamesflare.com/zh-cn/quantization-type-llama-cpp/index.md" title="阅读原始文档" class="link-to-markdown" data-eusoft-scrollable-element="1">阅读原始文档</a></span></div>
+        <div class="post-info-share">
+          <span data-eusoft-scrollable-element="1"><a href="javascript:" title="分享到 X" data-sharer="twitter" data-url="https://www.jamesflare.com/zh-cn/quantization-type-llama-cpp/" data-title="为 Llama.cpp 选择理想的量化类型" data-hashtags="大语言模型,llama.cpp,量化,Ollama" data-eusoft-scrollable-element="1"><i class="fa-brands fa-x-twitter fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i></a>
+  <a href="javascript:" title="分享到 Facebook" data-sharer="facebook" data-url="https://www.jamesflare.com/zh-cn/quantization-type-llama-cpp/" data-hashtag="大语言模型" data-eusoft-scrollable-element="1"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i></a>
+  <a href="javascript:" title="分享到 微博" data-sharer="weibo" data-url="https://www.jamesflare.com/zh-cn/quantization-type-llama-cpp/" data-title="为 Llama.cpp 选择理想的量化类型" data-eusoft-scrollable-element="1"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true" data-eusoft-scrollable-element="1"></i><a href="https://www.jamesflare.com/zh-cn/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" class="post-tag" title="标签 - 大语言模型" data-eusoft-scrollable-element="1">大语言模型</a><pangu data-eusoft-scrollable-element="1"> </pangu><a href="https://www.jamesflare.com/zh-cn/tags/llama.cpp/" class="post-tag" title="标签 - Llama.cpp" data-eusoft-scrollable-element="1">Llama.cpp</a><pangu data-eusoft-scrollable-element="1"> </pangu><a href="https://www.jamesflare.com/zh-cn/tags/%E9%87%8F%E5%8C%96/" class="post-tag" title="标签 - 量化" data-eusoft-scrollable-element="1">量化</a><pangu data-eusoft-scrollable-element="1"> </pangu><a href="https://www.jamesflare.com/zh-cn/tags/ollama/" class="post-tag" title="标签 - Ollama" data-eusoft-scrollable-element="1">Ollama</a></section>
+    <section><span data-eusoft-scrollable-element="1"><a href="javascript:" data-eusoft-scrollable-element="1">返回</a></span>&nbsp;|&nbsp;<span data-eusoft-scrollable-element="1"><a href="https://www.jamesflare.com/zh-cn/" data-eusoft-scrollable-element="1">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="https://www.jamesflare.com/zh-cn/csci-1100-exam-2-overview/" class="post-nav-item" rel="prev" title="CSCI 1100 - 测试 2 概览与练习题"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i>CSCI 1100 - 测试 2 概览与练习题</a><pangu> </pangu><a href="https://www.jamesflare.com/zh-cn/csci-1100-exam-3-overview/" class="post-nav-item" rel="next" title="CSCI 1100 - 测试 3 概览与练习题">CSCI 1100 - 测试 3 概览与练习题<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true" data-eusoft-scrollable-element="1"></i></a></div>
+</div>
+<div id="comments"><div id="artalk" class="comment artalk"><div class="atk-main-editor">
+  <div class="atk-header">
+    <input name="name" class="atk-name" type="text" required="required" placeholder="昵称" value="">
+    <input name="email" class="atk-email" type="email" required="required" placeholder="邮箱" value="">
+    <input name="link" class="atk-link" type="url" placeholder="网址" value="">
+  </div>
+  <div class="atk-textarea-wrap">
+    <textarea class="atk-textarea" placeholder="键入内容..."></textarea>
+  </div>
+  <div class="atk-plug-panel-wrap" style="display: none"><div class="atk-editor-plug-emoticons" style="display: none;"><div class="atk-loading" style="display: none;">
+      <div class="atk-loading-spinner" style="">
+        <svg viewBox="25 25 50 50"><circle cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle></svg>
+      </div>
+    </div></div><div class="atk-editor-plug-preview" style="display: none;"></div></div>
+  <div class="atk-bottom">
+    <div class="atk-item atk-bottom-left">
+      <span class="atk-state-wrap"></span>
+      </div><div class="atk-item"><!--scrapbook-capture-selected-->
+      <!--/scrapbook-capture-selected--></div></div>
+</div><div class="atk-list">
+  <div class="atk-list-header">
+    <div class="atk-comment-count atk-dropdown-wrap">
+      <div class="atk-text"><span class="atk-comment-count-num">0</span> 条评论</div>
+    <span class="atk-arrow-down-icon"></span><ul class="atk-dropdown atk-fade-in"><li class="atk-dropdown-item active"><span>最新</span></li><li class="atk-dropdown-item"><span>最热</span></li><li class="atk-dropdown-item"><span>最早</span></li><li class="atk-dropdown-item"><span>作者</span></li></ul></div>
+    <div class="atk-right-action">
+      <span data-action="admin-close-comment" class="atk-hide" atk-only-admin-show="">关闭评论</span>
+      <span data-action="open-sidebar" class="atk-hide atk-on">
+        <span class="atk-unread-badge" style="display: none"></span>
+        <div class="atk-text"></div>
+      </span>
+    </div>
+  </div>
+  <div class="atk-list-body">
+    <div class="atk-list-comments-wrap"><div class="atk-list-no-comment">「此时无声胜有声」</div></div><div class="atk-list-read-more" style="display: none;">
+      <div class="atk-list-read-more-inner">
+        <div class="atk-loading-icon" style="display: none;"></div>
+        <span class="atk-text" style="">加载更多</span>
+      </div>
+    </div>
+  </div>
+  <div class="atk-list-footer">
+    <div class="atk-copyright">Powered By <a href="https://artalk.js.org/" target="_blank" title="Artalk v2.9.1">Artalk</a></div>
+  </div>
+<div class="atk-loading" style="display: none;">
+      <div class="atk-loading-spinner" style="">
+        <svg viewBox="25 25 50 50"><circle cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle></svg>
+      </div>
+    </div></div></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://github.com/ArtalkJS/Artalk" rel="external nofollow noopener noreferrer">Artalk</a>.
+      </noscript></div><!--/scrapbook-capture-selected--></article><!--scrapbook-capture-selected-->
+
+  <!--/scrapbook-capture-selected--><aside class="toc animate__animated animate__fadeIn animate__faster" id="toc-auto" aria-label="目录" style="visibility: visible; margin-top: 109px; margin-bottom: 689px;"><div class="toc-content" id="toc-content-auto"><!--scrapbook-capture-selected--><nav id="TableOfContents">
+  <ul>
+    <li class="has-active"><a href="#llamacpp-%E4%B8%AD%E7%9A%84%E9%87%8F%E5%8C%96%E7%B1%BB%E5%9E%8B" class="active" data-eusoft-scrollable-element="1">llama.cpp 中的量化类型</a></li>
+    <li class=""><a href="#%E9%87%8F%E5%8C%96%E7%B1%BB%E5%9E%8B%E6%AF%94%E8%BE%83" data-eusoft-scrollable-element="1" class="">量化类型比较</a></li>
+    <li class=""><a href="#%E6%80%BB%E7%BB%93" data-eusoft-scrollable-element="1" class=""></a></li></ul></nav><!--/scrapbook-capture-selected--></div></aside></main></div></body></html>
