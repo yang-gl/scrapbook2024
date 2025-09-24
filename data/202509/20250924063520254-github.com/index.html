@@ -1,0 +1,685 @@
+<!DOCTYPE html><html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark" data-a11y-animated-images="system" data-a11y-link-underlines="true" class="js-focus-visible" data-js-focus-visible="" data-turbo-loaded="" data-eusoft-scrollable-element="1" data-scrapbook-source="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md#install-ipex-llm-for-llama-cpp" data-scrapbook-create="20250924063520254"><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style><style>
+:root {
+  --fontStack-monospace: "Monaspace Neon", ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+}
+</style>
+
+
+
+
+  
+    <meta charset="UTF-8">
+  
+  
+  
+  
+  
+  
+
+  
+
+
+  <link media="all" rel="stylesheet" href="light-6448649c7147.css"><link media="all" rel="stylesheet" href="dark-d17b946fc2c5.css"><link data-color-theme="light_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_high_contrast-42fc7e3b06b7.css"><link data-color-theme="light_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind-44cfaf0c8f7b.css"><link data-color-theme="light_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind_high_contrast-979217efd93e.css"><link data-color-theme="light_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia-4d5383026bfa.css"><link data-color-theme="light_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia_high_contrast-ff6ff8532348.css"><link data-color-theme="dark_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_high_contrast-1b924088c83a.css"><link data-color-theme="dark_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind-654786382462.css"><link data-color-theme="dark_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind_high_contrast-ecca008c6f6e.css"><link data-color-theme="dark_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia-fff376053989.css"><link data-color-theme="dark_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia_high_contrast-49adf52571e5.css"><link data-color-theme="dark_dimmed" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed-66d97c13c98a.css"><link data-color-theme="dark_dimmed_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed_high_contrast-c58f1d0432b9.css">
+
+  <style type="text/css">
+    :root {
+      --tab-size-preference: 4;
+    }
+
+    pre, code {
+      tab-size: var(--tab-size-preference);
+    }
+  </style>
+
+    <link media="all" rel="stylesheet" href="primer-primitives-dc7ca6859caf.css">
+    <link media="all" rel="stylesheet" href="primer-f96b923db733.css">
+    <link media="all" rel="stylesheet" href="global-2744ca59d025.css">
+    <link media="all" rel="stylesheet" href="github-efdc4f8b5091.css">
+  <link media="all" rel="stylesheet" href="repository-5d735668c600.css">
+<link media="all" rel="stylesheet" href="code-9c9b8dc61e74.css">
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link media="all" rel="stylesheet" href="primer-react.592b66644437c8ba4190.module.css">
+<link media="all" rel="stylesheet" href="react-code-view.8b7d2260c74f2a9b531c.module.css">
+
+
+  <title>ipex-llm/docs/mddocs/Quickstart/llama_cpp_quickstart.md at main · intel/ipex-llm</title>
+
+
+
+  <meta name="route-pattern" content="/:user_id/:repository/blob/*name(/*path)" data-turbo-transient="">
+  <meta name="route-controller" content="blob" data-turbo-transient="">
+  <meta name="route-action" content="show" data-turbo-transient="">
+  <meta name="fetch-nonce" content="v2:50469697-03e9-ace4-2879-daf6f89da52d">
+
+    
+  <meta name="current-catalog-service-hash" content="f3abb0cc802f3d7b95fc8762b94bdcb13bf39634c40c357301c4aa1d67a256fb">
+
+
+  <meta name="request-id" content="B1B1:D1ED6:136F0E7:16BF498:68D390F9" data-turbo-transient="true"><meta name="html-safe-nonce" content="a71fee09143576a64f498f8f1c87d19a566c42a28542d8786afef163dd91ff0f" data-turbo-transient="true"><meta name="visitor-payload" content="eyJyZWZlcnJlciI6Imh0dHBzOi8vaXBleC1sbG0tbGF0ZXN0LnJlYWR0aGVkb2NzLmlvLyIsInJlcXVlc3RfaWQiOiJCMUIxOkQxRUQ2OjEzNkYwRTc6MTZCRjQ5ODo2OEQzOTBGOSIsInZpc2l0b3JfaWQiOiIxNTQ3NDQ5MDU4ODg4MTk5MzQxIiwicmVnaW9uX2VkZ2UiOiJzb3V0aGVhc3Rhc2lhIiwicmVnaW9uX3JlbmRlciI6ImlhZCJ9" data-turbo-transient="true"><meta name="visitor-hmac" content="a1184a80cb4d1b80b25c08f3d27297f4bac4d410a90f93cb827863eedad81d6f" data-turbo-transient="true">
+
+
+    <meta name="hovercard-subject-tag" content="repository:66823715" data-turbo-transient="">
+
+
+  <meta name="github-keyboard-shortcuts" content="repository,source-code,file-tree,copilot" data-turbo-transient="true">
+  
+
+  <meta name="selected-link" value="repo_source" data-turbo-transient="">
+  <link rel="assets" href="https://github.githubassets.com/">
+
+    <meta name="google-site-verification" content="Apib7-x98H0j5cPqHWwSMm6dNU4GmODRoqxLiDzdx9I">
+
+<meta name="octolytics-url" content="https://collector.github.com/github/collect"><meta name="octolytics-actor-id" content="1445771"><meta name="octolytics-actor-login" content="yang-gl"><meta name="octolytics-actor-hash" content="770996b9626f1bdf4d3dbb1e4ecfd02b271c6d30756457e9d416112cbbc6c582">
+
+  <meta name="analytics-location" content="/<user-name>/<repo-name>/blob/show" data-turbo-transient="true">
+
+  
+
+
+
+
+    <meta name="user-login" content="yang-gl">
+
+  <link rel="sudo-modal" href="https://github.com/sessions/sudo_modal">
+
+    <meta name="viewport" content="width=device-width">
+
+    
+
+      <meta name="description" content="Accelerate local LLM inference and finetuning (LLaMA, Mistral, ChatGLM, Qwen, DeepSeek, Mixtral, Gemma, Phi, MiniCPM, Qwen-VL, MiniCPM-V, etc.) on Intel XPU (e.g., local PC with iGPU and NPU, discrete GPU such as Arc, Flex and Max); seamlessly integrate with llama.cpp, Ollama, HuggingFace, LangChain, LlamaIndex, vLLM, DeepSpeed, Axolotl, etc. - ipex-llm/docs/mddocs/Quickstart/llama_cpp_quickstart.md at main · intel/ipex-llm">
+
+      <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <meta property="fb:app_id" content="1401488693436528">
+    <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md">
+
+      <meta name="twitter:image" content="https://opengraph.githubassets.com/34247766a4dddce50347b4e5501b5b159d653769a8c8ef580b0f9dce371b2298/intel/ipex-llm"><meta name="twitter:site" content="@github"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="ipex-llm/docs/mddocs/Quickstart/llama_cpp_quickstart.md at main · intel/ipex-llm"><meta name="twitter:description" content="Accelerate local LLM inference and finetuning (LLaMA, Mistral, ChatGLM, Qwen, DeepSeek, Mixtral, Gemma, Phi, MiniCPM, Qwen-VL, MiniCPM-V, etc.) on Intel XPU (e.g., local PC with iGPU and NPU, discr...">
+  <meta property="og:image" content="https://opengraph.githubassets.com/34247766a4dddce50347b4e5501b5b159d653769a8c8ef580b0f9dce371b2298/intel/ipex-llm"><meta property="og:image:alt" content="Accelerate local LLM inference and finetuning (LLaMA, Mistral, ChatGLM, Qwen, DeepSeek, Mixtral, Gemma, Phi, MiniCPM, Qwen-VL, MiniCPM-V, etc.) on Intel XPU (e.g., local PC with iGPU and NPU, discr..."><meta property="og:image:width" content="1200"><meta property="og:image:height" content="600"><meta property="og:site_name" content="GitHub"><meta property="og:type" content="object"><meta property="og:title" content="ipex-llm/docs/mddocs/Quickstart/llama_cpp_quickstart.md at main · intel/ipex-llm"><meta property="og:url" content="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md"><meta property="og:description" content="Accelerate local LLM inference and finetuning (LLaMA, Mistral, ChatGLM, Qwen, DeepSeek, Mixtral, Gemma, Phi, MiniCPM, Qwen-VL, MiniCPM-V, etc.) on Intel XPU (e.g., local PC with iGPU and NPU, discr...">
+  
+
+
+      <link rel="shared-web-socket" href="wss://alive.github.com/_sockets/u/1445771/ws?session=eyJ2IjoiVjMiLCJ1IjoxNDQ1NzcxLCJzIjoxNzk3NTQ3MzUwLCJjIjo0MTgzNzI2MjU2LCJ0IjoxNzU4Njk1Njc0fQ==--c50cab27c0bb7935e28f113f9b86bdc4702524f2c1ac35feb897ded59dd43907" data-refresh-url="/_alive" data-session-id="3ef562d4995d1c9fa54ae35621ef2dc03a9d870387b29a9e0c5970f8772264ca">
+      <link rel="shared-web-socket-src" href="https://github.com/assets-cdn/worker/socket-worker-7db934acff24.js">
+
+
+      <meta name="hostname" content="github.com">
+
+
+      <meta name="keyboard-shortcuts-preference" content="all">
+      <meta name="hovercards-preference" content="true">
+      <meta name="announcement-preference-hovercard" content="true">
+
+        <meta name="expected-hostname" content="github.com">
+
+
+  <meta http-equiv="x-pjax-version" content="f79e5adf481a4177c0a6387471d3f7270e1bbca6d0708a8b1be16823bf379762" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-csp-version" content="c922ef32c4ab94f8b870c62883f3e41755ec705db76ec4efb0d343458f1e28c7" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-css-version" content="0bc51a290919c52cc62b3d8b4eed96609edf264f742d0409c975553b0cdc84a8" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-js-version" content="cfb2b668d4aa1e76d31629ebf92f6a683ff4b6b6dd0a17bb6e7362c2096d6191" data-turbo-track="reload">
+
+  <meta name="turbo-cache-control" content="no-preview" data-turbo-transient="">
+
+      <meta name="turbo-cache-control" content="no-cache" data-turbo-transient="">
+
+    <meta data-hydrostats="publish">
+
+  <meta name="go-import" content="github.com/intel/ipex-llm git https://github.com/intel/ipex-llm.git">
+
+  <meta name="octolytics-dimension-user_id" content="17888862"><meta name="octolytics-dimension-user_login" content="intel"><meta name="octolytics-dimension-repository_id" content="66823715"><meta name="octolytics-dimension-repository_nwo" content="intel/ipex-llm"><meta name="octolytics-dimension-repository_public" content="true"><meta name="octolytics-dimension-repository_is_fork" content="false"><meta name="octolytics-dimension-repository_network_root_id" content="66823715"><meta name="octolytics-dimension-repository_network_root_nwo" content="intel/ipex-llm">
+
+
+
+    
+
+    <meta name="turbo-body-classes" content="logged-in env-production page-responsive">
+
+
+  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+
+  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+
+  <meta name="release" content="9ab8f671abae27eceda33102b169278762386667">
+  <meta name="ui-target" content="full">
+
+  <link rel="mask-icon" href="https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg" color="#000000">
+  <link rel="alternate icon" class="js-site-favicon" type="image/png" href="favicon.png">
+  <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="favicon.svg" data-base-href="https://github.githubassets.com/favicons/favicon">
+
+<meta name="theme-color" content="#1e2327">
+<meta name="color-scheme" content="light dark">
+
+
+  <link rel="manifest" href="https://github.com/manifest.json" crossorigin="use-credentials">
+
+  <style data-styled="active" data-styled-version="5.3.11">.gISSDQ { width: 100%; }
+@media screen and (min-width: 544px) {
+  .gISSDQ { width: 100%; }
+}
+@media screen and (min-width: 768px) {
+  .gISSDQ { width: auto; }
+}
+.birIjn { max-height: 100%; height: 100%; display: flex; flex-direction: column; }
+@media screen and (max-width: 768px) {
+  .birIjn { display: none; }
+}
+@media screen and (min-width: 768px) {
+  .birIjn { max-height: 100vh; height: 100vh; }
+}
+.jfIeyl { display: flex; width: 100%; margin-bottom: 16px; -moz-box-align: center; align-items: center; }
+.kOkWgo { font-size: 16px; margin-left: 8px; }
+.dPUXSa[data-size="medium"][data-no-visuals] { border-top-left-radius: 0px; border-bottom-left-radius: 0px; }
+@media screen and (max-width: 768px) {
+  .jLLPHh { display: none; }
+}
+.bHLmSv { position: absolute; inset: 0px -2px; cursor: col-resize; background-color: transparent; transition-delay: 0.1s; }
+.bHLmSv:hover { background-color: var(--bgColor-neutral-muted,var(--color-neutral-muted,rgba(175,184,193,0.2))); }
+.leYMvG { margin-left: auto; margin-right: auto; flex-direction: column; padding-bottom: 40px; max-width: 100%; margin-top: 0px; }
+.KMPzq { display: inherit; }
+.cEytCf { display: flex; flex-flow: wrap; font-size: 16px; min-width: 0px; flex-shrink: 1; max-width: 100%; -moz-box-align: center; align-items: center; }
+.fzFXnm { max-width: 100%; }
+.iMnkmv { max-width: 100%; list-style: none; display: inline-block; }
+.ghzDag { display: inline-block; max-width: 100%; }
+.kHuKdh { font-weight: 600; }
+.hzJBof { padding-left: 4px; padding-right: 4px; font-weight: 400; color: var(--fgColor-muted,var(--color-fg-muted,#656d76)); font-size: 16px; }
+.kgiVEz { font-weight: 400; }
+.jGhzSQ { font-weight: 600; display: inline-block; max-width: 100%; font-size: 16px; }
+.fjrFuv[data-size="medium"][data-no-visuals] { display: none; }
+.gUkoLg { -moz-box-pack: center; justify-content: center; }
+.dJxjrT { margin-left: 16px; margin-right: 16px; }
+.ldRxiI { display: flex; flex-direction: row; }
+.efRoCL { width: 100%; height: fit-content; min-width: 0px; margin-right: 16px; }
+.gNAmSV { height: 40px; padding-left: 4px; padding-bottom: 16px; }
+.jdLMhu { top: 0px; z-index: 4; background: var(--bgColor-default,var(--color-canvas-default)); position: sticky; }
+.hqwSEx { display: none; min-width: 0px; padding-top: 8px; padding-bottom: 8px; }
+.fHind { display: flex; flex-flow: wrap; font-size: 14px; min-width: 0px; flex-shrink: 1; max-width: 100%; -moz-box-align: center; align-items: center; }
+.oDtgN { padding-left: 4px; padding-right: 4px; font-weight: 400; color: var(--fgColor-muted,var(--color-fg-muted,#656d76)); font-size: 14px; }
+.dnZoUW { font-weight: 600; display: inline-block; max-width: 100%; font-size: 14px; }
+.gFKFyc { border-radius: 6px 6px 0px 0px; }
+.lefpaC linkButtonSx:hover:not([disabled]) { text-decoration: none; }
+.lefpaC linkButtonSx:focus:not([disabled]) { text-decoration: none; }
+.lefpaC linkButtonSx:active:not([disabled]) { text-decoration: none; }
+.ivobqY[data-size="small"][data-no-visuals] { border-top-left-radius: 0px; border-bottom-left-radius: 0px; }
+.iCOsHh[data-size="small"][data-no-visuals]:hover:not([disabled]) { text-decoration: none; }
+.iCOsHh[data-size="small"][data-no-visuals]:focus:not([disabled]) { text-decoration: none; }
+.iCOsHh[data-size="small"][data-no-visuals]:active:not([disabled]) { text-decoration: none; }
+.yaMnG[data-size="small"][data-no-visuals] { margin-right: 8px; }
+.hGyMdv { border-width: medium 1px 1px; border-style: none solid solid; border-image: none; border-color: var(--borderColor-default,var(--color-border-default,#d0d7de)); border-radius: 0px 0px 6px 6px; min-width: 273px; }
+.fGqKFv { background-color: var(--bgColor-default,var(--color-canvas-default)); border: 0px; border-radius: 0px 0px 6px 6px; padding: 0px; min-width: 0px; margin-top: 46px; -moz-box-pack: center; justify-content: center; }
+.eoaCFS { border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; padding: 32px; min-width: 0px; }
+.mgQhK { padding-bottom: 33px; }
+.cxUsTr { padding: 8px 16px; }
+.jXkPPw { display: flex; flex-direction: row; -moz-box-pack: justify; justify-content: space-between; }
+.hECgeo { font-size: 14px; order: 1; display: flex; flex-direction: row; -moz-box-pack: center; justify-content: center; -moz-box-align: center; align-items: center; font-weight: 600; }
+.kybBdn[data-size="medium"][data-no-visuals] { order: 3; color: var(--fgColor-default,var(--color-fg-default,#1F2328)); margin-right: -8px; }
+.cUqGUN { font-size: 12px; color: var(--fgColor-muted,var(--color-fg-muted,#656d76)); padding-top: 8px; }
+.cNGRpP { margin-top: 8px; border-radius: 6px; }
+.gqhZpQ { margin-right: 6px; }
+.ccgkJf { margin-left: -16px; margin-bottom: -8px; }
+.kACRto { margin-bottom: -8px; overflow-y: auto; max-height: calc(-237px + 100vh); padding-left: 16px; padding-bottom: 8px; padding-top: 4px; }
+.cSURfY { display: flex; }
+.bTXewe { display: flex; flex-direction: row; position: relative; margin-right: 8px; }
+.hXsfco { background-color: var(--color-prettylights-syntax-entity,#6639ba); opacity: 0.1; position: absolute; border-radius: 5px; -moz-box-align: stretch; align-items: stretch; display: flex; width: 100%; height: 100%; }
+.bgxsom { color: var(--color-prettylights-syntax-entity,#6639ba); border-radius: 5px; font-weight: 600; font-size: smaller; padding: 1px 4px; }
+.bJinFB { max-width: 180px; display: block; }
+.cCoXib { position: fixed; top: 0px; right: 0px; height: 100%; width: 15px; transition: transform 0.3s; z-index: 1; }
+.cCoXib:hover { transform: scaleX(1.5); }
+.bNhwaa { max-height: 100%; height: 100%; display: flex; flex-direction: column; }
+@media screen and (min-width: 768px) {
+  .bNhwaa { max-height: 100vh; height: 100vh; }
+}
+.hKaEJF { display: block; margin-right: 8px; }
+@media screen and (min-width: 1360px) {
+  .hKaEJF { display: block; }
+}
+.fVkfyA { width: 100%; height: fit-content; min-width: 0px; margin-right: 0px; }
+.gLSgdJ { font-weight: 600; color: var(--fgColor-default,var(--color-fg-default,#1F2328)); }
+.gLSgdJ:hover { color: var(--fgColor-default,var(--color-fg-default,#1F2328)); }
+.cWyMqi { display: flex; min-width: 0px; padding-top: 8px; padding-bottom: 8px; background-color: var(--bgColor-muted,var(--color-canvas-subtle,#f6f8fa)); border-left: 1px solid var(--borderColor-default,var(--color-border-default)); border-right: 1px solid var(--borderColor-default,var(--color-border-default)); }
+.dhuhek { border-radius: 0px; }
+.hWlpPn { position: relative; display: inline-block; }
+.hWlpPn::after { position: absolute; z-index: 1000000; display: none; padding: 0.5em 0.75em; font: 11px / 1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--tooltip-fgColor,var(--fgColor-onEmphasis,var(--color-fg-on-emphasis,#ffffff))); text-align: center; text-decoration: none; text-shadow: none; text-transform: none; letter-spacing: normal; overflow-wrap: break-word; white-space: pre; pointer-events: none; content: attr(aria-label); background: var(--tooltip-bgColor,var(--bgColor-emphasis,var(--color-neutral-emphasis-plus,#24292f))); border-radius: 6px; opacity: 0; }
+@keyframes tooltip-appear {
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
+@keyframes tooltip-appear {
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
+.hWlpPn:hover::after, .hWlpPn:active::after, .hWlpPn:focus::after, .hWlpPn:focus-within::after { display: inline-block; text-decoration: none; animation-name: tooltip-appear; animation-duration: 0.1s; animation-fill-mode: forwards; animation-timing-function: ease-in; animation-delay: 0s; }
+.hWlpPn.tooltipped-no-delay:hover::after, .hWlpPn.tooltipped-no-delay:active::after, .hWlpPn.tooltipped-no-delay:focus::after, .hWlpPn.tooltipped-no-delay:focus-within::after { animation-delay: 0s; }
+.hWlpPn.tooltipped-multiline:hover::after, .hWlpPn.tooltipped-multiline:active::after, .hWlpPn.tooltipped-multiline:focus::after, .hWlpPn.tooltipped-multiline:focus-within::after { display: table-cell; }
+.hWlpPn.tooltipped-s::after, .hWlpPn.tooltipped-se::after, .hWlpPn.tooltipped-sw::after { top: 100%; right: 50%; margin-top: 6px; }
+.hWlpPn.tooltipped-se::after { right: auto; left: 50%; margin-left: -16px; }
+.hWlpPn.tooltipped-sw::after { margin-right: -16px; }
+.hWlpPn.tooltipped-n::after, .hWlpPn.tooltipped-ne::after, .hWlpPn.tooltipped-nw::after { right: 50%; bottom: 100%; margin-bottom: 6px; }
+.hWlpPn.tooltipped-ne::after { right: auto; left: 50%; margin-left: -16px; }
+.hWlpPn.tooltipped-nw::after { margin-right: -16px; }
+.hWlpPn.tooltipped-s::after, .hWlpPn.tooltipped-n::after { transform: translateX(50%); }
+.hWlpPn.tooltipped-w::after { right: 100%; bottom: 50%; margin-right: 6px; transform: translateY(50%); }
+.hWlpPn.tooltipped-e::after { bottom: 50%; left: 100%; margin-left: 6px; transform: translateY(50%); }
+.hWlpPn.tooltipped-multiline::after { width: max-content; max-width: 250px; overflow-wrap: break-word; white-space: pre-line; border-collapse: separate; }
+.hWlpPn.tooltipped-multiline.tooltipped-s::after, .hWlpPn.tooltipped-multiline.tooltipped-n::after { right: auto; left: 50%; transform: translateX(-50%); }
+.hWlpPn.tooltipped-multiline.tooltipped-w::after, .hWlpPn.tooltipped-multiline.tooltipped-e::after { right: 100%; }
+.hWlpPn.tooltipped-align-right-2::after { right: 0px; margin-right: 0px; }
+.hWlpPn.tooltipped-align-left-2::after { left: 0px; margin-left: 0px; }</style><link rel="stylesheet" type="text/css" href="lazy-react-partial-keyboard-shortcuts-dialog.2de9c7d6456a311fce49.module.css"><style id="ms-consent-banner-main-styles">.w8hcgFksdo30C8w-bygqu{color:#000}.ydkKdaztSS0AeHWIeIHsQ a{color:#0067B8}.erL690_8JwUW-R4bJRcfl{background-color:#EBEBEB;border:none;color:#000}.erL690_8JwUW-R4bJRcfl:enabled:hover{color:#000;background-color:#DBDBDB;box-shadow:0px 4px 10px rgba(0,0,0,0.25);border:none}.erL690_8JwUW-R4bJRcfl:enabled:focus{background-color:#DBDBDB;box-shadow:0px 4px 10px rgba(0,0,0,0.25);border:2px solid #000}.erL690_8JwUW-R4bJRcfl:disabled{opacity:1;color:rgba(0,0,0,0.2);background-color:rgba(0,0,0,0.2);border:none}._1zNQOqxpBFSokeCLGi_hGr{border:none;background-color:#0067B8;color:#fff}._1zNQOqxpBFSokeCLGi_hGr:enabled:hover{color:#fff;background-color:#0067B8;box-shadow:0px 4px 10px rgba(0,0,0,0.25);border:none}._1zNQOqxpBFSokeCLGi_hGr:enabled:focus{background-color:#0067B8;box-shadow:0px 4px 10px rgba(0,0,0,0.25);border:2px solid #000}._1zNQOqxpBFSokeCLGi_hGr:disabled{opacity:1;color:rgba(0,0,0,0.2);background-color:rgba(0,120,215,0.2);border:none}._23tra1HsiiP6cT-Cka-ycB{position:relative;display:flex;z-index:9999;width:100%;background-color:#F2F2F2;justify-content:space-between;text-align:left}div[dir="rtl"]._23tra1HsiiP6cT-Cka-ycB{text-align:right}._1Upc2NjY8AlDn177YoVj0y{margin:0;padding-left:5%;padding-top:8px;padding-bottom:8px}div[dir="rtl"] ._1Upc2NjY8AlDn177YoVj0y{margin:0;padding:8px 5% 8px 0;float:none}._23tra1HsiiP6cT-Cka-ycB svg{fill:none;max-width:none;max-height:none}._1V_hlU-7jdtPiooHMu89BB{display:table-cell;padding:12px;width:24px;height:24px;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:24px;line-height:0}.f6QKJD7fhSbnJLarTL-W-{display:table-cell;vertical-align:middle;padding:0;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:13px;line-height:16px}.f6QKJD7fhSbnJLarTL-W- a{text-decoration:underline}._2j0fmugLb1FgYz6KPuB91w{display:inline-block;margin-left:5%;margin-right:5%;min-width:40%;min-width:calc((150px + 3 * 4px) * 2 + 150px);min-width:-webkit-fit-content;min-width:-moz-fit-content;min-width:fit-content;align-self:center;position:relative}._1XuCi2WhiqeWRUVp3pnFG3{margin:4px;padding:5px;min-width:150px;min-height:36px;vertical-align:top;cursor:pointer;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px;text-align:center}._1XuCi2WhiqeWRUVp3pnFG3:focus{box-sizing:border-box}._1XuCi2WhiqeWRUVp3pnFG3:disabled{cursor:not-allowed}._2bvsb3ubApyZ0UGoQA9O9T{display:block;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background-color:rgba(255,255,255,0.6);overflow:auto;text-align:left}div[dir="rtl"]._2bvsb3ubApyZ0UGoQA9O9T{text-align:right}div[dir="rtl"] ._2bvsb3ubApyZ0UGoQA9O9T{left:auto;right:0}.AFsJE948muYyzCMktdzuk{position:relative;top:8%;margin-bottom:40px;margin-left:auto;margin-right:auto;box-sizing:border-box;width:640px;background-color:#fff;border:1px solid #0067B8}._3kWyBRbW_dgnMiEyx06Fu4{float:right;z-index:1;margin:2px;padding:12px;border:none;cursor:pointer;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:13px;line-height:13px;display:flex;align-items:center;text-align:center;color:#666;background-color:#fff}div[dir="rtl"] ._3kWyBRbW_dgnMiEyx06Fu4{margin:2px;padding:12px;float:left}.uCYvKvHXrhjNgflv1VqdD{position:static;margin-top:36px;margin-left:36px;margin-right:36px}._17pX1m9O_W--iZbDt3Ta5r{margin-top:0;margin-bottom:12px;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:600;font-size:20px;line-height:24px;text-transform:none}._1kBkHQ1V1wu3kl-YcLgUr6{height:446px;overflow:auto}._20_nXDf6uFs9Q6wxRXG-I-{margin-top:0;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px}._20_nXDf6uFs9Q6wxRXG-I- a{text-decoration:underline}dl._2a0NH_GDQEQe5Ynfo7suVH{margin-top:36px;margin-bottom:0;padding:0;list-style:none;text-transform:none}dt._3j_LCPv7fyXv3A8FIXVwZ4{margin-top:20px;float:none;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:600;font-size:18px;line-height:24px;list-style:none}.k-vxTGFbdq1aOZB2HHpjh{margin:0;padding:0;border:none}._2Bucyy75c_ogoU1g-liB5R{margin:0;padding:0;border-bottom:none;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:600;font-size:18px;line-height:24px;text-transform:none}._63gwfzV8dclrsl2cfd90r{display:inline-block;margin-top:0;margin-bottom:13px;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px}._1l8wM_4mRYGz3Iu7l3BZR7{display:block}._2UE03QS02aZGkslegN_F-i{display:inline-block;position:relative;left:5px;margin-bottom:13px;margin-right:34px;padding:3px}div[dir="rtl"] ._2UE03QS02aZGkslegN_F-i{margin:0 0 13px 34px;padding:3px;float:none}div[dir="rtl"] ._2UE03QS02aZGkslegN_F-i{left:auto;right:5px}._23tra1HsiiP6cT-Cka-ycB *::before,._2bvsb3ubApyZ0UGoQA9O9T *::before,._23tra1HsiiP6cT-Cka-ycB *::after,._2bvsb3ubApyZ0UGoQA9O9T *::after{box-sizing:inherit}._1HSFn0HzGo6w4ADApV8-c4{outline:2px solid rgba(0,0,0,0.8)}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2{display:inline-block;position:relative;margin-top:0;margin-left:0;margin-right:0;height:0;width:0;border-radius:0;cursor:pointer;outline:none;box-sizing:border-box;-webkit-appearance:none;-moz-appearance:none;appearance:none}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2+label::before{display:block;position:absolute;top:5px;left:3px;height:19px;width:19px;content:"";border-radius:50%;border:1px solid #000;background-color:#fff}div[dir="rtl"] input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2+label::before{left:auto;right:3px}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:hover::before{border:1px solid #0067B8}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:hover::after{display:block;position:absolute;top:10px;left:8px;height:9px;width:9px;content:"";border-radius:50%;background-color:rgba(0,0,0,0.8)}div[dir="rtl"] input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:hover::after{left:auto;right:8px}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:focus::before{border:1px solid #0067B8}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:focus::after{display:block;position:absolute;top:10px;left:8px;height:9px;width:9px;content:"";border-radius:50%;background-color:#000}div[dir="rtl"] input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:focus::after{left:auto;right:8px}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:checked+label::after{display:block;position:absolute;top:10px;left:8px;height:9px;width:9px;content:"";border-radius:50%;background-color:#000}div[dir="rtl"] input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:checked+label::after{left:auto;right:8px}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:disabled+label{cursor:not-allowed}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:disabled+label::before{border:1px solid rgba(0,0,0,0.2);background-color:rgba(0,0,0,0.2)}._3RJzeL3l9Rl_lAQEm6VwdX{display:block;position:static;float:right;margin-top:0;margin-bottom:0;margin-left:19px;margin-right:0;padding-top:0;padding-bottom:0;padding-left:8px;padding-right:0;width:80%;width:calc(100% - 19px);font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px;text-transform:none;cursor:pointer;box-sizing:border-box}div[dir="rtl"] ._3RJzeL3l9Rl_lAQEm6VwdX{margin:0 19px 0 0;padding:0 8px 0 0;float:left}.nohp3sIG12ZBhzcMnPala{margin-top:20px;margin-bottom:48px}._2uhaEsmeotZ3P-M0AXo2kF{padding:0;width:278px;height:36px;cursor:pointer;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px;text-align:center}._2uhaEsmeotZ3P-M0AXo2kF:focus{box-sizing:border-box}._2uhaEsmeotZ3P-M0AXo2kF:disabled{cursor:not-allowed}._3tOu1FJ59c_xz_PmI1lKV5{float:right;padding:0;width:278px;height:36px;cursor:pointer;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px;text-align:center}._3tOu1FJ59c_xz_PmI1lKV5:focus{box-sizing:border-box}._3tOu1FJ59c_xz_PmI1lKV5:disabled{cursor:not-allowed}div[dir="rtl"] ._3tOu1FJ59c_xz_PmI1lKV5{margin:0;padding:0;float:left}@media only screen and (max-width: 768px){._2j0fmugLb1FgYz6KPuB91w,._1Upc2NjY8AlDn177YoVj0y{padding-top:8px;padding-bottom:12px;padding-left:3.75%;padding-right:3.75%;margin:0;width:92.5%}._23tra1HsiiP6cT-Cka-ycB{display:block}._1XuCi2WhiqeWRUVp3pnFG3{margin-bottom:8px;margin-left:0;margin-right:0;width:100%}._2bvsb3ubApyZ0UGoQA9O9T{overflow:hidden}.AFsJE948muYyzCMktdzuk{top:1.8%;width:93.33%;height:96.4%;overflow:hidden}.uCYvKvHXrhjNgflv1VqdD{margin-top:24px;margin-left:24px;margin-right:24px;height:100%}._1kBkHQ1V1wu3kl-YcLgUr6{height:62%;height:calc(100% - 188px);min-height:50%}._2uhaEsmeotZ3P-M0AXo2kF{width:100%}._3tOu1FJ59c_xz_PmI1lKV5{margin-bottom:12px;margin-left:0;width:100%}div[dir="rtl"] ._3tOu1FJ59c_xz_PmI1lKV5{margin:0 0 12px 0;padding:0;float:none}}@media only screen and (max-width: 768px) and (orientation: landscape), only screen and (max-height: 260px), only screen and (max-width: 340px){.AFsJE948muYyzCMktdzuk{overflow:auto}}@media only screen and (max-height: 260px), only screen and (max-width: 340px){._1XuCi2WhiqeWRUVp3pnFG3{min-width:0}._3kWyBRbW_dgnMiEyx06Fu4{padding:3%}.uCYvKvHXrhjNgflv1VqdD{margin-top:3%;margin-left:3%;margin-right:3%}._17pX1m9O_W--iZbDt3Ta5r{margin-bottom:3%}._1kBkHQ1V1wu3kl-YcLgUr6{height:calc(79% - 64px)}.nohp3sIG12ZBhzcMnPala{margin-top:5%;margin-bottom:10%}._3tOu1FJ59c_xz_PmI1lKV5{margin-bottom:3%}div[dir="rtl"] ._3tOu1FJ59c_xz_PmI1lKV5{margin:0 0 3% 0;padding:0;float:none}}
+</style><style type="text/css" id="ms-consent-banner-theme-styles">._23tra1HsiiP6cT-Cka-ycB {
+            background-color: #24292f !important;
+        }.w8hcgFksdo30C8w-bygqu {
+            color: #ffffff !important;
+        }.ydkKdaztSS0AeHWIeIHsQ a {
+            color: #d8b9ff !important;
+        }._2bvsb3ubApyZ0UGoQA9O9T {
+            background-color: rgba(23, 23, 23, 0.8) !important;
+        }.AFsJE948muYyzCMktdzuk {
+            background-color: #24292f !important;
+            border: 1px solid #d8b9ff !important;
+        }._3kWyBRbW_dgnMiEyx06Fu4 {
+            color: #d8b9ff !important;
+            background-color: #24292f !important;
+        }._1zNQOqxpBFSokeCLGi_hGr {
+            border: 1px solid #ffffff !important;
+            background-color: #ffffff !important;
+            color: #1f2328 !important;
+        }._1zNQOqxpBFSokeCLGi_hGr:enabled:hover {
+            color: #1f2328 !important;
+            background-color: #d8b9ff !important;
+            box-shadow: none !important;
+            border: 1px solid transparent !important;
+        }._1zNQOqxpBFSokeCLGi_hGr:enabled:focus {
+            background-color: #d8b9ff !important;
+            box-shadow: none !important;
+            border: 2px solid #ffffff !important;
+        }._1zNQOqxpBFSokeCLGi_hGr:disabled {
+            opacity: 0.5 !important;
+            color: #1f2328 !important;
+            background-color: #ffffff !important;
+            border: 1px solid transparent !important;
+        }.erL690_8JwUW-R4bJRcfl {
+            border: 1px solid #eaeef2 !important;
+            background-color: #32383f !important;
+            color: #ffffff !important;
+        }.erL690_8JwUW-R4bJRcfl:enabled:hover {
+            color: #ffffff !important;
+            background-color: #24292f !important;
+            box-shadow: none !important;
+            border: 1px solid #ffffff !important;
+        }.erL690_8JwUW-R4bJRcfl:enabled:focus {
+            background-color: #24292f !important;
+            box-shadow: none !important;
+            border: 2px solid #6e7781 !important;
+        }.erL690_8JwUW-R4bJRcfl:disabled {
+            opacity: 0.5 !important;
+            color: #ffffff !important;
+            background-color: #424a53 !important;
+            border: 1px solid #6e7781 !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label::before {
+            border: 1px solid #d8b9ff !important;
+            background-color: #24292f !important;
+        }._1HSFn0HzGo6w4ADApV8-c4 {
+            outline: 2px solid #ffffff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:checked + label::after {
+            background-color: #d8b9ff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label:hover::before {
+            border: 1px solid #ffffff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label:hover::after {
+            background-color: #ffffff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label:focus::before {
+            border: 1px solid #ffffff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label:focus::after {
+            background-color: #d8b9ff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:disabled + label::before {
+            border: 1px solid rgba(227, 227, 227, 0.2) !important;
+            background-color: rgba(227, 227, 227, 0.2) !important;
+        }</style><link rel="stylesheet" type="text/css" href="lazy-react-partial-global-copilot-menu.e8b96f8e81aaf397c759.module.css"><link rel="stylesheet" type="text/css" href="lazy-react-partial-global-create-menu.091342d12267a9316908.module.css"><link rel="stylesheet" type="text/css" href="lazy-react-partial-global-user-nav-drawer.04e117190f24a25f4c1c.module.css"><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><link rel="stylesheet" type="text/css" href="lazy-react-partial-copilot-chat.84a51df592a2b82911e3.module.css"><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["turbo-frame","react-app","relative-time","markdown-accessiblity-table"])</script></head><body class="logged-in env-production page-responsive" style="overflow-wrap: break-word; --dialog-scrollgutter: 0px;"><div data-turbo-body="" class="logged-in env-production page-responsive" style="word-wrap: break-word;"><div class="application-main " data-commit-hovercards-enabled="" data-discussion-hovercards-enabled="" data-issue-and-pr-hovercards-enabled="" data-project-hovercards-enabled=""><div itemscope="" itemtype="http://schema.org/SoftwareSourceCode" class=""><main id="js-repo-pjax-container"><turbo-frame id="repo-content-turbo-frame" target="_top" data-turbo-action="advance" class=""><div id="repo-content-pjax-container" class="repository-content "><react-app app-name="react-code-view" initial-path="/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md" style="display: block; min-height: calc(100vh - 64px);" data-attempted-ssr="true" data-ssr="true" data-lazy="false" data-alternate="false" data-data-router-enabled="false" data-react-profiling="false" data-catalyst="" class="loaded"><div data-target="react-app.reactRoot"><div><div style="--spacing:var(--spacing-none)" class="prc-PageLayout-PageLayoutRoot-1zlEO"><div class="prc-PageLayout-PageLayoutWrapper-s2ao4" data-width="full"><div class="prc-PageLayout-PageLayoutContent-jzDMn"><div class="prc-PageLayout-ContentWrapper-b-QRo CodeView-module__SplitPageLayout_Content--qxR1C" data-is-hidden="false"><div class="prc-PageLayout-Content--F7-I" data-width="full" style="--spacing:var(--spacing-none)"><div data-selector="repos-split-pane-content" tabindex="0" class="Box-sc-g0xbh4-0 leYMvG"><div class="Box-sc-g0xbh4-0 KMPzq"><div class="container CodeViewHeader-module__Box--PofRM"><div class="px-3 pt-3 pb-0" id="StickyHeader"><div class="CodeViewHeader-module__Box_1--KpLzV"><div class="CodeViewHeader-module__Box_2--xzDOt"><div class="react-code-view-header-wrap--narrow CodeViewHeader-module__Box_3--WnQ2n"><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><div class="react-code-view-header-mb--narrow CodeViewHeader-module__Box_5--KeXxF"><div class="Box-sc-g0xbh4-0 cEytCf"><!--scrapbook-capture-selected--><nav data-testid="breadcrumbs" aria-labelledby="repos-header-breadcrumb-heading" id="repos-header-breadcrumb" class="Box-sc-g0xbh4-0 fzFXnm"><ol class="Box-sc-g0xbh4-0 iMnkmv"><li class="Box-sc-g0xbh4-0 ghzDag"><a class="Box-sc-g0xbh4-0 kHuKdh prc-Link-Link-85e08" sx="[object Object]" data-testid="breadcrumbs-repo-link" href="https://github.com/intel/ipex-llm/tree/main" data-discover="true" data-eusoft-scrollable-element="1">ipex-llm</a></li><li class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 hzJBof prc-Text-Text-0ima0" aria-hidden="true" data-eusoft-scrollable-element="1">/</span><a class="Box-sc-g0xbh4-0 kgiVEz prc-Link-Link-85e08" sx="[object Object]" href="https://github.com/intel/ipex-llm/tree/main/docs" data-discover="true" data-eusoft-scrollable-element="1">docs</a></li><li class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 hzJBof prc-Text-Text-0ima0" aria-hidden="true" data-eusoft-scrollable-element="1">/</span><a class="Box-sc-g0xbh4-0 kgiVEz prc-Link-Link-85e08" sx="[object Object]" href="https://github.com/intel/ipex-llm/tree/main/docs/mddocs" data-discover="true" data-eusoft-scrollable-element="1">mddocs</a></li><li class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 hzJBof prc-Text-Text-0ima0" aria-hidden="true" data-eusoft-scrollable-element="1">/</span><a class="Box-sc-g0xbh4-0 kgiVEz prc-Link-Link-85e08" sx="[object Object]" href="https://github.com/intel/ipex-llm/tree/main/docs/mddocs/Quickstart" data-discover="true" data-eusoft-scrollable-element="1">Quickstart</a></li></ol></nav><div data-testid="breadcrumbs-filename" class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 hzJBof prc-Text-Text-0ima0" aria-hidden="true" data-eusoft-scrollable-element="1">/</span><h1 class="Box-sc-g0xbh4-0 jGhzSQ prc-Heading-Heading-6CmGO" tabindex="-1" id="file-name-id">llama_cpp_quickstart.md</h1></div><!--/scrapbook-capture-selected--><span class="CopyToClipboardButton-module__tooltip--HDUYz prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-label="Copy path" aria-hidden="true" id=":r5g:" popover="auto">Copy path</span></div></div></div><!--scrapbook-capture-selected--><div class="react-code-view-header-element--wide"><div class="CodeViewHeader-module__Box_7--FZfkg"><div class="d-flex gap-2"> <!--scrapbook-capture-selected--><div><div class="Box-sc-g0xbh4-0 CodeViewHeader-module__FileResultsList--bglyC"><span class="d-flex FileResultsList-module__FilesSearchBox--fSAh3 TextInput-wrapper prc-components-TextInputWrapper-i1ofR prc-components-TextInputBaseWrapper-ueK9q" data-leading-visual="true" data-trailing-visual="true" aria-busy="false"><input type="text" aria-label="Go to file" role="combobox" aria-controls="file-results-list" aria-expanded="false" aria-haspopup="dialog" autocorrect="off" spellcheck="false" placeholder="Go to file" aria-describedby=":r5j: :r5k:" data-component="input" class="prc-components-Input-Ic-y8" value=""><span class="TextInput-icon" id=":r5k:" aria-hidden="true"><kbd>t</kbd></span></span></div><button hidden="" data-testid="" data-hotkey="t,Shift+T" data-hotkey-scope="read-only-cursor-text-area"></button><button hidden="" data-hotkey="t,Shift+T"></button></div><button type="button" class="Box-sc-g0xbh4-0 fjrFuv prc-Button-ButtonBase-c50BI NavigationMenu-module__Button--SJihq" data-loading="false" data-no-visuals="true" data-size="medium" data-variant="default" aria-describedby=":R1ahj9lab:-loading-announcement" data-hotkey="b,Shift+B,Control+/ Control+b"><span data-component="buttonContent" class="Box-sc-g0xbh4-0 gUkoLg prc-Button-ButtonContent-HKbr-"><span data-component="text" class="prc-Button-Label-pTQ3x">Blame</span></span></button><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="b,Shift+B,Control+/ Control+b"></button><!--/scrapbook-capture-selected--><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":Rfihj9lab:" popover="auto">More file actions</span> </div></div></div><!--/scrapbook-capture-selected--><div class="react-code-view-header-element--narrow"><div class="CodeViewHeader-module__Box_7--FZfkg"><div class="d-flex gap-2"> <button type="button" class="Box-sc-g0xbh4-0 fjrFuv prc-Button-ButtonBase-c50BI NavigationMenu-module__Button--SJihq" data-loading="false" data-no-visuals="true" data-size="medium" data-variant="default" aria-describedby=":R1ahr9lab:-loading-announcement" data-hotkey="b,Shift+B,Control+/ Control+b"><span data-component="buttonContent" class="Box-sc-g0xbh4-0 gUkoLg prc-Button-ButtonContent-HKbr-"><span data-component="text" class="prc-Button-Label-pTQ3x">Blame</span></span></button><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="b,Shift+B,Control+/ Control+b"></button><button data-component="IconButton" type="button" data-testid="more-file-actions-button-nav-menu-narrow" aria-haspopup="true" aria-expanded="false" tabindex="0" class="prc-Button-ButtonBase-c50BI js-blob-dropdown-click NavigationMenu-module__IconButton--NqJ_L prc-Button-IconButton-szpyj" data-loading="false" data-no-visuals="true" data-size="medium" data-variant="default" aria-describedby=":Rihr9lab:-loading-announcement" aria-labelledby=":Rfihr9lab:" id=":Rihr9lab:"><svg aria-hidden="true" focusable="false" class="octicon octicon-kebab-horizontal" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path></svg></button><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":Rfihr9lab:" popover="auto">More file actions</span> </div></div></div></div></div></div></div></div><!--scrapbook-capture-selected--><div class="Box-sc-g0xbh4-0 dJxjrT react-code-view-bottom-padding"> <div class="BlobTopBanners-module__Box--g_bGk"></div> <!-- --> <!-- --> </div><div class="Box-sc-g0xbh4-0 dJxjrT"> <!-- --> <!-- --> <button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="r,Shift+R"></button><button hidden="" data-hotkey="r,Shift+R"></button><div class="d-flex flex-column border rounded-2 mb-3 pl-1"><div class="LatestCommit-module__Box--Fimpo"><div data-testid="latest-commit" class="LatestCommit-module__Box_1--aQ5OG"><!--scrapbook-capture-selected--><div class="CommitAttribution-module__CommitAttributionContainer--Si80C"><div data-testid="author-avatar" class="Box-sc-g0xbh4-0 AuthorAvatar-module__AuthorAvatarContainer--Z1TF8"><a class="prc-Link-Link-85e08" href="https://github.com/Arcs-ur" data-testid="avatar-icon-link" data-hovercard-url="/users/Arcs-ur/hovercard" aria-keyshortcuts="Alt+ArrowUp"><img data-component="Avatar" class="AuthorAvatar-module__authorAvatarImage--bQzij prc-Avatar-Avatar-ZRS-m" alt="Arcs-ur" width="20" height="20" style="--avatarSize-regular: 20px;" src="121781081.jpg" data-testid="github-avatar" aria-label="Arcs-ur"></a><a class="Box-sc-g0xbh4-0 gLSgdJ AuthorAvatar-module__authorHoverableLink--vw9qe prc-Link-Link-85e08" data-muted="true" href="https://github.com/intel/ipex-llm/commits?author=Arcs-ur" aria-label="commits by Arcs-ur" data-hovercard-url="/users/Arcs-ur/hovercard" aria-keyshortcuts="Alt+ArrowUp">Arcs-ur</a></div><span class=""></span></div><div class="d-none d-sm-flex LatestCommit-module__Box_2--JDY37"><div class="Truncate flex-items-center f5"><span class="Truncate-text prc-Text-Text-0ima0" data-testid="latest-commit-html"><a href="https://github.com/intel/ipex-llm/commit/951c23739db317db713ace08e1cf7730fe09dec8" class="Link--secondary" data-pjax="true" data-hovercard-url="/intel/ipex-llm/commit/951c23739db317db713ace08e1cf7730fe09dec8/hovercard" aria-keyshortcuts="Alt+ArrowUp" data-eusoft-scrollable-element="1">update quickstart md related to llama.cpp/ollama (</a><a href="https://github.com/intel/ipex-llm/pull/13265" data-hovercard-url="/intel/ipex-llm/pull/13265/hovercard" data-hovercard-type="pull_request" data-url="https://github.com/intel/ipex-llm/issues/13265" data-permission-text="Title is private" data-id="3247476509" data-error-text="Failed to load title" class="issue-link js-issue-link" aria-keyshortcuts="Alt+ArrowUp" data-eusoft-scrollable-element="1">#13265</a><a href="https://github.com/intel/ipex-llm/commit/951c23739db317db713ace08e1cf7730fe09dec8" class="Link--secondary" data-pjax="true" data-hovercard-url="/intel/ipex-llm/commit/951c23739db317db713ace08e1cf7730fe09dec8/hovercard" aria-keyshortcuts="Alt+ArrowUp" data-eusoft-scrollable-element="1">)</a></span></div><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="s" aria-hidden="true" id=":r5r:" popover="auto">Open commit details</span></div><!--/scrapbook-capture-selected--><span class="d-flex d-sm-none fgColor-muted f6"><relative-time class="sc-aXZVg" tense="past" datetime="2025-07-21T08:20:20.000Z" title="Jul 21, 2025, 4:20 PM GMT+8" data-scrapbook-shadowdom="2 months ago">Jul 21, 2025</relative-time></span></div><!--scrapbook-capture-selected--><div class="d-flex flex-shrink-0 gap-2"><div data-testid="latest-commit-details" class="d-none d-sm-flex flex-items-center"><span class="d-flex flex-nowrap fgColor-muted f6"><a class="Link--secondary prc-Link-Link-85e08" aria-label="Commit 951c237" data-hovercard-url="/intel/ipex-llm/commit/951c23739db317db713ace08e1cf7730fe09dec8/hovercard" href="https://github.com/intel/ipex-llm/commit/951c23739db317db713ace08e1cf7730fe09dec8" data-discover="true" aria-keyshortcuts="Alt+ArrowUp">951c237</a>&nbsp;·&nbsp;<relative-time class="sc-aXZVg" tense="past" datetime="2025-07-21T08:20:20.000Z" title="Jul 21, 2025, 4:20 PM GMT+8" data-scrapbook-shadowdom="2 months ago">Jul 21, 2025</relative-time></span></div><div class="d-flex gap-2"><div class="d-sm-none"><button data-component="IconButton" type="button" aria-pressed="false" aria-expanded="false" data-testid="latest-commit-details-toggle" class="prc-Button-ButtonBase-c50BI LatestCommit-module__IconButton--Zxaob prc-Button-IconButton-szpyj" data-loading="false" data-no-visuals="true" data-size="small" data-variant="invisible" aria-describedby=":r5u:-loading-announcement" aria-labelledby=":r5t:"><svg aria-hidden="true" focusable="false" class="octicon octicon-ellipsis" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;"><path d="M0 5.75C0 4.784.784 4 1.75 4h12.5c.966 0 1.75.784 1.75 1.75v4.5A1.75 1.75 0 0 1 14.25 12H1.75A1.75 1.75 0 0 1 0 10.25ZM12 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM7 8a1 1 0 1 0 2 0 1 1 0 0 0-2 0ZM4 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"></path></svg></button><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="s" aria-hidden="true" id=":r5t:" popover="auto">Open commit details</span></div><div class="d-flex d-lg-none"><span role="tooltip" aria-label="History" id="history-icon-button-tooltip" class="Tooltip__TooltipBase-sc-17tf59c-0 hWlpPn tooltipped-n"><a aria-label="View commit history for this file." href="https://github.com/intel/ipex-llm/commits/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md" class="prc-Button-ButtonBase-c50BI LinkButton-module__code-view-link-button--thtqc flex-items-center fgColor-default" data-loading="false" data-size="small" data-variant="invisible" aria-describedby=":R6bdal9lab:-loading-announcement history-icon-button-tooltip"><span data-component="buttonContent" data-align="center" class="prc-Button-ButtonContent-HKbr-"><span data-component="leadingVisual" class="prc-Button-Visual-2epfX prc-Button-VisualWrap-Db-eB"><svg aria-hidden="true" focusable="false" class="octicon octicon-history" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="m.427 1.927 1.215 1.215a8.002 8.002 0 1 1-1.6 5.685.75.75 0 1 1 1.493-.154 6.5 6.5 0 1 0 1.18-4.458l1.358 1.358A.25.25 0 0 1 3.896 6H.25A.25.25 0 0 1 0 5.75V2.104a.25.25 0 0 1 .427-.177ZM7.75 4a.75.75 0 0 1 .75.75v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5A.75.75 0 0 1 7.75 4Z"></path></svg></span></span></a></span></div></div></div><!--/scrapbook-capture-selected--></div></div><!--scrapbook-capture-selected--><div class="Box-sc-g0xbh4-0 ldRxiI"><div class="Box-sc-g0xbh4-0 fVkfyA container"><div class="Box-sc-g0xbh4-0 gNAmSV react-code-size-details-banner"><div class="react-code-size-details-banner CodeSizeDetails-module__Box--QdxnQ"><div class="text-mono CodeSizeDetails-module__Box_1--_uFDs"><div data-testid="blob-size" class="CodeSizeDetails-module__Truncate_1--er0Uk prc-Truncate-Truncate-A9Wn6" data-inline="true" title="22.9 KB" style="--truncate-max-width:100%"><span>388 lines (302 loc) · 22.9 KB</span></div></div></div></div><div class="Box-sc-g0xbh4-0 jdLMhu react-blob-view-header-sticky" id="repos-sticky-header" data-eusoft-scrollable-element="1"><div class="BlobViewHeader-module__Box--pvsIA"><div class="react-blob-sticky-header"><div class="Box-sc-g0xbh4-0 cWyMqi"><div class="FileNameStickyHeader-module__Box_1--HSpOJ"><div class="FileNameStickyHeader-module__Box_2--_pDx6"><h2 class="use-tree-pane-module__Heading--iI_ad prc-Heading-Heading-6CmGO"><button type="button" aria-label="Expand file tree" data-hotkey="Control+b" data-testid="expand-file-tree-button-mobile" class="prc-Button-ButtonBase-c50BI ExpandFileTreeButton-module__Button_1--g8F6Q" data-loading="false" data-size="medium" data-variant="invisible" aria-describedby=":r68:-loading-announcement"><span data-component="buttonContent" data-align="center" class="prc-Button-ButtonContent-HKbr-"><span data-component="leadingVisual" class="prc-Button-Visual-2epfX prc-Button-VisualWrap-Db-eB"><svg aria-hidden="true" focusable="false" class="octicon octicon-arrow-left" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;"><path d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L4.81 7h7.44a.75.75 0 0 1 0 1.5H4.81l2.97 2.97a.75.75 0 0 1 0 1.06Z"></path></svg></span><span data-component="text" class="prc-Button-Label-pTQ3x">Files</span></span></button><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="se" aria-hidden="true" id=":r69:" popover="auto">Expand file tree</span><button hidden="" data-testid="" data-hotkey="Control+b" data-hotkey-scope="read-only-cursor-text-area"></button></h2><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><div class="FileNameStickyHeader-module__Box_4--IyPx8"><div class="Box-sc-g0xbh4-0 fHind"><nav data-testid="breadcrumbs" aria-labelledby="sticky-breadcrumb-heading" id="sticky-breadcrumb" class="Box-sc-g0xbh4-0 fzFXnm"><ol class="Box-sc-g0xbh4-0 iMnkmv"><li class="Box-sc-g0xbh4-0 ghzDag"><a class="Box-sc-g0xbh4-0 kHuKdh prc-Link-Link-85e08" sx="[object Object]" data-testid="breadcrumbs-repo-link" href="https://github.com/intel/ipex-llm/tree/main" data-discover="true">ipex-llm</a></li><li class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 oDtgN prc-Text-Text-0ima0" aria-hidden="true">/</span><a class="Box-sc-g0xbh4-0 kgiVEz prc-Link-Link-85e08" sx="[object Object]" href="https://github.com/intel/ipex-llm/tree/main/docs" data-discover="true">docs</a></li><li class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 oDtgN prc-Text-Text-0ima0" aria-hidden="true">/</span><a class="Box-sc-g0xbh4-0 kgiVEz prc-Link-Link-85e08" sx="[object Object]" href="https://github.com/intel/ipex-llm/tree/main/docs/mddocs" data-discover="true">mddocs</a></li><li class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 oDtgN prc-Text-Text-0ima0" aria-hidden="true">/</span><a class="Box-sc-g0xbh4-0 kgiVEz prc-Link-Link-85e08" sx="[object Object]" href="https://github.com/intel/ipex-llm/tree/main/docs/mddocs/Quickstart" data-discover="true">Quickstart</a></li></ol></nav><div data-testid="breadcrumbs-filename" class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 oDtgN prc-Text-Text-0ima0" aria-hidden="true">/</span><h1 class="Box-sc-g0xbh4-0 dnZoUW prc-Heading-Heading-6CmGO" tabindex="-1" id="sticky-file-name-id">llama_cpp_quickstart.md</h1></div></div></div></div><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--></div></div></div><div class="Box-sc-g0xbh4-0 dhuhek BlobViewHeader-module__Box_1--PPihg"><div class="BlobViewHeader-module__Box_2--G_jCG" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="b,Shift+B,Control+/ Control+b"></button><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Control+/ Control+p"></button><div class="react-code-size-details-in-header CodeSizeDetails-module__Box--QdxnQ"><div class="text-mono CodeSizeDetails-module__Box_1--_uFDs"><div data-testid="blob-size" class="CodeSizeDetails-module__Truncate_1--er0Uk prc-Truncate-Truncate-A9Wn6" data-inline="true" title="22.9 KB" style="--truncate-max-width:100%"><span>388 lines (302 loc) · 22.9 KB</span></div></div></div></div><!--scrapbook-capture-selected--><div class="BlobViewHeader-module__Box_3--Kvpex"><button hidden="" data-testid="" data-hotkey="Control+Shift+>" data-hotkey-scope="read-only-cursor-text-area"></button><button hidden="" data-hotkey="Control+Shift+>"></button><button hidden="" data-testid="" data-hotkey="Control+Shift+<" data-hotkey-scope="read-only-cursor-text-area"></button><button hidden="" data-hotkey="Control+Shift+<"></button><div class="react-blob-header-edit-and-raw-actions BlobViewHeader-module__Box_4--vFP89" data-eusoft-scrollable-element="1"><div class="prc-ButtonGroup-ButtonGroup-vcMeG" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected--><div><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="n" aria-hidden="true" id=":Rclf6fal9lab:" popover="auto">Copy raw file</span></div><!--/scrapbook-capture-selected--><div><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="n" aria-hidden="true" id=":R6lf6fal9lab:" popover="auto">Download raw file</span></div></div><!--scrapbook-capture-selected--><button hidden="" data-testid="raw-button-shortcut" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Control+/ Control+r"></button><button hidden="" data-testid="copy-raw-button-shortcut" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Control+Shift+C"></button><button hidden="" data-testid="download-raw-button-shortcut" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Control+Shift+S"></button><a class="js-github-dev-shortcut d-none prc-Link-Link-85e08" href="https://github.dev/" data-hotkey="., Control+Shift+/"></a><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="., Control+Shift+/"></button><a class="js-github-dev-new-tab-shortcut d-none prc-Link-Link-85e08" href="https://github.dev/" target="_blank" data-hotkey="Shift+.,Shift+>,>"></a><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Shift+.,Shift+>,>"></button><!--/scrapbook-capture-selected--><div class="prc-ButtonGroup-ButtonGroup-vcMeG" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected--><div><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":R39f6fal9lab:" popover="auto">Fork this repository and edit the file</span></div><!--/scrapbook-capture-selected--><div><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":R3t9f6fal9lab:" popover="auto">More edit options</span></div></div><button hidden="" data-testid="" data-hotkey="e,Shift+E" data-hotkey-scope="read-only-cursor-text-area"></button></div><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="n" aria-hidden="true" id=":R1v6fal9lab:" popover="auto">Outline</span><div class="react-blob-header-edit-and-raw-actions-combined"><button data-component="IconButton" type="button" title="More file actions" data-testid="more-file-actions-button" aria-haspopup="true" aria-expanded="false" tabindex="0" class="prc-Button-ButtonBase-c50BI js-blob-dropdown-click BlobViewHeader-module__IconButton--uO1fA prc-Button-IconButton-szpyj" data-loading="false" data-no-visuals="true" data-size="small" data-variant="invisible" aria-describedby=":Ra76fal9lab:-loading-announcement" aria-labelledby=":R7q76fal9lab:" id=":Ra76fal9lab:"><svg aria-hidden="true" focusable="false" class="octicon octicon-kebab-horizontal" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path></svg></button><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":R7q76fal9lab:" popover="auto">Edit and raw actions</span></div></div><!--/scrapbook-capture-selected--></div></div><div></div></div><!--scrapbook-capture-selected--><div class="Box-sc-g0xbh4-0 hGyMdv"><section aria-labelledby="file-name-id-wide file-name-id-mobile" class="Box-sc-g0xbh4-0 fGqKFv"><div class="Box-sc-g0xbh4-0 eoaCFS js-snippet-clipboard-copy-unpositioned undefined" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto">Run llama.cpp with IPEX-LLM on Intel GPU</h1></div><!--scrapbook-capture-selected--><p dir="auto">
+  <b data-eusoft-scrollable-element="1">&lt; English</b> | <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.zh-CN.md" data-eusoft-scrollable-element="1">中文</a> &gt;
+</p>
+<p dir="auto"><a href="https://github.com/ggerganov/llama.cpp" data-eusoft-scrollable-element="1">ggerganov/llama.cpp</a> provides fast LLM inference in pure C++ across a variety of hardware; you can now use the C++ interface of <a href="https://github.com/intel-analytics/ipex-llm" data-eusoft-scrollable-element="1"><code data-eusoft-scrollable-element="1">ipex-llm</code></a> as an accelerated backend for <code data-eusoft-scrollable-element="1">llama.cpp</code> running on Intel <strong data-eusoft-scrollable-element="1">GPU</strong> <em data-eusoft-scrollable-element="1">(e.g., local PC with iGPU, discrete GPU such as Arc, Flex and Max)</em>.</p>
+<!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><div class="markdown-alert markdown-alert-important" dir="auto"><p class="markdown-alert-title" dir="auto" data-eusoft-scrollable-element="1">Important</p><p dir="auto">You may use <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llamacpp_portable_zip_gpu_quickstart.md" data-eusoft-scrollable-element="1">llama.cpp Portable Zip</a> to directly run llama.cpp on Intel GPU with ipex-llm (<em data-eusoft-scrollable-element="1"><strong data-eusoft-scrollable-element="1">without the need of manual installations</strong></em>).</p>
+</div>
+<!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><div class="markdown-alert markdown-alert-note" dir="auto"><p class="markdown-alert-title" dir="auto" data-eusoft-scrollable-element="1">Note</p><p dir="auto">For installation on Intel Arc B-Series GPU (such as <strong data-eusoft-scrollable-element="1">B580</strong>), please refer to this <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/bmg_quickstart.md" data-eusoft-scrollable-element="1">guide</a>.</p>
+</div>
+<!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><div class="markdown-alert markdown-alert-note" dir="auto"><p class="markdown-alert-title" dir="auto" data-eusoft-scrollable-element="1">Note</p><p dir="auto">Our latest version is consistent with <a href="https://github.com/ggml-org/llama.cpp/commit/4ad2436" data-eusoft-scrollable-element="1">4ad2436</a> of llama.cpp.</p>
+<p dir="auto"><code data-eusoft-scrollable-element="1">ipex-llm[cpp]==2.2.0b20250629</code> is consistent with <a href="https://github.com/ggml-org/llama.cpp/commit/d7cfe1ffe0f435d0048a6058d529daf76e072d9c" data-eusoft-scrollable-element="1">d7cfe1f</a> of llama.cpp.</p>
+</div>
+<p dir="auto">See the demo of running LLaMA2-7B on Intel Arc GPU below.</p>
+<markdown-accessiblity-table data-catalyst=""><table width="100%">
+  <tbody><tr data-eusoft-scrollable-element="1">
+    <td><a href="https://llm-assets.readthedocs.io/en/latest/_images/llama-cpp-arc.mp4" rel="nofollow" data-eusoft-scrollable-element="1"><img src="68747470733a2f2f6c6c6d2d6173736574732e72656164746865646f63732e696f2f656e2f6c61746573742f5f696d616765732f6c6c616d612d6370.png" data-canonical-src="https://llm-assets.readthedocs.io/en/latest/_images/llama-cpp-arc.png" style="max-width: 100%;"></a></td>
+  </tr>
+  <tr>
+    <td align="center">You could also click <a href="https://llm-assets.readthedocs.io/en/latest/_images/llama-cpp-arc.mp4" rel="nofollow" data-eusoft-scrollable-element="1">here</a> to watch the demo video.</td>
+  </tr>
+</tbody></table></markdown-accessiblity-table>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">Table of Contents</h2></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><ul dir="auto">
+<li><a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md#0-prerequisites" data-eusoft-scrollable-element="1">Prerequisites</a></li>
+<li><a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md#1-install-ipex-llm-for-llamacpp" data-eusoft-scrollable-element="1">Install IPEX-LLM for llama.cpp</a></li>
+<li><a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md#2-setup-for-running-llamacpp" data-eusoft-scrollable-element="1">Setup for running llama.cpp</a></li>
+<li><a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md#3-example-running-community-gguf-models-with-ipex-llm" data-eusoft-scrollable-element="1">Example: Running community GGUF models with IPEX-LLM</a></li>
+<li><a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md#troubleshooting" data-eusoft-scrollable-element="1">Troubleshooting</a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">Quick Start</h2></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">This quickstart guide walks you through installing and running <code data-eusoft-scrollable-element="1">llama.cpp</code> with <code data-eusoft-scrollable-element="1">ipex-llm</code>.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h3 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">0 Prerequisites</h3></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">IPEX-LLM's support for <code data-eusoft-scrollable-element="1">llama.cpp</code> now is available for Linux system and Windows system.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">Linux</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">For Linux system, we recommend Ubuntu 20.04 or later (Ubuntu 22.04 is preferred).</p>
+<p dir="auto">Visit the <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/install_linux_gpu.md" data-eusoft-scrollable-element="1">Install IPEX-LLM on Linux with Intel GPU</a>, follow <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/install_linux_gpu.md#install-gpu-driver" data-eusoft-scrollable-element="1">Install Intel GPU Driver</a> to install GPU driver for Ubuntu 22.04 (or follow the <a href="https://dgpu-docs.intel.com/driver/client/overview.html" rel="nofollow" data-eusoft-scrollable-element="1">Intel client GPU driver installation guide</a> for a higher version of Ubuntu). And follow the guide <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?packages=oneapi-toolkit&amp;oneapi-toolkit-os=linux&amp;oneapi-lin=offline" rel="nofollow" data-eusoft-scrollable-element="1">here</a> to install Intel® oneAPI Base Toolkit 2025.0.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">Windows (Optional)</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">Please make sure your GPU driver version is equal or newer than <code data-eusoft-scrollable-element="1">31.0.101.5522</code>. If it is not, follow the instructions in <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/install_windows_gpu.md#optional-update-gpu-driver" data-eusoft-scrollable-element="1">this section</a> to update your GPU driver; otherwise, you might encounter gibberish output.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h3 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">1. Install IPEX-LLM for llama.cpp</h3></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">To use <code data-eusoft-scrollable-element="1">llama.cpp</code> with IPEX-LLM, first ensure that <code data-eusoft-scrollable-element="1">ipex-llm[cpp]</code> is installed.</p>
+<ul dir="auto">
+<li>
+<p dir="auto">For <strong data-eusoft-scrollable-element="1">Linux users</strong>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>conda create -n llm-cpp python=3.11
+conda activate llm-cpp
+pip install --pre --upgrade ipex-llm[cpp]</pre><div class="zeroclipboard-container">
+    </div></div></li><li><!--scrapbook-capture-selected-->
+<p dir="auto">For <strong data-eusoft-scrollable-element="1">Windows users</strong>:</p>
+<p dir="auto">Please run the following command in Miniforge Prompt.</p>
+<div class="highlight highlight-source-batchfile notranslate position-relative overflow-auto" dir="auto"><pre>conda create -n llm-cpp python=3.11
+conda activate llm-cpp
+pip install --pre --upgrade ipex-llm[cpp]</pre><div class="zeroclipboard-container">
+    </div></div><!--/scrapbook-capture-selected--></li></ul><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto"><strong data-eusoft-scrollable-element="1">After the installation, you should have created a conda environment, named <code data-eusoft-scrollable-element="1">llm-cpp</code> for instance, for running <code data-eusoft-scrollable-element="1">llama.cpp</code> commands with IPEX-LLM.</strong></p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h3 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">2. Setup for running llama.cpp</h3></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">First you should create a directory to use <code data-eusoft-scrollable-element="1">llama.cpp</code>, for instance, use following command to create a <code data-eusoft-scrollable-element="1">llama-cpp</code> directory and enter it.</p>
+<div class="highlight highlight-source-batchfile notranslate position-relative overflow-auto" dir="auto"><pre><span class="pl-k" data-eusoft-scrollable-element="1">mkdir</span> llama-cpp
+<span class="pl-k" data-eusoft-scrollable-element="1">cd</span> llama-cpp</pre><div class="zeroclipboard-container">
+    </div></div><!--/scrapbook-capture-selected--><div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected--><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">Initialize llama.cpp with IPEX-LLM</h4><!--/scrapbook-capture-selected--></div><!--scrapbook-capture-selected--><p dir="auto">Then you can use following command to initialize <code data-eusoft-scrollable-element="1">llama.cpp</code> with IPEX-LLM:</p>
+<ul dir="auto">
+<li>
+<p dir="auto">For <strong data-eusoft-scrollable-element="1">Linux users</strong>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre>init-llama-cpp</pre><div class="zeroclipboard-container">
+    </div></div><p dir="auto">After <code data-eusoft-scrollable-element="1">init-llama-cpp</code>, you should see many soft links of <code data-eusoft-scrollable-element="1">llama.cpp</code>'s executable files and a <code data-eusoft-scrollable-element="1">convert.py</code> in current directory.</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5990a351b77887c8f1298cc46c904cd846bc524f74c781db3bb44d21cfd29d42/68747470733a2f2f6c6c6d2d6173736574732e72656164746865646f63732e696f2f656e2f6c61746573742f5f696d616765732f696e69745f6c6c616d615f6370705f64656d6f5f696d6167652e706e67" data-eusoft-scrollable-element="1"><img src="68747470733a2f2f6c6c6d2d6173736574732e72656164746865646f63732e696f2f656e2f6c61746573742f5f696d616765732f696e69745f6c6c61-1.png" alt="init_llama_cpp_demo_image" data-canonical-src="https://llm-assets.readthedocs.io/en/latest/_images/init_llama_cpp_demo_image.png" style="max-width: 100%;"></a></p>
+</li><!--scrapbook-capture-selected-->
+<li>
+<p dir="auto">For <strong data-eusoft-scrollable-element="1">Windows users</strong>:</p>
+<p dir="auto">Please run the following command with <strong data-eusoft-scrollable-element="1">administrator privilege in Miniforge Prompt</strong>.</p>
+<div class="highlight highlight-source-batchfile notranslate position-relative overflow-auto" dir="auto"><pre>init-llama-cpp.bat</pre><div class="zeroclipboard-container">
+    </div></div><p dir="auto">After <code data-eusoft-scrollable-element="1">init-llama-cpp.bat</code>, you should see many soft links of <code data-eusoft-scrollable-element="1">llama.cpp</code>'s executable files and a <code data-eusoft-scrollable-element="1">convert.py</code> in current directory.</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/30756ff7bc65291620d190a0d57abf1011021590d5b2ea43f2556ac1749a765c/68747470733a2f2f6c6c6d2d6173736574732e72656164746865646f63732e696f2f656e2f6c61746573742f5f696d616765732f696e69745f6c6c616d615f6370705f64656d6f5f696d6167655f77696e646f77732e706e67" data-eusoft-scrollable-element="1"><img src="68747470733a2f2f6c6c6d2d6173736574732e72656164746865646f63732e696f2f656e2f6c61746573742f5f696d616765732f696e69745f6c6c61.png" alt="init_llama_cpp_demo_image_windows" data-canonical-src="https://llm-assets.readthedocs.io/en/latest/_images/init_llama_cpp_demo_image_windows.png" style="max-width: 100%;"></a></p>
+</li><!--/scrapbook-capture-selected-->
+</ul><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected-->
+<!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><div class="markdown-alert markdown-alert-tip" dir="auto"><p class="markdown-alert-title" dir="auto" data-eusoft-scrollable-element="1">Tip</p><p dir="auto"><code data-eusoft-scrollable-element="1">init-llama-cpp</code> will create soft links of llama.cpp's executable files to current directory, if you want to use these executable files in other places, don't forget to run above commands again.</p>
+</div>
+<!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><div class="markdown-alert markdown-alert-note" dir="auto"><p class="markdown-alert-title" dir="auto" data-eusoft-scrollable-element="1">Note</p><p dir="auto">If you have installed higher version <code data-eusoft-scrollable-element="1">ipex-llm[cpp]</code> and want to upgrade your binary file, don't forget to remove old binary files first and initialize again with <code data-eusoft-scrollable-element="1">init-llama-cpp</code> or <code data-eusoft-scrollable-element="1">init-llama-cpp.bat</code>.</p>
+</div>
+<p dir="auto"><strong data-eusoft-scrollable-element="1">Now you can use these executable files by standard llama.cpp's usage.</strong></p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">Runtime Configuration</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">To use GPU acceleration, several environment variables are required or recommended before running <code data-eusoft-scrollable-element="1">llama.cpp</code>.</p>
+<ul dir="auto">
+<li>
+<p dir="auto">For <strong data-eusoft-scrollable-element="1">Linux users</strong>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre data-eusoft-scrollable-element="1"><span class="pl-c1" data-eusoft-scrollable-element="1">source</span> /opt/intel/oneapi/setvars.sh
+<span class="pl-c" data-eusoft-scrollable-element="1"><span class="pl-c" data-eusoft-scrollable-element="1">#</span> [optional] under most circumstances, the following environment variable may improve performance, but sometimes this may also cause performance degradation</span>
+<span class="pl-k" data-eusoft-scrollable-element="1">export</span> SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS=1
+<span class="pl-c" data-eusoft-scrollable-element="1"><span class="pl-c" data-eusoft-scrollable-element="1">#</span> [optional] if you want to run on single GPU, use below command to limit GPU may improve performance</span>
+<span class="pl-k" data-eusoft-scrollable-element="1">export</span> ONEAPI_DEVICE_SELECTOR=level_zero:0</pre><div class="zeroclipboard-container">
+    </div></div></li><li><!--scrapbook-capture-selected-->
+<p dir="auto">For <strong data-eusoft-scrollable-element="1">Windows users</strong>:</p>
+<p dir="auto">Please run the following command in Miniforge Prompt.</p>
+<div class="highlight highlight-source-batchfile notranslate position-relative overflow-auto" dir="auto"><pre data-eusoft-scrollable-element="1"><span class="pl-c" data-eusoft-scrollable-element="1"><span class="pl-k" data-eusoft-scrollable-element="1">rem</span> under most circumstances, the following environment variable may improve performance, but sometimes this may also cause performance degradation</span>
+<span class="pl-k" data-eusoft-scrollable-element="1">set</span> <span class="pl-smi" data-eusoft-scrollable-element="1">SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS</span><span class="pl-k" data-eusoft-scrollable-element="1">=</span><span class="pl-c1" data-eusoft-scrollable-element="1">1</span></pre><div class="zeroclipboard-container">
+    </div></div><!--/scrapbook-capture-selected--></li></ul><!--/scrapbook-capture-selected--><div class="markdown-alert markdown-alert-tip" dir="auto"><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><p class="markdown-alert-title" dir="auto" data-eusoft-scrollable-element="1">Tip</p><p dir="auto">When your machine has multi GPUs and you want to run on one of them, you need to set <code data-eusoft-scrollable-element="1">ONEAPI_DEVICE_SELECTOR=level_zero:[gpu_id]</code>, here <code data-eusoft-scrollable-element="1">[gpu_id]</code> varies based on your requirement. For more details, you can refer to <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Overview/KeyFeatures/multi_gpus_selection.md#2-oneapi-device-selector" data-eusoft-scrollable-element="1">this section</a>.</p>
+</div><!--scrapbook-capture-selected-->
+<!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><div class="markdown-alert markdown-alert-note" dir="auto"><p class="markdown-alert-title" dir="auto" data-eusoft-scrollable-element="1">Note</p><p dir="auto">The environment variable <code data-eusoft-scrollable-element="1">SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS</code> determines the usage of immediate command lists for task submission to the GPU. While this mode typically enhances performance, exceptions may occur. Please consider experimenting with and without this environment variable for best performance. For more details, you can refer to <a href="https://www.intel.com/content/www/us/en/developer/articles/guide/level-zero-immediate-command-lists.html" rel="nofollow" data-eusoft-scrollable-element="1">this article</a>.</p>
+</div>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h3 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">3. Example: Running community GGUF models with IPEX-LLM</h3></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">Here we provide a simple example to show how to run a community GGUF model with IPEX-LLM.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">Model Download</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">Before running, you should download or copy community GGUF model to your current directory. For instance,  <code data-eusoft-scrollable-element="1">mistral-7b-instruct-v0.1.Q4_K_M.gguf</code> of <a href="https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF/tree/main" rel="nofollow" data-eusoft-scrollable-element="1">Mistral-7B-Instruct-v0.1-GGUF</a>.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">Run the quantized model</h4></div><!--/scrapbook-capture-selected--><ul dir="auto"><!--scrapbook-capture-selected-->
+<li>
+<p dir="auto">For <strong data-eusoft-scrollable-element="1">Linux users</strong>:</p>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto"><pre data-eusoft-scrollable-element="1">./llama-cli -m mistral-7b-instruct-v0.1.Q4_K_M.gguf -n 32 --prompt <span class="pl-s" data-eusoft-scrollable-element="1"><span class="pl-pds" data-eusoft-scrollable-element="1">"</span>Once upon a time, there existed a little girl who liked to have adventures. She wanted to go to places and meet new people, and have fun<span class="pl-pds" data-eusoft-scrollable-element="1">"</span></span> -c 1024 -t 8 -e -ngl 99 --color -no-cnv</pre><div class="zeroclipboard-container">
+    </div></div><blockquote>
+<p dir="auto"><strong data-eusoft-scrollable-element="1">Note</strong>:</p>
+<p dir="auto">For more details about meaning of each parameter, you can use <code data-eusoft-scrollable-element="1">./llama-cli -h</code>.</p>
+</blockquote>
+</li><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected-->
+<li>
+<p dir="auto">For <strong data-eusoft-scrollable-element="1">Windows users</strong>:</p>
+<p dir="auto">Please run the following command in Miniforge Prompt.</p>
+<div class="highlight highlight-source-batchfile notranslate position-relative overflow-auto" dir="auto"><pre data-eusoft-scrollable-element="1">llama-cli -m mistral-7b-instruct-v0.1.Q4_K_M.gguf -n <span class="pl-c1" data-eusoft-scrollable-element="1">32</span> --prompt <span class="pl-s" data-eusoft-scrollable-element="1"><span class="pl-pds" data-eusoft-scrollable-element="1">"</span>Once upon a time, there existed a little girl who liked to have adventures. She wanted to go to places and meet new people, and have fun<span class="pl-pds" data-eusoft-scrollable-element="1">"</span></span> -c <span class="pl-c1" data-eusoft-scrollable-element="1">1024</span> -t <span class="pl-c1" data-eusoft-scrollable-element="1">8</span> -e -ngl <span class="pl-c1" data-eusoft-scrollable-element="1">99</span> --color -no-cnv</pre><div class="zeroclipboard-container">
+    </div></div><blockquote>
+<p dir="auto"><strong data-eusoft-scrollable-element="1">Note</strong>:</p>
+<p dir="auto">For more details about meaning of each parameter, you can use <code data-eusoft-scrollable-element="1">./llama-cli -h</code>.</p>
+</blockquote>
+</li><!--/scrapbook-capture-selected-->
+</ul><!--scrapbook-capture-selected-->
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">Sample Output</h4></div><!--/scrapbook-capture-selected--><div class="snippet-clipboard-content notranslate position-relative overflow-auto"><!--scrapbook-capture-selected--><pre class="notranslate" data-eusoft-scrollable-element="1"><code data-eusoft-scrollable-element="1">main: llama backend init
+main: load the model and apply lora adapter, if any
+llama_model_load_from_file_impl: using device SYCL0 (Intel(R) Arc(TM) A770 Graphics) - 15473 MiB free
+llama_model_loader: loaded meta data with 20 key-value pairs and 291 tensors from /home/arda/ruonan/mistral-7b-instruct-v0.1.Q4_K_M.gguf (version GGUF V2)
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = llama
+llama_model_loader: - kv   1:                               general.name str              = mistralai_mistral-7b-instruct-v0.1
+llama_model_loader: - kv   2:                       llama.context_length u32              = 32768
+llama_model_loader: - kv   3:                     llama.embedding_length u32              = 4096
+llama_model_loader: - kv   4:                          llama.block_count u32              = 32
+llama_model_loader: - kv   5:                  llama.feed_forward_length u32              = 14336
+llama_model_loader: - kv   6:                 llama.rope.dimension_count u32              = 128
+llama_model_loader: - kv   7:                 llama.attention.head_count u32              = 32
+llama_model_loader: - kv   8:              llama.attention.head_count_kv u32              = 8
+llama_model_loader: - kv   9:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  10:                       llama.rope.freq_base f32              = 10000.000000
+llama_model_loader: - kv  11:                          general.file_type u32              = 15
+llama_model_loader: - kv  12:                       tokenizer.ggml.model str              = llama
+llama_model_loader: - kv  13:                      tokenizer.ggml.tokens arr[str,32000]   = ["&lt;unk&gt;", "&lt;s&gt;", "&lt;/s&gt;", "&lt;0x00&gt;", "&lt;...
+llama_model_loader: - kv  14:                      tokenizer.ggml.scores arr[f32,32000]   = [0.000000, 0.000000, 0.000000, 0.0000...
+llama_model_loader: - kv  15:                  tokenizer.ggml.token_type arr[i32,32000]   = [2, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+llama_model_loader: - kv  16:                tokenizer.ggml.bos_token_id u32              = 1
+llama_model_loader: - kv  17:                tokenizer.ggml.eos_token_id u32              = 2
+llama_model_loader: - kv  18:            tokenizer.ggml.unknown_token_id u32              = 0
+llama_model_loader: - kv  19:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:   65 tensors
+llama_model_loader: - type q4_K:  193 tensors
+llama_model_loader: - type q6_K:   33 tensors
+print_info: file format = GGUF V2
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 4.07 GiB (4.83 BPW) 
+load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+load: special tokens cache size = 3
+load: token to piece cache size = 0.1637 MB
+print_info: arch             = llama
+print_info: vocab_only       = 0
+print_info: n_ctx_train      = 32768
+print_info: n_embd           = 4096
+print_info: n_layer          = 32
+print_info: n_head           = 32
+print_info: n_head_kv        = 8
+print_info: n_rot            = 128
+print_info: n_swa            = 0
+print_info: n_embd_head_k    = 128
+print_info: n_embd_head_v    = 128
+print_info: n_gqa            = 4
+print_info: n_embd_k_gqa     = 1024
+print_info: n_embd_v_gqa     = 1024
+print_info: f_norm_eps       = 0.0e+00
+print_info: f_norm_rms_eps   = 1.0e-05
+print_info: f_clamp_kqv      = 0.0e+00
+print_info: f_max_alibi_bias = 0.0e+00
+print_info: f_logit_scale    = 0.0e+00
+print_info: n_ff             = 14336
+print_info: n_expert         = 0
+print_info: n_expert_used    = 0
+print_info: causal attn      = 1
+print_info: pooling type     = 0
+print_info: rope type        = 0
+print_info: rope scaling     = linear
+print_info: freq_base_train  = 10000.0
+print_info: freq_scale_train = 1
+print_info: n_ctx_orig_yarn  = 32768
+print_info: rope_finetuned   = unknown
+print_info: ssm_d_conv       = 0
+print_info: ssm_d_inner      = 0
+print_info: ssm_d_state      = 0
+print_info: ssm_dt_rank      = 0
+print_info: ssm_dt_b_c_rms   = 0
+print_info: model type       = 7B
+print_info: model params     = 7.24 B
+print_info: general.name     = mistralai_mistral-7b-instruct-v0.1
+print_info: vocab type       = SPM
+print_info: n_vocab          = 32000
+print_info: n_merges         = 0
+print_info: BOS token        = 1 '&lt;s&gt;'
+print_info: EOS token        = 2 '&lt;/s&gt;'
+print_info: UNK token        = 0 '&lt;unk&gt;'
+print_info: LF token         = 13 '&lt;0x0A&gt;'
+print_info: EOG token        = 2 '&lt;/s&gt;'
+print_info: max token length = 48
+load_tensors: loading model tensors, this can take a while... (mmap = true)
+load_tensors: offloading 32 repeating layers to GPU
+load_tensors: offloading output layer to GPU
+load_tensors: offloaded 33/33 layers to GPU
+load_tensors:   CPU_Mapped model buffer size =    70.31 MiB
+load_tensors:        SYCL0 model buffer size =  4095.05 MiB
+.................................................................................................
+llama_init_from_model: n_seq_max     = 1
+llama_init_from_model: n_ctx         = 1024
+llama_init_from_model: n_ctx_per_seq = 1024
+llama_init_from_model: n_batch       = 1024
+llama_init_from_model: n_ubatch      = 1024
+llama_init_from_model: flash_attn    = 0
+llama_init_from_model: freq_base     = 10000.0
+llama_init_from_model: freq_scale    = 1
+llama_init_from_model: n_ctx_per_seq (1024) &lt; n_ctx_train (32768) -- the full capacity of the model will not be utilized
+Running with Environment Variables:
+  GGML_SYCL_DEBUG: 0
+  GGML_SYCL_DISABLE_OPT: 1
+Build with Macros:
+  GGML_SYCL_FORCE_MMQ: no
+  GGML_SYCL_F16: no
+Found 1 SYCL devices:
+|  |                   |                                       |       |Max    |        |Max  |Global |                     |
+|  |                   |                                       |       |compute|Max work|sub  |mem    |                     |
+|ID|        Device Type|                                   Name|Version|units  |group   |group|size   |       Driver version|
+|--|-------------------|---------------------------------------|-------|-------|--------|-----|-------|---------------------|
+| 0| [level_zero:gpu:0]|                Intel Arc A770 Graphics|  12.55|    512|    1024|   32| 16225M|     1.6.31294.120000|
+SYCL Optimization Feature:
+|ID|        Device Type|Reorder|
+|--|-------------------|-------|
+| 0| [level_zero:gpu:0]|      Y|
+llama_kv_cache_init: kv_size = 1024, offload = 1, type_k = 'f16', type_v = 'f16', n_layer = 32, can_shift = 1
+llama_kv_cache_init:      SYCL0 KV buffer size =   128.00 MiB
+llama_init_from_model: KV self size  =  128.00 MiB, K (f16):   64.00 MiB, V (f16):   64.00 MiB
+llama_init_from_model:  SYCL_Host  output buffer size =     0.12 MiB
+llama_init_from_model:      SYCL0 compute buffer size =   164.01 MiB
+llama_init_from_model:  SYCL_Host compute buffer size =    20.01 MiB
+llama_init_from_model: graph nodes  = 902
+llama_init_from_model: graph splits = 2
+common_init_from_params: setting dry_penalty_last_n to ctx_size = 1024
+common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+main: llama threadpool init, n_threads = 8
+
+system_info: n_threads = 8 (n_threads_batch = 8) / 32 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | LLAMAFILE = 1 | OPENMP = 1 | AARCH64_REPACK = 1 | 
+
+sampler seed: 403565315
+sampler params: 
+        repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+        dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 1024
+        top_k = 40, top_p = 0.950, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.800
+        mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000
+sampler chain: logits -&gt; logit-bias -&gt; penalties -&gt; dry -&gt; top-k -&gt; typical -&gt; top-p -&gt; min-p -&gt; xtc -&gt; temp-ext -&gt; dist 
+generate: n_ctx = 1024, n_batch = 4096, n_predict = 32, n_keep = 1
+
+ Once upon a time, there existed a little girl who liked to have adventures. She wanted to go to places and meet new people, and have fun exploring the world. But sometimes, she found it hard to find friends who shared her interests.
+
+One day, she decided to take matters into her own
+
+llama_perf_sampler_print:    sampling time =       x.xx ms /    63 runs   (    x.xx ms per token, xx.xx tokens per second)
+llama_perf_context_print:        load time =      xx.xx ms
+llama_perf_context_print: prompt eval time =      xx.xx ms /    31 tokens (   xx.xx ms per token,    xx.xx tokens per second)
+llama_perf_context_print:        eval time =      xx.xx ms /    31 runs   (   xx.xx ms per token,    xx.xx tokens per second)
+llama_perf_context_print:       total time =      xx.xx ms /    62 tokens
+</code></pre><div class="zeroclipboard-container">
+    </div><!--/scrapbook-capture-selected--></div><div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected--><h3 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">Troubleshooting</h3><!--/scrapbook-capture-selected--></div><div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected--><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">1. Unable to run the initialization script</h4><!--/scrapbook-capture-selected--></div><!--scrapbook-capture-selected--><p dir="auto">If you are unable to run <code data-eusoft-scrollable-element="1">init-llama-cpp.bat</code>, please make sure you have installed <code data-eusoft-scrollable-element="1">ipex-llm[cpp]</code> in your conda environment. If you have installed it, please check if you have activated the correct conda environment. Also, if you are using Windows, please make sure you have run the script with administrator privilege in prompt terminal.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto">2. <code data-eusoft-scrollable-element="1">DeviceList is empty. -30 (PI_ERROR_INVALID_VALUE)</code> error</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">On Linux, this error happens when devices starting with <code data-eusoft-scrollable-element="1">[ext_oneapi_level_zero]</code> are not found. Please make sure you have installed level-zero, and have sourced <code data-eusoft-scrollable-element="1">/opt/intel/oneapi/setvars.sh</code> before running the command.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto">3. <code data-eusoft-scrollable-element="1">Prompt is too long</code> error</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you encounter <code data-eusoft-scrollable-element="1">main: prompt is too long (xxx tokens, max xxx)</code>, please increase the <code data-eusoft-scrollable-element="1">-c</code> parameter to set a larger size of context.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto">4. <code data-eusoft-scrollable-element="1">gemm: cannot allocate memory on host</code> error / <code data-eusoft-scrollable-element="1">could not create an engine</code> error</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you meet <code data-eusoft-scrollable-element="1">oneapi::mkl::oneapi::mkl::blas::gemm: cannot allocate memory on host</code> error, or <code data-eusoft-scrollable-element="1">could not create an engine</code> on Linux, this is probably caused by pip installed OneAPI dependencies. You should prevent installing like <code data-eusoft-scrollable-element="1">pip install dpcpp-cpp-rt==2024.0.2 mkl-dpcpp==2024.0.0 onednn==2024.0.0</code>, and instead use <code data-eusoft-scrollable-element="1">apt</code> to install on Linux. Please refer to <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/install_linux_gpu.md" data-eusoft-scrollable-element="1">this guide</a> for more details.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">5. Fail to quantize model</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you encounter <code data-eusoft-scrollable-element="1">main: failed to quantize model from xxx</code>, please make sure you have created related output directory.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">6. Program hang during model loading</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If your program hang after <code data-eusoft-scrollable-element="1">llm_load_tensors:  SYCL_Host buffer size =    xx.xx MiB</code>, you can add <code data-eusoft-scrollable-element="1">--no-mmap</code> in your command.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto">7. How to set <code data-eusoft-scrollable-element="1">-ngl</code> parameter</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto"><code data-eusoft-scrollable-element="1">-ngl</code> means the number of layers to store in VRAM. If your VRAM is enough, we recommend putting all layers on GPU, you can just set <code data-eusoft-scrollable-element="1">-ngl</code> to a large number like 999 to achieve this goal.</p>
+<p dir="auto">If <code data-eusoft-scrollable-element="1">-ngl</code> is set to 0, it means that the entire model will run on CPU. If <code data-eusoft-scrollable-element="1">-ngl</code> is set to greater than 0 and less than model layers, then it's mixed GPU + CPU scenario.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">8. How to specificy GPU</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If your machine has multi GPUs, <code data-eusoft-scrollable-element="1">llama.cpp</code> will default use all GPUs which may slow down your inference for model which can run on single GPU. You can add <code data-eusoft-scrollable-element="1">-sm none</code> in your command to use one GPU only.</p>
+<p dir="auto">Also, you can use <code data-eusoft-scrollable-element="1">ONEAPI_DEVICE_SELECTOR=level_zero:[gpu_id]</code> to select device before excuting your command, more details can refer to <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Overview/KeyFeatures/multi_gpus_selection.md#2-oneapi-device-selector" data-eusoft-scrollable-element="1">here</a>.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">9. Program crash with Chinese prompt</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you run the llama.cpp program on Windows and find that your program crashes or outputs abnormally when accepting Chinese prompts, you can search for <code data-eusoft-scrollable-element="1">region</code> in the Windows search bar and go to <code data-eusoft-scrollable-element="1">Region-&gt;Administrative-&gt;Change System locale..</code>, tick <code data-eusoft-scrollable-element="1">Beta: Use Unicode UTF-8 for worldwide language support</code> option and then restart your computer.</p>
+<p dir="auto">For detailed instructions on how to do this, see <a href="https://github.com/intel-analytics/ipex-llm/issues/10989#issuecomment-2105598660" data-hovercard-type="issue" data-hovercard-url="/intel/ipex-llm/issues/10989/hovercard" aria-keyshortcuts="Alt+ArrowUp" data-eusoft-scrollable-element="1">this issue</a>.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">10. sycl7.dll not found error</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you meet <code data-eusoft-scrollable-element="1">System Error: sycl7.dll not found</code> on Windows or you meet similar error on Linux, please check:</p>
+<ol dir="auto">
+<li>if you have installed conda and if you are in the right conda environment which has pip installed oneapi dependencies on Windows</li>
+<li>if you have executed <code data-eusoft-scrollable-element="1">source /opt/intel/oneapi/setvars.sh</code> on Linux</li>
+</ol>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">11. Check driver first when you meet garbage output on Windows</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you meet garbage output on Windows, please check if your GPU driver version is &gt;= <a href="https://www.intel.cn/content/www/cn/zh/download/785597/823163/intel-arc-iris-xe-graphics-windows.html" rel="nofollow" data-eusoft-scrollable-element="1">31.0.101.5522</a>. If not, please follow the instructions in <a href="https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/install_windows_gpu.md#optional-update-gpu-driver" data-eusoft-scrollable-element="1">this section</a> to update your GPU driver.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">12. Why my program can't find sycl device</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you meet <code data-eusoft-scrollable-element="1">GGML_ASSERT: C:/Users/Administrator/actions-runner/cpp-release/_work/llm.cpp/llm.cpp/llama-cpp-bigdl/ggml-sycl.cpp:18283: main_gpu_id&lt;g_all_sycl_device_count</code> error or similar error, and you find nothing is output when using <code data-eusoft-scrollable-element="1">ls-sycl-device</code>, this is because llama.cpp cannot find the sycl device. On some laptops, the installation of the ARC driver may lead to a forced installation of <code data-eusoft-scrollable-element="1">OpenCL, OpenGL, and Vulkan Compatibility Pack</code> by Microsoft, which inadvertently blocks the system from locating sycl devices. This issue can be resolved by manually uninstalling it in Microsoft store.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto" data-eusoft-scrollable-element="1">13. Core dump when having both integrated and dedicated graphics</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you have both integrated and dedicated graphics displayed in your llama.cpp's device log and don't specify which device to use, it will cause a core dump. In such case, you may need to specify <code data-eusoft-scrollable-element="1">export ONEAPI_DEVICE_SELECTOR=level_zero:0</code> before running <code data-eusoft-scrollable-element="1">llama-cli</code>.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto">14. <code data-eusoft-scrollable-element="1">Native API failed</code> error</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">On latest version of <code data-eusoft-scrollable-element="1">ipex-llm</code>, you might come across <code data-eusoft-scrollable-element="1">native API failed</code> error with certain models without the <code data-eusoft-scrollable-element="1">-c</code> parameter. Simply adding <code data-eusoft-scrollable-element="1">-c xx</code> would resolve this problem.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto">15. <code data-eusoft-scrollable-element="1">signal: bus error (core dumped)</code> error</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you meet this error, please check your Linux kernel version first. You may encounter this issue on higher kernel versions (like kernel 6.15). You can also refer to <a href="https://github.com/intel-analytics/ipex-llm/issues/10955" data-hovercard-type="issue" data-hovercard-url="/intel/ipex-llm/issues/10955/hovercard" aria-keyshortcuts="Alt+ArrowUp" data-eusoft-scrollable-element="1">this issue</a> to see if it helps.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto">16. <code data-eusoft-scrollable-element="1">backend buffer base cannot be NULL</code> error</h4></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">If you meet <code data-eusoft-scrollable-element="1">ggml-backend.c:96: GGML_ASSERT(base != NULL &amp;&amp; "backend buffer base cannot be NULL") failed</code>, simply adding <code data-eusoft-scrollable-element="1">-c xx</code> parameter during inference, for example <code data-eusoft-scrollable-element="1">-c 1024</code> would resolve this problem.</p>
+<div class="markdown-heading" dir="auto" data-eusoft-scrollable-element="1"><h4 tabindex="-1" class="heading-element" dir="auto">17. <code data-eusoft-scrollable-element="1">The program was built for 1 devices</code> error</h4></div><!--/scrapbook-capture-selected--><p dir="auto"><!--scrapbook-capture-selected-->If you meet error looks like <code data-eusoft-scrollable-element="1">The program was built for 1 devices. Build program log for 'Intel(R) Arc(TM) A770 Graphics</code>:, this may be caused by the command <code data-eusoft-scrollable-element="1">set/export SYCL_CACHE_PERSISTENT=1</code>. Please try <code data-eusoft-scrollable-element="1">unset SYCL_CACHE_PERSISTENT</code> in the terminal. If the variable has been written into a configuration file such as <code data-eusoft-scrollable-element="1">~/.bashrc</code>, you need to manually delete or comment out the conrresponding line.<!--/scrapbook-capture-selected--></p></article></div></section></div><!--/scrapbook-capture-selected--></div></div><!--/scrapbook-capture-selected--></div><!--/scrapbook-capture-selected--></div></div></div></div></div></div></div></div></react-app></div></turbo-frame></main></div></div></div><script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body></html>

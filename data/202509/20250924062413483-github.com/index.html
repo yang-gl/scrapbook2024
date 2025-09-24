@@ -1,0 +1,618 @@
+<!DOCTYPE html><html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark" data-a11y-animated-images="system" data-a11y-link-underlines="true" class="js-focus-visible" data-js-focus-visible="" data-turbo-loaded="" data-eusoft-scrollable-element="1" data-scrapbook-source="https://github.com/karminski/one-small-step/blob/main/20250228-what-is-LoRA/what-is-LoRA.md" data-scrapbook-create="20250924062413483"><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style><style>
+:root {
+  --fontStack-monospace: "Monaspace Neon", ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+}
+</style>
+
+
+
+
+  
+    <meta charset="UTF-8">
+  
+  
+  
+  
+  
+  
+
+  
+
+
+  <link media="all" rel="stylesheet" href="light-6448649c7147.css"><link media="all" rel="stylesheet" href="dark-d17b946fc2c5.css"><link data-color-theme="light_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_high_contrast-42fc7e3b06b7.css"><link data-color-theme="light_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind-44cfaf0c8f7b.css"><link data-color-theme="light_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind_high_contrast-979217efd93e.css"><link data-color-theme="light_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia-4d5383026bfa.css"><link data-color-theme="light_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia_high_contrast-ff6ff8532348.css"><link data-color-theme="dark_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_high_contrast-1b924088c83a.css"><link data-color-theme="dark_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind-654786382462.css"><link data-color-theme="dark_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind_high_contrast-ecca008c6f6e.css"><link data-color-theme="dark_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia-fff376053989.css"><link data-color-theme="dark_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia_high_contrast-49adf52571e5.css"><link data-color-theme="dark_dimmed" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed-66d97c13c98a.css"><link data-color-theme="dark_dimmed_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed_high_contrast-c58f1d0432b9.css">
+
+  <style type="text/css">
+    :root {
+      --tab-size-preference: 4;
+    }
+
+    pre, code {
+      tab-size: var(--tab-size-preference);
+    }
+  </style>
+
+    <link media="all" rel="stylesheet" href="primer-primitives-dc7ca6859caf.css">
+    <link media="all" rel="stylesheet" href="primer-f96b923db733.css">
+    <link media="all" rel="stylesheet" href="global-2744ca59d025.css">
+    <link media="all" rel="stylesheet" href="github-efdc4f8b5091.css">
+  <link media="all" rel="stylesheet" href="repository-5d735668c600.css">
+<link media="all" rel="stylesheet" href="code-9c9b8dc61e74.css">
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link media="all" rel="stylesheet" href="primer-react.592b66644437c8ba4190.module.css">
+<link media="all" rel="stylesheet" href="react-code-view.8b7d2260c74f2a9b531c.module.css">
+
+
+  <title>one-small-step/20250228-what-is-LoRA/what-is-LoRA.md at main · karminski/one-small-step</title>
+
+
+
+  <meta name="route-pattern" content="/:user_id/:repository/blob/*name(/*path)" data-turbo-transient="">
+  <meta name="route-controller" content="blob" data-turbo-transient="">
+  <meta name="route-action" content="show" data-turbo-transient="">
+  <meta name="fetch-nonce" content="v2:bfb4ba5f-d92b-acc8-ec65-71f364f65977">
+
+    
+  <meta name="current-catalog-service-hash" content="f3abb0cc802f3d7b95fc8762b94bdcb13bf39634c40c357301c4aa1d67a256fb">
+
+
+  <meta name="request-id" content="B1F3:2CCE73:16ACB13:1AE7F73:68D38E7D" data-turbo-transient="true"><meta name="html-safe-nonce" content="a71fee09143576a64f498f8f1c87d19a566c42a28542d8786afef163dd91ff0f" data-turbo-transient="true"><meta name="visitor-payload" content="eyJyZWZlcnJlciI6Imh0dHBzOi8vZ2l0aHViLmNvbS9rYXJtaW5za2kvb25lLXNtYWxsLXN0ZXAvdHJlZS9tYWluIiwicmVxdWVzdF9pZCI6IkIxRjM6MkNDRTczOjE2QUNCMTM6MUFFN0Y3Mzo2OEQzOEU3RCIsInZpc2l0b3JfaWQiOiIxNTQ3NDQ5MDU4ODg4MTk5MzQxIiwicmVnaW9uX2VkZ2UiOiJzb3V0aGVhc3Rhc2lhIiwicmVnaW9uX3JlbmRlciI6ImlhZCJ9" data-turbo-transient="true"><meta name="visitor-hmac" content="3765b3ca6bba678e874d658574b0924085252d4833786ac9dcc8d599801c941c" data-turbo-transient="true">
+
+
+    <meta name="hovercard-subject-tag" content="repository:917437753" data-turbo-transient="">
+
+
+  <meta name="github-keyboard-shortcuts" content="repository,source-code,file-tree,copilot" data-turbo-transient="true">
+  
+
+  <meta name="selected-link" value="repo_source" data-turbo-transient="">
+  <link rel="assets" href="https://github.githubassets.com/">
+
+    <meta name="google-site-verification" content="Apib7-x98H0j5cPqHWwSMm6dNU4GmODRoqxLiDzdx9I">
+
+<meta name="octolytics-url" content="https://collector.github.com/github/collect"><meta name="octolytics-actor-id" content="1445771"><meta name="octolytics-actor-login" content="yang-gl"><meta name="octolytics-actor-hash" content="770996b9626f1bdf4d3dbb1e4ecfd02b271c6d30756457e9d416112cbbc6c582">
+
+  <meta name="analytics-location" content="/<user-name>/<repo-name>/blob/show" data-turbo-transient="true">
+
+  
+
+
+
+
+    <meta name="user-login" content="yang-gl">
+
+  <link rel="sudo-modal" href="https://github.com/sessions/sudo_modal">
+
+    <meta name="viewport" content="width=device-width">
+
+    
+
+      <meta name="description" content="这是一个简单的技术科普教程项目，主要聚焦于解释一些有趣的，前沿的技术概念和原理。每篇文章都力求在 5 分钟内阅读完成。 - one-small-step/20250228-what-is-LoRA/what-is-LoRA.md at main · karminski/one-small-step">
+
+      <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <meta property="fb:app_id" content="1401488693436528">
+    <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/karminski/one-small-step/blob/main/20250228-what-is-LoRA/what-is-LoRA.md">
+
+      <meta name="twitter:image" content="https://opengraph.githubassets.com/8d2bd59a8d8810e2b5bf96f3852018edeba0d52bf4fee642db6287ce1b2790fd/karminski/one-small-step"><meta name="twitter:site" content="@github"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="one-small-step/20250228-what-is-LoRA/what-is-LoRA.md at main · karminski/one-small-step"><meta name="twitter:description" content="这是一个简单的技术科普教程项目，主要聚焦于解释一些有趣的，前沿的技术概念和原理。每篇文章都力求在 5 分钟内阅读完成。 - karminski/one-small-step">
+  <meta property="og:image" content="https://opengraph.githubassets.com/8d2bd59a8d8810e2b5bf96f3852018edeba0d52bf4fee642db6287ce1b2790fd/karminski/one-small-step"><meta property="og:image:alt" content="这是一个简单的技术科普教程项目，主要聚焦于解释一些有趣的，前沿的技术概念和原理。每篇文章都力求在 5 分钟内阅读完成。 - karminski/one-small-step"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="600"><meta property="og:site_name" content="GitHub"><meta property="og:type" content="object"><meta property="og:title" content="one-small-step/20250228-what-is-LoRA/what-is-LoRA.md at main · karminski/one-small-step"><meta property="og:url" content="https://github.com/karminski/one-small-step/blob/main/20250228-what-is-LoRA/what-is-LoRA.md"><meta property="og:description" content="这是一个简单的技术科普教程项目，主要聚焦于解释一些有趣的，前沿的技术概念和原理。每篇文章都力求在 5 分钟内阅读完成。 - karminski/one-small-step">
+  
+
+
+      <link rel="shared-web-socket" href="wss://alive.github.com/_sockets/u/1445771/ws?session=eyJ2IjoiVjMiLCJ1IjoxNDQ1NzcxLCJzIjoxNzk3NTQ3MzUwLCJjIjozNDQyODgwNzYzLCJ0IjoxNzU4Njk1MDM3fQ==--b8792ca534359f7f7ef0ed395f6e4af145da164f3a00533490ec6b7449c9db3a" data-refresh-url="/_alive" data-session-id="3ef562d4995d1c9fa54ae35621ef2dc03a9d870387b29a9e0c5970f8772264ca">
+      <link rel="shared-web-socket-src" href="https://github.com/assets-cdn/worker/socket-worker-7db934acff24.js">
+
+
+      <meta name="hostname" content="github.com">
+
+
+      <meta name="keyboard-shortcuts-preference" content="all">
+      <meta name="hovercards-preference" content="true">
+      <meta name="announcement-preference-hovercard" content="true">
+
+        <meta name="expected-hostname" content="github.com">
+
+
+  <meta http-equiv="x-pjax-version" content="f79e5adf481a4177c0a6387471d3f7270e1bbca6d0708a8b1be16823bf379762" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-csp-version" content="c922ef32c4ab94f8b870c62883f3e41755ec705db76ec4efb0d343458f1e28c7" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-css-version" content="0bc51a290919c52cc62b3d8b4eed96609edf264f742d0409c975553b0cdc84a8" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-js-version" content="cfb2b668d4aa1e76d31629ebf92f6a683ff4b6b6dd0a17bb6e7362c2096d6191" data-turbo-track="reload">
+
+  <meta name="turbo-cache-control" content="no-preview" data-turbo-transient="">
+
+      <meta name="turbo-cache-control" content="no-cache" data-turbo-transient="">
+
+    <meta data-hydrostats="publish">
+
+  <meta name="go-import" content="github.com/karminski/one-small-step git https://github.com/karminski/one-small-step.git">
+
+  <meta name="octolytics-dimension-user_id" content="1567626"><meta name="octolytics-dimension-user_login" content="karminski"><meta name="octolytics-dimension-repository_id" content="917437753"><meta name="octolytics-dimension-repository_nwo" content="karminski/one-small-step"><meta name="octolytics-dimension-repository_public" content="true"><meta name="octolytics-dimension-repository_is_fork" content="false"><meta name="octolytics-dimension-repository_network_root_id" content="917437753"><meta name="octolytics-dimension-repository_network_root_nwo" content="karminski/one-small-step">
+
+
+
+    
+
+    <meta name="turbo-body-classes" content="logged-in env-production page-responsive">
+
+
+  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+
+  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+
+  <meta name="release" content="9ab8f671abae27eceda33102b169278762386667">
+  <meta name="ui-target" content="full">
+
+  <link rel="mask-icon" href="https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg" color="#000000">
+  <link rel="alternate icon" class="js-site-favicon" type="image/png" href="favicon.png">
+  <link rel="icon" class="js-site-favicon" type="image/svg+xml" href="favicon.svg" data-base-href="https://github.githubassets.com/favicons/favicon">
+
+<meta name="theme-color" content="#1e2327">
+<meta name="color-scheme" content="light dark">
+
+
+  <link rel="manifest" href="https://github.com/manifest.json" crossorigin="use-credentials">
+
+  <style data-styled="active" data-styled-version="5.3.11">.gISSDQ { width: 100%; }
+@media screen and (min-width: 544px) {
+  .gISSDQ { width: 100%; }
+}
+@media screen and (min-width: 768px) {
+  .gISSDQ { width: auto; }
+}
+.birIjn { max-height: 100%; height: 100%; display: flex; flex-direction: column; }
+@media screen and (max-width: 768px) {
+  .birIjn { display: none; }
+}
+@media screen and (min-width: 768px) {
+  .birIjn { max-height: 100vh; height: 100vh; }
+}
+.jfIeyl { display: flex; width: 100%; margin-bottom: 16px; -moz-box-align: center; align-items: center; }
+.kOkWgo { font-size: 16px; margin-left: 8px; }
+.dPUXSa[data-size="medium"][data-no-visuals] { border-top-left-radius: 0px; border-bottom-left-radius: 0px; }
+@media screen and (max-width: 768px) {
+  .jLLPHh { display: none; }
+}
+.bHLmSv { position: absolute; inset: 0px -2px; cursor: col-resize; background-color: transparent; transition-delay: 0.1s; }
+.bHLmSv:hover { background-color: var(--bgColor-neutral-muted,var(--color-neutral-muted,rgba(175,184,193,0.2))); }
+.leYMvG { margin-left: auto; margin-right: auto; flex-direction: column; padding-bottom: 40px; max-width: 100%; margin-top: 0px; }
+.KMPzq { display: inherit; }
+.cEytCf { display: flex; flex-flow: wrap; font-size: 16px; min-width: 0px; flex-shrink: 1; max-width: 100%; -moz-box-align: center; align-items: center; }
+.fzFXnm { max-width: 100%; }
+.iMnkmv { max-width: 100%; list-style: none; display: inline-block; }
+.ghzDag { display: inline-block; max-width: 100%; }
+.kHuKdh { font-weight: 600; }
+.hzJBof { padding-left: 4px; padding-right: 4px; font-weight: 400; color: var(--fgColor-muted,var(--color-fg-muted,#656d76)); font-size: 16px; }
+.kgiVEz { font-weight: 400; }
+.jGhzSQ { font-weight: 600; display: inline-block; max-width: 100%; font-size: 16px; }
+.fjrFuv[data-size="medium"][data-no-visuals] { display: none; }
+.gUkoLg { -moz-box-pack: center; justify-content: center; }
+.dJxjrT { margin-left: 16px; margin-right: 16px; }
+.ldRxiI { display: flex; flex-direction: row; }
+.efRoCL { width: 100%; height: fit-content; min-width: 0px; margin-right: 16px; }
+.gNAmSV { height: 40px; padding-left: 4px; padding-bottom: 16px; }
+.kXyYCF[data-size="small"] { color: var(--fgColor-default,var(--color-fg-default,#1F2328)); display: none; }
+@media screen and (min-width: 544px) {
+  .kXyYCF[data-size="small"] { display: none; }
+}
+@media screen and (min-width: 768px) {
+  .kXyYCF[data-size="small"] { display: none; }
+}
+@media screen and (min-width: 1012px) {
+  .kXyYCF[data-size="small"] { display: none; }
+}
+@media screen and (min-width: 1280px) {
+  .kXyYCF[data-size="small"] { display: block; }
+}
+.jdLMhu { top: 0px; z-index: 4; background: var(--bgColor-default,var(--color-canvas-default)); position: sticky; }
+.hqwSEx { display: none; min-width: 0px; padding-top: 8px; padding-bottom: 8px; }
+.fHind { display: flex; flex-flow: wrap; font-size: 14px; min-width: 0px; flex-shrink: 1; max-width: 100%; -moz-box-align: center; align-items: center; }
+.oDtgN { padding-left: 4px; padding-right: 4px; font-weight: 400; color: var(--fgColor-muted,var(--color-fg-muted,#656d76)); font-size: 14px; }
+.dnZoUW { font-weight: 600; display: inline-block; max-width: 100%; font-size: 14px; }
+.gFKFyc { border-radius: 6px 6px 0px 0px; }
+.lefpaC linkButtonSx:hover:not([disabled]) { text-decoration: none; }
+.lefpaC linkButtonSx:focus:not([disabled]) { text-decoration: none; }
+.lefpaC linkButtonSx:active:not([disabled]) { text-decoration: none; }
+.ivobqY[data-size="small"][data-no-visuals] { border-top-left-radius: 0px; border-bottom-left-radius: 0px; }
+.iCOsHh[data-size="small"][data-no-visuals]:hover:not([disabled]) { text-decoration: none; }
+.iCOsHh[data-size="small"][data-no-visuals]:focus:not([disabled]) { text-decoration: none; }
+.iCOsHh[data-size="small"][data-no-visuals]:active:not([disabled]) { text-decoration: none; }
+.yaMnG[data-size="small"][data-no-visuals] { margin-right: 8px; }
+.hGyMdv { border-width: medium 1px 1px; border-style: none solid solid; border-image: none; border-color: var(--borderColor-default,var(--color-border-default,#d0d7de)); border-radius: 0px 0px 6px 6px; min-width: 273px; }
+.fGqKFv { background-color: var(--bgColor-default,var(--color-canvas-default)); border: 0px; border-radius: 0px 0px 6px 6px; padding: 0px; min-width: 0px; margin-top: 46px; -moz-box-pack: center; justify-content: center; }
+.eoaCFS { border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; padding: 32px; min-width: 0px; }
+.mgQhK { padding-bottom: 33px; }
+.cxUsTr { padding: 8px 16px; }
+.jXkPPw { display: flex; flex-direction: row; -moz-box-pack: justify; justify-content: space-between; }
+.hECgeo { font-size: 14px; order: 1; display: flex; flex-direction: row; -moz-box-pack: center; justify-content: center; -moz-box-align: center; align-items: center; font-weight: 600; }
+.kybBdn[data-size="medium"][data-no-visuals] { order: 3; color: var(--fgColor-default,var(--color-fg-default,#1F2328)); margin-right: -8px; }
+.cUqGUN { font-size: 12px; color: var(--fgColor-muted,var(--color-fg-muted,#656d76)); padding-top: 8px; }
+.cNGRpP { margin-top: 8px; border-radius: 6px; }
+.gqhZpQ { margin-right: 6px; }
+.ccgkJf { margin-left: -16px; margin-bottom: -8px; }
+.kACRto { margin-bottom: -8px; overflow-y: auto; max-height: calc(-237px + 100vh); padding-left: 16px; padding-bottom: 8px; padding-top: 4px; }
+.cSURfY { display: flex; }
+.bTXewe { display: flex; flex-direction: row; position: relative; margin-right: 8px; }
+.hXsfco { background-color: var(--color-prettylights-syntax-entity,#6639ba); opacity: 0.1; position: absolute; border-radius: 5px; -moz-box-align: stretch; align-items: stretch; display: flex; width: 100%; height: 100%; }
+.bgxsom { color: var(--color-prettylights-syntax-entity,#6639ba); border-radius: 5px; font-weight: 600; font-size: smaller; padding: 1px 4px; }
+.bJinFB { max-width: 180px; display: block; }
+.cCoXib { position: fixed; top: 0px; right: 0px; height: 100%; width: 15px; transition: transform 0.3s; z-index: 1; }
+.cCoXib:hover { transform: scaleX(1.5); }
+.bNhwaa { max-height: 100%; height: 100%; display: flex; flex-direction: column; }
+@media screen and (min-width: 768px) {
+  .bNhwaa { max-height: 100vh; height: 100vh; }
+}
+.hKaEJF { display: block; margin-right: 8px; }
+@media screen and (min-width: 1360px) {
+  .hKaEJF { display: block; }
+}
+.fVkfyA { width: 100%; height: fit-content; min-width: 0px; margin-right: 0px; }
+.gLSgdJ { font-weight: 600; color: var(--fgColor-default,var(--color-fg-default,#1F2328)); }
+.gLSgdJ:hover { color: var(--fgColor-default,var(--color-fg-default,#1F2328)); }
+.cWyMqi { display: flex; min-width: 0px; padding-top: 8px; padding-bottom: 8px; background-color: var(--bgColor-muted,var(--color-canvas-subtle,#f6f8fa)); border-left: 1px solid var(--borderColor-default,var(--color-border-default)); border-right: 1px solid var(--borderColor-default,var(--color-border-default)); }
+.dhuhek { border-radius: 0px; }
+.hWlpPn { position: relative; display: inline-block; }
+.hWlpPn::after { position: absolute; z-index: 1000000; display: none; padding: 0.5em 0.75em; font: 11px / 1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; color: var(--tooltip-fgColor,var(--fgColor-onEmphasis,var(--color-fg-on-emphasis,#ffffff))); text-align: center; text-decoration: none; text-shadow: none; text-transform: none; letter-spacing: normal; overflow-wrap: break-word; white-space: pre; pointer-events: none; content: attr(aria-label); background: var(--tooltip-bgColor,var(--bgColor-emphasis,var(--color-neutral-emphasis-plus,#24292f))); border-radius: 6px; opacity: 0; }
+@keyframes tooltip-appear {
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
+@keyframes tooltip-appear {
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
+.hWlpPn:hover::after, .hWlpPn:active::after, .hWlpPn:focus::after, .hWlpPn:focus-within::after { display: inline-block; text-decoration: none; animation-name: tooltip-appear; animation-duration: 0.1s; animation-fill-mode: forwards; animation-timing-function: ease-in; animation-delay: 0s; }
+.hWlpPn.tooltipped-no-delay:hover::after, .hWlpPn.tooltipped-no-delay:active::after, .hWlpPn.tooltipped-no-delay:focus::after, .hWlpPn.tooltipped-no-delay:focus-within::after { animation-delay: 0s; }
+.hWlpPn.tooltipped-multiline:hover::after, .hWlpPn.tooltipped-multiline:active::after, .hWlpPn.tooltipped-multiline:focus::after, .hWlpPn.tooltipped-multiline:focus-within::after { display: table-cell; }
+.hWlpPn.tooltipped-s::after, .hWlpPn.tooltipped-se::after, .hWlpPn.tooltipped-sw::after { top: 100%; right: 50%; margin-top: 6px; }
+.hWlpPn.tooltipped-se::after { right: auto; left: 50%; margin-left: -16px; }
+.hWlpPn.tooltipped-sw::after { margin-right: -16px; }
+.hWlpPn.tooltipped-n::after, .hWlpPn.tooltipped-ne::after, .hWlpPn.tooltipped-nw::after { right: 50%; bottom: 100%; margin-bottom: 6px; }
+.hWlpPn.tooltipped-ne::after { right: auto; left: 50%; margin-left: -16px; }
+.hWlpPn.tooltipped-nw::after { margin-right: -16px; }
+.hWlpPn.tooltipped-s::after, .hWlpPn.tooltipped-n::after { transform: translateX(50%); }
+.hWlpPn.tooltipped-w::after { right: 100%; bottom: 50%; margin-right: 6px; transform: translateY(50%); }
+.hWlpPn.tooltipped-e::after { bottom: 50%; left: 100%; margin-left: 6px; transform: translateY(50%); }
+.hWlpPn.tooltipped-multiline::after { width: max-content; max-width: 250px; overflow-wrap: break-word; white-space: pre-line; border-collapse: separate; }
+.hWlpPn.tooltipped-multiline.tooltipped-s::after, .hWlpPn.tooltipped-multiline.tooltipped-n::after { right: auto; left: 50%; transform: translateX(-50%); }
+.hWlpPn.tooltipped-multiline.tooltipped-w::after, .hWlpPn.tooltipped-multiline.tooltipped-e::after { right: 100%; }
+.hWlpPn.tooltipped-align-right-2::after { right: 0px; margin-right: 0px; }
+.hWlpPn.tooltipped-align-left-2::after { left: 0px; margin-left: 0px; }</style><link rel="stylesheet" type="text/css" href="lazy-react-partial-keyboard-shortcuts-dialog.2de9c7d6456a311fce49.module.css"><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><style id="ms-consent-banner-main-styles">.w8hcgFksdo30C8w-bygqu{color:#000}.ydkKdaztSS0AeHWIeIHsQ a{color:#0067B8}.erL690_8JwUW-R4bJRcfl{background-color:#EBEBEB;border:none;color:#000}.erL690_8JwUW-R4bJRcfl:enabled:hover{color:#000;background-color:#DBDBDB;box-shadow:0px 4px 10px rgba(0,0,0,0.25);border:none}.erL690_8JwUW-R4bJRcfl:enabled:focus{background-color:#DBDBDB;box-shadow:0px 4px 10px rgba(0,0,0,0.25);border:2px solid #000}.erL690_8JwUW-R4bJRcfl:disabled{opacity:1;color:rgba(0,0,0,0.2);background-color:rgba(0,0,0,0.2);border:none}._1zNQOqxpBFSokeCLGi_hGr{border:none;background-color:#0067B8;color:#fff}._1zNQOqxpBFSokeCLGi_hGr:enabled:hover{color:#fff;background-color:#0067B8;box-shadow:0px 4px 10px rgba(0,0,0,0.25);border:none}._1zNQOqxpBFSokeCLGi_hGr:enabled:focus{background-color:#0067B8;box-shadow:0px 4px 10px rgba(0,0,0,0.25);border:2px solid #000}._1zNQOqxpBFSokeCLGi_hGr:disabled{opacity:1;color:rgba(0,0,0,0.2);background-color:rgba(0,120,215,0.2);border:none}._23tra1HsiiP6cT-Cka-ycB{position:relative;display:flex;z-index:9999;width:100%;background-color:#F2F2F2;justify-content:space-between;text-align:left}div[dir="rtl"]._23tra1HsiiP6cT-Cka-ycB{text-align:right}._1Upc2NjY8AlDn177YoVj0y{margin:0;padding-left:5%;padding-top:8px;padding-bottom:8px}div[dir="rtl"] ._1Upc2NjY8AlDn177YoVj0y{margin:0;padding:8px 5% 8px 0;float:none}._23tra1HsiiP6cT-Cka-ycB svg{fill:none;max-width:none;max-height:none}._1V_hlU-7jdtPiooHMu89BB{display:table-cell;padding:12px;width:24px;height:24px;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:24px;line-height:0}.f6QKJD7fhSbnJLarTL-W-{display:table-cell;vertical-align:middle;padding:0;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:13px;line-height:16px}.f6QKJD7fhSbnJLarTL-W- a{text-decoration:underline}._2j0fmugLb1FgYz6KPuB91w{display:inline-block;margin-left:5%;margin-right:5%;min-width:40%;min-width:calc((150px + 3 * 4px) * 2 + 150px);min-width:-webkit-fit-content;min-width:-moz-fit-content;min-width:fit-content;align-self:center;position:relative}._1XuCi2WhiqeWRUVp3pnFG3{margin:4px;padding:5px;min-width:150px;min-height:36px;vertical-align:top;cursor:pointer;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px;text-align:center}._1XuCi2WhiqeWRUVp3pnFG3:focus{box-sizing:border-box}._1XuCi2WhiqeWRUVp3pnFG3:disabled{cursor:not-allowed}._2bvsb3ubApyZ0UGoQA9O9T{display:block;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background-color:rgba(255,255,255,0.6);overflow:auto;text-align:left}div[dir="rtl"]._2bvsb3ubApyZ0UGoQA9O9T{text-align:right}div[dir="rtl"] ._2bvsb3ubApyZ0UGoQA9O9T{left:auto;right:0}.AFsJE948muYyzCMktdzuk{position:relative;top:8%;margin-bottom:40px;margin-left:auto;margin-right:auto;box-sizing:border-box;width:640px;background-color:#fff;border:1px solid #0067B8}._3kWyBRbW_dgnMiEyx06Fu4{float:right;z-index:1;margin:2px;padding:12px;border:none;cursor:pointer;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:13px;line-height:13px;display:flex;align-items:center;text-align:center;color:#666;background-color:#fff}div[dir="rtl"] ._3kWyBRbW_dgnMiEyx06Fu4{margin:2px;padding:12px;float:left}.uCYvKvHXrhjNgflv1VqdD{position:static;margin-top:36px;margin-left:36px;margin-right:36px}._17pX1m9O_W--iZbDt3Ta5r{margin-top:0;margin-bottom:12px;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:600;font-size:20px;line-height:24px;text-transform:none}._1kBkHQ1V1wu3kl-YcLgUr6{height:446px;overflow:auto}._20_nXDf6uFs9Q6wxRXG-I-{margin-top:0;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px}._20_nXDf6uFs9Q6wxRXG-I- a{text-decoration:underline}dl._2a0NH_GDQEQe5Ynfo7suVH{margin-top:36px;margin-bottom:0;padding:0;list-style:none;text-transform:none}dt._3j_LCPv7fyXv3A8FIXVwZ4{margin-top:20px;float:none;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:600;font-size:18px;line-height:24px;list-style:none}.k-vxTGFbdq1aOZB2HHpjh{margin:0;padding:0;border:none}._2Bucyy75c_ogoU1g-liB5R{margin:0;padding:0;border-bottom:none;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:600;font-size:18px;line-height:24px;text-transform:none}._63gwfzV8dclrsl2cfd90r{display:inline-block;margin-top:0;margin-bottom:13px;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px}._1l8wM_4mRYGz3Iu7l3BZR7{display:block}._2UE03QS02aZGkslegN_F-i{display:inline-block;position:relative;left:5px;margin-bottom:13px;margin-right:34px;padding:3px}div[dir="rtl"] ._2UE03QS02aZGkslegN_F-i{margin:0 0 13px 34px;padding:3px;float:none}div[dir="rtl"] ._2UE03QS02aZGkslegN_F-i{left:auto;right:5px}._23tra1HsiiP6cT-Cka-ycB *::before,._2bvsb3ubApyZ0UGoQA9O9T *::before,._23tra1HsiiP6cT-Cka-ycB *::after,._2bvsb3ubApyZ0UGoQA9O9T *::after{box-sizing:inherit}._1HSFn0HzGo6w4ADApV8-c4{outline:2px solid rgba(0,0,0,0.8)}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2{display:inline-block;position:relative;margin-top:0;margin-left:0;margin-right:0;height:0;width:0;border-radius:0;cursor:pointer;outline:none;box-sizing:border-box;-webkit-appearance:none;-moz-appearance:none;appearance:none}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2+label::before{display:block;position:absolute;top:5px;left:3px;height:19px;width:19px;content:"";border-radius:50%;border:1px solid #000;background-color:#fff}div[dir="rtl"] input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2+label::before{left:auto;right:3px}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:hover::before{border:1px solid #0067B8}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:hover::after{display:block;position:absolute;top:10px;left:8px;height:9px;width:9px;content:"";border-radius:50%;background-color:rgba(0,0,0,0.8)}div[dir="rtl"] input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:hover::after{left:auto;right:8px}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:focus::before{border:1px solid #0067B8}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:focus::after{display:block;position:absolute;top:10px;left:8px;height:9px;width:9px;content:"";border-radius:50%;background-color:#000}div[dir="rtl"] input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:not(:disabled)+label:focus::after{left:auto;right:8px}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:checked+label::after{display:block;position:absolute;top:10px;left:8px;height:9px;width:9px;content:"";border-radius:50%;background-color:#000}div[dir="rtl"] input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:checked+label::after{left:auto;right:8px}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:disabled+label{cursor:not-allowed}input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:disabled+label::before{border:1px solid rgba(0,0,0,0.2);background-color:rgba(0,0,0,0.2)}._3RJzeL3l9Rl_lAQEm6VwdX{display:block;position:static;float:right;margin-top:0;margin-bottom:0;margin-left:19px;margin-right:0;padding-top:0;padding-bottom:0;padding-left:8px;padding-right:0;width:80%;width:calc(100% - 19px);font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px;text-transform:none;cursor:pointer;box-sizing:border-box}div[dir="rtl"] ._3RJzeL3l9Rl_lAQEm6VwdX{margin:0 19px 0 0;padding:0 8px 0 0;float:left}.nohp3sIG12ZBhzcMnPala{margin-top:20px;margin-bottom:48px}._2uhaEsmeotZ3P-M0AXo2kF{padding:0;width:278px;height:36px;cursor:pointer;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px;text-align:center}._2uhaEsmeotZ3P-M0AXo2kF:focus{box-sizing:border-box}._2uhaEsmeotZ3P-M0AXo2kF:disabled{cursor:not-allowed}._3tOu1FJ59c_xz_PmI1lKV5{float:right;padding:0;width:278px;height:36px;cursor:pointer;font-family:Segoe UI, SegoeUI, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:20px;text-align:center}._3tOu1FJ59c_xz_PmI1lKV5:focus{box-sizing:border-box}._3tOu1FJ59c_xz_PmI1lKV5:disabled{cursor:not-allowed}div[dir="rtl"] ._3tOu1FJ59c_xz_PmI1lKV5{margin:0;padding:0;float:left}@media only screen and (max-width: 768px){._2j0fmugLb1FgYz6KPuB91w,._1Upc2NjY8AlDn177YoVj0y{padding-top:8px;padding-bottom:12px;padding-left:3.75%;padding-right:3.75%;margin:0;width:92.5%}._23tra1HsiiP6cT-Cka-ycB{display:block}._1XuCi2WhiqeWRUVp3pnFG3{margin-bottom:8px;margin-left:0;margin-right:0;width:100%}._2bvsb3ubApyZ0UGoQA9O9T{overflow:hidden}.AFsJE948muYyzCMktdzuk{top:1.8%;width:93.33%;height:96.4%;overflow:hidden}.uCYvKvHXrhjNgflv1VqdD{margin-top:24px;margin-left:24px;margin-right:24px;height:100%}._1kBkHQ1V1wu3kl-YcLgUr6{height:62%;height:calc(100% - 188px);min-height:50%}._2uhaEsmeotZ3P-M0AXo2kF{width:100%}._3tOu1FJ59c_xz_PmI1lKV5{margin-bottom:12px;margin-left:0;width:100%}div[dir="rtl"] ._3tOu1FJ59c_xz_PmI1lKV5{margin:0 0 12px 0;padding:0;float:none}}@media only screen and (max-width: 768px) and (orientation: landscape), only screen and (max-height: 260px), only screen and (max-width: 340px){.AFsJE948muYyzCMktdzuk{overflow:auto}}@media only screen and (max-height: 260px), only screen and (max-width: 340px){._1XuCi2WhiqeWRUVp3pnFG3{min-width:0}._3kWyBRbW_dgnMiEyx06Fu4{padding:3%}.uCYvKvHXrhjNgflv1VqdD{margin-top:3%;margin-left:3%;margin-right:3%}._17pX1m9O_W--iZbDt3Ta5r{margin-bottom:3%}._1kBkHQ1V1wu3kl-YcLgUr6{height:calc(79% - 64px)}.nohp3sIG12ZBhzcMnPala{margin-top:5%;margin-bottom:10%}._3tOu1FJ59c_xz_PmI1lKV5{margin-bottom:3%}div[dir="rtl"] ._3tOu1FJ59c_xz_PmI1lKV5{margin:0 0 3% 0;padding:0;float:none}}
+</style><style type="text/css" id="ms-consent-banner-theme-styles">._23tra1HsiiP6cT-Cka-ycB {
+            background-color: #24292f !important;
+        }.w8hcgFksdo30C8w-bygqu {
+            color: #ffffff !important;
+        }.ydkKdaztSS0AeHWIeIHsQ a {
+            color: #d8b9ff !important;
+        }._2bvsb3ubApyZ0UGoQA9O9T {
+            background-color: rgba(23, 23, 23, 0.8) !important;
+        }.AFsJE948muYyzCMktdzuk {
+            background-color: #24292f !important;
+            border: 1px solid #d8b9ff !important;
+        }._3kWyBRbW_dgnMiEyx06Fu4 {
+            color: #d8b9ff !important;
+            background-color: #24292f !important;
+        }._1zNQOqxpBFSokeCLGi_hGr {
+            border: 1px solid #ffffff !important;
+            background-color: #ffffff !important;
+            color: #1f2328 !important;
+        }._1zNQOqxpBFSokeCLGi_hGr:enabled:hover {
+            color: #1f2328 !important;
+            background-color: #d8b9ff !important;
+            box-shadow: none !important;
+            border: 1px solid transparent !important;
+        }._1zNQOqxpBFSokeCLGi_hGr:enabled:focus {
+            background-color: #d8b9ff !important;
+            box-shadow: none !important;
+            border: 2px solid #ffffff !important;
+        }._1zNQOqxpBFSokeCLGi_hGr:disabled {
+            opacity: 0.5 !important;
+            color: #1f2328 !important;
+            background-color: #ffffff !important;
+            border: 1px solid transparent !important;
+        }.erL690_8JwUW-R4bJRcfl {
+            border: 1px solid #eaeef2 !important;
+            background-color: #32383f !important;
+            color: #ffffff !important;
+        }.erL690_8JwUW-R4bJRcfl:enabled:hover {
+            color: #ffffff !important;
+            background-color: #24292f !important;
+            box-shadow: none !important;
+            border: 1px solid #ffffff !important;
+        }.erL690_8JwUW-R4bJRcfl:enabled:focus {
+            background-color: #24292f !important;
+            box-shadow: none !important;
+            border: 2px solid #6e7781 !important;
+        }.erL690_8JwUW-R4bJRcfl:disabled {
+            opacity: 0.5 !important;
+            color: #ffffff !important;
+            background-color: #424a53 !important;
+            border: 1px solid #6e7781 !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label::before {
+            border: 1px solid #d8b9ff !important;
+            background-color: #24292f !important;
+        }._1HSFn0HzGo6w4ADApV8-c4 {
+            outline: 2px solid #ffffff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:checked + label::after {
+            background-color: #d8b9ff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label:hover::before {
+            border: 1px solid #ffffff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label:hover::after {
+            background-color: #ffffff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label:focus::before {
+            border: 1px solid #ffffff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2 + label:focus::after {
+            background-color: #d8b9ff !important;
+        }input[type="radio"]._1dp8Vp5m3HwAqGx8qBmFV2:disabled + label::before {
+            border: 1px solid rgba(227, 227, 227, 0.2) !important;
+            background-color: rgba(227, 227, 227, 0.2) !important;
+        }</style><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><link rel="stylesheet" type="text/css" href="lazy-react-partial-global-copilot-menu.e8b96f8e81aaf397c759.module.css"><link rel="stylesheet" type="text/css" href="lazy-react-partial-global-create-menu.091342d12267a9316908.module.css"><link rel="stylesheet" type="text/css" href="lazy-react-partial-global-user-nav-drawer.04e117190f24a25f4c1c.module.css"><link rel="stylesheet" type="text/css" href="lazy-react-partial-copilot-chat.84a51df592a2b82911e3.module.css"><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["turbo-frame","react-app","relative-time","math-renderer"])</script></head><body class="logged-in env-production page-responsive" style="overflow-wrap: break-word; --dialog-scrollgutter: 0px;"><div data-turbo-body="" class="logged-in env-production page-responsive" style="word-wrap: break-word;"><div class="application-main " data-commit-hovercards-enabled="" data-discussion-hovercards-enabled="" data-issue-and-pr-hovercards-enabled="" data-project-hovercards-enabled=""><div itemscope="" itemtype="http://schema.org/SoftwareSourceCode" class=""><main id="js-repo-pjax-container"><turbo-frame id="repo-content-turbo-frame" target="_top" data-turbo-action="advance" class=""><div id="repo-content-pjax-container" class="repository-content "><react-app app-name="react-code-view" initial-path="/karminski/one-small-step/blob/main/20250228-what-is-LoRA/what-is-LoRA.md" style="display: block; min-height: calc(100vh - 64px);" data-attempted-ssr="true" data-ssr="true" data-lazy="false" data-alternate="false" data-data-router-enabled="false" data-react-profiling="false" data-catalyst="" class="loaded"><div data-target="react-app.reactRoot"><div><div style="--spacing:var(--spacing-none)" class="prc-PageLayout-PageLayoutRoot-1zlEO"><div class="prc-PageLayout-PageLayoutWrapper-s2ao4" data-width="full"><div class="prc-PageLayout-PageLayoutContent-jzDMn"><div class="prc-PageLayout-ContentWrapper-b-QRo CodeView-module__SplitPageLayout_Content--qxR1C" data-is-hidden="false"><div class="prc-PageLayout-Content--F7-I" data-width="full" style="--spacing:var(--spacing-none)"><div data-selector="repos-split-pane-content" tabindex="0" class="Box-sc-g0xbh4-0 leYMvG"><div class="Box-sc-g0xbh4-0 KMPzq"><div class="container CodeViewHeader-module__Box--PofRM"><div class="px-3 pt-3 pb-0" id="StickyHeader"><div class="CodeViewHeader-module__Box_1--KpLzV"><div class="CodeViewHeader-module__Box_2--xzDOt"><div class="react-code-view-header-wrap--narrow CodeViewHeader-module__Box_3--WnQ2n"><div class="react-code-view-header-mb--narrow CodeViewHeader-module__Box_5--KeXxF"><div class="Box-sc-g0xbh4-0 cEytCf"><!--scrapbook-capture-selected--><nav data-testid="breadcrumbs" aria-labelledby="repos-header-breadcrumb-heading" id="repos-header-breadcrumb" class="Box-sc-g0xbh4-0 fzFXnm"><ol class="Box-sc-g0xbh4-0 iMnkmv"><li class="Box-sc-g0xbh4-0 ghzDag"><a class="Box-sc-g0xbh4-0 kHuKdh prc-Link-Link-85e08" sx="[object Object]" data-testid="breadcrumbs-repo-link" href="https://github.com/karminski/one-small-step/tree/main" data-discover="true" data-eusoft-scrollable-element="1">one-small-step</a></li><li class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 hzJBof prc-Text-Text-0ima0" aria-hidden="true" data-eusoft-scrollable-element="1">/</span><a class="Box-sc-g0xbh4-0 kgiVEz prc-Link-Link-85e08" sx="[object Object]" href="https://github.com/karminski/one-small-step/tree/main/20250228-what-is-LoRA" data-discover="true" data-eusoft-scrollable-element="1">20250228-what-is-LoRA</a></li></ol></nav><div data-testid="breadcrumbs-filename" class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 hzJBof prc-Text-Text-0ima0" aria-hidden="true" data-eusoft-scrollable-element="1">/</span><h1 class="Box-sc-g0xbh4-0 jGhzSQ prc-Heading-Heading-6CmGO" tabindex="-1" id="file-name-id">what-is-LoRA.md</h1></div><!--/scrapbook-capture-selected--><span class="CopyToClipboardButton-module__tooltip--HDUYz prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-label="Copy path" aria-hidden="true" id=":r5a:" popover="auto">Copy path</span></div></div></div><!--scrapbook-capture-selected--><div class="react-code-view-header-element--wide"><div class="CodeViewHeader-module__Box_7--FZfkg"><div class="d-flex gap-2"> <!--scrapbook-capture-selected--><div><div class="Box-sc-g0xbh4-0 CodeViewHeader-module__FileResultsList--bglyC"><span class="d-flex FileResultsList-module__FilesSearchBox--fSAh3 TextInput-wrapper prc-components-TextInputWrapper-i1ofR prc-components-TextInputBaseWrapper-ueK9q" data-leading-visual="true" data-trailing-visual="true" aria-busy="false"><input type="text" aria-label="Go to file" role="combobox" aria-controls="file-results-list" aria-expanded="false" aria-haspopup="dialog" autocorrect="off" spellcheck="false" placeholder="Go to file" aria-describedby=":r5d: :r5e:" data-component="input" class="prc-components-Input-Ic-y8" value=""><span class="TextInput-icon" id=":r5e:" aria-hidden="true"><kbd>t</kbd></span></span></div><button hidden="" data-testid="" data-hotkey="t,Shift+T" data-hotkey-scope="read-only-cursor-text-area"></button><button hidden="" data-hotkey="t,Shift+T"></button></div><button type="button" class="Box-sc-g0xbh4-0 fjrFuv prc-Button-ButtonBase-c50BI NavigationMenu-module__Button--SJihq" data-loading="false" data-no-visuals="true" data-size="medium" data-variant="default" aria-describedby=":R1ahj9lab:-loading-announcement" data-hotkey="b,Shift+B,Control+/ Control+b"><span data-component="buttonContent" class="Box-sc-g0xbh4-0 gUkoLg prc-Button-ButtonContent-HKbr-"><span data-component="text" class="prc-Button-Label-pTQ3x">Blame</span></span></button><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="b,Shift+B,Control+/ Control+b"></button><!--/scrapbook-capture-selected--><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":Rfihj9lab:" popover="auto">More file actions</span> </div></div></div><!--/scrapbook-capture-selected--><div class="react-code-view-header-element--narrow"><div class="CodeViewHeader-module__Box_7--FZfkg"><div class="d-flex gap-2"> <button type="button" class="Box-sc-g0xbh4-0 fjrFuv prc-Button-ButtonBase-c50BI NavigationMenu-module__Button--SJihq" data-loading="false" data-no-visuals="true" data-size="medium" data-variant="default" aria-describedby=":R1ahr9lab:-loading-announcement" data-hotkey="b,Shift+B,Control+/ Control+b"><span data-component="buttonContent" class="Box-sc-g0xbh4-0 gUkoLg prc-Button-ButtonContent-HKbr-"><span data-component="text" class="prc-Button-Label-pTQ3x">Blame</span></span></button><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="b,Shift+B,Control+/ Control+b"></button><button data-component="IconButton" type="button" data-testid="more-file-actions-button-nav-menu-narrow" aria-haspopup="true" aria-expanded="false" tabindex="0" class="prc-Button-ButtonBase-c50BI js-blob-dropdown-click NavigationMenu-module__IconButton--NqJ_L prc-Button-IconButton-szpyj" data-loading="false" data-no-visuals="true" data-size="medium" data-variant="default" aria-describedby=":Rihr9lab:-loading-announcement" aria-labelledby=":Rfihr9lab:" id=":Rihr9lab:"><svg aria-hidden="true" focusable="false" class="octicon octicon-kebab-horizontal" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path></svg></button><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":Rfihr9lab:" popover="auto">More file actions</span> </div></div></div></div></div></div></div></div><!--scrapbook-capture-selected--><div class="Box-sc-g0xbh4-0 dJxjrT react-code-view-bottom-padding"> <div class="BlobTopBanners-module__Box--g_bGk"></div> <!-- --> <!-- --> </div><div class="Box-sc-g0xbh4-0 dJxjrT"> <!-- --> <!-- --> <button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="r,Shift+R"></button><button hidden="" data-hotkey="r,Shift+R"></button><div class="d-flex flex-column border rounded-2 mb-3 pl-1"><div class="LatestCommit-module__Box--Fimpo"><!--scrapbook-capture-selected--><div data-testid="latest-commit" class="LatestCommit-module__Box_1--aQ5OG"><div class="CommitAttribution-module__CommitAttributionContainer--Si80C"><div data-testid="author-avatar" class="Box-sc-g0xbh4-0 AuthorAvatar-module__AuthorAvatarContainer--Z1TF8"><a class="prc-Link-Link-85e08" href="https://github.com/karminski" data-testid="avatar-icon-link" data-hovercard-url="/users/karminski/hovercard" aria-keyshortcuts="Alt+ArrowUp"><img data-component="Avatar" class="AuthorAvatar-module__authorAvatarImage--bQzij prc-Avatar-Avatar-ZRS-m" alt="karminski" width="20" height="20" style="--avatarSize-regular: 20px;" src="1567626.png" data-testid="github-avatar" aria-label="karminski"></a><a class="Box-sc-g0xbh4-0 gLSgdJ AuthorAvatar-module__authorHoverableLink--vw9qe prc-Link-Link-85e08" data-muted="true" href="https://github.com/karminski/one-small-step/commits?author=karminski" aria-label="commits by karminski" data-hovercard-url="/users/karminski/hovercard" aria-keyshortcuts="Alt+ArrowUp">karminski</a></div><span class=""></span></div><div class="d-none d-sm-flex LatestCommit-module__Box_2--JDY37"><div class="Truncate flex-items-center f5"><span class="Truncate-text prc-Text-Text-0ima0" data-testid="latest-commit-html"><a href="https://github.com/karminski/one-small-step/commit/5dc6a482541965f88c12e99d0b1d609c91429a78" class="Link--secondary" data-pjax="true" data-hovercard-url="/karminski/one-small-step/commit/5dc6a482541965f88c12e99d0b1d609c91429a78/hovercard" aria-keyshortcuts="Alt+ArrowUp" data-eusoft-scrollable-element="1">FIX link</a></span></div></div><span class="d-flex d-sm-none fgColor-muted f6"><relative-time class="sc-aXZVg" tense="past" datetime="2025-02-28T06:14:12.000Z" title="Feb 28, 2025, 2:14 PM GMT+8" data-scrapbook-shadowdom="7 months ago">Feb 28, 2025</relative-time></span></div><div class="d-flex flex-shrink-0 gap-2"><div data-testid="latest-commit-details" class="d-none d-sm-flex flex-items-center"><span class="d-flex flex-nowrap fgColor-muted f6"><a class="Link--secondary prc-Link-Link-85e08" aria-label="Commit 5dc6a48" data-hovercard-url="/karminski/one-small-step/commit/5dc6a482541965f88c12e99d0b1d609c91429a78/hovercard" href="https://github.com/karminski/one-small-step/commit/5dc6a482541965f88c12e99d0b1d609c91429a78" data-discover="true" aria-keyshortcuts="Alt+ArrowUp">5dc6a48</a>&nbsp;·&nbsp;<relative-time class="sc-aXZVg" tense="past" datetime="2025-02-28T06:14:12.000Z" title="Feb 28, 2025, 2:14 PM GMT+8" data-scrapbook-shadowdom="7 months ago">Feb 28, 2025</relative-time></span></div><div class="d-flex gap-2"><div class="d-sm-none"><button data-component="IconButton" type="button" aria-pressed="false" aria-expanded="false" data-testid="latest-commit-details-toggle" class="prc-Button-ButtonBase-c50BI LatestCommit-module__IconButton--Zxaob prc-Button-IconButton-szpyj" data-loading="false" data-no-visuals="true" data-size="small" data-variant="invisible" aria-describedby=":r5k:-loading-announcement" aria-labelledby=":r5j:"><svg aria-hidden="true" focusable="false" class="octicon octicon-ellipsis" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;"><path d="M0 5.75C0 4.784.784 4 1.75 4h12.5c.966 0 1.75.784 1.75 1.75v4.5A1.75 1.75 0 0 1 14.25 12H1.75A1.75 1.75 0 0 1 0 10.25ZM12 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM7 8a1 1 0 1 0 2 0 1 1 0 0 0-2 0ZM4 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"></path></svg></button><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="s" aria-hidden="true" id=":r5j:" popover="auto">Open commit details</span></div><div class="d-flex d-lg-none"><span role="tooltip" aria-label="History" id="history-icon-button-tooltip" class="Tooltip__TooltipBase-sc-17tf59c-0 hWlpPn tooltipped-n"><a aria-label="View commit history for this file." href="https://github.com/karminski/one-small-step/commits/main/20250228-what-is-LoRA/what-is-LoRA.md" class="prc-Button-ButtonBase-c50BI LinkButton-module__code-view-link-button--thtqc flex-items-center fgColor-default" data-loading="false" data-size="small" data-variant="invisible" aria-describedby=":R6bdal9lab:-loading-announcement history-icon-button-tooltip"><span data-component="buttonContent" data-align="center" class="prc-Button-ButtonContent-HKbr-"><span data-component="leadingVisual" class="prc-Button-Visual-2epfX prc-Button-VisualWrap-Db-eB"><svg aria-hidden="true" focusable="false" class="octicon octicon-history" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="m.427 1.927 1.215 1.215a8.002 8.002 0 1 1-1.6 5.685.75.75 0 1 1 1.493-.154 6.5 6.5 0 1 0 1.18-4.458l1.358 1.358A.25.25 0 0 1 3.896 6H.25A.25.25 0 0 1 0 5.75V2.104a.25.25 0 0 1 .427-.177ZM7.75 4a.75.75 0 0 1 .75.75v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5A.75.75 0 0 1 7.75 4Z"></path></svg></span></span></a></span></div></div></div><!--/scrapbook-capture-selected--></div></div><!--scrapbook-capture-selected--><div class="Box-sc-g0xbh4-0 ldRxiI"><div class="Box-sc-g0xbh4-0 fVkfyA container"><div class="Box-sc-g0xbh4-0 gNAmSV react-code-size-details-banner"><div class="react-code-size-details-banner CodeSizeDetails-module__Box--QdxnQ"><div class="text-mono CodeSizeDetails-module__Box_1--_uFDs"><div data-testid="blob-size" class="CodeSizeDetails-module__Truncate_1--er0Uk prc-Truncate-Truncate-A9Wn6" data-inline="true" title="4.71 KB" style="--truncate-max-width:100%"><span>80 lines (53 loc) · 4.71 KB</span></div></div></div><div class="react-code-size-details-banner"><button style="--button-color:fg.default" type="button" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-label="Code 55% faster with GitHub Copilot" class="Box-sc-g0xbh4-0 kXyYCF prc-Button-ButtonBase-c50BI" data-loading="false" data-size="small" data-variant="invisible" aria-describedby=":R9fal9lab:-loading-announcement" id=":R9fal9lab:"><span data-component="buttonContent" class="Box-sc-g0xbh4-0 gUkoLg prc-Button-ButtonContent-HKbr-"><span data-component="leadingVisual" class="prc-Button-Visual-2epfX prc-Button-VisualWrap-Db-eB"><svg aria-hidden="true" focusable="false" class="octicon octicon-copilot" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M7.998 15.035c-4.562 0-7.873-2.914-7.998-3.749V9.338c.085-.628.677-1.686 1.588-2.065.013-.07.024-.143.036-.218.029-.183.06-.384.126-.612-.201-.508-.254-1.084-.254-1.656 0-.87.128-1.769.693-2.484.579-.733 1.494-1.124 2.724-1.261 1.206-.134 2.262.034 2.944.765.05.053.096.108.139.165.044-.057.094-.112.143-.165.682-.731 1.738-.899 2.944-.765 1.23.137 2.145.528 2.724 1.261.566.715.693 1.614.693 2.484 0 .572-.053 1.148-.254 1.656.066.228.098.429.126.612.012.076.024.148.037.218.924.385 1.522 1.471 1.591 2.095v1.872c0 .766-3.351 3.795-8.002 3.795Zm0-1.485c2.28 0 4.584-1.11 5.002-1.433V7.862l-.023-.116c-.49.21-1.075.291-1.727.291-1.146 0-2.059-.327-2.71-.991A3.222 3.222 0 0 1 8 6.303a3.24 3.24 0 0 1-.544.743c-.65.664-1.563.991-2.71.991-.652 0-1.236-.081-1.727-.291l-.023.116v4.255c.419.323 2.722 1.433 5.002 1.433ZM6.762 2.83c-.193-.206-.637-.413-1.682-.297-1.019.113-1.479.404-1.713.7-.247.312-.369.789-.369 1.554 0 .793.129 1.171.308 1.371.162.181.519.379 1.442.379.853 0 1.339-.235 1.638-.54.315-.322.527-.827.617-1.553.117-.935-.037-1.395-.241-1.614Zm4.155-.297c-1.044-.116-1.488.091-1.681.297-.204.219-.359.679-.242 1.614.091.726.303 1.231.618 1.553.299.305.784.54 1.638.54.922 0 1.28-.198 1.442-.379.179-.2.308-.578.308-1.371 0-.765-.123-1.242-.37-1.554-.233-.296-.693-.587-1.713-.7Z"></path><path d="M6.25 9.037a.75.75 0 0 1 .75.75v1.501a.75.75 0 0 1-1.5 0V9.787a.75.75 0 0 1 .75-.75Zm4.25.75v1.501a.75.75 0 0 1-1.5 0V9.787a.75.75 0 0 1 1.5 0Z"></path></svg></span></span></button></div></div><div class="Box-sc-g0xbh4-0 jdLMhu react-blob-view-header-sticky" id="repos-sticky-header" data-eusoft-scrollable-element="1"><div class="BlobViewHeader-module__Box--pvsIA"><div class="react-blob-sticky-header"><div class="Box-sc-g0xbh4-0 cWyMqi"><div class="FileNameStickyHeader-module__Box_1--HSpOJ"><div class="FileNameStickyHeader-module__Box_2--_pDx6"><h2 class="use-tree-pane-module__Heading--iI_ad prc-Heading-Heading-6CmGO"><button type="button" aria-label="Expand file tree" data-hotkey="Control+b" data-testid="expand-file-tree-button-mobile" class="prc-Button-ButtonBase-c50BI ExpandFileTreeButton-module__Button_1--g8F6Q" data-loading="false" data-size="medium" data-variant="invisible" aria-describedby=":r60:-loading-announcement"><span data-component="buttonContent" data-align="center" class="prc-Button-ButtonContent-HKbr-"><span data-component="leadingVisual" class="prc-Button-Visual-2epfX prc-Button-VisualWrap-Db-eB"><svg aria-hidden="true" focusable="false" class="octicon octicon-arrow-left" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;"><path d="M7.78 12.53a.75.75 0 0 1-1.06 0L2.47 8.28a.75.75 0 0 1 0-1.06l4.25-4.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L4.81 7h7.44a.75.75 0 0 1 0 1.5H4.81l2.97 2.97a.75.75 0 0 1 0 1.06Z"></path></svg></span><span data-component="text" class="prc-Button-Label-pTQ3x">Files</span></span></button><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="se" aria-hidden="true" id=":r61:" popover="auto">Expand file tree</span><button hidden="" data-testid="" data-hotkey="Control+b" data-hotkey-scope="read-only-cursor-text-area"></button></h2><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><div class="FileNameStickyHeader-module__Box_4--IyPx8"><div class="Box-sc-g0xbh4-0 fHind"><nav data-testid="breadcrumbs" aria-labelledby="sticky-breadcrumb-heading" id="sticky-breadcrumb" class="Box-sc-g0xbh4-0 fzFXnm"><ol class="Box-sc-g0xbh4-0 iMnkmv"><li class="Box-sc-g0xbh4-0 ghzDag"><a class="Box-sc-g0xbh4-0 kHuKdh prc-Link-Link-85e08" sx="[object Object]" data-testid="breadcrumbs-repo-link" href="https://github.com/karminski/one-small-step/tree/main" data-discover="true">one-small-step</a></li><li class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 oDtgN prc-Text-Text-0ima0" aria-hidden="true">/</span><a class="Box-sc-g0xbh4-0 kgiVEz prc-Link-Link-85e08" sx="[object Object]" href="https://github.com/karminski/one-small-step/tree/main/20250228-what-is-LoRA" data-discover="true">20250228-what-is-LoRA</a></li></ol></nav><div data-testid="breadcrumbs-filename" class="Box-sc-g0xbh4-0 ghzDag"><span class="Box-sc-g0xbh4-0 oDtgN prc-Text-Text-0ima0" aria-hidden="true">/</span><h1 class="Box-sc-g0xbh4-0 dnZoUW prc-Heading-Heading-6CmGO" tabindex="-1" id="sticky-file-name-id">what-is-LoRA.md</h1></div></div></div></div><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--></div></div></div><div class="Box-sc-g0xbh4-0 dhuhek BlobViewHeader-module__Box_1--PPihg"><div class="BlobViewHeader-module__Box_2--G_jCG" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="b,Shift+B,Control+/ Control+b"></button><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Control+/ Control+p"></button><div class="react-code-size-details-in-header CodeSizeDetails-module__Box--QdxnQ"><div class="text-mono CodeSizeDetails-module__Box_1--_uFDs"><div data-testid="blob-size" class="CodeSizeDetails-module__Truncate_1--er0Uk prc-Truncate-Truncate-A9Wn6" data-inline="true" title="4.71 KB" style="--truncate-max-width:100%"><span>80 lines (53 loc) · 4.71 KB</span></div></div></div><div class="react-code-size-details-in-header"><button style="--button-color:fg.default" type="button" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-label="Code 55% faster with GitHub Copilot" class="Box-sc-g0xbh4-0 kXyYCF prc-Button-ButtonBase-c50BI" data-loading="false" data-size="small" data-variant="invisible" aria-describedby=":Rt6fal9lab:-loading-announcement" id=":Rt6fal9lab:"><span data-component="buttonContent" class="Box-sc-g0xbh4-0 gUkoLg prc-Button-ButtonContent-HKbr-"><span data-component="leadingVisual" class="prc-Button-Visual-2epfX prc-Button-VisualWrap-Db-eB"><svg aria-hidden="true" focusable="false" class="octicon octicon-copilot" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M7.998 15.035c-4.562 0-7.873-2.914-7.998-3.749V9.338c.085-.628.677-1.686 1.588-2.065.013-.07.024-.143.036-.218.029-.183.06-.384.126-.612-.201-.508-.254-1.084-.254-1.656 0-.87.128-1.769.693-2.484.579-.733 1.494-1.124 2.724-1.261 1.206-.134 2.262.034 2.944.765.05.053.096.108.139.165.044-.057.094-.112.143-.165.682-.731 1.738-.899 2.944-.765 1.23.137 2.145.528 2.724 1.261.566.715.693 1.614.693 2.484 0 .572-.053 1.148-.254 1.656.066.228.098.429.126.612.012.076.024.148.037.218.924.385 1.522 1.471 1.591 2.095v1.872c0 .766-3.351 3.795-8.002 3.795Zm0-1.485c2.28 0 4.584-1.11 5.002-1.433V7.862l-.023-.116c-.49.21-1.075.291-1.727.291-1.146 0-2.059-.327-2.71-.991A3.222 3.222 0 0 1 8 6.303a3.24 3.24 0 0 1-.544.743c-.65.664-1.563.991-2.71.991-.652 0-1.236-.081-1.727-.291l-.023.116v4.255c.419.323 2.722 1.433 5.002 1.433ZM6.762 2.83c-.193-.206-.637-.413-1.682-.297-1.019.113-1.479.404-1.713.7-.247.312-.369.789-.369 1.554 0 .793.129 1.171.308 1.371.162.181.519.379 1.442.379.853 0 1.339-.235 1.638-.54.315-.322.527-.827.617-1.553.117-.935-.037-1.395-.241-1.614Zm4.155-.297c-1.044-.116-1.488.091-1.681.297-.204.219-.359.679-.242 1.614.091.726.303 1.231.618 1.553.299.305.784.54 1.638.54.922 0 1.28-.198 1.442-.379.179-.2.308-.578.308-1.371 0-.765-.123-1.242-.37-1.554-.233-.296-.693-.587-1.713-.7Z"></path><path d="M6.25 9.037a.75.75 0 0 1 .75.75v1.501a.75.75 0 0 1-1.5 0V9.787a.75.75 0 0 1 .75-.75Zm4.25.75v1.501a.75.75 0 0 1-1.5 0V9.787a.75.75 0 0 1 1.5 0Z"></path></svg></span></span></button></div></div><!--scrapbook-capture-selected--><div class="BlobViewHeader-module__Box_3--Kvpex"><button hidden="" data-testid="" data-hotkey="Control+Shift+>" data-hotkey-scope="read-only-cursor-text-area"></button><button hidden="" data-hotkey="Control+Shift+>"></button><button hidden="" data-testid="" data-hotkey="Control+Shift+<" data-hotkey-scope="read-only-cursor-text-area"></button><button hidden="" data-hotkey="Control+Shift+<"></button><div class="react-blob-header-edit-and-raw-actions BlobViewHeader-module__Box_4--vFP89" data-eusoft-scrollable-element="1"><div class="prc-ButtonGroup-ButtonGroup-vcMeG" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected--><div><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="n" aria-hidden="true" id=":Rclf6fal9lab:" popover="auto">Copy raw file</span></div><!--/scrapbook-capture-selected--><div><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="n" aria-hidden="true" id=":R6lf6fal9lab:" popover="auto">Download raw file</span></div></div><!--scrapbook-capture-selected--><button hidden="" data-testid="raw-button-shortcut" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Control+/ Control+r"></button><button hidden="" data-testid="copy-raw-button-shortcut" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Control+Shift+C"></button><button hidden="" data-testid="download-raw-button-shortcut" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Control+Shift+S"></button><a class="js-github-dev-shortcut d-none prc-Link-Link-85e08" href="https://github.dev/" data-hotkey="., Control+Shift+/"></a><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="., Control+Shift+/"></button><a class="js-github-dev-new-tab-shortcut d-none prc-Link-Link-85e08" href="https://github.dev/" target="_blank" data-hotkey="Shift+.,Shift+>,>"></a><button hidden="" data-testid="" data-hotkey-scope="read-only-cursor-text-area" data-hotkey="Shift+.,Shift+>,>"></button><!--/scrapbook-capture-selected--><div class="prc-ButtonGroup-ButtonGroup-vcMeG" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected--><div><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":R39f6fal9lab:" popover="auto">Fork this repository and edit the file</span></div><!--/scrapbook-capture-selected--><div><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":R3t9f6fal9lab:" popover="auto">More edit options</span></div></div><button hidden="" data-testid="" data-hotkey="e,Shift+E" data-hotkey-scope="read-only-cursor-text-area"></button></div><!--scrapbook-capture-selected--><!--/scrapbook-capture-selected--><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="n" aria-hidden="true" id=":R1v6fal9lab:" popover="auto">Outline</span><div class="react-blob-header-edit-and-raw-actions-combined"><button data-component="IconButton" type="button" title="More file actions" data-testid="more-file-actions-button" aria-haspopup="true" aria-expanded="false" tabindex="0" class="prc-Button-ButtonBase-c50BI js-blob-dropdown-click BlobViewHeader-module__IconButton--uO1fA prc-Button-IconButton-szpyj" data-loading="false" data-no-visuals="true" data-size="small" data-variant="invisible" aria-describedby=":Ra76fal9lab:-loading-announcement" aria-labelledby=":R7q76fal9lab:" id=":Ra76fal9lab:"><svg aria-hidden="true" focusable="false" class="octicon octicon-kebab-horizontal" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path></svg></button><span class="prc-TooltipV2-Tooltip-cYMVY" data-direction="nw" aria-hidden="true" id=":R7q76fal9lab:" popover="auto">Edit and raw actions</span></div></div><!--/scrapbook-capture-selected--></div></div><div></div></div><!--scrapbook-capture-selected--><div class="Box-sc-g0xbh4-0 hGyMdv"><section aria-labelledby="file-name-id-wide file-name-id-mobile" class="Box-sc-g0xbh4-0 fGqKFv"><div class="Box-sc-g0xbh4-0 eoaCFS js-snippet-clipboard-copy-unpositioned undefined" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">什么是 LoRA</h2></div><!--scrapbook-capture-selected--><p dir="auto">by @karminski-牙医</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/karminski/one-small-step/blob/main/20250228-what-is-LoRA/assets/images/lora-overview.png" data-eusoft-scrollable-element="1"><img src="lora-overview.png" alt="lora-concept" style="max-width: 100%;"></a></p>
+<p dir="auto">(图片来自 Aporia)</p>
+<p dir="auto">LoRA（Low-Rank Adaptation, 低秩自适应）：由微软于 2021 年提出，是一种高效微调大型语言模型（LLM）的技术。</p>
+<p dir="auto">注意区分无线通信领域的 LoRa (Long Range).</p>
+<p dir="auto">它通过在冻结的预训练模型权重旁添加小型可训练的"低秩适应"层，显著降低了微调过程中的计算和内存需求，无需重新训练整个模型。</p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">LoRA 的工作原理</h2></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><p dir="auto">(如果不知道什么是低秩矩阵, 可以看上一篇内容 <a href="https://github.com/karminski/one-small-step/blob/main/20250227-what-is-rank-in-matrix/what-is-rank-in-matrix.md" data-eusoft-scrollable-element="1">什么是矩阵的秩？什么是低秩矩阵？</a>)</p>
+<p dir="auto">LoRA 基于这样一个假设：模型微调时的权重更新矩阵 ΔW 具有内在的低秩性质。具体推导过程：</p>
+<ol dir="auto">
+<li>
+<p dir="auto"><strong data-eusoft-scrollable-element="1">传统微调</strong>：假设原始预训练权重矩阵为 <math-renderer class="js-inline-math" style="display: inline-block" data-run-id="8c78e3aa15b055c42cc845bbb429946e" data-catalyst=""><math xmlns="http://www.w3.org/1998/Math/MathML" data-eusoft-scrollable-element="1">
+  <mi data-eusoft-scrollable-element="1">W</mi>
+  <mo data-eusoft-scrollable-element="1">∈</mo>
+  <msup data-eusoft-scrollable-element="1">
+    <mrow data-mjx-texclass="ORD" data-eusoft-scrollable-element="1">
+      <mi mathvariant="double-struck" data-eusoft-scrollable-element="1">R</mi>
+    </mrow>
+    <mrow data-mjx-texclass="ORD" data-eusoft-scrollable-element="1">
+      <mi data-eusoft-scrollable-element="1">d</mi>
+      <mo data-eusoft-scrollable-element="1">×</mo>
+      <mi data-eusoft-scrollable-element="1">k</mi>
+    </mrow>
+  </msup>
+</math></math-renderer>，其中：</p>
+<ul dir="auto">
+<li>d：输入维度（例如 transformer 的 hidden_size）</li>
+<li>k：输出维度
+全参数微调需要更新整个矩阵，参数量为 <math-renderer class="js-inline-math" style="display: inline-block" data-run-id="8c78e3aa15b055c42cc845bbb429946e" data-catalyst=""><math xmlns="http://www.w3.org/1998/Math/MathML" data-eusoft-scrollable-element="1">
+  <mi data-eusoft-scrollable-element="1">d</mi>
+  <mo data-eusoft-scrollable-element="1">×</mo>
+  <mi data-eusoft-scrollable-element="1">k</mi>
+</math></math-renderer>
+</li>
+</ul>
+</li>
+<li>
+<p dir="auto"><strong data-eusoft-scrollable-element="1">低秩分解</strong>：引入两个更小的矩阵：</p>
+<ul dir="auto">
+<li>
+<math-renderer class="js-inline-math" style="display: inline-block" data-run-id="8c78e3aa15b055c42cc845bbb429946e" data-catalyst="" data-eusoft-scrollable-element="1"><math xmlns="http://www.w3.org/1998/Math/MathML" data-eusoft-scrollable-element="1">
+  <msub data-eusoft-scrollable-element="1">
+    <mi data-eusoft-scrollable-element="1">W</mi>
+    <mi data-eusoft-scrollable-element="1">A</mi>
+  </msub>
+  <mo data-eusoft-scrollable-element="1">∈</mo>
+  <msup data-eusoft-scrollable-element="1">
+    <mrow data-mjx-texclass="ORD" data-eusoft-scrollable-element="1">
+      <mi mathvariant="double-struck" data-eusoft-scrollable-element="1">R</mi>
+    </mrow>
+    <mrow data-mjx-texclass="ORD" data-eusoft-scrollable-element="1">
+      <mi data-eusoft-scrollable-element="1">d</mi>
+      <mo data-eusoft-scrollable-element="1">×</mo>
+      <mi data-eusoft-scrollable-element="1">r</mi>
+    </mrow>
+  </msup>
+</math></math-renderer>（降维矩阵）</li>
+<li>
+<math-renderer class="js-inline-math" style="display: inline-block" data-run-id="8c78e3aa15b055c42cc845bbb429946e" data-catalyst="" data-eusoft-scrollable-element="1"><math xmlns="http://www.w3.org/1998/Math/MathML" data-eusoft-scrollable-element="1">
+  <msub data-eusoft-scrollable-element="1">
+    <mi data-eusoft-scrollable-element="1">W</mi>
+    <mi data-eusoft-scrollable-element="1">B</mi>
+  </msub>
+  <mo data-eusoft-scrollable-element="1">∈</mo>
+  <msup data-eusoft-scrollable-element="1">
+    <mrow data-mjx-texclass="ORD" data-eusoft-scrollable-element="1">
+      <mi mathvariant="double-struck" data-eusoft-scrollable-element="1">R</mi>
+    </mrow>
+    <mrow data-mjx-texclass="ORD" data-eusoft-scrollable-element="1">
+      <mi data-eusoft-scrollable-element="1">r</mi>
+      <mo data-eusoft-scrollable-element="1">×</mo>
+      <mi data-eusoft-scrollable-element="1">k</mi>
+    </mrow>
+  </msup>
+</math></math-renderer>（升维矩阵）
+其中秩 r ≪ min(d, k)</li>
+</ul>
+</li>
+<li>
+<p dir="auto"><strong data-eusoft-scrollable-element="1">更新机制</strong>：将权重更新表示为：<br>
+<math-renderer class="js-inline-math" style="display: inline-block" data-run-id="8c78e3aa15b055c42cc845bbb429946e" data-catalyst="" data-eusoft-scrollable-element="1"><math xmlns="http://www.w3.org/1998/Math/MathML" data-eusoft-scrollable-element="1">
+  <msub data-eusoft-scrollable-element="1">
+    <mi data-eusoft-scrollable-element="1">W</mi>
+    <mrow data-mjx-texclass="ORD" data-eusoft-scrollable-element="1">
+      <mi data-eusoft-scrollable-element="1">u</mi>
+      <mi data-eusoft-scrollable-element="1">p</mi>
+      <mi data-eusoft-scrollable-element="1">d</mi>
+      <mi data-eusoft-scrollable-element="1">a</mi>
+      <mi data-eusoft-scrollable-element="1">t</mi>
+      <mi data-eusoft-scrollable-element="1">e</mi>
+      <mi data-eusoft-scrollable-element="1">d</mi>
+    </mrow>
+  </msub>
+  <mo data-eusoft-scrollable-element="1">=</mo>
+  <mi data-eusoft-scrollable-element="1">W</mi>
+  <mo data-eusoft-scrollable-element="1">+</mo>
+  <mi mathvariant="normal" data-eusoft-scrollable-element="1">Δ</mi>
+  <mi data-eusoft-scrollable-element="1">W</mi>
+  <mo data-eusoft-scrollable-element="1">=</mo>
+  <mi data-eusoft-scrollable-element="1">W</mi>
+  <mo data-eusoft-scrollable-element="1">+</mo>
+  <msub data-eusoft-scrollable-element="1">
+    <mi data-eusoft-scrollable-element="1">W</mi>
+    <mi data-eusoft-scrollable-element="1">A</mi>
+  </msub>
+  <mo data-eusoft-scrollable-element="1">⋅</mo>
+  <msub data-eusoft-scrollable-element="1">
+    <mi data-eusoft-scrollable-element="1">W</mi>
+    <mi data-eusoft-scrollable-element="1">B</mi>
+  </msub>
+</math></math-renderer>
+这相当于用低秩矩阵的乘积来近似全秩更新</p>
+</li>
+<li>
+<p dir="auto"><strong data-eusoft-scrollable-element="1">参数冻结</strong>：原始权重矩阵 W 保持冻结（不更新），只训练 <math-renderer class="js-inline-math" style="display: inline-block" data-run-id="8c78e3aa15b055c42cc845bbb429946e" data-catalyst="" data-eusoft-scrollable-element="1"><math xmlns="http://www.w3.org/1998/Math/MathML" data-eusoft-scrollable-element="1">
+  <msub data-eusoft-scrollable-element="1">
+    <mi data-eusoft-scrollable-element="1">W</mi>
+    <mi data-eusoft-scrollable-element="1">A</mi>
+  </msub>
+</math></math-renderer> 和 <math-renderer class="js-inline-math" style="display: inline-block" data-run-id="8c78e3aa15b055c42cc845bbb429946e" data-catalyst="" data-eusoft-scrollable-element="1"><math xmlns="http://www.w3.org/1998/Math/MathML" data-eusoft-scrollable-element="1">
+  <msub data-eusoft-scrollable-element="1">
+    <mi data-eusoft-scrollable-element="1">W</mi>
+    <mi data-eusoft-scrollable-element="1">B</mi>
+  </msub>
+</math></math-renderer></p>
+</li>
+</ol>
+<p dir="auto"><strong data-eusoft-scrollable-element="1">参数效率分析</strong>：</p>
+<ul dir="auto">
+<li>原始可训练参数：$d \times k$（例如 d=1024, k=1024 → 1,048,576 参数）</li>
+<li>LoRA 参数：$r \times (d + k)$（取 r=8 → 8×(1024+1024)=16,384 参数, 参数减少约 64 倍）</li>
+<li>实际应用中需要权衡：r 值过小可能导致性能下降，r 值过大会降低效率（通常根据模型规模选择 4-128 之间的值）</li>
+</ul>
+<p dir="auto">这种低秩适应有效的深层原因是：模型在不同任务间的知识迁移主要发生在低维子空间，通过调整这些关键方向就能实现高效适应。</p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">LoRA 的主要特点和优势</h2></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><ul dir="auto">
+<li><strong data-eusoft-scrollable-element="1">参数高效：</strong> LoRA 仅训练少量额外参数，而不是完整的模型权重。典型场景下可训练参数减少 10-100 倍（具体取决于原模型尺寸和r值）</li>
+<li><strong data-eusoft-scrollable-element="1">训练速度快：</strong> 由于需要更新的参数大幅减少，LoRA 微调比全参数微调速度更快，训练时间更短。</li>
+<li><strong data-eusoft-scrollable-element="1">存储空间小：</strong> LoRA 适配器通常只有几十到几百 MB，而完整的模型可能需要几十 GB。这使得存储和分发多个专门的微调版本变得更加实际。</li>
+<li><strong data-eusoft-scrollable-element="1">推理性能优化：</strong> LoRA 权重可以在推理前合并回原始模型，不会增加推理时的计算开销。</li>
+<li><strong data-eusoft-scrollable-element="1">可组合性：</strong> 多个 LoRA 适配器可以被合并或按不同比例混合，创建具有混合能力的模型。</li>
+<li><strong data-eusoft-scrollable-element="1">质量保持：</strong> 在许多任务中，LoRA 微调的性能与全参数微调相当甚至更好，同时减少了过拟合风险。</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">LoRA 的应用</h2></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><ul dir="auto">
+<li><strong data-eusoft-scrollable-element="1">个性化模型：</strong> 为特定领域或任务快速创建专门的模型变体。</li>
+<li><strong data-eusoft-scrollable-element="1">资源受限环境：</strong> 在计算资源有限的环境中实现大型模型的微调。</li>
+<li><strong data-eusoft-scrollable-element="1">多任务学习：</strong> 为不同任务维护单独的 LoRA 适配器，而不是完整的模型副本。</li>
+<li><strong data-eusoft-scrollable-element="1">参数高效迁移学习：</strong> 将通用模型快速适配到专业领域（如医疗、法律、金融等）。</li>
+<li><strong data-eusoft-scrollable-element="1">在线学习：</strong> 持续更新模型以适应新数据，而不需要重新训练完整模型。</li>
+</ul>
+<p dir="auto">但是要注意, 微调更应针对模型能力上的更新, 而不是知识上的更新. 知识上的更新应该交给 RAG 来完成.</p>
+<p dir="auto">总结，LoRA 是一种突破性的微调技术，通过显著降低计算需求和存储成本，使得大型语言模型的个性化和专业化变得更加实用和广泛可行。</p>
+<p dir="auto">随着模型规模不断增长，LoRA 及其变体在 AI 模型部署和适配中的重要性将继续提升。</p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">支持 LoRA 的框架</h2></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><ul dir="auto">
+<li><a href="https://github.com/huggingface/peft" data-eusoft-scrollable-element="1">PEFT</a> (由 Hugging Face 开发的参数高效微调库)</li>
+<li><a href="https://github.com/unslothai/unsloth" data-eusoft-scrollable-element="1">unsloth</a> (高效微调框架，显存需求可低至5GB, DeepSeek 几个量化模型的流行版本全是 unsloth 团队的)</li>
+<li><a href="https://github.com/hiyouga/LLaMA-Factory" data-eusoft-scrollable-element="1">LLaMA-Factory</a> (用于LLaMA系列模型的流行微调框架)</li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto">Reference</h2></div><!--/scrapbook-capture-selected--><ul dir="auto"><!--scrapbook-capture-selected-->
+<li><a href="https://arxiv.org/abs/2106.09685" rel="nofollow" data-eusoft-scrollable-element="1">LoRA: Low-Rank Adaptation of Large Language Models</a></li>
+<li><a href="https://www.aporia.com/learn/low-rank-adaptation-lora/" rel="nofollow" data-eusoft-scrollable-element="1">Low-Rank Adaptation: A Closer Look at LoRA</a></li>
+<li><a href="https://huggingface.co/docs/peft/main/en/conceptual_guides/lora" rel="nofollow" data-eusoft-scrollable-element="1">This conceptual guide gives a brief overview of LoRA</a></li>
+<li><a href="https://www.databricks.com/blog/efficient-fine-tuning-lora-guide-llms" rel="nofollow" data-eusoft-scrollable-element="1">Efficient Fine-Tuning of LMs with Low-Rank Adaptation</a></li><!--/scrapbook-capture-selected--></ul></article></div></section></div><!--/scrapbook-capture-selected--></div></div><!--/scrapbook-capture-selected--></div><!--/scrapbook-capture-selected--></div></div></div></div></div></div></div></div></react-app></div></turbo-frame></main></div></div></div><script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body></html>

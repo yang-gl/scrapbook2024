@@ -1,0 +1,495 @@
+<!DOCTYPE html><html lang="en" data-eusoft-scrollable-element="1" data-scrapbook-source="https://www.freecodecamp.org/news/local-ai-development-with-ollama-course/" data-scrapbook-create="20250924064640178"><head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        
+            <title>Local AI Development with Ollama Course</title>
+        
+        <meta name="HandheldFriendly" content="True">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        
+        
+        <link rel="stylesheet" as="style" href="css2.css">
+        
+
+        
+        
+    <link rel="stylesheet" as="style" href="prism.min.css">
+<noscript>
+  <link rel="stylesheet" href="prism.min.css">
+</noscript>
+<link rel="stylesheet" as="style" href="prism-unescaped-markup.min.css">
+<noscript>
+  <link rel="stylesheet" href="prism-unescaped-markup.min.css">
+</noscript>
+
+
+
+
+
+
+        
+        <link rel="stylesheet" as="style" href="global-5a272ab5e0.css">
+        <link rel="stylesheet" type="text/css" href="screen-73acb3583e.css">
+        <link rel="stylesheet" type="text/css" href="search-bar-124f5f949c.css">
+
+        
+        
+        
+
+        
+        
+        
+        
+
+        
+        
+            
+        
+
+        
+        
+
+        
+            
+        
+
+        
+        
+    
+        
+            
+
+        
+    
+
+
+        
+            
+
+        
+        
+        
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        
+        
+        
+
+        
+        
+
+        <link rel="icon" href="favicon.ico" type="image/png">
+        
+        
+            <link rel="canonical" href="https://www.freecodecamp.org/news/local-ai-development-with-ollama-course/">
+        
+        <meta name="referrer" content="no-referrer-when-downgrade">
+
+        
+
+        
+    <meta name="description" content="Artificial Intelligence is evolving rapidly, and with tools like Ollama, you can bring cutting-edge AI capabilities directly to your local environment. Learning how to harness local large language models (LLMs) can open up a world of opportunities. L...">
+
+    
+    <meta property="og:site_name" content="freeCodeCamp.org">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Local AI Development with Ollama Course">
+    
+        <meta property="og:description" content="Artificial Intelligence is evolving rapidly, and with tools like Ollama, you can bring cutting-edge AI capabilities directly to your local environment. Learning how to harness local large language models (LLMs) can open up a world of opportunities. L...">
+    
+    <meta property="og:url" content="https://www.freecodecamp.org/news/local-ai-development-with-ollama-course/">
+    <meta property="og:image" content="https://cdn.hashnode.com/res/hashnode/image/upload/v1732640638451/ecee4cf1-efb6-41cc-823b-4808bc1670df.jpeg">
+    <meta property="article:published_time" content="2024-11-26T17:04:35.136Z">
+    <meta property="article:modified_time" content="2024-11-26T17:04:35.136Z">
+    
+        <meta property="article:tag" content="ollama">
+    
+        <meta property="article:tag" content="llm">
+    
+        <meta property="article:tag" content="youtube">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/freecodecamp">
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Local AI Development with Ollama Course">
+    
+        <meta name="twitter:description" content="Artificial Intelligence is evolving rapidly, and with tools like Ollama, you can bring cutting-edge AI capabilities directly to your local environment. Learning how to harness local large language models (LLMs) can open up a world of opportunities. L...">
+    
+    <meta name="twitter:url" content="https://www.freecodecamp.org/news/local-ai-development-with-ollama-course/">
+    <meta name="twitter:image" content="https://cdn.hashnode.com/res/hashnode/image/upload/v1732640638451/ecee4cf1-efb6-41cc-823b-4808bc1670df.jpeg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Beau Carnes">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="ollama, llm, youtube">
+    <meta name="twitter:site" content="@freecodecamp">
+    
+
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
+
+
+        
+    
+
+
+        <meta name="generator" content="Eleventy">
+        <link rel="alternate" type="application/rss+xml" title="freeCodeCamp.org" href="https://www.freecodecamp.org/news/rss/">
+
+        
+        
+
+        
+  <meta name="x-fcc-source" data-test-label="x-fcc-source" content="Hashnode">
+
+    <style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head>
+
+    
+        <body class="home-template">
+    
+
+    
+        <noscript><iframe src="index_1.html" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    
+
+        <div class="site-wrapper">
+            <nav class="site-nav nav-padding">
+    <div class="site-nav-left">
+        
+<form id="search-form" data-test-label="search-bar">
+    <div role="search" class="searchbox__wrapper">
+        <label class="fcc_sr_only" for="search-input" data-eusoft-scrollable-element="1">
+            Search
+        </label>
+        <input type="search" placeholder="
+    Search our news articles, tutorials, and books
+" id="search-input" class="aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" style="" dir="auto" value=""><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Lato&quot;, sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre>
+        <button type="submit" class="ais-SearchBox-submit">
+            <svg class="ais-SearchBox-submitIcon" xmlns="https://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40">
+    <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"></path>
+</svg>
+
+            <span class="fcc_sr_only" data-eusoft-scrollable-element="1">Submit your search query</span>
+        </button>
+        <div id="dropdown-container"><span class="algolia-autocomplete" style="position: absolute; z-index: 100; display: none; direction: ltr;"><span class="aa-dropdown-menu" style="display: block; left: 0px; right: auto;" role="listbox" id="algolia-autocomplete-listbox-0"><div class="aa-dataset-1"></div></span></span></div>
+    </div>
+</form>
+
+    </div>
+    <div class="site-nav-middle">
+        <a class="site-nav-logo" href="https://www.freecodecamp.org/news/" data-test-label="site-nav-logo"><img src="fcc_primary.svg" alt="freeCodeCamp.org"></a>
+    </div>
+    <div class="site-nav-right">
+        <div class="nav-group" data-eusoft-scrollable-element="1">
+            <a class="nav-forum" id="nav-forum" rel="noopener noreferrer" href="https://forum.freecodecamp.org/" target="_blank" data-test-label="forum-button" data-eusoft-scrollable-element="1">Forum</a>
+            <a class="toggle-button-nav" id="nav-donate" rel="noopener noreferrer" href="https://www.freecodecamp.org/donate/" target="_blank" data-test-label="donate-button" data-eusoft-scrollable-element="1">Donate</a>
+        </div>
+    </div>
+</nav>
+
+
+            
+            <a class="banner" id="banner" data-test-label="banner" rel="noopener noreferrer" target="_blank" href="https://www.freecodecamp.org/" text-variation="default">
+    <p id="banner-text">Learn to code — <span data-eusoft-scrollable-element="1">free 3,000-hour curriculum</span></p>
+</a>
+
+
+    
+    
+
+
+            <div id="error-message"></div>
+
+            
+    <main id="site-main" class="post-template site-main outer">
+        <div class="inner ad-layout">
+            <article class="post-full post">
+                <header class="post-full-header">
+                    <section class="post-full-meta">
+                        <time class="post-full-meta-date" data-test-label="post-full-meta-date" datetime="2024-11-26T17:04:35.136Z">
+                            November 26, 2024
+                        </time>
+                        
+                            <span class="date-divider">/</span>
+                            <a dir="ltr" href="https://www.freecodecamp.org/news/tag/ollama/">
+                                #ollama
+                            </a>
+                        
+                    </section>
+                    <h1 class="post-full-title" data-test-label="post-full-title" data-eusoft-scrollable-element="1">Local AI Development with Ollama Course</h1>
+                </header>
+                
+                    <div class="post-full-author-header" data-test-label="author-header-no-bio">
+                        
+                            
+    
+    
+    
+
+    <section class="author-card" data-test-label="author-card">
+        
+            
+    <img srcset="O5mmKs5h0.jpg 60w" sizes="60px" src="O5mmKs5h0.jpg" class="author-profile-image" alt="Beau Carnes" width="2164" height="2305" data-test-label="profile-image">
+  
+        
+
+        <section class="author-card-content author-card-content-no-bio">
+            <span class="author-card-name">
+                <a href="https://www.freecodecamp.org/news/author/beaucarnes/" data-test-label="profile-link" data-eusoft-scrollable-element="1">
+                    
+                        Beau Carnes
+                    
+                </a>
+            </span>
+            
+        </section>
+    </section>
+
+                        
+                    </div>
+                
+                <figure class="post-full-image">
+                    
+    <picture data-eusoft-scrollable-element="1">
+      <source media="(max-width: 700px)" sizes="1px" srcset="d5fceb6532643d0d84ffe09c40c481ecdf59e15a.gif 1w" data-eusoft-scrollable-element="1">
+      <source media="(min-width: 701px)" sizes="(max-width: 800px) 400px, (max-width: 1170px) 700px, 1400px" srcset="ecee4cf1-efb6-41cc-823b-4808bc1670df.jpeg" data-eusoft-scrollable-element="1">
+      
+    </picture>
+  
+                </figure>
+                <section class="post-full-content">
+                    <div class="post-and-sidebar">
+                        <section class="post-content " data-test-label="post-content">
+                            
+<p>Artificial Intelligence is evolving rapidly, and with tools like Ollama, you can bring cutting-edge AI capabilities directly to your local environment. Learning how to harness local large language models (LLMs) can open up a world of opportunities. Local LLMs provide greater control, customization, and data privacy compared to cloud-based AI systems.</p>
+<p>We just published a course on the <a target="_blank" href="http://freecodecamp.org/" data-eusoft-scrollable-element="1">freeCodeCamp.org</a> YouTube channel that will teach you all about <strong data-eusoft-scrollable-element="1">setting up and using Ollama to build powerful AI applications locally</strong>. This comprehensive course, created by Paulo Dichone, takes a hands-on approach to exploring Ollama, a tool designed for running LLMs efficiently on your local machine. You’ll learn everything from installing and customizing models to using REST APIs and Python libraries to build real-world AI applications. By the end of the course, you'll have the skills to develop projects like a Grocery List Organizer, a Retrieval-Augmented Generation (RAG) system, and an AI-powered Recruiter Agency.</p>
+<h3 id="heading-what-youll-learn" data-eusoft-scrollable-element="1">What You’ll Learn</h3>
+<p>This course is packed with practical knowledge and real-world applications. Here's a glimpse of the topics covered:</p>
+<ol>
+<li><p><strong data-eusoft-scrollable-element="1">Getting Started with Ollama</strong></p>
+<ul>
+<li><p>What Ollama is and why it's a game-changer for local AI development.</p>
+</li>
+<li><p>Step-by-step setup instructions for your development environment.</p>
+</li>
+<li><p>Pulling and testing different Ollama models using basic CLI commands.</p>
+</li>
+</ul>
+</li>
+<li><p><strong data-eusoft-scrollable-element="1">Deep Dive into LLMs</strong></p>
+<ul>
+<li><p>Understanding parameters, benchmarks, and how to optimize models for specific use cases.</p>
+</li>
+<li><p>Customizing models using the Modelfile for tasks like summarization and sentiment analysis.</p>
+</li>
+</ul>
+</li>
+<li><p><strong data-eusoft-scrollable-element="1">Ollama REST API</strong></p>
+<ul>
+<li><p>Learn how to interact with Ollama models programmatically using JSON requests.</p>
+</li>
+<li><p>Overview of integration techniques, including a Python library for building local LLM applications.</p>
+</li>
+</ul>
+</li>
+<li><p><strong data-eusoft-scrollable-element="1">Hands-On Projects</strong></p>
+<ul>
+<li><p><strong data-eusoft-scrollable-element="1">Grocery List Organizer</strong>: Automate and optimize your grocery planning using an AI-powered assistant.</p>
+</li>
+<li><p><strong data-eusoft-scrollable-element="1">RAG System</strong>: Build a sophisticated Retrieval-Augmented Generation system, complete with document ingestion, vector database creation, and Streamlit integration for user-friendly interfaces.</p>
+</li>
+<li><p><strong data-eusoft-scrollable-element="1">AI Recruiter Agency</strong>: Develop a project that showcases how AI can streamline recruitment processes by matching candidates to job descriptions effectively.</p>
+</li>
+</ul>
+</li>
+<li><p><strong data-eusoft-scrollable-element="1">Advanced Features and Tools</strong></p>
+<ul>
+<li><p>Explore multimodal models like Llava for tasks such as image captioning.</p>
+</li>
+<li><p>Use Ollama's features, such as the "show" function, for interactive model exploration.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="heading-why-choose-ollama" data-eusoft-scrollable-element="1">Why Choose Ollama?</h3>
+<p>Running AI models locally provides unique advantages:</p>
+<ul>
+<li><p><strong data-eusoft-scrollable-element="1">Privacy and Security</strong>: Your data stays on your machine, offering unmatched confidentiality.</p>
+</li>
+<li><p><strong data-eusoft-scrollable-element="1">Customization</strong>: Fine-tune models to fit your specific needs without relying on external servers.</p>
+</li>
+<li><p><strong data-eusoft-scrollable-element="1">Cost-Effectiveness</strong>: Save on recurring API costs by working entirely offline.</p>
+</li>
+</ul>
+<p>With detailed lessons, engaging projects, and expert guidance from Paulo Dichone, you’ll be empowered to create AI solutions that are both innovative and impactful.</p>
+<h3 id="heading-ready-to-build-with-local-ai" data-eusoft-scrollable-element="1">Ready to Build with Local AI?</h3>
+<p>Whether you're building practical applications or experimenting with new ideas, this course will equip you with the tools and knowledge to succeed. Watch now <a target="_blank" href="https://youtu.be/GWB9ApTPTv4" data-eusoft-scrollable-element="1">on the freeCodeCamp.org YouTube channel</a> (3-hour watch).</p>
+<div class="embed-wrapper">
+        <iframe width="560" height="315" src="index_2.html" style="aspect-ratio: 16 / 9; width: 100%; height: auto;" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" loading="lazy"></iframe></div>
+
+
+                        </section>
+                        
+                            <div class="sidebar">
+                                
+                                    
+                                    
+                                
+                            <div class="ad-wrapper"><div class="ad-text">ADVERTISEMENT</div><div id="side-gam-ad-0" class="side-bar-ad-slot"></div></div><div class="ad-wrapper"><div class="ad-text">ADVERTISEMENT</div><div id="side-gam-ad-1" class="side-bar-ad-slot"></div></div><div class="ad-wrapper"><div class="ad-text">ADVERTISEMENT</div><div id="side-gam-ad-2" class="side-bar-ad-slot"></div></div><div class="ad-wrapper"><div class="ad-text">ADVERTISEMENT</div><div id="side-gam-ad-3" class="side-bar-ad-slot"></div></div><div class="ad-wrapper"><div class="ad-text">ADVERTISEMENT</div><div id="side-gam-ad-4" class="side-bar-ad-slot"></div></div></div>
+                        
+                    </div>
+                    <hr data-eusoft-scrollable-element="1">
+                    
+                        <div class="post-full-author-header" data-test-label="author-header-with-bio">
+                            
+                                
+    
+    
+    
+
+    <section class="author-card" data-test-label="author-card">
+        
+            
+    <img srcset="O5mmKs5h0.jpg 60w" sizes="60px" src="O5mmKs5h0.jpg" class="author-profile-image" alt="Beau Carnes" width="2164" height="2305" loading="lazy" data-test-label="profile-image">
+  
+        
+
+        <section class="author-card-content ">
+            <span class="author-card-name">
+                <a href="https://www.freecodecamp.org/news/author/beaucarnes/" data-test-label="profile-link" data-eusoft-scrollable-element="1">
+                    
+                        Beau Carnes
+                    
+                </a>
+            </span>
+            
+                
+                    <p data-test-label="author-bio">I'm a teacher and developer with freeCodeCamp.org. I run the freeCodeCamp.org YouTube channel.
+</p>
+                
+            
+        </section>
+    </section>
+
+                            
+                        </div>
+                        <hr data-eusoft-scrollable-element="1">
+                    
+
+                    
+                    
+                        
+    
+
+
+<p data-test-label="social-row-cta" class="social-row">
+    If this article was helpful, <button id="tweet-btn" class="cta-button" data-test-label="tweet-button">share it</button>.
+</p>
+
+
+    
+    
+
+
+                        
+
+<div class="learn-cta-row" data-test-label="learn-cta-row">
+    <p>
+        Learn to code for free. freeCodeCamp's open source curriculum has helped more than 40,000 people get jobs as developers. <a href="https://www.freecodecamp.org/learn/" class="cta-button" id="learn-to-code-cta" rel="noopener noreferrer" target="_blank">Get started</a>
+    </p>
+</div>
+
+                    
+                </section>
+                
+                    <div class="banner-ad-bottom">
+                        
+                            
+
+<div class="ad-text" data-test-label="ad-text">ADVERTISEMENT</div>
+<div style="display: block; height: auto" id="gam-ad-bottom">
+</div>
+
+                        
+                    </div>
+                
+            </article>
+        </div>
+    </main>
+
+
+            
+
+
+<footer class="site-footer">
+    
+    <div class="footer-bottom">
+        <h2 class="col-header" data-test-label="our-nonprofit">Our Charity</h2>
+        <div class="our-nonprofit">
+             
+                <span data-test-label="powered-by">
+                    Publication powered by Hashnode
+                </span>
+            
+            <a href="https://www.freecodecamp.org/news/about/" rel="noopener noreferrer" target="_blank" data-test-label="about">
+                About
+            </a>
+            <a href="https://www.linkedin.com/school/free-code-camp/people/" rel="noopener noreferrer" target="_blank" data-test-label="alumni">
+                Alumni Network
+            </a>
+            <a href="https://github.com/freeCodeCamp/" rel="noopener noreferrer" target="_blank" data-test-label="open-source">
+                Open Source
+            </a>
+            <a href="https://www.freecodecamp.org/news/shop/" rel="noopener noreferrer" target="_blank" data-test-label="shop">
+                Shop
+            </a>
+            <a href="https://www.freecodecamp.org/news/support/" rel="noopener noreferrer" target="_blank" data-test-label="support">
+                Support
+            </a>
+            <a href="https://www.freecodecamp.org/news/sponsors/" rel="noopener noreferrer" target="_blank" data-test-label="sponsors">
+                Sponsors
+            </a>
+            <a href="https://www.freecodecamp.org/news/academic-honesty-policy/" rel="noopener noreferrer" target="_blank" data-test-label="honesty">
+                Academic Honesty
+            </a>
+            <a href="https://www.freecodecamp.org/news/code-of-conduct/" rel="noopener noreferrer" target="_blank" data-test-label="coc">
+                Code of Conduct
+            </a>
+            <a href="https://www.freecodecamp.org/news/privacy-policy/" rel="noopener noreferrer" target="_blank" data-test-label="privacy">
+                Privacy Policy
+            </a>
+            <a href="https://www.freecodecamp.org/news/terms-of-service/" rel="noopener noreferrer" target="_blank" data-test-label="tos">
+                Terms of Service
+            </a>
+            <a href="https://www.freecodecamp.org/news/copyright-policy/" rel="noopener noreferrer" target="_blank" data-test-label="copyright">
+                Copyright Policy
+            </a>
+        </div>
+    </div>
+</footer>
+
+        </div>
+
+        
+        
+        
+
+        
+        
+    
+
+
+<script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2787122990="" ng-version="18.2.13" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c2787122990=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c2787122990="" _nghost-ng-c3386348173="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2787122990="" _nghost-ng-c749930229="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c749930229=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c2787122990="" class="eusoft-chrome-extension-capture-word-container ng-tns-c4033922151-0 ng-star-inserted" data-eusoft-scrollable-element="1" data-scrapbook-shadowdom="<style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><!----><!----><div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c4033922151-0&quot; data-content-script-theme=&quot;light&quot;><!----></div>"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2787122990="" _nghost-ng-c3081775404="" data-eusoft-scrollable-element="1"><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>

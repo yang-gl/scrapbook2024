@@ -375,12 +375,14 @@ scrapbook.meta({
   },
   "20250915143944536": {
     "index": "",
-    "title": "李宏毅: 生成式人工智能导论 (Introduction to Generative AI) 2024 Spring",
+    "title": "李宏毅: 生成式人工智能导论 (2024) Introduction to Generative AI",
     "type": "bookmark",
     "create": "20250915143944536",
     "modify": "20250915143944536",
     "source": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
-    "icon": "../tree/favicon/408e420dc33d725971e6858026fe27c51df096f5.ico"
+    "icon": "../tree/favicon/408e420dc33d725971e6858026fe27c51df096f5.ico",
+    "parent": "20250915143420677",
+    "recycled": "20250924044937111"
   },
   "20250915144335178": {
     "index": "",
@@ -1376,5 +1378,222 @@ scrapbook.meta({
     "modify": "20250923135455701",
     "source": "https://www.philschmid.de/agentic-pattern",
     "icon": "favicon.ico"
+  },
+  "20250924030919015": {
+    "index": "",
+    "title": "李宏毅: 生成式人工智能&机器学习导论 (2025秋) Introduction to GenAI and ML 2025 Fall",
+    "type": "bookmark",
+    "create": "20250924030919015",
+    "modify": "20250924030919015",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall.php",
+    "icon": "../tree/favicon/408e420dc33d725971e6858026fe27c51df096f5.ico"
+  },
+  "20250924031220083": {
+    "index": "",
+    "title": "李宏毅2025 机器学习课程 Machine Learning 2025 Spring",
+    "type": "bookmark",
+    "create": "20250924031220083",
+    "modify": "20250924031220083",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2025-spring.php",
+    "icon": "../tree/favicon/408e420dc33d725971e6858026fe27c51df096f5.ico",
+    "parent": "20250915143420677",
+    "recycled": "20250924044840316"
+  },
+  "20250924034253684": {
+    "index": "",
+    "title": "(2025秋) 李宏毅讲 Context Engineering_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250924034253684",
+    "modify": "20250924034253684",
+    "source": "https://www.bilibili.com/video/BV1Wtncz1Erk/?spm_id_from=333.1391.0.0&vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250924035130801": {
+    "index": "",
+    "title": "合集·【最新】李宏毅2025年秋季课程《生成式AI与机器学习导论》",
+    "type": "bookmark",
+    "create": "20250924035130801",
+    "modify": "20250924035130801",
+    "source": "https://space.bilibili.com/239809755/lists/6369224?type=season",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250924035415297": {
+    "index": "",
+    "title": "合集·李宏毅 机器学习（2025春）",
+    "type": "bookmark",
+    "create": "20250924035415297",
+    "modify": "20250924035415297",
+    "source": "https://space.bilibili.com/239809755/lists/5638959?type=season",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250924044724934": {
+    "index": "202509/20250924044724934-speech.ee.ntu.edu.tw/index.html",
+    "title": "ML 2025 Spring 【李宏毅2025 机器学习课程 Machine Learning】",
+    "type": "",
+    "create": "20250924044724934",
+    "modify": "20250924044724934",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2025-spring.php",
+    "icon": "favicon.ico",
+    "comment": ""
+  },
+  "20250924044857665": {
+    "index": "202509/20250924044857665-speech.ee.ntu.edu.tw/index.html",
+    "title": "Introduction to Generative AI 2024 Spring 【李宏毅: 生成式人工智能导论 (2024)】",
+    "type": "",
+    "create": "20250924044857665",
+    "modify": "20250924044857665",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20250924044944004": {
+    "title": "",
+    "type": "separator",
+    "create": "20250924044944004",
+    "modify": "20250924044944004"
+  },
+  "20250924062214168": {
+    "title": "transformer",
+    "type": "folder",
+    "create": "20250924062214168",
+    "modify": "20250924062214168"
+  },
+  "20250924062245709": {
+    "index": "202509/20250924062245709-github.com/index.html",
+    "title": "what-is-transformer.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250924062245709",
+    "modify": "20250924062245709",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250126-what-is-transformer/what-is-transformer.md",
+    "icon": "favicon.png"
+  },
+  "20250924062322393": {
+    "title": "Local-LLM",
+    "type": "folder",
+    "create": "20250924062322393",
+    "modify": "20250924062322393"
+  },
+  "20250924062413483": {
+    "index": "202509/20250924062413483-github.com/index.html",
+    "title": "what-is-LoRA.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250924062413483",
+    "modify": "20250924062413483",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250228-what-is-LoRA/what-is-LoRA.md",
+    "icon": "favicon.png"
+  },
+  "20250924062438588": {
+    "index": "202509/20250924062438588-github.com/index.html",
+    "title": "what-is-gguf.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250924062438588",
+    "modify": "20250924062438588",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250113-what-is-gguf/what-is-gguf.md",
+    "icon": "favicon.png"
+  },
+  "20250924062655181": {
+    "index": "202509/20250924062655181-github.com/index.html",
+    "title": "how-to-run-gguf-LLM-model.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250924062655181",
+    "modify": "20250924062655181",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250122-how-to-run-gguf-LLM-model/how-to-run-gguf-LLM-model.md",
+    "icon": "favicon.png"
+  },
+  "20250924062934008": {
+    "index": "",
+    "title": "M4 Mac mini 服务器探索之路03 LM Studio部署以及MLX框架推理的实测体验以及api调用设置方法RAG增补使用方法｜ollama对比｜Mac_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250924062934008",
+    "modify": "20250924062934008",
+    "source": "https://www.bilibili.com/video/BV16RBGYMEXV/?buvid=XYDB061DF82884A87BACBD5685204CC6AD66C&from_spmid=playlist.playlist-detail.0.0&is_story_h5=false&mid=oqB5iLLnxqkcYcODX2fmJw%3D%3D&plat_id=116&share_from=ugc&share_medium=android&share_plat=android&share_session_id=28654ac6-6004-4649-8ca9-4a6595131af4&share_source=GENERIC&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1757715430&unique_k=wRdbzRb&up_id=85535689&vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250924063341827": {
+    "index": "202509/20250924063341827-github.com/index.html",
+    "title": "Run Ollama Portable Zip on Intel GPU with IPEX-LLM",
+    "type": "",
+    "create": "20250924063341827",
+    "modify": "20250924063341827",
+    "source": "https://github.com/ipex-llm/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md",
+    "icon": "favicon.png"
+  },
+  "20250924063520254": {
+    "index": "202509/20250924063520254-github.com/index.html",
+    "title": "Run llama.cpp with IPEX-LLM on Intel GPU",
+    "type": "",
+    "create": "20250924063520254",
+    "modify": "20250924063520254",
+    "source": "https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/llama_cpp_quickstart.md",
+    "icon": "favicon.png"
+  },
+  "20250924063654108": {
+    "index": "",
+    "title": "Run Ollama with IPEX-LLM on Intel GPU — IPEX-LLM latest documentation",
+    "type": "bookmark",
+    "create": "20250924063654108",
+    "modify": "20250924063654108",
+    "source": "https://ipex-llm-latest.readthedocs.io/en/latest/doc/LLM/Quickstart/ollama_quickstart.html",
+    "icon": "../tree/favicon/6d6baeea7fa3d1252ec9435c8e0331393cc06953.ico"
+  },
+  "20250924064324097": {
+    "index": "",
+    "title": "Ultra7 255H的性能咋样？对比上一代Ultra7 155H有多大提升？ - 知乎",
+    "type": "bookmark",
+    "create": "20250924064324097",
+    "modify": "20250924064324097",
+    "source": "https://zhuanlan.zhihu.com/p/24592022367",
+    "icon": "../tree/favicon/8bee212578c280c0fc2f8eeeb3290ecab07146bd.ico"
+  },
+  "20250924064357162": {
+    "index": "",
+    "title": "实战精选｜用英特尔CPU及GPU运行 OpenAI-whisper 模型语音识别 - 哔哩哔哩",
+    "type": "bookmark",
+    "create": "20250924064357162",
+    "modify": "20250924064357162",
+    "source": "https://www.bilibili.com/opus/1018481963065933857",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20250924064640178": {
+    "index": "202509/20250924064640178-www.freecodecamp.org/index.html",
+    "title": "Local AI Development with Ollama Course",
+    "type": "",
+    "create": "20250924064640178",
+    "modify": "20250924064640178",
+    "source": "https://www.freecodecamp.org/news/local-ai-development-with-ollama-course/",
+    "icon": "favicon.ico"
+  },
+  "20250924065336160": {
+    "index": "202509/20250924065336160-x.com/index.html",
+    "title": "向阳乔木 on X: \"整理了些支持本地LLM运行的客户端和网页工具 / X",
+    "type": "",
+    "create": "20250924065336160",
+    "modify": "20250924065336160",
+    "source": "https://x.com/vista8/status/1887900516744888551",
+    "icon": "twitter.3.ico"
+  },
+  "20250924065818803": {
+    "index": "202509/20250924065818803-x.com/index.html",
+    "title": "karminski-牙医 on X: \"Google 刚刚发布了 QAT(量化感知训练) 版本的 Gemma-3-27B\" / X",
+    "type": "",
+    "create": "20250924065818803",
+    "modify": "20250924065818803",
+    "source": "https://x.com/karminski3/status/1913370960654483502",
+    "icon": "twitter.3.ico"
+  },
+  "20250924070022875": {
+    "index": "20250924070022875/index.html",
+    "title": "ollama@ollamaGemma 3 QAT (Quantization Aware Trained) models are now available! 1B: ollama run gemma3:1b-it-qat 4B: ollama run gemma3:4b-it-qat 12B...",
+    "type": "note",
+    "create": "20250924070022875",
+    "modify": "20250924070022875"
+  },
+  "20250924070302780": {
+    "index": "202509/20250924070302780-x.com/index.html",
+    "title": "LIN WEI on X: \"有没有什么 python 库可以对接所有 llm 的 api？从 ollama 到 chatgpt 到 openrouter 到 claude，grok 之类的？自己写过点 chatgpt / ollama 的，但不够完善，升级和维护太累。\" / X",
+    "type": "",
+    "create": "20250924070302780",
+    "modify": "20250924070302780",
+    "source": "https://x.com/skywind3000/status/1947653299542581650",
+    "icon": "twitter.3.ico"
   }
 })
