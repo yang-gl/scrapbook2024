@@ -1381,7 +1381,7 @@ scrapbook.meta({
   },
   "20250924030919015": {
     "index": "",
-    "title": "李宏毅: 生成式人工智能&机器学习导论 (2025秋) Introduction to GenAI and ML 2025 Fall",
+    "title": "Introduction to GenAI and ML 2025 Fall (李宏毅: 生成式人工智能&机器学习导论 (2025秋))",
     "type": "bookmark",
     "create": "20250924030919015",
     "modify": "20250924030919015",
@@ -1585,7 +1585,9 @@ scrapbook.meta({
     "title": "ollama@ollamaGemma 3 QAT (Quantization Aware Trained) models are now available! 1B: ollama run gemma3:1b-it-qat 4B: ollama run gemma3:4b-it-qat 12B...",
     "type": "note",
     "create": "20250924070022875",
-    "modify": "20250924070022875"
+    "modify": "20250924070022875",
+    "parent": "20250924065818803",
+    "recycled": "20250924150839251"
   },
   "20250924070302780": {
     "index": "202509/20250924070302780-x.com/index.html",
@@ -1595,5 +1597,157 @@ scrapbook.meta({
     "modify": "20250924070302780",
     "source": "https://x.com/skywind3000/status/1947653299542581650",
     "icon": "twitter.3.ico"
+  },
+  "20250924145542628": {
+    "title": "ollama",
+    "type": "separator",
+    "create": "20250924145542628",
+    "modify": "20250924145542628"
+  },
+  "20250924145626491": {
+    "title": "",
+    "type": "separator",
+    "create": "20250924145626491",
+    "modify": "20250924145626491"
+  },
+  "20250924145721837": {
+    "index": "202509/20250924145721837-zahiralam.com/index.html",
+    "title": "Set Up Open WebUI with Ollama on Mac: Your Guide to Offline AI Mastery – Zahirs Blog",
+    "type": "",
+    "create": "20250924145721837",
+    "modify": "20250924145721837",
+    "source": "https://zahiralam.com/blog/set-up-open-webui-with-ollama-on-mac-your-guide-to-offline-ai-mastery/",
+    "icon": "cropped-zahirs-blog-logo-512-x-512-32x32.webp"
+  },
+  "20250924145739119": {
+    "title": "intel xpu",
+    "type": "folder",
+    "create": "20250924145739119",
+    "modify": "20250924145739119"
+  },
+  "20250924150215706": {
+    "index": "",
+    "title": "LiteObject/Local-AI: A curated guide to running Large Language Models (LLMs) on your own machine. Covers tools like Ollama, LM Studio, LocalAI, GPT4All, and more!",
+    "type": "bookmark",
+    "create": "20250924150215706",
+    "modify": "20250924150215706",
+    "source": "https://github.com/LiteObject/Local-AI",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20250924150259758": {
+    "index": "202509/20250924150259758-github.com/index.html",
+    "title": "LM Studio vs Ollama vs GPT4All",
+    "type": "",
+    "create": "20250924150259758",
+    "modify": "20250924150259758",
+    "source": "https://github.com/LiteObject/Local-AI/blob/main/docs/TOOL_COMPARISON.md",
+    "icon": "favicon.png"
+  },
+  "20250924150326581": {
+    "index": "202509/20250924150326581-github.com/index.html",
+    "title": "AI Model File Formats Guide: GGUF, GGML, GPTQ Explained ",
+    "type": "",
+    "create": "20250924150326581",
+    "modify": "20250924150326581",
+    "source": "https://github.com/LiteObject/Local-AI/blob/main/docs/MODEL_FORMATS_AND_TYPES.md",
+    "icon": "favicon.png"
+  },
+  "20250924150621342": {
+    "index": "202509/20250924150621342-www.zhihu.com/index.html",
+    "title": "LM studio在运行时如何配置为使用CPU+GPU+NPU的模式？ - 知乎",
+    "type": "",
+    "create": "20250924150621342",
+    "modify": "20250924150621342",
+    "source": "https://www.zhihu.com/question/8196110376/answer/68065959285",
+    "icon": "favicon.ico"
+  },
+  "20250924150826861": {
+    "index": "202509/20250924150826861-x.com/index.html",
+    "title": "ollama on X: \"Gemma 3 QAT (Quantization Aware Trained) models are now available!\" / X",
+    "type": "",
+    "create": "20250924150826861",
+    "modify": "20250924150826861",
+    "source": "https://x.com/ollama/status/1913220728154935683",
+    "icon": "twitter.3.ico"
+  },
+  "20250927133124520": {
+    "index": "202509/20250927133124520-www.cnblogs.com/index.html",
+    "title": "[软件工具使用记录] windows离线ollama部署本地模型并配置continue实现离线代码补全 - Startu - 博客园",
+    "type": "",
+    "create": "20250927133124520",
+    "modify": "20250927133124520",
+    "source": "https://www.cnblogs.com/cjdty/p/18659438",
+    "icon": "favicon.ico"
+  },
+  "20250927133516929": {
+    "index": "",
+    "title": "Large Language models — Intel® NPU Acceleration Library documentation",
+    "type": "bookmark",
+    "create": "20250927133516929",
+    "modify": "20250927133516929",
+    "source": "https://intel.github.io/intel-npu-acceleration-library/llm.html"
+  },
+  "20250927133654750": {
+    "index": "202509/20250927133654750-cline.bot/index.html",
+    "title": "Cline + LM Studio: the local coding stack with Qwen3 Coder 30B - Cline Blog",
+    "type": "",
+    "create": "20250927133654750",
+    "modify": "20250927133654750",
+    "source": "https://cline.bot/blog/local-models",
+    "icon": "favicon-16x16.png"
+  },
+  "20250927133950597": {
+    "index": "202509/20250927133950597-x.com/index.html",
+    "title": "meng shao on X: \"你在Meta的面试中被问到「如何选择向量数据库？」，该怎么回答？ \" / X",
+    "type": "",
+    "create": "20250927133950597",
+    "modify": "20250927133950597",
+    "source": "https://x.com/shao__meng/status/1971382375797174302",
+    "icon": "twitter.3.ico"
+  },
+  "20250927134310886": {
+    "index": "202509/20250927134310886-threadreaderapp.com/index.html",
+    "title": "Thread by @asmah2107: The interviewer asks : \"How do you choose a vector database?\"",
+    "type": "",
+    "create": "20250927134310886",
+    "modify": "20250927134310886",
+    "source": "https://threadreaderapp.com/thread/1971037909601104080.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20250927135205820": {
+    "index": "202509/20250927135205820-threadreaderapp.com/index.html",
+    "title": "Thread by @DataChaz: Building your first AI Agent; A clear path! ",
+    "type": "",
+    "create": "20250927135205820",
+    "modify": "20250927135205820",
+    "source": "https://threadreaderapp.com/thread/1970898722067567049.html?utm_campaign=topunroll",
+    "icon": "favicon-32x32.png"
+  },
+  "20250927135106401": {
+    "index": "202509/20250927135106401-www.reddit.com/index.html",
+    "title": "Building your first AI Agent; A clear path! : r/AgentsOfAI",
+    "type": "",
+    "create": "20250927135106401",
+    "modify": "20250927135106401",
+    "source": "https://www.reddit.com/r/AgentsOfAI/comments/1mwof0j/building_your_first_ai_agent_a_clear_path/",
+    "icon": "64x64.png"
+  },
+  "20250927135807806": {
+    "index": "202509/20250927135807806-x.com/index.html",
+    "title": "沉浸式翻译 on X: \"Google 刚发布了 AI Agent 构建指南 \" / X",
+    "type": "",
+    "create": "20250927135807806",
+    "modify": "20250927135807806",
+    "source": "https://x.com/immersivetran/status/1970743475445657872",
+    "icon": "twitter-pip.3.ico"
+  },
+  "20250927140552240": {
+    "index": "202509/20250927140552240-threadreaderapp.com/index.html",
+    "title": "Thread by @akshay_pachaar: Context engineering, clearly explained!",
+    "type": "",
+    "create": "20250927140552240",
+    "modify": "20250927140552240",
+    "source": "https://threadreaderapp.com/thread/1970493414795079904.html",
+    "icon": "favicon-32x32.png"
   }
 })

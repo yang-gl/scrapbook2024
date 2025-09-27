@@ -1,0 +1,1083 @@
+<!DOCTYPE html><html lang="zh-cn" style="--olcb-folder-code-block-max-height: 80vh; --cnb-code-bg: rgb(30, 30, 30); --cnb-code-font-size: 13px; --cnb-code-color: rgb(212, 212, 212);" mode="dark" theme="a" data-eusoft-scrollable-element="1" data-scrapbook-source="https://www.cnblogs.com/cjdty/p/18659438" data-scrapbook-create="20250927133124520"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <meta name="keywords" content="软件工具使用记录">
+    <meta name="description" content="qwen2.5coder发布之后，觉得差不多可以实现离线模型辅助编程了，所以尝试在公司内网部署模型，配合vsocde插件continue实现代码提示、聊天功能。 目前使用qwen2.5coder的32b模型，体验上和gpt-4o差不多（都稀碎），适用于编写脚本，查一些简单问题，例如flask如何把变">
+    <meta property="og:description" content="qwen2.5coder发布之后，觉得差不多可以实现离线模型辅助编程了，所以尝试在公司内网部署模型，配合vsocde插件continue实现代码提示、聊天功能。 目前使用qwen2.5coder的32b模型，体验上和gpt-4o差不多（都稀碎），适用于编写脚本，查一些简单问题，例如flask如何把变">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>[软件工具使用记录] windows离线ollama部署本地模型并配置continue实现离线代码补全 - Startu - 博客园</title>
+    <link rel="icon" id="favicon" href="favicon.ico" type="image/svg+xml">
+    <link rel="canonical" href="https://www.cnblogs.com/cjdty/p/18659438">
+    
+    <style>#home :not(.cnblogs_code):not(.cnblogs_Highlighter)>pre:not([class*="language-"]):not([highlighted]):not(.hljs):not([class*="brush:"]), :not(.cnblogs_code):not(.cnblogs_Highlighter)>pre:not([class*="language-"]):not([highlighted]):not(.hljs):not([class*="brush:"]) {background: rgb(30, 30, 30);
+        padding: 13px;
+        border: 0px rgb(212, 212, 212);
+        border-radius: 0px;
+        border-color: transparent;
+        color: rgb(212, 212, 212);
+        font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
+        font-size: 13px</style><link rel="stylesheet" href="blog-common.min.css">
+    
+
+    
+        <link media="(prefers-color-scheme: light)" id="highlighter-theme-prism-vsc-dark-plus" type="text/css" rel="stylesheet" href="prism-vsc-dark-plus.css">
+        
+    <link type="text/css" rel="stylesheet" href="custom.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="mobile-common.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/cjdty/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/cjdty/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/cjdty/wlwmanifest.xml">
+    
+    
+
+    
+        
+    
+    <style>.medium-zoom-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 300ms;
+  will-change: opacity;
+}
+
+.medium-zoom--opened .medium-zoom-overlay {
+  cursor: pointer;
+  cursor: zoom-out;
+  opacity: 1;
+}
+
+.medium-zoom-image {
+  cursor: pointer;
+  cursor: zoom-in;
+  /*
+    The `transition` is marked as "!important" for the animation to happen
+    even though it's overriden by another inline `transition` style attribute.
+
+    This is problematic with frameworks that generate inline styles on their
+    images (e.g. Gatsby).
+
+    See https://github.com/francoischalifour/medium-zoom/issues/110
+   */
+  transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1) !important;
+}
+
+.medium-zoom-image--hidden {
+  visibility: hidden;
+}
+
+.medium-zoom-image--opened {
+  position: relative;
+  cursor: pointer;
+  cursor: zoom-out;
+  will-change: transform;
+}
+</style><link id="prism-line-numbers-style" href="prism-line-numbers.css" rel="stylesheet" type="text/css">
+        
+    
+<link rel="stylesheet" href="lightbox.min.css"><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><meta property="og:image" content="https://img2024.cnblogs.com/blog/1236187/202501/1236187-20250108114513142-1109514423.png"><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head>
+<body class="skin-custom no-navbar prismjs-engine" data-eusoft-scrollable-element="1">
+    <a name="top" data-eusoft-scrollable-element="1"></a>
+    <div id="top_nav" class="navbar forpc navbar-custom">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding">                    
+                    <a href="https://www.cnblogs.com/" title="开发者的网上家园" role="banner">
+                        <img src="logo.svg" alt="博客园logo">
+                    </a>
+                </li>               
+                <li><a href="https://cnblogs.vip/">会员</a></li>                
+                <li><a href="https://www.cnblogs.com/cmt/p/18500368">众包</a></li>
+                <li><a href="https://news.cnblogs.com/">新闻</a></li>
+                <li><a href="https://q.cnblogs.com/">博问</a></li>
+                <li><a href="https://ing.cnblogs.com/">闪存</a></li>
+                <li><a href="https://www.cnblogs.com/cmt/p/19081960">赞助商</a></li>                
+                <li><a href="https://harmonyos.cnblogs.com/">HarmonyOS</a></li>
+                <li><a href="https://chat2db-ai.com/" target="_blank">Chat2DB</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search dropdown" action="https://zzk.cnblogs.com/s" method="get" role="search">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="search" tabindex="3" autocomplete="off" value="">
+                        <button id="zzk_search_button">
+                            <img id="search_icon" class="focus-hidden" src="search.svg" alt="搜索">
+                            <img class="hidden focus-visible" src="enter.svg" alt="搜索">
+                        </button>
+                        <ul id="navbar_search_options" class="dropdown-menu quick-search-menu">
+                            <li tabindex="0" class="active">
+                                <div class="keyword-wrapper">
+                                    <img src="search.svg" alt="搜索">
+                                    <div class="keyword"></div>
+                                </div>
+                                <span class="search-area">所有博客</span>
+                            </li>
+                                    <li tabindex="1">
+                                        <div class="keyword-wrapper">
+                                            <img src="search.svg" alt="搜索">
+                                            <div class="keyword"></div>
+                                        </div>
+                                        <span class="search-area">当前博客</span>
+                                    </li>
+                        </ul>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔" style="display: none;">
+                        <img id="new_post_icon" class="navbar-icon" src="newpost.svg" alt="写随笔">
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx" alt="我的博客" title="我的博客" style="display: none;">
+                        <img id="myblog_icon" class="navbar-icon" src="myblog.svg" alt="我的博客">
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" href="https://msg.cnblogs.com/" alt="短消息" title="短消息" style="display: none;">
+                        <img id="msg_icon" class="navbar-icon" src="message.svg" alt="短消息">
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <a id="navbar_lite_mode_indicator" data-current-page="blog" style="display: none" href="javascript:" alt="简洁模式" title="简洁模式启用，您在访问他人博客时会使用简洁款皮肤展示">
+                        <img class="navbar-icon" src="lite-mode-on.svg" alt="简洁模式">
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown" style="display: none;">
+                        <a class="dropdown-button" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="avatar-default.svg" alt="用户头像">
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" href="https://passport.cnblogs.com/GetBlogApplyStatus.aspx">我的博客</a>
+                            <a href="https://home.cnblogs.com/">我的园子</a>
+                            <a href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a href="https://vip.cnblogs.com/my">会员中心</a>
+                            <a href="javascript:" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+
+                            <a href="javascript:">退出登录</a>
+                        </div>
+                    </div>
+                    <a class="navbar-anonymous" href="https://account.cnblogs.com/signup" style="display: inline;">注册</a>
+                    <a class="navbar-anonymous" href="javascript:" style="display: inline;">登录</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="page_begin_html">
+        
+
+
+    </div>
+
+    <div id="home" data-eusoft-scrollable-element="1">
+<div id="header"><div class="esa-mobile-menu material-symbols-outlined">menu</div>
+	<div id="blogTitle" data-eusoft-scrollable-element="1">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/cjdty/"><img id="blogLogo" src="logo.gif" alt="返回主页"></a>		
+		
+
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/cjdty" data-eusoft-scrollable-element="1"><h1>EasyWorld</h1></a>
+</h1>
+<h2>每一个不曾起舞的日子，都是对生命的辜负</h2>
+
+
+
+
+		
+	</div>
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/" data-eusoft-scrollable-element="1">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/cjdty/" data-eusoft-scrollable-element="1">
+首页</a>
+</li><li><a class="menu" target="_blank" href="https://xint.top/" data-eusoft-scrollable-element="1">来找我吧</a></li>
+                    <li class="esa-has-subnavs">
+                        <a class="menu" href="javascript:" data-eusoft-scrollable-element="1">友链
+                            <svg class="arrow" width="9px" height="9px" viewBox="0 0 13 7" xml:space="preserve" fill="none" stroke="var(--text-color)" data-eusoft-scrollable-element="1"><path d="M1,1l6.2,6L13,1"></path></svg>
+                        </a>
+                        <div class="esa-sub-navs" style="display: none;"><div class="caret"></div><ul><li><a class="menu" target="_blank" href="https://www.teaxia.com/">TeaXia 小窝-茶树虾</a></li></ul></div>
+                    </li>
+                    <li class="esa-has-subnavs">
+                        <a class="menu" href="javascript:" data-eusoft-scrollable-element="1">开源
+                            <svg class="arrow" width="9px" height="9px" viewBox="0 0 13 7" xml:space="preserve" fill="none" stroke="var(--text-color)" data-eusoft-scrollable-element="1"><path d="M1,1l6.2,6L13,1"></path></svg>
+                        </a>
+                        <div class="esa-sub-navs" style="display: none;"><div class="caret"></div><ul><li><a class="menu" target="_blank" href="https://github.com/x1ntt">Github</a></li><li><a class="menu" target="_blank" href="https://gitee.com/EasyWord">Gitee</a></li></ul></div>
+                    </li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" data-eusoft-scrollable-element="1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/Startu" data-eusoft-scrollable-element="1">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="javascript:" data-rss="https://www.cnblogs.com/cjdty/rss/" data-eusoft-scrollable-element="1">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/" data-eusoft-scrollable-element="1">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			<span id="stats_post_count">随笔 - 153&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 42&nbsp; </span>
+<span id="stats-total-view-count">阅读 - 
+<span title="总阅读数: 337423">
+33万</span></span>
+
+		</div>
+	</div>
+</div>
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                <a id="cb_post_title_url" class="postTitle2 vertical-middle" href="" title="发布于 2025-01-08 11:56" data-eusoft-scrollable-element="1">
+    <span role="heading" aria-level="2" data-eusoft-scrollable-element="1">[软件工具使用记录] windows离线ollama部署本地模型并配置continue实现离线代码补全</span>
+    
+
+</a><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                <div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+<p>qwen2.5coder发布之后，觉得差不多可以实现离线模型辅助编程了，所以尝试在公司内网部署模型，配合vsocde插件continue实现代码提示、聊天功能。</p>
+<p>目前使用qwen2.5coder的32b模型，体验上和gpt-4o差不多（都稀碎），适用于编写脚本，查一些简单问题，例如<code>flask如何把变量传到前端</code>，准确率还可以，但是补全功能稀碎。</p>
+<p>硬件如下：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>cpu</th>
+<th>gpu</th>
+<th>内存</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AMD Ryzen 9 5950X 16核</td>
+<td>AMD Radeon TX 6900XT（需要安装最新驱动）/<em data-eusoft-scrollable-element="1">16G显存直接吃满</em></td>
+<td>64G 2600Mhz/<em data-eusoft-scrollable-element="1">实际吃30G内存</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>跑起来不算快，和我阅读速度差不多，对这套硬件来说挺吃力的。GPU没怎么跑，似乎主要是cpu在发力吃到60%占用率</p>
+<h1 id="部署ollama">部署ollama<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h1>
+<h2 id="安装ollama客户端--选择模型">安装ollama客户端 &amp;&amp; 选择模型<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button><a href="#%E5%AE%89%E8%A3%85ollama%E5%AE%A2%E6%88%B7%E7%AB%AF--%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9E%8B" class="esa-anchor" data-eusoft-scrollable-element="1" style="opacity: 0;">#</a></h2>
+<p>首先去<a href="https://ollama.com/download/windows" target="_blank" rel="noopener nofollow" data-eusoft-scrollable-element="1">Download Ollama on Windows</a>下载ollama的windows版本，安装包非常大，基本上700-800M</p>
+<p>在有网络的电脑上安装，然后在<a href="https://ollama.com/search" target="_blank" rel="noopener nofollow" data-eusoft-scrollable-element="1">Ollama</a>这里找到需要的模型，例如这里我选择qwen2.5code的0.5b模型</p>
+<p><a href="https://img2024.cnblogs.com/blog/1236187/202501/1236187-20250108114513142-1109514423.png" data-title="" data-alt="image" data-lightbox="roadtrip" data-eusoft-scrollable-element="1"><img src="1236187-20250108114513142-1109514423.png" alt="image" loading="lazy" class="medium-zoom-image"></a></p>
+<p>点击第二个箭头<code>Tags</code>可以选择不同的量化版本，然后复制第三个箭头的指令</p>
+<p>按下<code>Win+R</code>快捷键，运行<code>cmd</code>，执行复制的命令，比如这里是<code>ollama run qwen2.5-coder:0.5b</code></p>
+<p>没有魔法的情况下可能会失败，一般情况下多试几次，最差可能需要几十次才能开始下载</p>
+<h2 id="找到模型文件及modelfile内容">找到模型文件及Modelfile内容<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button><a href="#%E6%89%BE%E5%88%B0%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E5%8F%8Amodelfile%E5%86%85%E5%AE%B9" class="esa-anchor" data-eusoft-scrollable-element="1">#</a></h2>
+<p><a href="https://img2024.cnblogs.com/blog/1236187/202501/1236187-20250108114524272-1336577142.png" data-title="" data-alt="image" data-lightbox="roadtrip" data-eusoft-scrollable-element="1"><img src="1236187-20250108114524272-1336577142.png" alt="image" loading="lazy" class="medium-zoom-image"></a></p>
+<p>搜索pull的时候的哈希字符，可以找到模型位置，一般在<code>C:\Users\Administrator\.ollama\models\blobs</code></p>
+<p>按照时间排序，找到最大的那个文件，就是gguf格式的模型，复制出来，改名为<code>qwen2.5-coder0.5b.gguf</code></p>
+<p>在命令行执行形如<code>ollama show qwen2.5-coder:0.5b --modelfile</code>的指令，可以得到模型的<code>Modelfile</code>文件内容，保存为<code>Modelfile</code>文件</p>
+<p>现在有以下两个文件</p>
+<p><a href="https://img2024.cnblogs.com/blog/1236187/202501/1236187-20250108114544521-2054625164.png" data-title="" data-alt="image" data-lightbox="roadtrip" data-eusoft-scrollable-element="1"><img src="1236187-20250108114544521-2054625164.png" alt="image" loading="lazy" class="medium-zoom-image"></a></p>
+<p>其中，文件内容是默认提示词模板，可参考<a href="https://ollama.readthedocs.io/modelfile/" target="_blank" rel="noopener nofollow" data-eusoft-scrollable-element="1">模型文件参考 - Ollama 中文文档</a>进行修改，例如可以实现让<code>llama3.3</code>优先使用中文，这个可以通过在其中加入<code>请优先使用简体中文回复</code>，这样的字符实现，最好使用翻译软件翻译成英文再放进去（比如插入到第13行）</p>
+<ul>
+<li><strong data-eusoft-scrollable-element="1">修改第五行的FROM，将模型路径修改为模型的真实路径，例如这里是<code>./qwen2.5-coder0.5b.gguf</code></strong></li>
+</ul>
+<h2 id="内网部署ollama">内网部署ollama<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button><a href="#%E5%86%85%E7%BD%91%E9%83%A8%E7%BD%B2ollama" class="esa-anchor" data-eusoft-scrollable-element="1">#</a></h2>
+<ul>
+<li>在没有网络的内网电脑中安装第一步下载的ollama安装包</li>
+<li>复制上面准备的两个文件到内网</li>
+</ul>
+<p>在两个文件所在目录的地址栏输入<code>cmd</code>，按下回车</p>
+<p><a href="https://img2024.cnblogs.com/blog/1236187/202501/1236187-20250108114556001-2033817167.png" data-title="" data-alt="image" data-lightbox="roadtrip" data-eusoft-scrollable-element="1"><img src="1236187-20250108114556001-2033817167.png" alt="image" loading="lazy" class="medium-zoom-image"></a></p>
+<p>命令行中输入<code>ollama create qwen2.5-coder0.5b -f Modelfile</code>，其中create后面是你自定义的模型名字（推荐和外网保持一样）</p>
+<p>这样就导入进来了，接下来的使用和外网一模一样，输入<code>ollama list</code>命令可以看到导入的模型</p>
+<p><strong data-eusoft-scrollable-element="1">默认情况下<code>ollama</code>会开机启动，如果没有启动，手动执行就行，右下角的托盘图表中应该有它</strong></p>
+<h1 id="配置continue">配置continue<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h1>
+<h2 id="本地使用">本地使用<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button><a href="#%E6%9C%AC%E5%9C%B0%E4%BD%BF%E7%94%A8" class="esa-anchor" data-eusoft-scrollable-element="1">#</a></h2>
+<p><a href="https://github.com/continuedev/continue/releases" target="_blank" rel="noopener nofollow" data-eusoft-scrollable-element="1">Releases · continuedev/continue</a>这里下载到最新的continue插件，复制到内网，在vscode中安装，可参考<a href="https://blog.csdn.net/fightsyj/article/details/111315376" target="_blank" rel="noopener nofollow" data-eusoft-scrollable-element="1">VS Code 安装 VSIX 插件_.vsix-CSDN博客</a></p>
+<p><a href="https://img2024.cnblogs.com/blog/1236187/202501/1236187-20250108114612867-1841915118.gif" data-title="" data-alt="image" data-lightbox="roadtrip" data-eusoft-scrollable-element="1"><img src="1236187-20250108114612867-1841915118.gif" alt="image" loading="lazy" class="medium-zoom-image"></a></p>
+<p>现在，就可以使用模型了</p>
+<h2 id="局域网共享">局域网共享<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button><a href="#%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB" class="esa-anchor" data-eusoft-scrollable-element="1">#</a></h2>
+<p>如果项目组中只有一台电脑能运行模型，别的性能不够，需要局域网访问ollama，那么可以按照如下方式调整</p>
+<h3 id="ollama">ollama<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button><a href="#ollama" class="esa-anchor" data-eusoft-scrollable-element="1">#</a></h3>
+<p>默认它的服务监听<code>127.0.0.1:11434</code>端口，这会导致局域网其他机器访问不到，可以参考<a href="https://github.com/ollama/ollama/issues/703" target="_blank" rel="noopener nofollow" data-eusoft-scrollable-element="1">Allow listening on all local interfaces · Issue #703 · ollama/ollama</a>实现监听所有端口</p>
+<p>简单来说，就是设定环境变量<code>OLLAMA_HOST=0.0.0.0</code>，windows上也是一样的，如下</p>
+<p><a href="https://img2024.cnblogs.com/blog/1236187/202501/1236187-20250108114626408-2121814357.gif" data-title="" data-alt="image" data-lightbox="roadtrip" data-eusoft-scrollable-element="1"><img src="1236187-20250108114626408-2121814357.gif" alt="image" loading="lazy" class="medium-zoom-image"></a></p>
+<p>然后重启ollama即可，通过<code>netstat -ano | findstr 11434</code>查看是否监听了0.0.0.0</p>
+<h3 id="continue">continue<button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button><a href="#continue" class="esa-anchor" data-eusoft-scrollable-element="1">#</a></h3>
+<p>可参考：<a href="https://github.com/continuedev/continue/issues/1175#issuecomment-2081651169" target="_blank" rel="noopener nofollow" data-eusoft-scrollable-element="1">https://github.com/continuedev/continue/issues/1175#issuecomment-2081651169</a></p>
+<p>简单来说，在远程主机上，把设置中的以下内容改为指定内容即可</p>
+<p><a href="https://img2024.cnblogs.com/blog/1236187/202501/1236187-20250108114635814-24868120.png" data-title="" data-alt="image" data-lightbox="roadtrip" data-eusoft-scrollable-element="1"><img src="1236187-20250108114635814-24868120.png" alt="image" loading="lazy" class="medium-zoom-image"></a></p>
+<pre class="line-numbers highlighter-prismjs prismjs-lines-highlighted code-theme-dark language-json" data-mac-style="true" tabindex="0" data-dark-theme="true" highlighted="true"><code class="highlighter-prismjs language-json" data-dark-theme="true">    <span class="token punctuation" data-eusoft-scrollable-element="1">{</span>
+      <span class="token property" data-eusoft-scrollable-element="1">"model"</span><span class="token operator" data-eusoft-scrollable-element="1">:</span> <span class="token string" data-eusoft-scrollable-element="1">"AUTODETECT"</span><span class="token punctuation" data-eusoft-scrollable-element="1">,</span>
+      <span class="token property" data-eusoft-scrollable-element="1">"title"</span><span class="token operator" data-eusoft-scrollable-element="1">:</span> <span class="token string" data-eusoft-scrollable-element="1">"Ollama (Remote)"</span><span class="token punctuation" data-eusoft-scrollable-element="1">,</span>
+      <span class="token property" data-eusoft-scrollable-element="1">"completionOptions"</span><span class="token operator" data-eusoft-scrollable-element="1">:</span> <span class="token punctuation" data-eusoft-scrollable-element="1">{</span><span class="token punctuation" data-eusoft-scrollable-element="1">}</span><span class="token punctuation" data-eusoft-scrollable-element="1">,</span>
+      <span class="token property" data-eusoft-scrollable-element="1">"apiBase"</span><span class="token operator" data-eusoft-scrollable-element="1">:</span> <span class="token string" data-eusoft-scrollable-element="1">"http://192.168.1.100:11434"</span><span class="token punctuation" data-eusoft-scrollable-element="1">,</span>
+      <span class="token property" data-eusoft-scrollable-element="1">"provider"</span><span class="token operator" data-eusoft-scrollable-element="1">:</span> <span class="token string" data-eusoft-scrollable-element="1">"ollama"</span>
+    <span class="token punctuation" data-eusoft-scrollable-element="1">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中apiBase就是部署了ollama的机器</p>
+
+</div><div class="esa-post-signature"> 
+                <p>作者：cjdty</p> 
+                <p>出处：<a href="" data-eusoft-scrollable-element="1">https://www.cnblogs.com/cjdty/p/18659438</a></p> 
+                <p>版权：本作品采用「<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" data-eusoft-scrollable-element="1">署名-非商业性使用-相同方式共享 4.0 国际</a>」许可协议进行许可。</p> 
+                <p></p> 
+            </div>
+<div class="clear"></div>
+<div id="blog_post_info_block" role="contentinfo">
+
+
+<div id="BlogPostCategory" class="detail-post-categories">
+    分类: 
+            <a href="https://www.cnblogs.com/cjdty/category/2221828.html" target="_blank" data-eusoft-scrollable-element="1">软件工具使用记录</a></div>
+
+    <div id="blog_post_info" data-eusoft-scrollable-element="1">
+<div id="green_channel">
+        <a href="javascript:" id="green_channel_digg">好文要顶</a>
+        <a id="green_channel_follow" href="javascript:">关注我</a>
+    <a id="green_channel_favorite" href="javascript:">收藏该文</a>
+    <a id="green_channel_wechat" href="javascript:">微信分享</a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/cjdty/" target="_blank"><img src="20200909225220.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/cjdty/">Startu</a>
+            <br>
+            <a href="https://home.cnblogs.com/u/cjdty/followers/">粉丝 - <span class="follower-count">40</span></a>
+            <a href="https://home.cnblogs.com/u/cjdty/followees/">关注 - <span class="following-count">8</span></a><br>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow" class="follow-tip">
+                <a href="javascript:">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit">
+        <span class="diggnum" id="digg_count" data-eusoft-scrollable-element="1">5</span>
+    </div>
+    <div class="buryit">
+        <span class="burynum" id="bury_count" data-eusoft-scrollable-element="1">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+
+</div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/cjdty/p/18603109" class="p_n_p_prefix" data-eusoft-scrollable-element="1">« </a> 上一篇：    <a href="https://www.cnblogs.com/cjdty/p/18603109" data-featured-image="" title="发布于 2024-12-12 17:52" data-eusoft-scrollable-element="1">[linux] 获取重定向到/dev/null的进程标准输出</a>
+    <br>
+    <a href="https://www.cnblogs.com/cjdty/p/18720572" class="p_n_p_prefix" data-eusoft-scrollable-element="1">» </a> 下一篇：    <a href="https://www.cnblogs.com/cjdty/p/18720572" data-featured-image="" title="发布于 2025-02-17 19:07" data-eusoft-scrollable-element="1">[python3] python3的setup.py文件编写记录</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date" data-last-update-days="0" data-date-updated="2025-01-08 11:57" data-eusoft-scrollable-element="1">2025-01-08 11:56</span>&nbsp;
+<a href="https://www.cnblogs.com/cjdty" data-eusoft-scrollable-element="1">Startu</a>&nbsp;
+阅读(<span id="post_view_count" data-eusoft-scrollable-element="1">10464</span>)&nbsp;
+评论(<span id="post_comment_count" data-eusoft-scrollable-element="1">0</span>)&nbsp;
+&nbsp;
+<a href="javascript:" data-eusoft-scrollable-element="1">收藏</a>&nbsp;
+<a href="javascript:" data-eusoft-scrollable-element="1">举报</a>
+</div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+
+<a id="!comments" data-eusoft-scrollable-element="1"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform" data-eusoft-scrollable-element="1"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav">
+        <div class="comment-nav-right">
+            <span id="span_refresh_tips"></span><a href="#">刷新页面</a><a href="#top">返回顶部</a>
+        </div>
+    </div>
+    <div id="comment_form_container"><div class="login_tips">
+    登录后才能查看或发表评论，立即 <a rel="nofollow" href="javascript:" class="underline" data-eusoft-scrollable-element="1">登录</a> 或者
+    <a href="https://www.cnblogs.com/" data-eusoft-scrollable-element="1">逛逛</a> 博客园首页
+</div>
+</div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+        <div id="cnblogs_ch"><a href="http://www.uccpsoft.com/index.htm" target="_blank">【推荐】100%开源！大型工业跨平台软件C++源码提供，建模，组态！</a><br><a href="https://harmonyos.cnblogs.com/p/22700" target="_blank">【推荐】HarmonyOS 专区 —— 闯入鸿蒙：浪漫、理想与「草台班子」</a><br><a href="https://www.cnblogs.com/cmt/p/19058738" target="_blank">【推荐】2025 HarmonyOS 鸿蒙创新赛正式启动，百万大奖等你挑战</a><br><a href="https://click.ctyun.cn/?track=source_bokeyuan-medium_cps-content_se1495638" target="_blank">【推荐】天翼云爆款云主机2核2G限时秒杀，28.8元/年起！立即抢购</a><br></div>
+    <div id="opt_under_post"></div>
+        <div id="blog_c1" class="under-post-card">
+            <a href="https://developer.huawei.com/consumer/cn/activity/digixActivity/digixcmsdetail/101750143863263087?ha_source=BKYQ3&amp;ha_sourceId=89000408" rel="nofollow" target="_blank">
+                <img src="35695-20250830121216742-1062949948.jpg" alt="" style="width:300px!important;height:250px!important;min-width:300px!important;max-width:300px!important;">
+                <span id="c1_impression" style="display:none"></span>
+            </a>
+        </div>
+    <div id="under_post_card1">
+<div class="under-post-card recomm-block">
+    <b>相关博文：</b><br>
+    <div class="recomm-list">
+            <div class="recomm-item">
+                <span>·&nbsp;</span>
+                <a href="https://www.cnblogs.com/cjdty/p/18260682" target="_blank" title="windows离线部署VSCode在Centos7上的远程开发环境" class="recomm-link">windows离线部署VSCode在Centos7上的远程开发环境</a>
+            </div>
+            <div class="recomm-item">
+                <span>·&nbsp;</span>
+                <a href="https://www.cnblogs.com/cjdty/p/18739245" target="_blank" title="[爬坑指南] 虚拟机和docker实现下载服务器" class="recomm-link">[爬坑指南] 虚拟机和docker实现下载服务器</a>
+            </div>
+            <div class="recomm-item">
+                <span>·&nbsp;</span>
+                <a href="https://www.cnblogs.com/xiao987334176/p/18804232" target="_blank" title="Ollama本地部署qwen2.5" class="recomm-link">Ollama本地部署qwen2.5</a>
+            </div>
+            <div class="recomm-item">
+                <span>·&nbsp;</span>
+                <a href="https://www.cnblogs.com/Casflawed/p/18525187" target="_blank" title="如何在离线的Linux服务器上部署 Ollama，并使用 Ollama 管理运行 Qwen 大模型" class="recomm-link">如何在离线的Linux服务器上部署 Ollama，并使用 Ollama 管理运行 Qwen 大模型</a>
+            </div>
+            <div class="recomm-item">
+                <span>·&nbsp;</span>
+                <a href="https://www.cnblogs.com/zishu/p/18812832" target="_blank" title="Ollama 安装与模型部署" class="recomm-link">Ollama 安装与模型部署</a>
+            </div>
+    </div>
+</div>
+</div>
+    <div id="under_post_card2"><div class="itnews under-post-card">
+    <b>HarmonyOS专区：</b>
+    <br>
+    ·  <a href="https://harmonyos.cnblogs.com/p/22700" target="_blank">闯入鸿蒙：浪漫、理想与「草台班子」</a><br>
+    ·  <a href="https://harmonyos.cnblogs.com/p/22782" target="_blank">3天赚2万！开发者的梦想也可以掷地有声！</a><br>
+    ·  <a href="https://harmonyos.cnblogs.com/p/22695" target="_blank">Flutter 适配 HarmonyOS 5 开发知识地图</a><br>
+    ·  <a href="https://harmonyos.cnblogs.com/p/22777" target="_blank">HEIF：更高质量、更小体积，开启 HarmonyOS 图像新体验</a><br>
+    ·  <a href="https://harmonyos.cnblogs.com/p/22775" target="_blank">CodeGenie 的 AI 辅助调优让你问题定位效率大幅提升</a><br>
+</div>
+</div>
+    <div id="HistoryToday" class="under-post-card"></div>
+    
+</div>
+
+	</div>
+	</div>
+	<div id="sideBar">
+		<div id="sideBarMain"><img class="esa-profile-avatar" src="1236187-20220921175317469-216109866.jpg">
+			<div id="sidebar_news" class="newsItem">
+    <h3 class="catListTitle">公告</h3>
+<div id="blog-news" class="sidebar-news">
+    <div id="sidebar_news_container">    <div id="sidebar_news_content">
+        <img src="@_cjdty.svg" alt=":cjdty">
+<!--计时器出处在这里👉，不用谢~ https://github.com/journey-ad/Moe-counter-->
+<!--asoul moebooru moebooru-h rule34 gelbooru gelbooru-h-->
+    </div>
+<div id="profile_block">
+    昵称：
+    <a href="https://home.cnblogs.com/u/cjdty/">
+        Startu
+    </a>
+    <br>
+    园龄：
+    <a href="https://home.cnblogs.com/u/cjdty/" title="入园时间：2017-09-09">
+        8年
+    </a>
+    <br>
+    粉丝：
+    <a class="follower-count" href="https://home.cnblogs.com/u/cjdty/followers/">
+        40
+    </a>
+    <br>
+    关注：
+    <a class="folowing-count" href="https://home.cnblogs.com/u/cjdty/followees/">
+        8
+    </a>
+    <div id="p_b_follow" class="follow-tip">
+<a href="javascript:">+加关注</a></div>
+    
+</div>
+</div>
+</div>
+
+
+ 
+</div>
+    <div id="sidebar_c3">
+        <a href="https://qoder.com/" target="_blank">
+            <img src="35695-20250923175626492-1765665740.jpg">
+        </a>
+    </div>
+
+			<div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:">&lt;</a>
+                            </td>
+                            <td align="center">2025年9月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    <tr>
+        <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+        <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+        <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+        <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+        <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+        <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+        <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+    </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">31</td>
+                        <td class="" align="center">
+                            1
+                        </td>
+                        <td class="" align="center">
+                            <a href="https://www.cnblogs.com/cjdty/p/archive/2025/09/02"><u>2</u></a>
+                        </td>
+                        <td class="" align="center">
+                            3
+                        </td>
+                        <td class="" align="center">
+                            4
+                        </td>
+                        <td class="" align="center">
+                            5
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        6
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            7
+                        </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                            <td class="" align="center">
+                                <a href="https://www.cnblogs.com/cjdty/p/archive/2025/09/09"><u>9</u></a>
+                            </td>
+                            <td class="" align="center">
+                                10
+                            </td>
+                            <td class="" align="center">
+                                11
+                            </td>
+                            <td class="" align="center">
+                                12
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            13
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            14
+                        </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                            <td class="" align="center">
+                                16
+                            </td>
+                            <td class="" align="center">
+                                17
+                            </td>
+                            <td class="" align="center">
+                                18
+                            </td>
+                            <td class="" align="center">
+                                19
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            20
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            21
+                        </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                            <td class="" align="center">
+                                23
+                            </td>
+                            <td class="" align="center">
+                                24
+                            </td>
+                            <td class="" align="center">
+                                25
+                            </td>
+                            <td class="" align="center">
+                                <a href="https://www.cnblogs.com/cjdty/p/archive/2025/09/26"><u>26</u></a>
+                            </td>
+                        <td class="CalTodayDay cal-today" align="center">
+                            27
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            28
+                        </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                            <td class="" align="center">
+                                30
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                1
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                2
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            4
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            5
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                7
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                8
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                9
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                10
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            11
+                        </td>
+                </tr>
+    </tbody>
+</table></div>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+    <div class="mySearch my-search">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" class="input_my_zzk" value="">&nbsp;<input type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="sidebar_toptags" class="sidebar-block">
+    
+</div>
+
+
+
+<div id="sidebar_categories">
+
+    <div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+        <h3 class="catListTitle">
+            
+    <a class="sidebar-card-title-a" href="https://www.cnblogs.com/cjdty/post-categories">随笔分类</a>
+
+
+
+        </h3>
+
+        <ul>
+
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802586.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">C/C++(31)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802587.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">Java(11)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802604.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">Linux(22)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802589.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">PHP(5)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802588.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">Python(17)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802594.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">Qt(10)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802599.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">安全(3)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/2474112.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">路由器(1)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802590.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">逆向(13)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802591.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">爬坑指南(47)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802592.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">前端(9)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/2221828.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">软件工具使用记录(10)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802597.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">设计模式(1)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802600.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">网络(3)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="true" style="display: block">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802610.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">想法(5)</a>
+ 
+                </li>                
+                <li data-category-list-item-visible="false" style="display: none">
+                    <a href="https://www.cnblogs.com/cjdty/category/1802607.html" style="--cnb-category-item-link-indent-size: calc(0 * 1em)" class="category-item-link " rel="" target="">杂项(25)</a>
+ 
+                </li>                
+            <li>
+                <a href="javascript:">更多</a>
+            </li>
+        </ul>
+
+
+    </div>    
+</div>
+
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+    <h3 class="catListTitle">
+        <a href="https://www.cnblogs.com/cjdty/most-viewed" class="sidebar-card-title-a">
+    阅读排行榜
+</a>
+
+    </h3>
+    <div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/8908916.html">
+                            1. Java JFrame图形界面 ----一个简单的窗口(38786)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/11438996.html">
+                            2. [坑] js  indexOf is not a function(25563)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/9057845.html">
+                            3. Java 精简Jre jar打包成exe(17941)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/12556486.html">
+                            4. [Python] 超简单的 超星学习通自动签到(14621)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/11556096.html">
+                            5. [C++] JsonCPP 的使用 完整配置过程(12715)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            6. [软件工具使用记录] windows离线ollama部署本地模型并配置continue实现离线代码补全(10464)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/14638288.html">
+                            7. [C++] does not name a type (8532)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/9789368.html">
+                            8. win10安装 .net3.5失败解决方法(8339)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/9664546.html">
+                            9. txt文件太大打不开怎么办(8104)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/10743693.html">
+                            10. 点云 表面重建(7145)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/8920585.html">
+                            11. JFrame图形界面 ----绝对布局和按钮(6971)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/12377506.html">
+                            12. windows重建ESP分区修复引导(5578)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/10533001.html">
+                            13. [采坑记录] OneDrive同步失败 不能自动上传 不能同步 不能登陆(5574)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/12244460.html">
+                            14. 以管理员身份运行 Microsoft Edge 时不支持登录(5529)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/13231111.html">
+                            15. [程序] C++实现 http和https的反向代理程序(5237)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/10054746.html">
+                            16. Chrome无法从该网站添加应用，扩展程序和用户脚本(4880)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/10698457.html">
+                            17. [C++_QT] Error: Not a signal or slot declaration(4351)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/10565763.html">
+                            18. [QT] QT5.12 HTTPS请求  TLS initialization failed(4301)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/10043597.html">
+                            19. C语言传递二维数组(3884)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/cjdty/p/15763002.html">
+                            20. Linux 多进程服务配置 systemd(3746)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">
+            <a href="https://www.cnblogs.com/cjdty/most-liked" class="sidebar-card-title-a">推荐排行榜</a>
+
+        </h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/cjdty/p/9057845.html">
+                                1. Java 精简Jre jar打包成exe(6)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/cjdty/p/8908916.html">
+                                2. Java JFrame图形界面 ----一个简单的窗口(6)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                3. [软件工具使用记录] windows离线ollama部署本地模型并配置continue实现离线代码补全(5)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/cjdty/p/18051022">
+                                4. [Linux] Linux 自动挂载mount --bind 实现类似目录硬链的效果 (包含ZFS方案)(2)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/cjdty/p/10565763.html">
+                                5. [QT] QT5.12 HTTPS请求  TLS initialization failed(2)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    
+			</div>			
+		</div>
+	</div>
+	<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	<div id="footer"><img src="urn:scrapbook:download:error:https://counter.katomegumi.net/get/@:cjdty?theme=rule34" alt=":cjdty" data-eusoft-scrollable-element="1"><br>
+		<a href="https://www.cnblogs.com/" id="footer_site_link" class="footer-brand" data-eusoft-scrollable-element="1">博客园</a>
+<span class="footer-copyright" data-eusoft-scrollable-element="1"> &nbsp;©&nbsp; 2004-2025</span>
+<br><span class="footer-icp" data-eusoft-scrollable-element="1">
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602011771" data-eusoft-scrollable-element="1"><img src="ghs.png">浙公网安备 33010602011771号</a>
+    <a href="https://beian.miit.gov.cn/" target="_blank" data-eusoft-scrollable-element="1">浙ICP备2021040463号-3</a>
+</span>
+
+
+
+	<span class="esa-copyright" data-eusoft-scrollable-element="1">&amp; Theme <a href="https://github.com/esofar/cnblogs-theme-silence" target="_blank" data-eusoft-scrollable-element="1">Silence v3.0.0-rc2</a></span></div>
+</div>
+
+
+
+    <div id="page_end_html">
+        <style>
+    .container {
+        width: 100%;
+        height: 200px;
+        position: fixed;
+        z-index: -1;
+        opacity: 0.37;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+<div id="jsi-flying-fish-container" class="container"><canvas width="1052" height="200" data-scrapbook-canvas="data:image/png;base64,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ECCQXUDgkJ1UQQIECBAgQIAAAQIECBAgQEDgYA4QIECAAAECBAgQIECAAAEC2QUEDtlJFSRAgAABAgQIECBAgAABAgQEDuYAAQIECBAgQIAAAQIECBAgkF1A4JCdVEECBAgQIECAAAECBAgQIEBA4GAOECBAgAABAgQIECBAgAABAtkFBA7ZSRUkQIAAAQIECBAgQIAAAQIEBA7mAAECBAgQIECAAAECBAgQIJBdQOCQnVRBAgQIECBAgAABAgQIECBAQOBgDhAgQIAAAQIECBAgQIAAAQLZBQQO2UkVJECAAAECBAgQIECAAAECBAQO5gABAgQIECBAgAABAgQIECCQXUDgkJ1UQQIECBAgQIAAAQIECBAgQEDgYA4QIECAAAECBAgQIECAAAEC2QUEDtlJFSRAgAABAgQIECBAgAABAgQEDuYAAQIECBAgQIAAAQIECBAgkF1A4JCdVEECBAgQIECAAAECBAgQIEBA4GAOECBAgAABAgQIECBAgAABAtkFBA7ZSRUkQIAAAQIECBAgQIAAAQIEBA7mAAECBAgQIECAAAECBAgQIJBdQOCQnVRBAgQIECBAgAABAgQIECBAQOBgDhAgQIAAAQIECBAgQIAAAQLZBQQO2UkVJECAAAECBAgQIECAAAECBAQO5gABAgQIECBAgAABAgQIECCQXUDgkJ1UQQIECBAgQIAAAQIECBAgQEDgYA4QIECAAAECBAgQIECAAAEC2QUEDtlJFSRAgAABAgQIECBAgAABAgQEDuYAAQIECBAgQIAAAQIECBAgkF1A4JCdVEECBAgQIECAAAECBAgQIEBA4GAOECBAgAABAgQIECBAgAABAtkFBA7ZSRUkQIAAAQIECBAgQIAAAQIEBA7mAAECBAgQIECAAAECBAgQIJBdQOCQnVRBAgQIECBAgAABAgQIECBAQOBgDhAgQIAAAQIECBAgQIAAAQLZBQQO2UkVJECAAAECBAgQIECAAAECBAQO5gABAgQIECBAgAABAgQIECCQXUDgkJ1UQQIECBAgQIAAAQIECBAgQEDgYA4QIECAAAECBAgQIECAAAEC2QUEDtlJFSRAgAABAgQIECBAgAABAgQEDuYAAQIECBAgQIAAAQIECBAgkF1A4JCdVEECBAgQIECAAAECBAgQIEBA4GAOECBAgAABAgQIECBAgAABAtkFBA7ZSRUkQIAAAQIECBAgQIAAAQIEBA7mAAECRQlcXl6ejRq0srKSvu8V1UCNIUCAAAECBAgQIEBgKgGBw1RMDiJAYF4CETi86Pf7+/XrbW9vp9BhNz4/iN8/jSBic17tcR0CBAgQIECAAAECBG4nIHC4nZuzCBBoT+DJycnJwbvKf/zxx48ieHgYx+y11wyVCRAgQIAAAQIECBBoIiBwaKLnXAIEsgvE6oXHP/300+E0hT/55JOd4XD4PI7dneZ4xxAgQIAAAQIECBAgMD8BgcP8rF2JAIHpBD6MFQ6D6Q7931HViocUPPRmOc+xBAgQIECAAAECBAi0JyBwaM9WZQIEbiGwtrb26Y8//nh8i1PvxV4PX8d5e7c51zkECBAgQIAAAQIECOQVEDjk9VSNAIHmAg9ihcPRbcvEaoensb9DWu3ggwABAgQIECBAgACBBQoIHBaI79IECFwr0ChwSBWrvR2+iW97jAkQIECAAAECBAgQWIyAwGEx7q5KgMANArFp5H5sGvmiKdDOzs7mr7/++irq7TSt5XwCBAgQIECAAAECBGYXEDjMbuYMAgRaFIjbIQ77/f7jHJdIocPr16/TSofdHPXUIECAAAECBAgQIEBgeoH/Arbq5N4zHDRKAAAAAElFTkSuQmCC"></canvas></div>
+
+
+<!--script src='renderer.js'></script-->
+
+<!-- 飞鱼👆 -->
+
+
+
+
+    </div><a href="https://github.com/x1ntt" class="github-corner" title="GitHub" target="_blank">
+                <svg width="60" height="60" viewBox="0 0 250 250" style="color:#fff" aria-hidden="true">
+                    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+                    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+                    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+                </svg>
+            </a><div class="esa-toolbar" data-eusoft-scrollable-element="1">
+        <div class="material-symbols-outlined bars bars-show">more_horiz</div>
+        <span class="material-symbols-outlined up up-show" title="返回顶部">keyboard_arrow_up</span>
+        <span class="material-symbols-outlined mode mode-show" title="切换模式">light_mode</span>
+        <span class="material-symbols-outlined skin skin-show" title="切换主题">palette</span>
+        <div class="skin-popup">
+            <div class="item">
+                <div class="title">选择主题</div>
+                <div class="themes">
+                    <button data-theme="a" style="background: #2D8CF0;"></button>
+                    <button data-theme="b" style="background: #FA7298;"></button>
+                    <button data-theme="c" style="background: #42B983;"></button>
+                    <button data-theme="d" style="background: #607D8B;"></button>
+                    <button data-theme="e" style="background: #5E72E4;"></button>
+                    <button data-theme="f" style="background: #FF9700;"></button>
+                    <button data-theme="g" style="background: #FF5722;"></button>
+                    <button data-theme="h" style="background: #009688;"></button>
+                    <button data-theme="i" style="background: #673BB7;"></button>
+                    <button data-theme="j" style="background: #906f61;"></button>
+                </div>
+            </div>
+        </div>
+        <span class="material-symbols-outlined contents contents-show" title="目录导航">menu</span></div>
+    <div class="esa-contents noactive"><ul><li class="h2" title="安装ollama客户端 &amp;&amp; 选择模型">
+                    <a class="esa-anchor-link" href="#%E5%AE%89%E8%A3%85ollama%E5%AE%A2%E6%88%B7%E7%AB%AF--%E9%80%89%E6%8B%A9%E6%A8%A1%E5%9E%8B" data-eusoft-scrollable-element="1"><span class="level1" data-eusoft-scrollable-element="1">1. </span>安装ollama客户端 &amp;&amp; 选择模型</a>
+                 </li><li class="h2" title="找到模型文件及Modelfile内容">
+                    <a class="esa-anchor-link" href="#%E6%89%BE%E5%88%B0%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E5%8F%8Amodelfile%E5%86%85%E5%AE%B9" data-eusoft-scrollable-element="1"><span class="level1" data-eusoft-scrollable-element="1">2. </span>找到模型文件及Modelfile内容</a>
+                 </li><li class="h2" title="内网部署ollama">
+                    <a class="esa-anchor-link" href="#%E5%86%85%E7%BD%91%E9%83%A8%E7%BD%B2ollama" data-eusoft-scrollable-element="1"><span class="level1" data-eusoft-scrollable-element="1">3. </span>内网部署ollama</a>
+                 </li><li class="h2" title="本地使用">
+                    <a class="esa-anchor-link" href="#%E6%9C%AC%E5%9C%B0%E4%BD%BF%E7%94%A8" data-eusoft-scrollable-element="1"><span class="level1" data-eusoft-scrollable-element="1">4. </span>本地使用</a>
+                 </li><li class="h2" title="局域网共享">
+                    <a class="esa-anchor-link" href="#%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB" data-eusoft-scrollable-element="1"><span class="level1" data-eusoft-scrollable-element="1">5. </span>局域网共享</a>
+                 </li><li class="h3" title="ollama">
+                    <a class="esa-anchor-link" href="#ollama" data-eusoft-scrollable-element="1"><span class="level2" data-eusoft-scrollable-element="1">5.1. </span>ollama</a>
+                 </li><li class="h3" title="continue">
+                    <a class="esa-anchor-link" href="#continue" data-eusoft-scrollable-element="1"><span class="level2" data-eusoft-scrollable-element="1">5.2. </span>continue</a>
+                 </li></ul></div>
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8G33EJ5dWE5OhU_7yPrjq1_cLVys-911Ymhi6aaqtywBYWF0quz9Io74ub-dSDOn8FHKbgLxV9Fvj3WC2XBu2gxu1V_7K0jWwjLTPjwA2PwPXSPNz0FaTFyNRZEldG1qsAF09zQ2G__BcKAaduEF03g">
+    
+
+
+
+
+<div style="z-index: 998; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: none; flex-direction: column; align-items: center; justify-content: center">
+<div style="background: #fff;padding: 30px; margin: 30px; border-radius: 16px;">
+  <div style="width: 200px; height: 200px; background: rgba(255, 255, 255, 0.8); position: absolute; top: -100px; right: -100px; border-radius: 100px"></div>
+  <div style="text-align: center; font-size: 18px; margin-bottom: 10px;">点击右上角即可分享</div>
+  <img src="35695-20230906145857937-1471873834.gif" alt="微信分享提示">
+</div>   
+    </div><button class="charm-bar-item charm-bar-handle hidden" type="button" title="显示工具栏"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="logo">
+  <style>
+    .main {
+      fill: #FFF;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .main {
+        fill: #59E8EB;
+      }
+    }
+  </style>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g transform="translate(-240.000000, -192.000000)">
+      <g id="VIP_3_line" transform="translate(240.000000, 192.000000)">
+        <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"></path>
+        <path class="main" d="M2.33789,4.86283 C1.86918,4.02957 2.47132,3 3.42736,3 L9.70837,3 C10.2488,3 10.7475,3.29076 11.0138,3.7611 L12.9999,7.26995 L14.986,3.7611 C15.2523,3.29076 15.7509,3 16.2914,3 L20.5724,3 C21.5285,3 22.1306,4.02957 21.6619,4.86282 L13.0894,20.1029 C12.6115,20.9525 11.3883,20.9525 10.9104,20.1029 L2.33789,4.86283 Z M4.70974,5 L11.9999,17.9603 L19.29,5 L16.5829,5 L12.9999,11.3301 L9.41685,5 L4.70974,5 Z"></path>
+      </g>
+    </g>
+  </g>
+</svg> </button><div class="charm-bar-wrapper" data-eusoft-scrollable-element="1"><div class="charm-bar-main"><div class="charm-bar-panel inactive hidden"></div><div class="charm-bar" data-eusoft-scrollable-element="1"><a class="charm-bar-item charm-bar-item-link" target="_blank" title="" href="https://qoder.com/"><span style="font-size: 22px; font-weight: 500; margin-left: 5px; letter-spacing: 2px;">Agentic 编程平台 Qoder</span></a><button class="charm-bar-item" type="button" title="隐藏工具栏"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
+</svg>
+</button></div></div></div><div id="lightboxOverlay" tabindex="-1" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" tabindex="-1" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="2daeaa8b5f19f0bc209d976c02bd6acb51b00b0a.gif" alt=""><div class="lb-nav"><a class="lb-prev" aria-label="Previous image" href=""></a><a class="lb-next" aria-label="Next image" href=""></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div><script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2787122990="" ng-version="18.2.13" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c2787122990=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c2787122990="" _nghost-ng-c3386348173="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2787122990="" _nghost-ng-c749930229="" data-eusoft-scrollable-element="1"><template _ngcontent-ng-c749930229=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c2787122990="" class="eusoft-chrome-extension-capture-word-container ng-tns-c4033922151-0 ng-star-inserted" data-eusoft-scrollable-element="1" data-scrapbook-shadowdom="<style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><!----><!----><div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c4033922151-0&quot; data-content-script-theme=&quot;light&quot;><!----></div>"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2787122990="" _nghost-ng-c3081775404="" data-eusoft-scrollable-element="1"><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>
