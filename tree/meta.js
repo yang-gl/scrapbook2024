@@ -70,7 +70,8 @@ scrapbook.meta({
     "create": "20250914124203749",
     "modify": "20250914124203749",
     "source": "https://www.anthropic.com/engineering/building-effective-agents",
-    "icon": "favicon.ico"
+    "icon": "favicon.ico",
+    "marked": true
   },
   "20250914124325599": {
     "index": "202509/20250914124325599-threadreaderapp.com/index.html",
@@ -97,7 +98,8 @@ scrapbook.meta({
     "create": "20250914124439824",
     "modify": "20250914124439824",
     "source": "https://www.anthropic.com/engineering/writing-tools-for-agents",
-    "icon": "favicon.ico"
+    "icon": "favicon.ico",
+    "marked": true
   },
   "20250914124608496": {
     "index": "202509/20250914124608496-baoyu.io/index.html",
@@ -413,7 +415,7 @@ scrapbook.meta({
   },
   "20250915144906303": {
     "index": "",
-    "title": "第一节 2021 - (上) - 机器学习基本概念简介_哔哩哔哩_bilibili",
+    "title": "第一节 机器学习基本概念简介 (上) _哔哩哔哩_bilibili",
     "type": "bookmark",
     "create": "20250915144906303",
     "modify": "20250915144906303",
@@ -422,7 +424,7 @@ scrapbook.meta({
   },
   "20250915144921161": {
     "index": "",
-    "title": "2021 - (下) - 深度学习基本概念简介_哔哩哔哩_bilibili",
+    "title": "第一节 深度学习基本概念简介  (下)_哔哩哔哩_bilibili",
     "type": "bookmark",
     "create": "20250915144921161",
     "modify": "20250915144921161",
@@ -1381,7 +1383,7 @@ scrapbook.meta({
   },
   "20250924030919015": {
     "index": "",
-    "title": "Introduction to GenAI and ML 2025 Fall (李宏毅: 生成式人工智能&机器学习导论 (2025秋))",
+    "title": "2025 Fall - Introduction to GenAI and ML 2025 Fall (李宏毅: 生成式人工智能&机器学习导论 (2025秋))",
     "type": "bookmark",
     "create": "20250924030919015",
     "modify": "20250924030919015",
@@ -1406,7 +1408,8 @@ scrapbook.meta({
     "create": "20250924034253684",
     "modify": "20250924034253684",
     "source": "https://www.bilibili.com/video/BV1Wtncz1Erk/?spm_id_from=333.1391.0.0&vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
-    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico",
+    "marked": true
   },
   "20250924035130801": {
     "index": "",
@@ -1428,17 +1431,17 @@ scrapbook.meta({
   },
   "20250924044724934": {
     "index": "202509/20250924044724934-speech.ee.ntu.edu.tw/index.html",
-    "title": "ML 2025 Spring 【李宏毅2025 机器学习课程 Machine Learning】",
+    "title": "2025 Spring - Machine Learning 2025 Spring",
     "type": "",
     "create": "20250924044724934",
     "modify": "20250924044724934",
     "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2025-spring.php",
     "icon": "favicon.ico",
-    "comment": ""
+    "comment": "這一堂課呢是《一堂課搞懂生成式人工智慧的技術突破與未來發展》。\n那我現在呢打算用一堂課的時間，很快地帶大家看過生成式人工智慧近年來發展的現況, 以及未來大家可以關注的技術。\n那順便呢為這學期的課程做一個快速的概覽\n\n那今天講這堂課的時候，我會假設大家對於生成式人工智慧 並沒有太多的認識，\n在假設你沒有相關背景知識的情況下來講這門課。\n我會假設大家已經有看過《生成式ai導論2024》的課程跟《機器學習2021》的課程，然後來講接下來的課程。\n\n所以下一次上課啊，希望大家可以先預習一下課程《生成式ai導論2024》这部分。\n\n假設你對大型語言模型一無所知，不知道它們是怎麼被訓練出來的，你可以先看《生成式ai導論2024》。\n能夠全部看完最好，那如果沒有辦法的話，希望至少可以看到第8講。\n那這個系列呢內容是非常輕鬆的，你就用你吃飯啊、運動啊、通勤的時間看一下子就看完了。\n\n那《機器學習2021》呢，希望你至少可以看到Transformer (下)。\n現在呢每天看一部影片，到下次上課前你也可以看到Transformer (下) 。\n\n常常有同學會問說，老師的youTube頻道上現在有這麼多影片，那如果要看的話應該從哪裡看起，那我就跟大家推薦：\n假設你不知道要從哪裡看起的話，那就看這兩個系列：《生成式AI導論2024》 跟《機器學習 (ML) 2021》。\n那這兩個系列裡面是有放出完整的內容，你可以從頭看起看到最後你會有很多的收穫。\n"
   },
   "20250924044857665": {
     "index": "202509/20250924044857665-speech.ee.ntu.edu.tw/index.html",
-    "title": "Introduction to Generative AI 2024 Spring 【李宏毅: 生成式人工智能导论 (2024)】",
+    "title": "2024 Spring - Introduction to Generative AI 2024 Spring 【李宏毅: 生成式人工智能导论 (2024)】",
     "type": "",
     "create": "20250924044857665",
     "modify": "20250924044857665",
@@ -1749,5 +1752,192 @@ scrapbook.meta({
     "modify": "20250927140552240",
     "source": "https://threadreaderapp.com/thread/1970493414795079904.html",
     "icon": "favicon-32x32.png"
+  },
+  "20250928144237104": {
+    "title": "_trash",
+    "type": "folder",
+    "create": "20250928144237104",
+    "modify": "20250928144237104"
+  },
+  "20251007120359748": {
+    "index": "",
+    "title": "(强推)李宏毅2021/2022春机器学习课程_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20251007120359748",
+    "modify": "20251007120359748",
+    "source": "https://www.bilibili.com/video/BV1Wv411h7kN/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20251007120808000": {
+    "index": "202510/20251007120808000-speech.ee.ntu.edu.tw/index.html",
+    "title": "2021 Spring - Machine Learning 2021 Spring",
+    "type": "",
+    "create": "20251007120808000",
+    "modify": "20251007120808000",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20251007121333017": {
+    "title": "Reinforcement Learning",
+    "type": "folder",
+    "create": "20251007121333017",
+    "modify": "20251007121333017"
+  },
+  "20251007121348520": {
+    "index": "202510/20251007121348520-speech.ee.ntu.edu.tw/index.html",
+    "title": "ML 2021 Spring",
+    "type": "",
+    "create": "20251007121348520",
+    "modify": "20251007121348520",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20251007121531000": {
+    "index": "",
+    "title": "【台湾大学李宏毅】强化学习 2017 2018 2021 课程超级大合集 - Reinforcement Learning_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20251007121531000",
+    "modify": "20251007121531000",
+    "source": "https://www.bilibili.com/video/BV18r421j7S4/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20251007122039259": {
+    "index": "202510/20251007122039259-x.com/index.html",
+    "title": "Lior Alexander on X: \"Must read: A Comprehensive Overview of RL by Kevin Murphy (on ArXiv). \" / X",
+    "type": "",
+    "create": "20251007122039259",
+    "modify": "20251007122132545",
+    "source": "https://x.com/LiorOnAI/status/1909584576751493518",
+    "icon": "twitter.3.ico"
+  },
+  "20251007123005753": {
+    "index": "202510/20251007123005753-x.com/index.html",
+    "title": "Maryam Miradi, PhD on X: \"🏆📚This 200-Page LLM Paper Is a 𝗚𝗼𝗹𝗱𝗺𝗶𝗻𝗲 — and it’ll save you months 𝗣𝗿𝗼𝗺𝗽𝘁𝗶𝗻𝗴, 𝘁𝗿𝗮𝗶𝗻𝗶𝗻𝗴, 𝗮𝗹𝗶𝗴𝗻𝗺𝗲𝗻𝘁 — finally crystal clear.\" / X",
+    "type": "",
+    "create": "20251007123005753",
+    "modify": "20251007123005753",
+    "source": "https://x.com/MaryamMiradi/status/1975227354080247833",
+    "icon": "twitter-pip.3.ico"
+  },
+  "20251007123013799": {
+    "index": "",
+    "title": "Reinforcement Learning: An Overview | Abstract",
+    "type": "bookmark",
+    "create": "20251007123013799",
+    "modify": "20251007123013799",
+    "source": "https://arxiv.org/abs/2412.05265",
+    "icon": "../tree/favicon/185cd87ea27204d6927aaa0e1c1b38ca39fce70c.png"
+  },
+  "20251007123144529": {
+    "index": "",
+    "title": "Foundations of Large Language Models | Abstract",
+    "type": "bookmark",
+    "create": "20251007123144529",
+    "modify": "20251007123144529",
+    "source": "https://arxiv.org/abs/2501.09223",
+    "icon": "../tree/favicon/185cd87ea27204d6927aaa0e1c1b38ca39fce70c.png"
+  },
+  "20251007123341232": {
+    "index": "202510/20251007123341232-threadreaderapp.com/index.html",
+    "title": "Thread by @dongxi_nlp: Reinforcement Learning from Human Feedback (RLHF)",
+    "type": "",
+    "create": "20251007123341232",
+    "modify": "20251007123341232",
+    "source": "https://threadreaderapp.com/thread/1903225539034570847.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20251007123524670": {
+    "index": "202510/20251007123524670-x.com/index.html",
+    "title": "Ahmad on X: \"you are a normal dev with zero clue how LLMs actually work - want to know how it all runs together - suddenly...\" / X",
+    "type": "",
+    "create": "20251007123524670",
+    "modify": "20251007123524670",
+    "source": "https://x.com/TheAhmadOsman/status/1975066825328119949",
+    "icon": "twitter.3.ico"
+  },
+  "20251007124244979": {
+    "index": "202510/20251007124244979-threadreaderapp.com/index.html",
+    "title": "Thread by @arpit20adlakha: All you need to know about running LLMs locally",
+    "type": "",
+    "create": "20251007124244979",
+    "modify": "20251007124244979",
+    "source": "https://threadreaderapp.com/thread/1884966452840775787.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20251007125052334": {
+    "index": "",
+    "title": "PyTorch internals : ezyang’s blog",
+    "type": "bookmark",
+    "create": "20251007125052334",
+    "modify": "20251007125052334",
+    "source": "https://blog.ezyang.com/2019/05/pytorch-internals/",
+    "icon": "../tree/favicon/18dfd65683b811f184c6bf8e897c7736f608a431.ico"
+  },
+  "20251007125156787": {
+    "title": "GRPO",
+    "type": "folder",
+    "create": "20251007125156787",
+    "modify": "20251007125156787"
+  },
+  "20251007125222881": {
+    "index": "202510/20251007125222881-x.com/index.html",
+    "title": "Rohan Paul on X: \"The paper shows that GRPO behaves like DPO, so training on simple answer pairs works. https://t.co/xAtpuTWupF\" / X",
+    "type": "",
+    "create": "20251007125222881",
+    "modify": "20251007125222881",
+    "source": "https://x.com/rohanpaul_ai/status/1974635900639363347",
+    "icon": "twitter.3.ico"
+  },
+  "20251007125514299": {
+    "index": "",
+    "title": "AI 101: Reinforcement Learning: The Ultimate Guide to Past, Present, and Future",
+    "type": "bookmark",
+    "create": "20251007125514299",
+    "modify": "20251007125514299",
+    "source": "https://www.turingpost.com/p/rlguide",
+    "icon": "../tree/favicon/8fd2da92c07edf075435521433d39aee128dbad7.png"
+  },
+  "20251007125543859": {
+    "index": "",
+    "title": "@Kseniase on Hugging Face: \"8 Emerging trends in Reinforcement Learning…\"",
+    "type": "bookmark",
+    "create": "20251007125543859",
+    "modify": "20251007125543859",
+    "source": "https://huggingface.co/posts/Kseniase/610901061800000",
+    "icon": "../tree/favicon/6399bc3a59046b9c43519097cf326a4abd52470f.ico"
+  },
+  "20251007130002797": {
+    "index": "202510/20251007130002797-mp.weixin.qq.com/index.html",
+    "title": "推理模型RL超全综述： 清华、上海AI Lab等顶级团队发布推理模型RL超全综述，探索通往超级智能之路",
+    "type": "",
+    "create": "20251007130002797",
+    "modify": "20251007130002797",
+    "source": "https://mp.weixin.qq.com/s/CkKlHplf-kO30L6B_ucv1g",
+    "icon": "NTI4MWU5.ico"
+  },
+  "20251007130239654": {
+    "title": "DPO",
+    "type": "folder",
+    "create": "20251007130239654",
+    "modify": "20251007130239654"
+  },
+  "20251007131827422": {
+    "index": "",
+    "title": "Effective context engineering for AI agents \\ Anthropic",
+    "type": "bookmark",
+    "create": "20251007131827422",
+    "modify": "20251007131827422",
+    "source": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "icon": "../tree/favicon/7dcf119251065d78ab229c7204c31194cd5c068d.ico",
+    "marked": true
+  },
+  "20251007131849990": {
+    "index": "202510/20251007131849990-baoyu.io/index.html",
+    "title": "AI 智能体的上下文工程：实用指南 | 宝玉的分享",
+    "type": "",
+    "create": "20251007131849990",
+    "modify": "20251007131849990",
+    "source": "https://baoyu.io/translations/effective-context-engineering-for-ai-agents",
+    "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
   }
 })

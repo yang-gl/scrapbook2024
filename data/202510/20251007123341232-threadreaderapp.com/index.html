@@ -1,0 +1,199 @@
+<!DOCTYPE html><html data-eusoft-scrollable-element="1" data-scrapbook-source="https://threadreaderapp.com/thread/1903225539034570847.html" data-scrapbook-create="20251007123341232"><head>
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="XG5NRBkDH5A0w1L4Ww0p+PrMBnNUJZ5s+FisMTMBKQwxLM5yFZdUqEgC62gqnUwSbzLmv3D21Zi7Z0JfKNRVrQ==">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <meta name="theme-color" content="#575553">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://threadreaderapp.com/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="mask-icon" href="https://threadreaderapp.com/safari-pinned-tab.svg" color="#575553">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="https://threadreaderapp.com/manifest.json">
+
+    <title>Thread by @dongxi_nlp on Thread Reader App – Thread Reader App</title>
+<meta name="description" content="@dongxi_nlp: Reinforcement Learning from Human Feedback (RLHF) 前面分享介绍过，当下Large Reasoning Model的时代，几乎等于 RL + LLM 的时代。而在post training中，RLHF是最早有效的将RL和LLM结合的方法。 那么问题来了， 人类的feedback是如何传递，训练，使得模型最终可以对齐人类喜好的方式，进行输出的？ 本次分主要...…">
+<meta name="keywords" content="twitter, twitter thread, unroll, threadreader, threads">
+<meta property="og:title" content="Thread by @dongxi_nlp on Thread Reader App">
+<meta property="og:image" content="https://threadreaderapp.com/images/screenshots/thread/1903225539034570847.jpg">
+<meta property="og:description" content="@dongxi_nlp: Reinforcement Learning from Human Feedback (RLHF) 前面分享介绍过，当下Large Reasoning Model的时代，几乎等于 RL + LLM 的时代。而在post training中，RLHF是最早有效的将RL和LLM结合的方法。 那么问题来了， 人类的feedback是如何传递，训练，使得模型最终可以对齐人类喜好的方式，进行输出的？ 本次分主要...…">
+<meta name="twitter:card" content="photo">
+<meta name="twitter:description" content="@dongxi_nlp: Reinforcement Learning from Human Feedback (RLHF) 前面分享介绍过，当下Large Reasoning Model的时代，几乎等于 RL + LLM 的时代。而在post training中，RLHF是最早有效的将RL和LLM结合的方法。 那么问题来了， 人类的feedback是如何传递，训练，使得模型最终可以对齐人类喜好的方式，进行输出的？ 本次分主要...…">
+<meta name="twitter:creator" content="@dongxi_nlp">
+<meta name="twitter:image" content="https://threadreaderapp.com/images/screenshots/thread/1903225539034570847.jpg">
+<meta name="twitter:title" content="Thread by @dongxi_nlp on Thread Reader App">
+    <link rel="stylesheet" href="all.min.css" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link href="css.css" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="application-eeb96ef06b54906bd42c6e25878188b29517be6e486749b7f31402660152ac1f.css" data-turbolinks-track="reload">
+    
+  <link rel="stylesheet" media="screen" href="loading-4d00727d71e1da9d3c71e41fc14ba962c448080ad5f92bb408782958800fc6a7.css">
+
+    
+      
+  <style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style></head><body class=""><!--scrapbook-capture-selected--><nav class="navbar navbar-expand"><div class="container" data-eusoft-scrollable-element="1"><a class="navbar-brand" href="https://threadreaderapp.com/" data-eusoft-scrollable-element="1">er
+		</a>
+		<ul class="navbar-nav ml-auto" data-eusoft-scrollable-element="1">
+			<li class="nav-item" data-eusoft-scrollable-element="1">
+				<a class="nav-link p-2 gaClickEvent" href="https://threadreaderapp.com/search" data-category="header-search-button" data-action="search-on-header" data-label="new-header" data-eusoft-scrollable-element="1">
+					<i class="fas fa-search"></i>
+				</a>
+			</li>
+			<li class="nav-item" data-eusoft-scrollable-element="1">
+				<a class="nav-link p-2" href="https://threadreaderapp.com/account" data-eusoft-scrollable-element="1">
+					<i class="fas fa-user"></i>
+				</a>
+			</li>
+			<li class="nav-item" data-eusoft-scrollable-element="1">
+			  <a class="nav-link p-2 gaClickEvent share-button" data-category="new-header-share-button" data-action="new-share-on-header" data-label="new-header" data-eusoft-scrollable-element="1"><i class="fas fa-share-alt"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+
+
+
+
+<div id="share_this" class="overlay-no-js">
+	<div class="popup">
+		<h2>Share this page!</h2>
+		<div class="content"><!--scrapbook-capture-selected-->
+      
+	<div class="text-center">
+		<div class="btn-group" role="group" aria-label="Share">
+    </div></div><!--/scrapbook-capture-selected--></div></div></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected-->
+
+<div id="unroll_thread" class="overlay-no-js">
+	<div class="popup">
+		<h2>Enter URL or ID to Unroll</h2>
+		<div class="content" data-eusoft-scrollable-element="1"><!--scrapbook-capture-selected-->
+      
+	<div class="text-center mx-4" data-eusoft-scrollable-element="1">
+		<form class="form-inline justify-content-center homepage-search" method="get" action="https://threadreaderapp.com/search">
+			<input class="form-control" type="search" name="q" placeholder="Enter URL or ID" aria-label="Search" style="min-width: 100%; font-size:12px" id="formSearch" value="">
+			<small id="unrollHelp" class="form-text">You can paste full URL like: https://x.com/threadreaderapp/status/1644127596119195649 <br>or just the ID like: 1644127596119195649</small>
+		</form>
+		<div class="row">
+			<div class="col-12">
+				<div class="alert alert-info">
+          <p class="text-left"><strong data-eusoft-scrollable-element="1">How to get URL link on X (Twitter) App</strong></p>
+					<ol class="text-left pl-3" style="font-size:14px;">
+						<li class="my-2">On the Twitter thread, click on <i class="fa-solid fa-arrow-up-from-bracket"></i> or <i class="fa-solid fa-share-nodes"></i> icon on the bottom<br>
+						</li>
+						<li class="my-2">Click again on <i class="fa-solid fa-arrow-up-from-bracket"></i> or <i class="fa-solid fa-share-nodes"></i> Share Via icon<br>
+						</li>
+						<li class="my-2">Click on <i class="fa-solid fa-link"></i> Copy Link to Tweet<br>
+						</li>
+						<li class="my-2">Paste it above and click "Unroll Thread"!</li>
+						<li class="my-2">More info at <a href="https://help.twitter.com/en/using-twitter/tweet-and-moment-url" target="_blank" data-eusoft-scrollable-element="1">Twitter Help</a></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div><!--/scrapbook-capture-selected-->
+
+		</div>
+	</div>
+</div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected-->
+
+
+<div class="hide-mobile" data-eusoft-scrollable-element="1">
+  <div class="container top-ad pb-4">
+  <div class="row">
+    <div class="col-12 text-center">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3755072543989337" data-ad-slot="5339396365" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><iframe id="aswift_0" style="height: 1px !important; max-height: 1px !important; max-width: 1px !important; width: 1px !important;" src="index_1.html"><iframe id="google_ads_frame0" src="index_2.html"></iframe></iframe></ins>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="container narrow pb-5">
+  <div class="row">
+    <div class="col-12 hide-mentions" data-controller="mentions">
+      <div class="text-right small pb-2"><span data-controller="stats" data-tweet="1903225539034570847" id="viewcount" data-eusoft-scrollable-element="1"></span></div>
+      <div class="mb-2 d-flex align-items-center">
+  <div class="prof-image">
+    <a href="https://threadreaderapp.com/user/dongxi_nlp" data-eusoft-scrollable-element="1"><img class="mx-auto rounded-circle" src="QfD9wuqD_bigger.jpg" alt="马东锡 NLP Profile picture" data-controller="twitter-profile" data-twtrid="1477948736156454913" data-action="error->twitter-profile#error"></a>
+  </div>
+  <div class="flex-grow-1" style="overflow:hidden">
+    <div class="pl-2">
+     <div class="d-flex align-items-center justify-content-between">
+      <h4 class="twitter_name" data-eusoft-scrollable-element="1"><a href="https://threadreaderapp.com/user/dongxi_nlp" data-eusoft-scrollable-element="1">马东锡 NLP</a>
+      </h4>
+        <form method="post" action="https://threadreaderapp.com/account/subscribe/dongxi_nlp" class="text-center gaClickEvent ml-2" data-category="threadbuttons" data-action="subscribe" data-label="above-thread">
+          </form></div><!--scrapbook-capture-selected--><div class="d-flex align-items-center justify-content-between" data-eusoft-scrollable-element="1">
+         <div class="screenName tw-follow" data-eusoft-scrollable-element="1">
+          <a href="https://twitter.com/dongxi_nlp" data-eusoft-scrollable-element="1">@dongxi_nlp</a>
+         </div>
+      </div>
+       
+        <div class="thread-info" data-eusoft-scrollable-element="1"><a href="https://twitter.com/dongxi_nlp/status/1903225539034570847" class="time" data-time="1742599303" title="Read on X" target="_blank" data-eusoft-scrollable-element="1">Mar 21</a> <span class="dot2" data-eusoft-scrollable-element="1">•</span>
+        4 tweets <span class="dot2" data-eusoft-scrollable-element="1">•</span> 1 min read <span class="dot2" data-eusoft-scrollable-element="1">•</span>
+        <a href="https://twitter.com/dongxi_nlp/status/1903225539034570847" class="time" data-eusoft-scrollable-element="1">
+         Read on X
+        </a>
+        </div><!--/scrapbook-capture-selected-->
+
+    </div>
+  </div>
+</div><!--scrapbook-capture-selected-->        <div class="row mb-4">
+    <div class="col-12 d-flex justify-content-end">
+      <form method="post" action="https://threadreaderapp.com/twitter_threads/1903225539034570847/gift" class="pr-2"><!--scrapbook-capture-selected-->
+        <!--/scrapbook-capture-selected--></form></div></div><!--/scrapbook-capture-selected--><!--scrapbook-capture-selected--><div id="tweet_1" class="content-tweet allow-preview" data-controller="thread" data-action="click->thread#showTweet" data-screenname="dongxi_nlp" data-tweet="1903225539034570847" dir="auto">
+        Reinforcement Learning from Human Feedback (RLHF)<br>
+<br>
+前面分享介绍过，当下Large Reasoning Model的时代，几乎等于 RL + LLM 的时代。而在post training中，RLHF是最早有效的将RL和LLM结合的方法。<br>
+<br>
+那么问题来了， 人类的feedback是如何传递，训练，使得模型最终可以对齐人类喜好的方式，进行输出的？<br>
+<br>
+本次分主要分享什么是RLHF, 以及经典的两步走 - SFL+RL的RLHF方法。<span class="entity-image"><a href="https://pbs.twimg.com/media/GmmVnphaEAM8SHL.jpg" target="_blank" data-eusoft-scrollable-element="1"><img alt="Image" src="GmmVnphaEAM8SHL.jpg" class=" b-loaded"></a></span>
+        <sup class="tw-permalink"><i class="fas fa-link"></i></sup>
+      </div>
+      <div id="tweet_2" class="content-tweet allow-preview" data-controller="thread" data-action="click->thread#showTweet" data-screenname="dongxi_nlp" data-tweet="1903225542301581651" dir="auto">
+        RLHF是一种结合监督学习（Supervised Learning）和强化学习（Reinforcement Learning）的训练方法，专注于让AI模型更贴合人类喜好与期望， 即所谓的alignment（对齐）。尤其是在Agent时代，RLHF可以确保AI更安全、更符合伦理、更可靠地，以及拥有更强的reasoning能力。<br>
+<br>
+RLHF一般分为两个核心阶段，两步走：<br>
+<br>
+首先，通过SFT，模型先学习大量由人类编写的高质量样本， 获得输出类似微调样本数据分布的能力，这一步可以理解为让模型成为人类feedback的代理，这一步获得的模型也被称为Reward model。<br>
+<br>
+接下来，通过RL，利用第一步训练好的Reward Model 进一步优化。这一步通过reward model打分，明确地把人类feedback强行灌输给模型，远超单纯监督学习的效果，最终得到Policy model。
+        <sup class="tw-permalink" data-eusoft-scrollable-element="1"><i class="fas fa-link"></i></sup>
+      </div>
+      <div id="tweet_3" class="content-tweet allow-preview" data-controller="thread" data-action="click->thread#showTweet" data-screenname="dongxi_nlp" data-tweet="1903225544180691422" dir="auto">
+        具体来说，在RL阶段，模型基于Context 生成Outputs，由第一步训练好的Reward Model对这些回应进行评分。这种奖励模型能预测outputs与human feedback之间的贴合程度。通过PPO 等强化学习方法，模型持续迭代地更新自身参数，从而更有效地实现人类偏好的精准对齐 （alignment）。<br>
+<br>
+同样的，RLHF也能有效地提升LLM的推理能力。执行经典的两步走，通过鼓励模型生成清晰、系统且逻辑严谨的推理步骤（如CoT），并由人类给予明确的反馈和评分，模型不仅学会产出正确答案，还能清楚说明解决问题的逻辑路径。经过多轮这样的反馈迭代，模型的推理能力会变得更加完善。
+        <sup class="tw-permalink" data-eusoft-scrollable-element="1"><i class="fas fa-link"></i></sup>
+      </div>
+      <div id="tweet_4" class="content-tweet allow-preview" data-controller="thread" data-action="click->thread#showTweet" data-screenname="dongxi_nlp" data-tweet="1903225545753538896" dir="auto">
+        附上一个ppo trainer：<br>
+<br>
+<a class="entity-url" data-preview="true" href="https://huggingface.co/docs/trl/main/en/ppo_trainer" style="display: none;">huggingface.co/docs/trl/main/…</a>
+        <sup class="tw-permalink"><i class="fas fa-link"></i></sup>
+      <div>
+<div class="entity-url-preview">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="border-right align-self-center">
+            <a target="_blank" href="https://huggingface.co/docs/trl/main/en/ppo_trainer" class="img-cover">
+                <img src="trl.png" loading="lazy">
+            </a>
+        </div>
+        <div class="flex-grow-1" style="min-width:0">
+            <div class="paragraph">
+                <a target="_blank" href="https://huggingface.co/docs/trl/main/en/ppo_trainer">
+                    <strong>PPO Trainer</strong>
+                    
+                </a>
+                <a target="_blank" href="https://huggingface.co/docs/trl/main/en/ppo_trainer"><small class="pre-url">https://huggingface.co/docs/trl/main/en/ppo_trainer</small></a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+</div></div>
+      <p class="text-center">• • •</p><!--/scrapbook-capture-selected--></div></div></div><!--/scrapbook-capture-selected--></body></html>
