@@ -1054,7 +1054,7 @@ scrapbook.meta({
     "icon": "../tree/favicon/6399bc3a59046b9c43519097cf326a4abd52470f.ico"
   },
   "20250921120534325": {
-    "title": "LLM",
+    "title": "_advanced",
     "type": "folder",
     "create": "20250921120534325",
     "modify": "20250921120534325"
@@ -1684,11 +1684,12 @@ scrapbook.meta({
   },
   "20250927133516929": {
     "index": "",
-    "title": "Large Language models — Intel® NPU Acceleration Library documentation",
+    "title": "(deprecated) Large Language models — Intel® NPU Acceleration Library documentation",
     "type": "bookmark",
     "create": "20250927133516929",
     "modify": "20250927133516929",
-    "source": "https://intel.github.io/intel-npu-acceleration-library/llm.html"
+    "source": "https://intel.github.io/intel-npu-acceleration-library/llm.html",
+    "comment": "https://github.com/intel/intel-npu-acceleration-library"
   },
   "20250927133654750": {
     "index": "202509/20250927133654750-cline.bot/index.html",
@@ -1939,5 +1940,172 @@ scrapbook.meta({
     "modify": "20251007131849990",
     "source": "https://baoyu.io/translations/effective-context-engineering-for-ai-agents",
     "icon": "urn:scrapbook:download:error:https://baoyu.io/favicon-16x16.png"
+  },
+  "20251009135146380": {
+    "index": "202510/20251009135146380-niutrans.github.io/index.html",
+    "title": "Natural Language Processing:Neural Networks and Large Language Models | NLPBook",
+    "type": "",
+    "create": "20251009135146380",
+    "modify": "20251009135146380",
+    "source": "https://niutrans.github.io/NLPBook/"
+  },
+  "20251009135211074": {
+    "index": "",
+    "title": "NiuTrans/NLPBook: A comprehensive book on neural networks and large language models in NLP",
+    "type": "bookmark",
+    "create": "20251009135211074",
+    "modify": "20251009135211074",
+    "source": "https://github.com/NiuTrans/NLPBook",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png",
+    "parent": "root",
+    "recycled": "20251009135218858"
+  },
+  "20251009135224946": {
+    "index": "",
+    "title": "NiuTrans/NLPBookTranslations: Multilingual Translations of \"Foundations of Large Language Models\" and NLPBook.",
+    "type": "bookmark",
+    "create": "20251009135224946",
+    "modify": "20251009135224946",
+    "source": "https://github.com/NiuTrans/NLPBookTranslations",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20251009135245770": {
+    "index": "",
+    "title": "NLPBookTranslations/foundations-of-llms at main · NiuTrans/NLPBookTranslations",
+    "type": "bookmark",
+    "create": "20251009135245770",
+    "modify": "20251009135245770",
+    "source": "https://github.com/NiuTrans/NLPBookTranslations/tree/main/foundations-of-llms",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20251009135316513": {
+    "index": "",
+    "title": "ZJU-LLMs/Foundations-of-LLMs (2024)",
+    "type": "bookmark",
+    "create": "20251009135316513",
+    "modify": "20251009135316513",
+    "source": "https://github.com/ZJU-LLMs/Foundations-of-LLMs",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20251012125505445": {
+    "index": "202510/20251012125505445-www.intel.com/index.html",
+    "title": "Intel® Core™ Ultra 7 Processor 255H",
+    "type": "",
+    "create": "20251012125505445",
+    "modify": "20251012125505445",
+    "source": "https://www.intel.com/content/www/us/en/products/sku/241751/intel-core-ultra-7-processor-255h-24m-cache-up-to-5-10-ghz/specifications.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20251012125524493": {
+    "title": "",
+    "type": "separator",
+    "create": "20251012125524493",
+    "modify": "20251012125524493"
+  },
+  "20251012125553444": {
+    "index": "",
+    "title": "abdelfattah-lab/nitro: Lightweight Python Wrapper for OpenVINO, enabling LLM inference on NPUs",
+    "type": "bookmark",
+    "create": "20251012125553444",
+    "modify": "20251012125553444",
+    "source": "https://github.com/abdelfattah-lab/nitro",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20251012125649858": {
+    "title": "openvino",
+    "type": "separator",
+    "create": "20251012125649858",
+    "modify": "20251012125649858"
+  },
+  "20251012125900294": {
+    "index": "",
+    "title": "openvinotoolkit/openvino: OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
+    "type": "bookmark",
+    "create": "20251012125900294",
+    "modify": "20251012125900294",
+    "source": "https://github.com/openvinotoolkit/openvino",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20251012130139788": {
+    "index": "",
+    "title": "Welcome to Intel® Extension for PyTorch* Documentation!",
+    "type": "bookmark",
+    "create": "20251012130139788",
+    "modify": "20251012130139788",
+    "source": "https://intel.github.io/intel-extension-for-pytorch/#introduction"
+  },
+  "20251012130159548": {
+    "index": "",
+    "title": "intel-extension-for-pytorch · PyPI",
+    "type": "bookmark",
+    "create": "20251012130159548",
+    "modify": "20251012130159548",
+    "source": "https://pypi.org/project/intel-extension-for-pytorch/",
+    "icon": "../tree/favicon/931aa89de77ea7987cb8dd8107bcd1533a0ca799.ico"
+  },
+  "20251012130354989": {
+    "title": "ipex-llm",
+    "type": "separator",
+    "create": "20251012130354989",
+    "modify": "20251012130354989"
+  },
+  "20251012130928634": {
+    "index": "202510/20251012130928634-github.com/index.html",
+    "title": "Install IPEX-LLM on Windows with Intel GPU (PyTorch)",
+    "type": "",
+    "create": "20251012130928634",
+    "modify": "20251012130928634",
+    "source": "https://github.com/ipex-llm/ipex-llm/blob/main/docs/mddocs/Quickstart/install_windows_gpu.md",
+    "icon": "favicon.png"
+  },
+  "20251012131231714": {
+    "index": "",
+    "title": "OpenVINO 2025.3 — OpenVINO™ documentation — Version(2025)",
+    "type": "bookmark",
+    "create": "20251012131231714",
+    "modify": "20251012131231714",
+    "source": "https://docs.openvino.ai/2025/index.html",
+    "icon": "../tree/favicon/0f880cd2c07376b37e98cde29c6b8ff408cd021b.ico"
+  },
+  "20251012131452842": {
+    "index": "202510/20251012131452842-cc.deeptoai.com/index.html",
+    "title": "AI 代理的有效上下文工程 | Killer Code",
+    "type": "",
+    "create": "20251012131452842",
+    "modify": "20251012131452842",
+    "source": "https://cc.deeptoai.com/docs/zh/best-practices/effective-context-engineering-for-ai-agents"
+  },
+  "20251012131959885": {
+    "title": "embeddings",
+    "type": "folder",
+    "create": "20251012131959885",
+    "modify": "20251012131959885"
+  },
+  "20251012132034919": {
+    "index": "",
+    "title": "LLM Embeddings Explained: A Visual and Intuitive Guide",
+    "type": "bookmark",
+    "create": "20251012132034919",
+    "modify": "20251012132034919",
+    "source": "https://hesamation-primer-llm-embedding.static.hf.space/index.html?section=word2vec#what_are_embeddings?",
+    "icon": "../tree/favicon/6399bc3a59046b9c43519097cf326a4abd52470f.ico"
+  },
+  "20251012132247150": {
+    "index": "202510/20251012132247150-x.com/index.html",
+    "title": "Ahmad on X: \"what even is “running a model”? - model = weights (giant files, 2–140GB) + model architecture (transformer) + tokenizer + config - weights: the model’s “knowledge”, billions of learned numbers (parameters) - inference = “guess the next token, over and over” - you give it a\" / X",
+    "type": "",
+    "create": "20251012132247150",
+    "modify": "20251012132247150",
+    "source": "https://x.com/TheAhmadOsman/status/1976283524907843965",
+    "icon": "twitter.3.ico"
+  },
+  "20251012133437631": {
+    "index": "",
+    "title": "（中英双语!）吴恩达最新《Agentic AI》大佬亲授智能体教程，附示例代码！_deeplearning.ai_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20251012133437631",
+    "modify": "20251012133437631",
+    "source": "https://www.bilibili.com/video/BV1aaxyz8ELY/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
   }
 })
