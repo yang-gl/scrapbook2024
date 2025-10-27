@@ -1,0 +1,545 @@
+<!DOCTYPE html><html data-scrapbook-source="https://papers.cool/arxiv/2507.06920" data-scrapbook-create="20251027144639241"><head><meta charset="UTF-8">
+    <title>Rethinking Verification for LLM Code Generation: From Generation to Testing | Cool Papers - Immersive Paper Discovery</title>
+    <meta name="description" content="Large language models (LLMs) have recently achieved notable success in code-generation benchmarks such as HumanEval and LiveCodeBench. However, a detailed examination reveals that these evaluation suites often comprise only a limited number of homogeneous test cases, resulting in subtle faults going undetected. This not only artificially inflates measured performance but also compromises accurate reward estimation in reinforcement learning frameworks utilizing verifiable rewards (RLVR). To address these critical shortcomings, we systematically investigate the test-case generation (TCG) task by proposing multi-dimensional metrics designed to rigorously quantify test-suite thoroughness. Furthermore, we introduce a human-LLM collaborative method (SAGA), leveraging human programming expertise with LLM reasoning capability, aimed at significantly enhancing both the coverage and the quality of generated test cases. In addition, we develop a TCGBench to facilitate the study of the TCG task. Experiments show that SAGA achieves a detection rate of 90.62% and a verifier accuracy of 32.58% on TCGBench. The Verifier Accuracy (Verifier Acc) of the code generation evaluation benchmark synthesized by SAGA is 10.78% higher than that of LiveCodeBench-v6. These results demonstrate the effectiveness of our proposed method. We hope this work contributes to building a scalable foundation for reliable LLM code evaluation, further advancing RLVR in code generation, and paving the way for automated adversarial test synthesis and adaptive benchmark integration.">
+    <meta name="keywords" content="Cool Papers, Immersive Discovery, arXiv Research, AI Paper Assistant, Paper FAQ, Kimi Chat, Scholarly Papers, Academic Research, Paper Screening AI, Conference Papers, Research Paper Exploration">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="citation_title" content="Rethinking Verification for LLM Code Generation: From Generation to Testing">
+    <meta name="citation_authors" content="Zihan Ma; Taolin Zhang; Maosong Cao; Wenwei Zhang; Minnan Luo; Songyang Zhang; Kai Chen">
+    <meta name="citation_abstract" content="Large language models (LLMs) have recently achieved notable success in code-generation benchmarks such as HumanEval and LiveCodeBench. However, a detailed examination reveals that these evaluation suites often comprise only a limited number of homogeneous test cases, resulting in subtle faults going undetected. This not only artificially inflates measured performance but also compromises accurate reward estimation in reinforcement learning frameworks utilizing verifiable rewards (RLVR). To address these critical shortcomings, we systematically investigate the test-case generation (TCG) task by proposing multi-dimensional metrics designed to rigorously quantify test-suite thoroughness. Furthermore, we introduce a human-LLM collaborative method (SAGA), leveraging human programming expertise with LLM reasoning capability, aimed at significantly enhancing both the coverage and the quality of generated test cases. In addition, we develop a TCGBench to facilitate the study of the TCG task. Experiments show that SAGA achieves a detection rate of 90.62% and a verifier accuracy of 32.58% on TCGBench. The Verifier Accuracy (Verifier Acc) of the code generation evaluation benchmark synthesized by SAGA is 10.78% higher than that of LiveCodeBench-v6. These results demonstrate the effectiveness of our proposed method. We hope this work contributes to building a scalable foundation for reliable LLM code evaluation, further advancing RLVR in code generation, and paving the way for automated adversarial test synthesis and adaptive benchmark integration.">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2507.06920">
+    <meta name="citation_public_url" content="https://papers.cool/arxiv/2507.06920">
+    <meta name="citation_publisher" content="cs.CL - arXiv">
+    <meta name="citation_date" content="2025-07-09">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+<style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888; display: contents}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head>
+<body id="arxiv"><div id="MathJax_Message" style="display: none;"></div>
+    <h1 class="notranslate">2507.06920</h1>
+    <p class="info notranslate">
+        Total: 1
+    </p>
+    <div class="papers">
+        <div id="2507.06920" class="panel paper" keywords="saga,generation,livecodebench,llm,verifier,tcg,code,test,rlvr,tcgbench">
+            <h2 class="title">
+                <a href="https://arxiv.org/abs/2507.06920" target="_blank" title="1/1" data-eusoft-scrollable-element="1"><span class="index notranslate" data-eusoft-scrollable-element="1">#1</span></a>
+                <a id="title-2507.06920" class="title-link" href="" target="_blank" data-eusoft-scrollable-element="1">Rethinking Verification for LLM Code Generation: From Generation to Testing</a>
+                <a id="pdf-2507.06920" class="title-pdf notranslate" data="https://arxiv.org/pdf/2507.06920" data-eusoft-scrollable-element="1">[PDF<sup id="pdf-stars-2507.06920" data-eusoft-scrollable-element="1">7</sup>]</a>
+                <a id="copy-2507.06920" class="title-copy notranslate" data-eusoft-scrollable-element="1">[Copy]</a>
+                <a id="kimi-2507.06920" class="title-kimi notranslate" data-eusoft-scrollable-element="1" data-clickable="true" style="">[Kimi<sup id="kimi-stars-2507.06920" data-eusoft-scrollable-element="1">16</sup>]</a>
+                <a id="rel-2507.06920" class="title-rel notranslate" data-eusoft-scrollable-element="1">[REL]</a>
+            </h2>
+            <p id="authors-2507.06920" class="metainfo authors notranslate"><strong data-eusoft-scrollable-element="1">Authors</strong>:
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Zihan%20Ma" target="_blank" data-eusoft-scrollable-element="1">Zihan Ma</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Taolin%20Zhang" target="_blank" data-eusoft-scrollable-element="1">Taolin Zhang</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Maosong%20Cao" target="_blank" data-eusoft-scrollable-element="1">Maosong Cao</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Wenwei%20Zhang" target="_blank" data-eusoft-scrollable-element="1">Wenwei Zhang</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Minnan%20Luo" target="_blank" data-eusoft-scrollable-element="1">Minnan Luo</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Songyang%20Zhang" target="_blank" data-eusoft-scrollable-element="1">Songyang Zhang</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Kai%20Chen" target="_blank" data-eusoft-scrollable-element="1">Kai Chen</a>
+            </p>
+            <p id="summary-2507.06920" class="summary">Large language models (LLMs) have recently achieved notable success in code-generation benchmarks such as HumanEval and LiveCodeBench. However, a detailed examination reveals that these evaluation suites often comprise only a limited number of homogeneous test cases, resulting in subtle faults going undetected. This not only artificially inflates measured performance but also compromises accurate reward estimation in reinforcement learning frameworks utilizing verifiable rewards (RLVR). To address these critical shortcomings, we systematically investigate the test-case generation (TCG) task by proposing multi-dimensional metrics designed to rigorously quantify test-suite thoroughness. Furthermore, we introduce a human-LLM collaborative method (SAGA), leveraging human programming expertise with LLM reasoning capability, aimed at significantly enhancing both the coverage and the quality of generated test cases. In addition, we develop a TCGBench to facilitate the study of the TCG task. Experiments show that SAGA achieves a detection rate of 90.62% and a verifier accuracy of 32.58% on TCGBench. The Verifier Accuracy (Verifier Acc) of the code generation evaluation benchmark synthesized by SAGA is 10.78% higher than that of LiveCodeBench-v6. These results demonstrate the effectiveness of our proposed method. We hope this work contributes to building a scalable foundation for reliable LLM code evaluation, further advancing RLVR in code generation, and paving the way for automated adversarial test synthesis and adaptive benchmark integration.</p>
+            <p id="subjects-2507.06920" class="metainfo subjects"><strong data-eusoft-scrollable-element="1">Subject</strong>:
+                <span class="interact-item" style="margin:0">
+                    <a class="subject-1" href="https://papers.cool/arxiv/cs.CL" target="_blank" data-eusoft-scrollable-element="1">Computation and Language</a>
+                    <i class="fa fa-plus-circle right-top" title="Add to watch list" value="cs.CL" style="color: green;"></i>
+                    <i class="fa fa-minus-circle right-bottom" title="Add to exclusion list" value="cs.CL"></i>
+                </span>
+            </p>
+            <p id="date-2507.06920" class="metainfo date"><strong data-eusoft-scrollable-element="1">Publish</strong>: <span class="date-data" data-eusoft-scrollable-element="1">2025-07-09 14:58:47 UTC</span></p>
+            <div id="pdf-container-2507.06920" class="pdf-container" style="display:none"></div>
+            <div id="kimi-container-2507.06920" class="kimi-container notranslate" style="display: block;"><p class="faq-q"><strong>Q1</strong>: 这篇论文试图解决什么问题？</p>
+
+<div class="faq-a">
+
+<p>这篇论文试图解决大型语言模型（LLMs）在代码生成任务中测试用例生成（Test Case Generation, TCG）的不足问题。具体来说，它关注以下几个关键问题：</p>
+<ol>
+<li><p><strong>现有基准测试的局限性</strong>：</p>
+<ul>
+<li>当前用于评估LLMs代码生成能力的基准测试（如HumanEval、LiveCodeBench等）往往包含有限数量的同质化测试用例，导致细微的错误无法被检测出来。这不仅人为地夸大了模型的实际性能，还影响了在利用可验证奖励（Verifiable Rewards, VR）的强化学习框架（Reinforcement Learning with Verifiable Rewards, RLVR）中准确的奖励估计。</li>
+</ul>
+</li>
+<li><p><strong>测试用例的同质化和LLM中心偏差</strong>：</p>
+<ul>
+<li>基于LLM的TCG方法生成的测试用例往往反映了生成模型自身的错误模式和认知偏差，导致测试用例“同质化”，忽视了人类编程中多样化的错误（如逻辑错误、整数溢出等）。</li>
+</ul>
+</li>
+<li><p><strong>验证器的无效性和持续盲点</strong>：</p>
+<ul>
+<li>基于这些测试用例构建的验证器在检测人类编程错误时存在盲点，无法严格评估代码质量，尤其是在生成复杂边界条件和交互场景的测试用例方面存在挑战。</li>
+</ul>
+</li>
+<li><p><strong>缺乏高质量、可访问的代码验证器</strong>：</p>
+<ul>
+<li>竞技编程平台（如Online Judges）拥有广泛且经过严格策划的测试用例，但这些测试用例通常是私有的，无法用于更广泛的研究。这限制了可靠评估LLMs代码生成能力的能力，并阻碍了RLVR的发展。</li>
+</ul>
+</li>
+</ol>
+<p>为了解决这些问题，论文提出了一个多维度的评估框架，用于量化测试套件的彻底性，并引入了一个人类-LLM协作方法（SAGA），通过结合人类编程专业知识和LLM的推理能力，显著提高生成测试用例的覆盖范围和质量。此外，论文还开发了一个名为TCGBench的基准测试集，用于促进TCG任务的研究。</p>
+</div>
+
+<p class="faq-q"><strong>Q2</strong>: 有哪些相关研究？</p>
+
+<div class="faq-a">
+
+<p>论文中提到了多个与测试用例生成（TCG）和大型语言模型（LLMs）在代码生成任务中相关的工作。以下是其中一些关键的相关研究：</p>
+<h3>1. <strong>LLM-based Code Generation and Evaluation</strong></h3>
+<ul>
+<li><strong>AlphaCode</strong> [25]: 一个基于LLM的代码生成模型，展示了在编程竞赛任务中的强大能力。</li>
+<li><strong>GPT-4</strong> [35]: OpenAI开发的多模态模型，具备强大的代码生成能力。</li>
+<li><strong>Gemini</strong> [2]: Google开发的多模态模型，展示了在代码生成任务中的能力。</li>
+<li><strong>CodeT5</strong> [42, 43]: 专门用于代码理解和生成的预训练模型。</li>
+<li><strong>Starcoder</strong> [23]: 一个开源的大型代码生成模型。</li>
+<li><strong>DeepSeek Coder</strong> [13]: 一个专注于代码生成的LLM。</li>
+<li><strong>CodeLlama</strong> [38]: 一个开源的代码生成模型。</li>
+<li><strong>Qwen2.5-Coder</strong> [44, 17]: 一个专门用于代码生成的LLM。</li>
+</ul>
+<h3>2. <strong>Test Case Generation (TCG)</strong></h3>
+<ul>
+<li><strong>HumanEval</strong> [6]: 一个早期的代码生成基准测试，提供了基础的测试环境。</li>
+<li><strong>MBPP</strong> [3]: 一个包含基础测试用例的代码生成基准测试。</li>
+<li><strong>EvalPlus</strong> [27, 28]: 通过扩展现有测试集来提高基准测试的鲁棒性。</li>
+<li><strong>TACO</strong> [24]: 一个专注于算法问题的代码生成基准测试。</li>
+<li><strong>CodeContests</strong> [25]: 一个包含竞赛级代码生成任务的基准测试。</li>
+<li><strong>BigCodeBench</strong> [48]: 一个包含复杂多库任务的代码生成基准测试。</li>
+<li><strong>LiveCodeBench</strong> [19]: 一个模拟在线评测环境的代码生成基准测试。</li>
+<li><strong>HumanEvalPack</strong> [47]: 一个多语言程序合成的基准测试。</li>
+<li><strong>TESTEVAL</strong> [41]: 一个专门用于评估LLMs生成测试用例的基准测试。</li>
+<li><strong>TestGenEval</strong> [18]: 一个用于评估测试用例生成的基准测试。</li>
+</ul>
+<h3>3. <strong>Traditional TCG Techniques</strong></h3>
+<ul>
+<li><strong>Search-Based Software Testing (SBST)</strong> [1, 14]: 使用元启发式算法（如遗传算法）优化测试用例的覆盖标准。</li>
+<li><strong>Symbolic Execution</strong> [9, 5]: 系统地探索程序路径，但面临路径爆炸和复杂代码的挑战。</li>
+<li><strong>Fuzzing</strong> [32, 11]: 通过变异输入来发现崩溃和漏洞，但可能缺乏逻辑测试的语义深度。</li>
+<li><strong>Feedback-directed Random Testing</strong> [45, 36]: 通过反馈指导的随机测试发现缺陷，但可能缺乏多样性。</li>
+</ul>
+<h3>4. <strong>Advanced and Specialized TCG Approaches</strong></h3>
+<ul>
+<li><strong>CodeRM</strong> [31]: 通过问题难度调整测试用例数量。</li>
+<li><strong>LEVER</strong> [34]: 使用学习到的验证器优化测试用例。</li>
+<li><strong>AID</strong> [29]: 通过比较程序版本来暴露错误，展示了在TrickyBugs和EvalPlus数据集上的强大结果。</li>
+<li><strong>Teaching LLMs to Self-Debug</strong> [7]: 通过自我调试提高LLMs的代码生成能力。</li>
+<li><strong>AgentCoder</strong> [16]: 一个基于多智能体的代码生成模型，通过迭代测试和优化提高代码质量。</li>
+</ul>
+<h3>5. <strong>Other Relevant Works</strong></h3>
+<ul>
+<li><strong>CodeCoT</strong> [15]: 一个专注于生成断言的测试用例生成方法。</li>
+<li><strong>AceCoder</strong> [46]: 一个通过自动化测试用例合成提高代码生成能力的模型。</li>
+<li><strong>CodeRL</strong> [21]: 一个通过执行反馈优化奖励模型的代码生成模型。</li>
+<li><strong>TrickyBugs</strong> [29]: 一个包含复杂错误模式的数据集，用于评估测试用例生成方法。</li>
+</ul>
+<p>这些相关研究为本文提供了背景和基础，展示了LLMs在代码生成和测试用例生成领域的最新进展和挑战。本文通过提出SAGA框架，旨在解决现有方法的局限性，提高测试用例的多样性和有效性。</p>
+</div>
+
+<p class="faq-q"><strong>Q3</strong>: 论文如何解决这个问题？</p>
+
+<div class="faq-a">
+
+<p>论文通过以下几个主要步骤来解决大型语言模型（LLMs）在代码生成任务中测试用例生成（TCG）的不足问题：</p>
+<h3>1. <strong>构建TCGBench基准测试集</strong></h3>
+<ul>
+<li><strong>数据收集</strong>：从AtCoder、Codeforces和Nowcoder三个领先的竞技编程平台收集了1840个最近的编程问题，以及每个问题平均36.66个错误的人类提交（主要是“错误答案”和“时间限制超时”）。</li>
+<li><strong>问题定义</strong>：正式定义了TCG任务，包括任务表述、基准构建和方法探索。提出了多维度的评估指标，如检测率（Detection Rate, DR）和验证器准确性（Verifier Accuracy, VAcc），以及测试用例多样性和单个测试强度等关键质量因素。</li>
+<li><strong>基准测试</strong>：通过TCGBench，论文揭示了现有验证器套件中的系统性测试质量问题，例如CodeForce-CoTs [37]中有50%的问题测试未能检测到已知错误，84%的验证器存在缺陷。</li>
+</ul>
+<h3>2. <strong>提出SAGA框架</strong></h3>
+<ul>
+<li><strong>框架设计</strong>：SAGA（Strategic Adversarial &amp; Constraint-differential GenerAtive workflow）是一个人类-LLM协作框架，通过结合人类编程专业知识和LLM的推理能力，系统地生成高覆盖率、高区分度的测试用例。</li>
+<li><strong>多维度分析</strong>：利用正确的人类解决方案（GroundTruth, Shuman）中的深刻见解，通过约束处理差异和防御模式分解，生成针对特定问题的测试用例。</li>
+<li><strong>差异分析</strong>：通过比较错误提交（Human Bugs, Swrong）和它们的修正版本，找出输入差异，揭示常见的错误模式，并生成能够触发这些错误的测试用例。</li>
+<li><strong>自验证脚本</strong>：确保生成的测试输入符合问题约束和预期的测试策略，提高测试用例的质量和相关性。</li>
+</ul>
+<h3>3. <strong>实验验证</strong></h3>
+<ul>
+<li><strong>性能评估</strong>：在TCGBench上对SAGA进行了广泛的实验验证，与现有的TCG方法（如直接生成、输入解释器等）进行了比较。实验结果表明，SAGA在检测率（DR）、验证器准确性（VAcc）、不同错误模式覆盖（DEPC）和多样性比率（Diversity Ratio）等关键指标上均优于现有方法。</li>
+<li><strong>消融研究</strong>：通过消融研究，验证了SAGA框架中多维度分析和差异分析两个核心组件的必要性和互补性。结果表明，SAGA的完整框架在综合性能上优于单独使用任何一个组件。</li>
+</ul>
+<h3>4. <strong>开发CodeCompass基准测试集</strong></h3>
+<ul>
+<li><strong>高质量验证器</strong>：利用SAGA生成的测试用例，开发了CodeCompass，这是一个包含人类验证的对抗性示例的高质量代码生成评估基准测试集。</li>
+<li><strong>性能对比</strong>：与LiveCodeBench-v6的共享子集进行对比，CodeCompass在检测错误解决方案方面表现出更高的效率，更高的独特错误模式发现能力（Diversity Ratio@40: +43.13%），以及更快的收敛速度。这表明SAGA生成的验证器在多样性和区分度方面更为出色。</li>
+</ul>
+<h3>5. <strong>TCGCoder-7B模型</strong></h3>
+<ul>
+<li><strong>模型训练</strong>：通过SAGA框架，训练了一个7B参数的TCG专家模型TCGCoder-7B，该模型能够有效地进行TCG任务。</li>
+<li><strong>模型应用</strong>：TCGCoder-7B可以用于生成训练数据，以支持代码生成任务中的鲁棒和准确的奖励估计。</li>
+</ul>
+<h3>6. <strong>总结与展望</strong></h3>
+<ul>
+<li><strong>贡献总结</strong>：论文构建了TCGBench，提出了SAGA框架，开发了CodeCompass基准测试集，并训练了TCGCoder-7B模型。这些贡献显著推进了LLMs代码生成的可靠评估，并为未来的自动化测试合成和有效的对抗性测试铺平了道路。</li>
+<li><strong>未来工作</strong>：论文提出了未来研究方向，包括进一步扩展TCG方法、探索自动化对抗性测试合成和适应性基准集成等。</li>
+</ul>
+<p>通过这些步骤，论文不仅揭示了现有TCG方法的局限性，还提出了一种新的、更有效的TCG方法，并通过实验验证了其有效性。</p>
+</div>
+
+<p class="faq-q"><strong>Q4</strong>: 论文做了哪些实验？</p>
+
+<div class="faq-a">
+
+<p>论文中进行了多个实验来验证所提出方法的有效性和性能。以下是主要的实验内容及其结果：</p>
+<h3>1. <strong>评估现有TCG方法的局限性</strong></h3>
+<ul>
+<li><strong>实验目的</strong>：通过初步实验揭示现有基准测试中验证器的系统性弱点。</li>
+<li><strong>实验方法</strong>：<ul>
+<li>使用LLM生成的解决方案在LiveCodeBench的私有测试上通过后，重新在LeetCode的在线评测系统上评估。</li>
+<li>比较LLM生成的测试用例与人类编写的错误代码的检测率。</li>
+<li>使用PCA分析错误模式的分布。</li>
+</ul>
+</li>
+<li><strong>实验结果</strong>：<ul>
+<li>LiveCodeBench的验证器在中等难度问题上漏掉了20%的错误，在高难度问题上漏掉了40%的错误。</li>
+<li>LLM生成的测试用例在检测人类编写的错误代码时失败率远高于检测LLM自身错误的失败率。</li>
+<li>PCA分析显示LLM错误高度聚集，而人类错误分布广泛。</li>
+</ul>
+</li>
+</ul>
+<h3>2. <strong>验证SAGA框架的有效性</strong></h3>
+<ul>
+<li><strong>实验目的</strong>：验证SAGA框架在生成高质量、多样化和区分度高的测试用例方面的有效性。</li>
+<li><strong>实验方法</strong>：<ul>
+<li>在TCGBench上对SAGA进行评估，与现有的TCG方法（如直接生成、输入解释器等）进行比较。</li>
+<li>使用多维度的评估指标，包括检测率（DR）、验证器准确性（VAcc）、不同错误模式覆盖（DEPC）和多样性比率（Diversity Ratio）。</li>
+</ul>
+</li>
+<li><strong>实验结果</strong>：<ul>
+<li>SAGA在检测率（DR）上达到了90.62%，验证器准确性（VAcc）达到了32.58%，显著优于现有的TCG方法。</li>
+<li>SAGA在DEPC和多样性比率上也表现出色，表明其生成的测试用例具有更高的多样性和区分度。</li>
+<li>消融研究表明，SAGA的多维度分析和差异分析两个核心组件在综合性能上优于单独使用任何一个组件。</li>
+</ul>
+</li>
+</ul>
+<h3>3. <strong>开发CodeCompass基准测试集</strong></h3>
+<ul>
+<li><strong>实验目的</strong>：验证CodeCompass基准测试集在评估LLM代码生成能力方面的有效性。</li>
+<li><strong>实验方法</strong>：<ul>
+<li>使用SAGA生成的测试用例构建CodeCompass基准测试集。</li>
+<li>与LiveCodeBench-v6的共享子集进行对比，评估CodeCompass在检测错误解决方案方面的性能。</li>
+<li>评估不同LLM模型在CodeCompass上的表现。</li>
+</ul>
+</li>
+<li><strong>实验结果</strong>：<ul>
+<li>CodeCompass在检测错误解决方案方面表现出更高的效率，更高的独特错误模式发现能力（Diversity Ratio@40: +43.13%），以及更快的收敛速度。</li>
+<li>在CodeCompass上评估的LLM模型的Pass@1指标普遍低于LiveCodeBench-v6，表明CodeCompass更具挑战性。</li>
+<li>CodeCompass能够有效区分不同LLM模型的性能，揭示了模型之间的细微差异。</li>
+</ul>
+</li>
+</ul>
+<h3>4. <strong>TCGCoder-7B模型的训练和评估</strong></h3>
+<ul>
+<li><strong>实验目的</strong>：验证TCGCoder-7B模型在TCG任务中的性能。</li>
+<li><strong>实验方法</strong>：<ul>
+<li>使用SAGA框架生成的15,000个编程问题及其对应的测试用例训练TCGCoder-7B模型。</li>
+<li>在TCGBench上评估TCGCoder-7B的性能。</li>
+</ul>
+</li>
+<li><strong>实验结果</strong>：<ul>
+<li>TCGCoder-7B在检测率（DR）和验证器准确性（VAcc）上表现出色，优于现有的TCG方法。</li>
+<li>TCGCoder-7B能够有效地生成高质量的测试用例，支持代码生成任务中的鲁棒和准确的奖励估计。</li>
+</ul>
+</li>
+</ul>
+<h3>5. <strong>额外的实验分析</strong></h3>
+<ul>
+<li><strong>混合不同LLM生成的随机测试用例</strong>：<ul>
+<li><strong>实验目的</strong>：验证混合不同LLM生成的随机测试用例是否能提高测试用例的质量。</li>
+<li><strong>实验方法</strong>：从不同的LLM（如DeepSeek-V3、Qwen2.5-72B、Qwen2.5-Coder）生成随机测试用例，并评估混合后的测试用例集。</li>
+<li><strong>实验结果</strong>：混合不同LLM生成的测试用例可以显著提高测试用例的质量，降低测试用例之间的相关性，提高AUC@50指标。</li>
+</ul>
+</li>
+<li><strong>SAGA的知识源消融研究</strong>：<ul>
+<li><strong>实验目的</strong>：验证SAGA框架中不同知识源（正确解决方案和错误解决方案）的贡献。</li>
+<li><strong>实验方法</strong>：通过移除SAGA的差异分析组件，仅使用多维度分析组件，并加倍正确解决方案的数量，评估其性能。</li>
+<li><strong>实验结果</strong>：移除差异分析组件后，SAGA的性能显著下降，表明错误解决方案中的见解对于生成高质量的测试用例至关重要。</li>
+</ul>
+</li>
+</ul>
+<p>这些实验全面验证了SAGA框架在生成高质量、多样化和区分度高的测试用例方面的有效性，并展示了其在代码生成评估中的应用潜力。</p>
+</div>
+
+<p class="faq-q"><strong>Q5</strong>: 有什么可以进一步探索的点？</p>
+
+<div class="faq-a">
+
+<p>论文在测试用例生成（TCG）和大型语言模型（LLMs）在代码生成任务中的应用方面提出了许多创新点，并展示了显著的性能提升。然而，还有一些可以进一步探索的方向，以进一步推动这一领域的发展。以下是一些潜在的研究方向：</p>
+<h3>1. <strong>自动化测试用例生成</strong></h3>
+<ul>
+<li><strong>自动化程度</strong>：当前的SAGA框架依赖于人类专家提供的正确和错误解决方案。未来可以探索如何自动化地从代码库中提取这些解决方案，减少对人类专家的依赖。</li>
+<li><strong>动态测试用例生成</strong>：开发能够动态生成测试用例的方法，以适应代码生成模型的不断变化和改进。这可以通过持续学习和适应性测试用例生成来实现。</li>
+</ul>
+<h3>2. <strong>多语言支持</strong></h3>
+<ul>
+<li><strong>跨语言测试用例生成</strong>：目前的TCG方法主要集中在特定编程语言上。未来可以探索如何生成跨多种编程语言的测试用例，以评估多语言代码生成模型的性能。</li>
+<li><strong>语言特定的错误模式</strong>：研究不同编程语言中的特定错误模式，并开发针对性的测试用例生成策略，以更全面地评估代码生成模型在不同语言中的表现。</li>
+</ul>
+<h3>3. <strong>强化学习中的应用</strong></h3>
+<ul>
+<li><strong>奖励信号优化</strong>：进一步探索如何利用高质量的测试用例生成方法来优化强化学习中的奖励信号，以提高模型的训练效率和最终性能。</li>
+<li><strong>对抗性训练</strong>：开发基于对抗性测试用例的训练方法，使模型能够更好地应对复杂的错误模式和边界条件。</li>
+</ul>
+<h3>4. <strong>测试用例的可解释性和透明度</strong></h3>
+<ul>
+<li><strong>测试用例的可解释性</strong>：研究如何生成具有可解释性的测试用例，使开发人员能够理解测试用例的目标和覆盖范围。</li>
+<li><strong>透明度和可追溯性</strong>：开发工具和方法，使测试用例的生成过程更加透明和可追溯，便于调试和改进。</li>
+</ul>
+<h3>5. <strong>大规模数据集的构建</strong></h3>
+<ul>
+<li><strong>大规模数据集</strong>：构建更大规模的测试用例数据集，以支持更广泛的模型评估和训练。这可以通过众包、自动化提取和合成数据生成等方法实现。</li>
+<li><strong>数据集的多样性和代表性</strong>：确保数据集涵盖各种类型的编程问题和错误模式，以提高测试用例的多样性和代表性。</li>
+</ul>
+<h3>6. <strong>与现有工具和框架的集成</strong></h3>
+<ul>
+<li><strong>与现有IDE和工具的集成</strong>：将TCG方法与现有的集成开发环境（IDE）和代码分析工具集成，使开发人员能够在日常开发中直接利用这些方法。</li>
+<li><strong>与持续集成/持续部署（CI/CD）流程的集成</strong>：探索如何将TCG方法集成到CI/CD流程中，以实现自动化的代码质量评估和持续改进。</li>
+</ul>
+<h3>7. <strong>性能优化和效率提升</strong></h3>
+<ul>
+<li><strong>计算效率</strong>：优化TCG方法的计算效率，使其能够在更短的时间内生成高质量的测试用例，以适应大规模模型训练的需求。</li>
+<li><strong>资源利用</strong>：研究如何更有效地利用计算资源，例如通过分布式计算和并行处理来加速测试用例的生成。</li>
+</ul>
+<h3>8. <strong>对抗性攻击和防御</strong></h3>
+<ul>
+<li><strong>对抗性攻击</strong>：研究如何生成对抗性测试用例，以评估和提高模型在面对恶意攻击时的鲁棒性。</li>
+<li><strong>防御机制</strong>：开发防御机制，使模型能够更好地应对对抗性攻击，提高代码生成的安全性和可靠性。</li>
+</ul>
+<h3>9. <strong>跨领域应用</strong></h3>
+<ul>
+<li><strong>跨领域测试用例生成</strong>：探索如何将TCG方法应用于其他领域，如自然语言处理、图像处理等，以评估和改进这些领域的模型性能。</li>
+<li><strong>领域特定的测试用例</strong>：研究特定领域的错误模式和测试需求，开发针对性的测试用例生成策略。</li>
+</ul>
+<h3>10. <strong>用户研究和反馈</strong></h3>
+<ul>
+<li><strong>用户研究</strong>：进行用户研究，了解开发人员和研究人员对TCG工具的需求和反馈，以进一步改进和优化这些工具。</li>
+<li><strong>反馈机制</strong>：开发反馈机制，使用户能够直接参与到测试用例的生成和改进过程中，提高工具的实用性和用户满意度。</li>
+</ul>
+<p>这些方向不仅可以进一步提升TCG方法的性能和应用范围，还可以推动LLMs在代码生成任务中的更广泛应用和发展。</p>
+</div>
+
+<p class="faq-q"><strong>Q6</strong>: 总结一下论文的主要内容</p>
+
+<div class="faq-a">
+
+<p>这篇论文的核心内容是重新思考大型语言模型（LLMs）在代码生成任务中的验证方法，特别是从生成到测试的转变。论文指出，尽管LLMs在代码生成基准测试中取得了显著的成功，但现有的评估方法存在局限性，因为这些基准测试通常只包含有限数量的同质化测试用例，导致细微的错误无法被检测出来。这不仅夸大了模型的实际性能，还影响了在利用可验证奖励（Verifiable Rewards, VR）的强化学习框架（Reinforcement Learning with Verifiable Rewards, RLVR）中准确的奖励估计。</p>
+<h3>背景知识</h3>
+<p>LLMs在代码生成任务中已经取得了显著的成果，但现有的评估基准（如HumanEval、LiveCodeBench等）存在局限性，主要体现在测试用例的多样性和覆盖范围不足。这导致了对模型性能的高估，以及在强化学习框架中奖励信号的不准确。</p>
+<h3>研究方法</h3>
+<p>为了解决这些问题，论文提出了一个多维度的评估框架，用于量化测试套件的彻底性，并引入了一个人类-LLM协作方法（SAGA），通过结合人类编程专业知识和LLM的推理能力，显著提高生成测试用例的覆盖范围和质量。此外，论文还开发了一个名为TCGBench的基准测试集，用于促进TCG任务的研究。</p>
+<h4>SAGA框架</h4>
+<p>SAGA框架的核心在于利用人类专家的编程知识和LLM的推理能力，通过多维度分析和差异分析来生成高质量的测试用例。具体来说：</p>
+<ul>
+<li><strong>多维度分析</strong>：从正确的人类解决方案中提取深刻见解，通过约束处理差异和防御模式分解，生成针对特定问题的测试用例。</li>
+<li><strong>差异分析</strong>：通过比较错误提交和它们的修正版本，找出输入差异，揭示常见的错误模式，并生成能够触发这些错误的测试用例。</li>
+<li><strong>自验证脚本</strong>：确保生成的测试输入符合问题约束和预期的测试策略，提高测试用例的质量和相关性。</li>
+</ul>
+<h3>实验</h3>
+<p>论文通过一系列实验验证了SAGA框架的有效性。实验结果表明，SAGA在检测率（DR）、验证器准确性（VAcc）、不同错误模式覆盖（DEPC）和多样性比率（Diversity Ratio）等关键指标上均优于现有的TCG方法。</p>
+<h4>实验结果</h4>
+<ul>
+<li><strong>检测率（DR）</strong>：SAGA达到了90.62%，显著高于现有方法。</li>
+<li><strong>验证器准确性（VAcc）</strong>：SAGA达到了32.58%，显著高于现有方法。</li>
+<li><strong>不同错误模式覆盖（DEPC）</strong>：SAGA表现出色，表明其生成的测试用例具有更高的多样性。</li>
+<li><strong>多样性比率（Diversity Ratio）</strong>：SAGA也表现出色，表明其生成的测试用例具有更高的区分度。</li>
+</ul>
+<h3>关键结论</h3>
+<p>论文的主要贡献包括：</p>
+<ol>
+<li>构建了TCGBench，一个从竞技编程平台收集的全面数据集，用于分析现有的TCG实践。在该数据集上，论文正式定义了多维度的评估指标，用于严格评估测试用例的质量。</li>
+<li>提出了SAGA，一个人类-LLM协作的TCG框架。通过整合正确和错误人类解决方案的见解，SAGA生成了更有效的测试套件，将验证器准确性提高了15.86%。</li>
+<li>利用SAGA，开发了CodeCompass，这是一个包含人类验证的对抗性示例的高质量代码生成评估基准测试集，并引入了TCGCoder-7B，一个SAGA提炼的专家模型，用于高效的TCG。</li>
+</ol>
+<p>这些贡献显著推进了LLMs代码生成的可靠评估，并为未来的自动化测试合成和有效的对抗性测试铺平了道路。</p>
+<p class="faq-q"><strong>Q7</strong>: 想要进一步了解论文</p>
+
+<div class="faq-a">
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a href="http://kimi.com/_prefill_chat?prefill_prompt=%20%E6%88%91%E4%BB%AC%E8%A6%81%E8%AE%A8%E8%AE%BA%E7%9A%84%E8%AE%BA%E6%96%87%E6%98%AFRethinking%20Verification%20for%20LLM%20Code%20Generation%3A%20From%20Generation%20to%20Testing%EF%BC%8C%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://arxiv.org/pdf/2507.06920%20%20%EF%BC%8C%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://papers.cool/arxiv/kimi?paper=2507.06920%20%20%E3%80%82%E8%AF%B7%E4%BB%A5%E6%AD%A4%E4%B8%BA%E5%9F%BA%E7%A1%80%EF%BC%8C%E7%BB%A7%E7%BB%AD%E5%9B%9E%E7%AD%94%E6%88%91%E5%90%8E%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82&amp;system_prompt=%E4%BD%A0%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AD%A6%E6%9C%AF%E5%8A%A9%E6%89%8B%EF%BC%8C%E5%90%8E%E9%9D%A2%E7%9A%84%E5%AF%B9%E8%AF%9D%E5%B0%86%E5%9B%B4%E7%BB%95%E7%9D%80%E4%BB%A5%E4%B8%8B%E8%AE%BA%E6%96%87%E5%86%85%E5%AE%B9%E8%BF%9B%E8%A1%8C%EF%BC%8C%E5%B7%B2%E7%BB%8F%E9%80%9A%E8%BF%87%E9%93%BE%E6%8E%A5%E7%BB%99%E5%87%BA%E4%BA%86%E8%AE%BA%E6%96%87%E7%9A%84PDF%E5%92%8C%E8%AE%BA%E6%96%87%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E3%80%82%E7%94%A8%E6%88%B7%E5%B0%86%E7%BB%A7%E7%BB%AD%E5%90%91%E4%BD%A0%E5%92%A8%E8%AF%A2%E8%AE%BA%E6%96%87%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%EF%BC%8C%E8%AF%B7%E4%BD%A0%E4%BD%9C%E5%87%BA%E4%B8%93%E4%B8%9A%E7%9A%84%E5%9B%9E%E7%AD%94%EF%BC%8C%E4%B8%8D%E8%A6%81%E5%87%BA%E7%8E%B0%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%EF%BC%8C%E5%BD%93%E6%B6%89%E5%8F%8A%E5%88%B0%E5%88%86%E7%82%B9%E5%9B%9E%E7%AD%94%E6%97%B6%EF%BC%8C%E9%BC%93%E5%8A%B1%E4%BD%A0%E4%BB%A5markdown%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA%E3%80%82&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false" target="_blank"><strong>这里 <i class="fa fa-external-link"></i></strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></div></div>
+            <hr id="fold-2507.06920" class="hr hr-fold" style="display: block;">
+        </div>
+    </div>
+    <div class="footer notranslate">
+        Designed by <a href="https://kexue.fm/" target="_blank" data-eusoft-scrollable-element="1">kexue.fm</a> | Powered by <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank" data-eusoft-scrollable-element="1">kimi.ai</a>
+    </div>
+    <div id="app-bar" class="app-bar panel notranslate" style="opacity: 0;">
+        <div id="app-bar-search" class="app-bar-content" style="display:none">
+            <div class="app-search-keywords">
+                <div class="keywords-included">
+                    <p>Include(<a id="logic-included" title="The logical relationship between keywords (OR/AND)">OR</a>):</p>
+                    <textarea id="keywords-included" class="text-input" placeholder="LLM
+Transformer
+Attention"></textarea>
+                </div>
+                <div class="keywords-excluded">
+                    <p>Exclude:</p>
+                    <textarea id="keywords-excluded" class="text-input"></textarea>
+                </div>
+            </div>
+            <div class="submit">
+                <p><button type="button">Search</button></p>
+                <p><label><input type="checkbox" id="search-filter">Filter</label></p>
+                <p><label><input type="checkbox" id="search-highlight" checked="true">Highlight</label></p>
+            </div>
+        </div>
+        <div id="app-bar-star" class="app-bar-content" style="display:none">
+            <p>Stared Paper(s):</p>
+            <div class="items">
+                <p id="app-bar-star-2507.06920" style="display: block;">
+                    <span class="i-index">#1</span>
+                    <a class="i-title" href="#2507.06920">Rethinking Verification for LLM Code Generation: From Generation to Testing</a>
+                    <a class="i-star" style="display: block;"><i class="fa fa-star"></i></a>
+                    <a class="i-unstar" style="display:none"><i class="fa fa-star-o"></i></a>
+                </p>
+            </div>
+            <div class="submit">
+                <p><button type="button">Export</button></p>
+                <p id="export-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-config" class="app-bar-content" style="display:none">
+            <p>Magic Token:</p>
+            <input id="magic-token" class="text-input single-line" type="text" placeholder="If unsure, ignore it." value="">
+            <p>Kimi Language:</p>
+            <select id="kimi-lang" name="kimi-lang" class="text-input single-line">
+                <option value="zh" selected="">中文</option>
+                <option value="en">English</option>
+            </select>
+            <p>Desc Language:</p>
+            <select id="desc-lang" name="desc-lang" class="text-input single-line">
+                <option value="zh">中文</option>
+                <option value="en" selected="">English</option>
+            </select>
+            <div class="submit">
+                <p><button type="button" class="save-btn">Save</button></p>
+                <p id="config-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-bug" class="app-bar-content" style="display:none">
+            <p>Bug report? Issue submit? Please visit:</p>
+            <p id="github-url"><strong>Github: </strong><a href="https://github.com/bojone/papers.cool" target="_blank">https://github.com/bojone/papers.cool</a></p>
+            <p style="padding-top:15px">Please read our <a href="https://github.com/bojone/papers.cool/blob/main/Disclaimer/README_en.md" target="_blank">Disclaimer</a> before proceeding.</p>
+            <p>For more interesting features, please visit <a href="https://kexue.fm/" target="_blank">kexue.fm</a> and <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank">kimi.ai</a>.</p>
+        </div>
+        <a class="bar-app" href="https://papers.cool/" title="Home Page"><i class="fa fa-home" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="In-page Search"><i class="fa fa-search" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Stared Papers"><i class="fa fa-star" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Configuration"><i class="fa fa-cog" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Bug Report"><i class="fa fa-bug" data-eusoft-scrollable-element="1"></i></a>
+    </div>
+    <div id="scroll-btn" style="opacity: 0;">
+        <button id="totop" title="Go to top"><i class="fa fa-chevron-up" data-eusoft-scrollable-element="1"></i></button>
+        <button id="tobottom" title="Go to bottom"><i class="fa fa-chevron-down" data-eusoft-scrollable-element="1"></i></button>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+
+
+<!-- Google tag (gtag.js) -->
+
+
+
+
+
+<script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2787122990="" ng-version="18.2.13"><template _ngcontent-ng-c2787122990=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c2787122990="" _nghost-ng-c3386348173=""><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2787122990="" _nghost-ng-c749930229=""><template _ngcontent-ng-c749930229=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c2787122990="" class="eusoft-chrome-extension-capture-word-container ng-tns-c4033922151-0 ng-star-inserted" data-scrapbook-shadowdom="&lt;style&gt;.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}&lt;/style&gt;&lt;style&gt;.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+&lt;/style&gt;&lt;style&gt;.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}&lt;/style&gt;&lt;!----&gt;&lt;!----&gt;&lt;div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c4033922151-0&quot; data-content-script-theme=&quot;light&quot;&gt;&lt;!----&gt;&lt;/div&gt;"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2787122990="" _nghost-ng-c3081775404=""><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>

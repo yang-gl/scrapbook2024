@@ -237,7 +237,7 @@ scrapbook.meta({
   },
   "20250914224619130": {
     "index": "",
-    "title": "x1xhlol/system-prompts-and-models-of-ai-tools: FULL v0, Cursor, Manus, Augment Code, Same.dev, Lovable, Devin, Replit Agent, Windsurf Agent, VSCode Agent, Dia Browser, Xcode, Trae AI, Cluely & Orchids.app (And other Open Sourced) System Prompts, Tools & AI Models.",
+    "title": "x1xhlol/system-prompts-and-models-of-ai-tools",
     "type": "bookmark",
     "create": "20250914224619130",
     "modify": "20250914224619130",
@@ -247,7 +247,7 @@ scrapbook.meta({
   },
   "20250914225020630": {
     "index": "202509/20250914225020630-x.com/index.html",
-    "title": "宝玉 on X: \"简单说下 Cursor 和 Claude Code 什么区别 它们最大的不同是运行环境，一个是命令行，一个是在 IDE 里面，虽然 Claude Code 也能以插件集成到各种 IDE，但还是以命令行方式运行，而 Cursor 是 VSCode 的套客，在 VSCode 基础上集成了自己的 AI 功能。 其次的不同是计费方式和 Token 消耗。Cursor\" / X",
+    "title": "宝玉 on X: \"简单说下 Cursor 和 Claude Code 什么区别 ",
     "type": "",
     "create": "20250914225020630",
     "modify": "20250914225020630",
@@ -296,7 +296,7 @@ scrapbook.meta({
   },
   "20250914233730589": {
     "index": "202509/20250914233730589-x.com/index.html",
-    "title": "katon on X: \"用好 Cursor = 高效、整洁的代码。 用不好 = AI 给你堆出一团乱麻的代码，够你收拾一礼拜。 下面是正确使用的 12 条准则： 1. 预先定好 5-10 条明确的项目规范，让 Cursor 知道你的项目结构和约束。对于老代码库，可以试试 /generate rules。 2.\" / X",
+    "title": "katon on X: \"用好 Cursor = 高效、整洁的代码。 用不好 = AI 给你堆出一团乱麻的代码，够你收拾一礼拜",
     "type": "",
     "create": "20250914233730589",
     "modify": "20250914233730589",
@@ -320,7 +320,7 @@ scrapbook.meta({
   },
   "20250914234156271": {
     "index": "202509/20250914234156271-x.com/index.html",
-    "title": "LinearUncle on X: \"python 包管理库uv作者昨天分享了他如何使用cursor，不出所料，和我之前分享前美团架构师Longyi使用cursor的方式如出一辙，只用tab和cmd + K。 如此朴实无华，大道至简。 顶级头脑 &gt; agent。 程序员以前争论哪个编程语言是世界上最好的语言，如今又开始比较那个AI https://t.co/M3Vnd55cC3\" / X",
+    "title": "LinearUncle on X: \"python 包管理库uv作者昨天分享了他如何使用cursor",
     "type": "",
     "create": "20250914234156271",
     "modify": "20250914234156271",
@@ -329,7 +329,7 @@ scrapbook.meta({
   },
   "20250914234315811": {
     "index": "202509/20250914234315811-x.com/index.html",
-    "title": "yetone on X: \"@wwwyesterday 其实 cursor 的原理并不简单，真正实施起来那就更难了，而且它所有的工程难度恰恰就只是为了解决一个问题 ——「不要让用户手动复制粘贴代码」，所以它在用户体验上下了苦功夫，不仅在工程上要在传统代码编辑器上发明新的代码编辑的范式和工作流，还自己训练和部署了快速 edit 模型\" / X",
+    "title": "yetone on X: \"@wwwyesterday 其实 cursor 的原理并不简单",
     "type": "",
     "create": "20250914234315811",
     "modify": "20250914234315811",
@@ -338,7 +338,7 @@ scrapbook.meta({
   },
   "20250914234510538": {
     "index": "202509/20250914234510538-x.com/index.html",
-    "title": "nazha on X: \"#分享 来晚了，Cursor 系统词研究第一波：深入了解 Cursor 的规则系统 Cursor 规则比想象中设计得要复杂，在 &gt; 0.45 的版本中，Cursor 总有有两类的规则： 1️⃣ User Rules 通过 Cursor Settings &gt; General &gt; Rules for AI 进行配置。自定义的全局偏好，这些规则应用于所有项目。 2️⃣ Project Rules https://t.co/s5OwBPGNzU\" / X",
+    "title": "nazha on X: \"#分享 来晚了，Cursor 系统词研究第一波",
     "type": "",
     "create": "20250914234510538",
     "modify": "20250914234510538",
@@ -397,7 +397,7 @@ scrapbook.meta({
   },
   "20250915144603335": {
     "index": "",
-    "title": "【2025版】不愧是李宏毅老师！一口气把agent讲的明明白白，简直不要太爽！（大模型丨manus丨深度学习丨机器学习丨AI人工智能）_哔哩哔哩_bilibili",
+    "title": "【2025版】不愧是李宏毅老师！一口气把agent讲的明明白白_哔哩哔哩_bilibili",
     "type": "bookmark",
     "create": "20250915144603335",
     "modify": "20250915144603335",
@@ -472,7 +472,7 @@ scrapbook.meta({
   },
   "20250915145713378": {
     "index": "",
-    "title": "NirDiamant/RAG_Techniques: This repository showcases various advanced techniques for Retrieval-Augmented Generation (RAG) systems. RAG systems combine information retrieval with generative models to provide accurate and contextually rich responses.",
+    "title": "NirDiamant/RAG_Techniques: This repository showcases various advanced techniques for Retrieval-Augmented Generation (RAG) systems.",
     "type": "bookmark",
     "create": "20250915145713378",
     "modify": "20250915145713378",
@@ -482,7 +482,7 @@ scrapbook.meta({
   },
   "20250915145953456": {
     "index": "202509/20250915145953456-x.com/index.html",
-    "title": "Victoria Slocum on X: \"🌶️ Hot take: I'm tired of RAG systems that just grab the first document and call it done. 𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗥𝗔𝗚 is probably the only way RAG is 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 going to be useful. But what’s actually the difference? 𝗧𝗵𝗲 𝗣𝗿𝗼𝗯𝗹𝗲𝗺 𝘄𝗶𝘁𝗵 𝗡𝗮𝗶𝘃𝗲 𝗥𝗔𝗚: Traditional https://t.co/wAeaH1qxMk\" / X",
+    "title": "Victoria Slocum on X: \" 𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗥𝗔𝗚 is probably the only way RAG is 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 going to be useful. ",
     "type": "",
     "create": "20250915145953456",
     "modify": "20250915145953456",
@@ -518,7 +518,7 @@ scrapbook.meta({
   },
   "20250915150516915": {
     "index": "202509/20250915150516915-x.com/index.html",
-    "title": "meng shao on X: \"[实用指南] 从零开始成长为 AI 专家，总共分五步🏃🏻‍♀️🏃 核心思路：边做边学，实战出真知 作者 @vasumanmoza 的建议是通过实际动手做项目，逐步掌握 AI https://t.co/4eVdD1g6MO\" / X",
+    "title": "meng shao on X: \"[实用指南] 从零开始成长为 AI 专家，总共分五步🏃🏻‍♀️🏃 \" / X",
     "type": "",
     "create": "20250915150516915",
     "modify": "20250915150740252",
@@ -735,7 +735,7 @@ scrapbook.meta({
   },
   "20250916150010793": {
     "index": "202509/20250916150010793-x.com/index.html",
-    "title": "Akshay 🚀 on X: \"What is context engineering❓ And why is everyone talking about it...👇 Context engineering is rapidly becoming a crucial skill for AI engineers. It's no longer just about clever prompting; it's about the systematic orchestration of context. 🔷 The Problem: Most AI agents https://t.co/2bkv48aC6D\" / X",
+    "title": "Akshay 🚀 on X: \"What is context engineering❓ And why is everyone talking about it...",
     "type": "",
     "create": "20250916150010793",
     "modify": "20250916150010793",
@@ -744,7 +744,7 @@ scrapbook.meta({
   },
   "20250916150051950": {
     "index": "202509/20250916150051950-x.com/index.html",
-    "title": "Latent.Space on X: \"🆕 Everything you should know about Context Engineering https://t.co/oYuvYgtOVB Works like @trychroma's Context Rot research and @dbreunig's Context Fails show a lot of issues with naive long context usage: - Context Poisoning - Context Distraction - Context Confusion - Context\" / X",
+    "title": "Latent.Space on X: \"🆕 Everything you should know about Context Engineering",
     "type": "",
     "create": "20250916150051950",
     "modify": "20250916150051950",
@@ -782,7 +782,7 @@ scrapbook.meta({
   },
   "20250916150313048": {
     "index": "202509/20250916150313048-x.com/index.html",
-    "title": "宝玉 on X: \"现在很多 Context Engineering 谈的是如何构建 AI Agents 用到的技术，对于普通人未必适用，我总结了一点普通人使用 AI 时用得上的 Context Engineering。 Context Engineering 核心是两点： 一、更少的上下文 二、更准确的上下文 一、更少的上下文\" / X",
+    "title": "宝玉 on X: \"我总结了一点普通人使用 AI 时用得上的 Context Engineering",
     "type": "",
     "create": "20250916150313048",
     "modify": "20250916150313048",
@@ -791,7 +791,7 @@ scrapbook.meta({
   },
   "20250916150342758": {
     "index": "202509/20250916150342758-x.com/index.html",
-    "title": "GitHubDaily on X: \"如果大家想深入研究大语言模型（LLM）智能体这个领域，可以看下。 GitHub 上这份系统整理了关于 LLM Agent 领域的研究论文合集：Awesome-Agent-Papers。 精选了 200+ 篇高质量论文，涵盖 Agent 构建、协作机制、进化、工具使用、安全性、基准测试和应用等内容。 GitHub：https://t.co/qzVhL40qof https://t.co/t1RpM7H7li\" / X",
+    "title": "GitHubDaily on X: \"Awesome-Agent-Papers: GitHub 上这份系统整理了关于 LLM Agent 领域的研究论文合集：",
     "type": "",
     "create": "20250916150342758",
     "modify": "20250916150342758",
@@ -859,7 +859,7 @@ scrapbook.meta({
   },
   "20250917143408026": {
     "index": "202509/20250917143408026-x.com/index.html",
-    "title": "AI共创联盟 on X: \"@dongxi_nlp 梳理了下关系：代理(Agent)是一个代理系统(Agentic Systems)。代理工作流(Agent Workflow)也是一个代理系统(Agentic Systems)。 https://t.co/c4g6eT4MD2\" / X",
+    "title": "AI共创联盟 on X: \"@dongxi_nlp 梳理了下代理(Agent)和代理工作流(Agent Workflow)的关系 https://t.co/c4g6eT4MD2\" / X",
     "type": "",
     "create": "20250917143408026",
     "modify": "20250917143408026",
@@ -964,7 +964,7 @@ scrapbook.meta({
   },
   "20250919144214445": {
     "index": "202509/20250919144214445-arxiv.org/index.html",
-    "title": "[2404.04966] Advancing Code Coverage: Incorporating Program Analysis with Large Language Models",
+    "title": "[2404.04966v2] Advancing Code Coverage: Incorporating Program Analysis with Large Language Models",
     "type": "",
     "create": "20250919144214445",
     "modify": "20250919144214445",
@@ -1008,7 +1008,7 @@ scrapbook.meta({
   },
   "20250919145046478": {
     "index": "",
-    "title": "CodaMosa: Escaping Coverage Plateaus in Test Generation with Pre-Trained Large Language Models | Proceedings of the 45th International Conference on Software Engineering",
+    "title": "CodaMosa: Escaping Coverage Plateaus in Test Generation with Pre-Trained Large Language Models",
     "type": "bookmark",
     "create": "20250919145046478",
     "modify": "20250919145046478",
@@ -1028,7 +1028,7 @@ scrapbook.meta({
   },
   "20250919145226473": {
     "index": "202509/20250919145226473-papers.cool/index.html",
-    "title": "[2501.10200] Test Wars: A Comparative Study of SBST, Symbolic Execution, and LLM-Based Approaches to Unit Test Generation | Cool Papers - Immersive Paper Discovery",
+    "title": "[2501.10200] Test Wars: A Comparative Study of SBST, Symbolic Execution, and LLM-Based Approaches to Unit Test Generation",
     "type": "",
     "create": "20250919145226473",
     "modify": "20250919145226473",
@@ -1037,7 +1037,7 @@ scrapbook.meta({
   },
   "20250919145246020": {
     "index": "202509/20250919145246020-papers.cool/index.html",
-    "title": "[2404.04966] Enhancing LLM-based Test Generation for Hard-to-Cover Branches via Program Analysis | Cool Papers - Immersive Paper Discovery",
+    "title": "[2404.04966] Enhancing LLM-based Test Generation for Hard-to-Cover Branches via Program Analysis",
     "type": "",
     "create": "20250919145246020",
     "modify": "20250919145246020",
@@ -1096,7 +1096,7 @@ scrapbook.meta({
   },
   "20250921121205201": {
     "index": "202509/20250921121205201-arxiv.org/index.html",
-    "title": "The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs: An Exhaustive Review of Technologies, Research, Best Practices, Applied Research Challenges and Opportunities | Abstract",
+    "title": "[2408.13296] The Ultimate Guide to Fine-Tuning LLMs from Basics to Breakthroughs",
     "type": "",
     "create": "20250921121205201",
     "modify": "20250921121205201",
@@ -1176,7 +1176,7 @@ scrapbook.meta({
   },
   "20250921123352253": {
     "index": "202509/20250921123352253-papers.cool/index.html",
-    "title": "[2506.05614] Which Prompting Technique Should I Use? An Empirical Investigation of Prompting Techniques for Software Engineering Tasks | Cool Papers - Immersive Paper Discovery",
+    "title": "[2506.05614] Which Prompting Technique Should I Use? An Empirical Investigation of Prompting Techniques for Software Engineering Tasks",
     "type": "",
     "create": "20250921123352253",
     "modify": "20250921123352253",
@@ -1245,7 +1245,7 @@ scrapbook.meta({
   },
   "20250921145300631": {
     "index": "202509/20250921145300631-x.com/index.html",
-    "title": "Ashpreet Bedi on X: \"Grifters like this are wasting your time and their Dunning-Kruger opinions should be ignored by serious builders. You either build on a framework or live long enough to roll your own (which is fine btw). Here’s why: 1. The \"LLM API in a while loop\" is your underlying agentic https://t.co/s22H4iaOqG\" / X",
+    "title": "Ashpreet Bedi on X: \"You either build on a framework or live long enough to roll your own (which is fine btw). Here’s why",
     "type": "",
     "create": "20250921145300631",
     "modify": "20250921145300631",
@@ -1296,7 +1296,7 @@ scrapbook.meta({
   },
   "20250923134135771": {
     "index": "202509/20250923134135771-github.com/index.html",
-    "title": "什么是大语言模型量化? 每个量化精度都代表什么? one-small-step/20250129-what-is-quantization-in-LLM/what-is-quantization-in-LLM.md at main · karminski/one-small-step",
+    "title": "什么是大语言模型量化? 每个量化精度都代表什么? one-small-step/20250129-what-is-quantization-in-LLM/",
     "type": "",
     "create": "20250923134135771",
     "modify": "20250923134135771",
@@ -1338,7 +1338,7 @@ scrapbook.meta({
   },
   "20250923134659246": {
     "index": "202509/20250923134659246-github.com/index.html",
-    "title": "什么时候应该微调, 什么时候不应该微调? one-small-step/20250530-When-to-Use-Fine-Tuning-and-When-Not-To/When-to-Use-Fine-Tuning-and-When-Not-To.md at main · karminski/one-small-step",
+    "title": "什么时候应该微调, 什么时候不应该微调? ",
     "type": "",
     "create": "20250923134659246",
     "modify": "20250923134659246",
@@ -1508,7 +1508,7 @@ scrapbook.meta({
     "type": "bookmark",
     "create": "20250924062934008",
     "modify": "20250924062934008",
-    "source": "https://www.bilibili.com/video/BV16RBGYMEXV/?buvid=XYDB061DF82884A87BACBD5685204CC6AD66C&from_spmid=playlist.playlist-detail.0.0&is_story_h5=false&mid=oqB5iLLnxqkcYcODX2fmJw%3D%3D&plat_id=116&share_from=ugc&share_medium=android&share_plat=android&share_session_id=28654ac6-6004-4649-8ca9-4a6595131af4&share_source=GENERIC&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1757715430&unique_k=wRdbzRb&up_id=85535689&vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "source": "https://www.bilibili.com/video/BV16RBGYMEXV/",
     "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
   },
   "20250924063341827": {
@@ -1594,7 +1594,7 @@ scrapbook.meta({
   },
   "20250924070302780": {
     "index": "202509/20250924070302780-x.com/index.html",
-    "title": "LIN WEI on X: \"有没有什么 python 库可以对接所有 llm 的 api？从 ollama 到 chatgpt 到 openrouter 到 claude，grok 之类的？自己写过点 chatgpt / ollama 的，但不够完善，升级和维护太累。\" / X",
+    "title": "LIN WEI on X: \"有没有什么 python 库可以对接所有 llm 的 api？",
     "type": "",
     "create": "20250924070302780",
     "modify": "20250924070302780",
@@ -1849,7 +1849,7 @@ scrapbook.meta({
   },
   "20251007123524670": {
     "index": "202510/20251007123524670-x.com/index.html",
-    "title": "Ahmad on X: \"you are a normal dev with zero clue how LLMs actually work - want to know how it all runs together - suddenly...\" / X",
+    "title": "Ahmad on X: \"how LLMs actually work - want to know how it all runs together - suddenly...\" / X",
     "type": "",
     "create": "20251007123524670",
     "modify": "20251007123524670",
@@ -2092,7 +2092,7 @@ scrapbook.meta({
   },
   "20251012132247150": {
     "index": "202510/20251012132247150-x.com/index.html",
-    "title": "Ahmad on X: \"what even is “running a model”? - model = weights (giant files, 2–140GB) + model architecture (transformer) + tokenizer + config - weights: the model’s “knowledge”, billions of learned numbers (parameters) - inference = “guess the next token, over and over” - you give it a\" / X",
+    "title": "Ahmad on X: \"what even is “running a model”? ",
     "type": "",
     "create": "20251012132247150",
     "modify": "20251012132247150",
@@ -2107,5 +2107,74 @@ scrapbook.meta({
     "modify": "20251012133437631",
     "source": "https://www.bilibili.com/video/BV1aaxyz8ELY/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
     "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20251027143323091": {
+    "title": "agent framework",
+    "type": "folder",
+    "create": "20251027143323091",
+    "modify": "20251027143323091"
+  },
+  "20251027144306703": {
+    "index": "202510/20251027144306703-papers.cool/index.html",
+    "title": "[2503.13580] LLM Test Generation via Iterative Hybrid Program Analysis",
+    "type": "",
+    "create": "20251027144306703",
+    "modify": "20251027144306703",
+    "source": "https://papers.cool/arxiv/2503.13580",
+    "icon": "favicon.ico"
+  },
+  "20251027144639241": {
+    "index": "202510/20251027144639241-papers.cool/index.html",
+    "title": "[2507.06920] Rethinking Verification for LLM Code Generation: From Generation to Testing",
+    "type": "",
+    "create": "20251027144639241",
+    "modify": "20251027144639241",
+    "source": "https://papers.cool/arxiv/2507.06920",
+    "icon": "favicon.ico"
+  },
+  "20251027144914236": {
+    "index": "202510/20251027144914236-papers.cool/index.html",
+    "title": "[2403.16218v4] CoverUp: Coverage-Guided LLM-Based Test Generation",
+    "type": "",
+    "create": "20251027144914236",
+    "modify": "20251027144914236",
+    "source": "https://papers.cool/arxiv/2403.16218",
+    "icon": "favicon.ico"
+  },
+  "20251027145624277": {
+    "index": "202510/20251027145624277-x.com/index.html",
+    "title": "Santiago on X: \"Google ADK is my favorite agentic framework. ",
+    "type": "",
+    "create": "20251027145624277",
+    "modify": "20251027145624277",
+    "source": "https://x.com/svpino/status/1972680289643311155",
+    "icon": "twitter.3.ico"
+  },
+  "20251027145923110": {
+    "index": "202510/20251027145923110-x.com/index.html",
+    "title": "Shubham Saboo on X: \"China's Alibaba just dropped a Python framework for building multi-agent apps.",
+    "type": "",
+    "create": "20251027145923110",
+    "modify": "20251027145923110",
+    "source": "https://x.com/Saboo_Shubham_/status/1967274933257715785",
+    "icon": "twitter.3.ico"
+  },
+  "20251027150145922": {
+    "index": "202510/20251027150145922-makingaiagents.substack.com/index.html",
+    "title": "Which agent framework should you use? I tried 7. The winners will surprise you 🤯",
+    "type": "",
+    "create": "20251027150145922",
+    "modify": "20251027151716030",
+    "source": "https://makingaiagents.substack.com/p/which-agent-framework-should-you?r=obqn&utm_medium=ios&triedRedirect=true",
+    "icon": "favicon.png"
+  },
+  "20251027150232475": {
+    "index": "",
+    "title": "Introducing Microsoft Agent Framework.  - Thread by @mdancho84",
+    "type": "bookmark",
+    "create": "20251027150232475",
+    "modify": "20251027150232475",
+    "source": "https://threadreaderapp.com/thread/1974500116393341172.html",
+    "icon": "../tree/favicon/abd481d7a1c3fdaa11c225f7eacfee2f408a07a7.png"
   }
 })

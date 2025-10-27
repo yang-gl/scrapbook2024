@@ -1,0 +1,470 @@
+<!DOCTYPE html><html data-scrapbook-source="https://papers.cool/arxiv/2403.16218" data-scrapbook-create="20251027144914236"><head><meta charset="UTF-8">
+    <title>CoverUp: Coverage-Guided LLM-Based Test Generation | Cool Papers - Immersive Paper Discovery</title>
+    <meta name="description" content="This paper presents CoverUp, a novel system that drives the generation of high-coverage Python regression tests via a combination of coverage analysis and large-language models (LLMs). CoverUp iteratively improves coverage, interleaving coverage analysis with dialogs with the LLM to focus its attention on as yet uncovered lines and branches. The resulting test suites significantly improve coverage over the current state of the art: compared to CodaMosa, a hybrid LLM / search-based software testing system, CoverUp substantially improves coverage across the board. On a per-module basis, CoverUp achieves median line coverage of 81% (vs. 62%), branch coverage of 53% (vs. 35%) and line+branch coverage of 78% (vs. 55%). We show that CoverUp's iterative, coverage-guided approach is crucial to its effectiveness, contributing to nearly half of its successes.">
+    <meta name="keywords" content="Cool Papers, Immersive Discovery, arXiv Research, AI Paper Assistant, Paper FAQ, Kimi Chat, Scholarly Papers, Academic Research, Paper Screening AI, Conference Papers, Research Paper Exploration">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="citation_title" content="CoverUp: Coverage-Guided LLM-Based Test Generation">
+    <meta name="citation_authors" content="Juan Altmayer Pizzorno; Emery D. Berger">
+    <meta name="citation_abstract" content="This paper presents CoverUp, a novel system that drives the generation of high-coverage Python regression tests via a combination of coverage analysis and large-language models (LLMs). CoverUp iteratively improves coverage, interleaving coverage analysis with dialogs with the LLM to focus its attention on as yet uncovered lines and branches. The resulting test suites significantly improve coverage over the current state of the art: compared to CodaMosa, a hybrid LLM / search-based software testing system, CoverUp substantially improves coverage across the board. On a per-module basis, CoverUp achieves median line coverage of 81% (vs. 62%), branch coverage of 53% (vs. 35%) and line+branch coverage of 78% (vs. 55%). We show that CoverUp's iterative, coverage-guided approach is crucial to its effectiveness, contributing to nearly half of its successes.">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2403.16218">
+    <meta name="citation_public_url" content="https://papers.cool/arxiv/2403.16218">
+    <meta name="citation_publisher" content="cs.SE - arXiv">
+    <meta name="citation_date" content="2024-03-24">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888; display: contents}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head>
+<body id="arxiv"><div id="MathJax_Message" style="display: none;"></div>
+    <h1 class="notranslate">2403.16218</h1>
+    <p class="info notranslate">
+        Total: 1
+    </p>
+    <div class="papers">
+        <div id="2403.16218" class="panel paper" keywords="coverup,coverage,llm,codamosa,guided,branch,test,generation,improves,interleaving">
+            <h2 class="title">
+                <a href="https://arxiv.org/abs/2403.16218" target="_blank" title="1/1" data-eusoft-scrollable-element="1"><span class="index notranslate" data-eusoft-scrollable-element="1">#1</span></a>
+                <a id="title-2403.16218" class="title-link" href="" target="_blank" data-eusoft-scrollable-element="1">CoverUp: Coverage-Guided LLM-Based Test Generation</a>
+                <a id="pdf-2403.16218" class="title-pdf notranslate" data="https://arxiv.org/pdf/2403.16218" data-eusoft-scrollable-element="1">[PDF<sup id="pdf-stars-2403.16218" data-eusoft-scrollable-element="1">1</sup>]</a>
+                <a id="copy-2403.16218" class="title-copy notranslate" data-eusoft-scrollable-element="1">[Copy]</a>
+                <a id="kimi-2403.16218" class="title-kimi notranslate" data-eusoft-scrollable-element="1" data-clickable="true" style="">[Kimi<sup id="kimi-stars-2403.16218" data-eusoft-scrollable-element="1">13</sup>]</a>
+                <a id="rel-2403.16218" class="title-rel notranslate" data-eusoft-scrollable-element="1">[REL]</a>
+            </h2>
+            <p id="authors-2403.16218" class="metainfo authors notranslate"><strong data-eusoft-scrollable-element="1">Authors</strong>:
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Juan%20Altmayer%20Pizzorno" target="_blank" data-eusoft-scrollable-element="1">Juan Altmayer Pizzorno</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Emery%20D.%20Berger" target="_blank" data-eusoft-scrollable-element="1">Emery D. Berger</a>
+            </p>
+            <p id="summary-2403.16218" class="summary">This paper presents CoverUp, a novel system that drives the generation of high-coverage Python regression tests via a combination of coverage analysis and large-language models (LLMs). CoverUp iteratively improves coverage, interleaving coverage analysis with dialogs with the LLM to focus its attention on as yet uncovered lines and branches. The resulting test suites significantly improve coverage over the current state of the art: compared to CodaMosa, a hybrid LLM / search-based software testing system, CoverUp substantially improves coverage across the board. On a per-module basis, CoverUp achieves median line coverage of 81% (vs. 62%), branch coverage of 53% (vs. 35%) and line+branch coverage of 78% (vs. 55%). We show that CoverUp's iterative, coverage-guided approach is crucial to its effectiveness, contributing to nearly half of its successes.</p>
+            <p id="subjects-2403.16218" class="metainfo subjects"><strong data-eusoft-scrollable-element="1">Subjects</strong>:
+                <span class="interact-item" style="margin:0">
+                    <a class="subject-1" href="https://papers.cool/arxiv/cs.SE" target="_blank" data-eusoft-scrollable-element="1">Software Engineering</a>
+                    <i class="fa fa-plus-circle right-top" title="Add to watch list" value="cs.SE"></i>
+                    <i class="fa fa-minus-circle right-bottom" title="Add to exclusion list" value="cs.SE"></i>
+                </span>,
+                <span class="interact-item" style="margin:0">
+                    <a class="subject-2" href="https://papers.cool/arxiv/cs.AI" target="_blank" data-eusoft-scrollable-element="1">Artificial Intelligence</a>
+                    <i class="fa fa-plus-circle right-top" title="Add to watch list" value="cs.AI" style="color: green;"></i>
+                    <i class="fa fa-minus-circle right-bottom" title="Add to exclusion list" value="cs.AI"></i>
+                </span>,
+                <span class="interact-item" style="margin:0">
+                    <a class="subject-3" href="https://papers.cool/arxiv/cs.LG" target="_blank" data-eusoft-scrollable-element="1">Machine Learning</a>
+                    <i class="fa fa-plus-circle right-top" title="Add to watch list" value="cs.LG" style="color: green;"></i>
+                    <i class="fa fa-minus-circle right-bottom" title="Add to exclusion list" value="cs.LG"></i>
+                </span>,
+                <span class="interact-item" style="margin:0">
+                    <a class="subject-4" href="https://papers.cool/arxiv/cs.PL" target="_blank" data-eusoft-scrollable-element="1">Programming Languages</a>
+                    <i class="fa fa-plus-circle right-top" title="Add to watch list" value="cs.PL"></i>
+                    <i class="fa fa-minus-circle right-bottom" title="Add to exclusion list" value="cs.PL"></i>
+                </span>
+            </p>
+            <p id="date-2403.16218" class="metainfo date"><strong data-eusoft-scrollable-element="1">Publish</strong>: <span class="date-data" data-eusoft-scrollable-element="1">2024-03-24 16:18:27 UTC</span></p>
+            <div id="pdf-container-2403.16218" class="pdf-container" style="display:none"></div>
+            <div id="kimi-container-2403.16218" class="kimi-container notranslate" style="display: block;"><p class="faq-q"><strong>Q1</strong>: 这篇论文试图解决什么问题？</p>
+
+<div class="faq-a">
+
+<p>这篇论文提出了一个名为COVERUP的系统，旨在通过结合代码覆盖率分析和大型语言模型（LLMs）来生成高覆盖率的Python回归测试。COVERUP通过迭代改进覆盖率，将覆盖率分析与与LLM的对话交替进行，以集中注意力在尚未覆盖的代码行和分支上。与现有的测试生成工具相比，COVERUP能够显著提高代码覆盖率，特别是在难以通过传统方法实现全面覆盖的代码上。论文的主要贡献包括：</p>
+<ol>
+<li>提出了COVERUP系统，它利用覆盖率分析和大型语言模型来驱动生成高覆盖率的Python回归测试。</li>
+<li>通过实证分析展示了COVERUP的性能，证明了它在提高代码覆盖率方面显著超越了当前的最先进方法，如CODAMOSA。</li>
+<li>展示了COVERUP的迭代、覆盖率引导的方法对其有效性至关重要，对成功生成测试的贡献接近一半。</li>
+</ol>
+<p>论文通过与CODAMOSA系统的比较，展示了COVERUP在多个基准测试上的覆盖率提升，并探讨了COVERUP的迭代对话机制对于提高测试覆盖率的有效性。此外，论文还讨论了COVERUP面临的技术挑战和潜在的威胁，以及未来的研究方向。</p>
+</div>
+
+<p class="faq-q"><strong>Q2</strong>: 有哪些相关研究？</p>
+
+<div class="faq-a">
+
+<p>这篇论文在"II. RELATED WORK"部分提到了与COVERUP相关的几个研究领域和具体工作，包括：</p>
+<ol>
+<li><p><strong>自动化测试生成</strong>：这是一个成熟的研究领域，提出了多种方法，包括基于规范的、随机的、反馈引导随机的、符号执行引导的（"concolic"）、搜索基础的软件测试（SBST）和基于变换器的方法。</p>
+</li>
+<li><p><strong>TESTPILOT</strong>：一个基于LLM的工具，它根据被测试函数的实现、文档和使用代码片段来提示LLM生成JavaScript单元测试。与COVERUP不同，TESTPILOT不基于覆盖率信息进行提示，也不在新测试未能提高覆盖率时细化提示。</p>
+</li>
+<li><p><strong>Codex LLM</strong>：在Java测试用例生成方面的研究，它丢弃了无法编译的测试，而COVERUP则明确请求提高覆盖率的测试，并且在构建失败、测试失败或覆盖率不足时继续与LLM对话。</p>
+</li>
+<li><p><strong>基于API文档的LLM提示</strong>：Vikram等人讨论了基于API文档提示LLM生成Python的属性测试的方法。COVERUP则基于源代码和覆盖率测量进行提示，并接受LLM生成的属性测试，但不明确请求它们。</p>
+</li>
+<li><p><strong>TICODER</strong>：提示LLM基于代码的自然语言描述生成测试。TICODER的目标是澄清和形式化用户意图，而不是促进回归测试。</p>
+</li>
+<li><p><strong>FUZZ4ALL</strong>：使用两个独立的LLM来模糊测试不同编程语言的程序。与COVERUP不同，FUZZ4ALL基于文档或示例生成测试输入，并依赖用户提供的测试预言器进行测试。</p>
+</li>
+<li><p><strong>CODAMOSA</strong>：在介绍中提到，当SBST算法陷入困境时，CODAMOSA会提示Codex LLM生成测试。它基于覆盖率选择代码进行提示，但不像COVERUP那样在提示中使用覆盖率信息，也不系统地为所有缺乏覆盖率的代码提示测试。</p>
+</li>
+</ol>
+<p>这些相关工作为COVERUP的提出提供了背景和对比，展示了不同方法在自动化测试生成方面的应用和发展。COVERUP通过结合覆盖率分析和LLM的优势，提出了一种新的测试生成方法，旨在提高测试的覆盖率和有效性。</p>
+</div>
+
+<p class="faq-q"><strong>Q3</strong>: 论文如何解决这个问题？</p>
+
+<div class="faq-a">
+
+<p>论文通过提出COVERUP系统来解决自动化测试生成中覆盖率不足的问题。COVERUP的解决方案包括以下几个关键步骤：</p>
+<ol>
+<li><p><strong>代码分段（Code Segmentation）</strong>：</p>
+<ul>
+<li>使用SlipCover覆盖率分析器测量现有测试套件的代码覆盖率。</li>
+<li>根据覆盖率信息，从源代码中识别出需要更多测试的代码段。</li>
+</ul>
+</li>
+<li><p><strong>初始提示（Initial Prompting）</strong>：</p>
+<ul>
+<li>为每个识别出的代码段构造一个提示，明确指出缺少覆盖率的行和分支。</li>
+<li>提示中包含一个请求，要求生成一个pytest测试函数，以及一系列其他请求，如确保新测试的正确性和包含断言。</li>
+</ul>
+</li>
+<li><p><strong>验证和持续对话（Verification and Continued Chat）</strong>：</p>
+<ul>
+<li>执行LLM生成的测试，并使用SlipCover重新测量覆盖率。</li>
+<li>如果新测试提高了覆盖率，则保存它们；如果没有提高覆盖率或出现错误，则继续与LLM对话，指出问题并请求改进。</li>
+</ul>
+</li>
+<li><p><strong>集成检查（Integration Check）</strong>：</p>
+<ul>
+<li>在处理完所有代码段后，执行整个测试套件，以检测可能的集成问题，如测试间的副作用或“状态污染”。</li>
+<li>如果测试失败，尝试识别并禁用导致失败的测试。</li>
+</ul>
+</li>
+<li><p><strong>处理不稳定测试（Handling Flaky Tests）</strong>：</p>
+<ul>
+<li>支持通过pytest的自定义参数来指定测试重复执行次数，以识别和处理不稳定测试。</li>
+</ul>
+</li>
+<li><p><strong>技术挑战（Other Technical Challenges）</strong>：</p>
+<ul>
+<li>处理LLM推理和执行测试所需的时间，以及OpenAI API的各种限制。</li>
+<li>使用Python asyncio包异步执行提示和测试验证，以提高效率。</li>
+</ul>
+</li>
+</ol>
+<p>通过这种方法，COVERUP能够迭代地改进测试套件，专注于那些尚未被现有测试覆盖的代码部分。这种基于覆盖率的迭代方法对于COVERUP生成高覆盖率测试的成功至关重要。论文通过与现有的CODAMOSA系统进行比较，展示了COVERUP在多个基准测试上覆盖率的显著提升。</p>
+</div>
+
+<p class="faq-q"><strong>Q4</strong>: 论文做了哪些实验？</p>
+
+<div class="faq-a">
+
+<p>论文中进行了一系列的实验来评估COVERUP系统的性能和有效性。以下是实验的主要内容：</p>
+<ol>
+<li><p><strong>实验设置（Experimental Setup）</strong>：</p>
+<ul>
+<li>使用了CODAMOSA作者提供的基准测试套件（CM套件），该套件包含了35个项目中的486个Python模块，这些模块是Pynguin测试生成工具难以实现全面覆盖的案例。</li>
+<li>创建了第二个基准测试套件（PY套件），包含了Pynguin能够实现全面覆盖的模块，以评估COVERUP在易于覆盖的代码上的表现。</li>
+<li>使用了两个版本的CODAMOSA作为基线进行比较：原始版本（使用Codex模型）和适配了与COVERUP相同LLM的版本（使用GPT-4模型）。</li>
+</ul>
+</li>
+<li><p><strong>与先前技术相比较（Comparison to the Previous State of the Art）</strong>：</p>
+<ul>
+<li>在CM套件上评估COVERUP，并与CODAMOSA（codex）基线进行比较。</li>
+<li>测量并比较了线覆盖率（line coverage）、分支覆盖率（branch coverage）和两者的组合（line+branch coverage）。</li>
+</ul>
+</li>
+<li><p><strong>与使用最新LLM的CODAMOSA相比较（Comparison to CODAMOSA using a State-of-the-Art LLM）</strong>：</p>
+<ul>
+<li>运行使用GPT-4模型的CODAMOSA（gpt4）并在CM套件上测量所得覆盖率，与COVERUP的结果进行比较。</li>
+</ul>
+</li>
+<li><p><strong>持续对话的有效性（Effectiveness of COVERUP's Continued Dialogue）</strong>：</p>
+<ul>
+<li>分析COVERUP在CM套件上的日志，识别每个成功生成的测试是在第一次提示、第二次提示还是第三次提示后获得的。</li>
+<li>评估迭代提示对成功生成测试的贡献。</li>
+</ul>
+</li>
+<li><p><strong>威胁到有效性的讨论（Threats to Validity）</strong>：</p>
+<ul>
+<li>讨论了可能影响实验结果的几个威胁，包括基准测试选择、执行环境和LLM模型依赖性。</li>
+</ul>
+</li>
+<li><p><strong>性能分析</strong>：</p>
+<ul>
+<li>展示了COVERUP与CODAMOSA在覆盖率方面的比较图表，包括整体覆盖率和每个模块的中位数覆盖率。</li>
+<li>展示了COVERUP迭代对话对成功生成测试的贡献比例。</li>
+</ul>
+</li>
+</ol>
+<p>这些实验旨在全面评估COVERUP在自动化测试生成中的表现，并与现有的最先进方法进行比较。实验结果表明，COVERUP在提高代码覆盖率方面显著优于现有的自动化测试生成工具。</p>
+</div>
+
+<p class="faq-q"><strong>Q5</strong>: 有什么可以进一步探索的点？</p>
+
+<div class="faq-a">
+
+<p>论文在"VI. DISCUSSION AND FUTURE WORK"部分提出了一些未来的研究方向和可以进一步探索的点：</p>
+<ol>
+<li><p><strong>评估断言的有效性</strong>：</p>
+<ul>
+<li>COVERUP指导LLM生成包含断言的测试，但论文中提到，生成的断言可能不完全足够来验证测试后条件。未来的工作可以包括评估这些断言的有效性，并可能使用变异测试等技术来改进断言。</li>
+</ul>
+</li>
+<li><p><strong>处理缺失的Python模块</strong>：</p>
+<ul>
+<li>当LLM生成的测试需要系统中不存在的Python模块时，COVERUP可以提示LLM调整或重新制定测试以避免对这些模块的需求。未来的工作可以探索这种方法来自动解决模块缺失的问题。</li>
+</ul>
+</li>
+<li><p><strong>提供更多的上下文信息</strong>：</p>
+<ul>
+<li>由于COVERUP的提示可能缺乏足够的上下文信息，导致测试生成失败。未来的工作可以探索提供额外上下文的方法，例如使用OpenAI的函数调用功能来减少对持续提示的需求。</li>
+</ul>
+</li>
+<li><p><strong>适配其他LLMs</strong>：</p>
+<ul>
+<li>COVERUP目前是使用OpenAI的模型进行开发和评估的。未来的工作可以适配其他LLMs，特别是对于希望保护知识产权的行业从业者来说，使用本地部署的LLMs可能更感兴趣。</li>
+</ul>
+</li>
+<li><p><strong>处理不稳定测试</strong>：</p>
+<ul>
+<li>尽管论文没有深入讨论不稳定测试的问题，但未来的工作可以考虑通过让COVERUP指定测试应重复执行多次来识别和处理不稳定测试。</li>
+</ul>
+</li>
+<li><p><strong>提高测试生成的效率</strong>：</p>
+<ul>
+<li>论文提到了使用asyncio来异步执行提示和测试验证以提高效率。未来的工作可以探索更多优化技术，以减少LLM推理和测试执行所需的时间。</li>
+</ul>
+</li>
+<li><p><strong>扩展到其他编程语言</strong>：</p>
+<ul>
+<li>COVERUP目前专注于Python。未来的工作可以将COVERUP的概念扩展到其他编程语言，以生成更广泛的自动化测试。</li>
+</ul>
+</li>
+</ol>
+<p>这些潜在的研究方向可以帮助进一步提升自动化测试生成工具的性能，扩大其适用范围，并提高生成测试的质量。</p>
+</div>
+
+<p class="faq-q"><strong>Q6</strong>: 总结一下论文的主要内容</p>
+
+<div class="faq-a">
+
+<p>这篇论文主要内容的总结如下：</p>
+<ol>
+<li><p><strong>问题陈述</strong>：自动化测试生成工具常常难以实现高代码覆盖率，尤其是在复杂的代码基础上。</p>
+</li>
+<li><p><strong>系统介绍</strong>：论文提出了COVERUP，一个新颖的系统，它结合代码覆盖率分析和大型语言模型（LLMs）来生成高覆盖率的Python回归测试。</p>
+</li>
+<li><p><strong>方法论</strong>：</p>
+<ul>
+<li>使用SlipCover进行初始覆盖率分析，识别未充分覆盖的代码段。</li>
+<li>构造针对LLM的提示，明确指出未覆盖的行和分支，并请求生成提高覆盖率的测试。</li>
+<li>执行LLM生成的测试，并根据覆盖率结果进行迭代改进。</li>
+</ul>
+</li>
+<li><p><strong>实验评估</strong>：</p>
+<ul>
+<li>使用CM和PY基准测试套件评估COVERUP，并与现有的CODAMOSA系统进行比较。</li>
+<li>实验结果显示COVERUP在提高线覆盖率、分支覆盖率和组合覆盖率方面显著优于CODAMOSA。</li>
+</ul>
+</li>
+<li><p><strong>贡献</strong>：</p>
+<ul>
+<li>证明了COVERUP在多个基准测试上的覆盖率提升。</li>
+<li>展示了COVERUP的迭代、覆盖率引导的方法对成功生成测试的关键作用。</li>
+</ul>
+</li>
+<li><p><strong>未来工作</strong>：</p>
+<ul>
+<li>评估生成的测试断言的有效性。</li>
+<li>探索提供更多上下文信息的方法。</li>
+<li>适配其他LLMs并扩展到其他编程语言。</li>
+</ul>
+</li>
+<li><p><strong>威胁分析</strong>：</p>
+<ul>
+<li>讨论了实验结果可能受到的威胁，包括基准测试选择、执行环境和LLM模型依赖性。</li>
+</ul>
+</li>
+</ol>
+<p>论文的核心在于提出了一个能够显著提高自动化测试覆盖率的新方法，并通过实验验证了其有效性。同时，它也指出了未来研究的方向，以进一步提升自动化测试生成工具的性能和实用性。</p>
+<p class="faq-q"><strong>Q7</strong>: 想要进一步了解论文</p>
+
+<div class="faq-a">
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a href="http://kimi.com/_prefill_chat?prefill_prompt=%20%E6%88%91%E4%BB%AC%E8%A6%81%E8%AE%A8%E8%AE%BA%E7%9A%84%E8%AE%BA%E6%96%87%E6%98%AFCoverUp%3A%20Coverage-Guided%20LLM-Based%20Test%20Generation%EF%BC%8C%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://arxiv.org/pdf/2403.16218%20%20%EF%BC%8C%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://papers.cool/arxiv/kimi?paper=2403.16218%20%20%E3%80%82%E8%AF%B7%E4%BB%A5%E6%AD%A4%E4%B8%BA%E5%9F%BA%E7%A1%80%EF%BC%8C%E7%BB%A7%E7%BB%AD%E5%9B%9E%E7%AD%94%E6%88%91%E5%90%8E%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82&amp;system_prompt=%E4%BD%A0%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AD%A6%E6%9C%AF%E5%8A%A9%E6%89%8B%EF%BC%8C%E5%90%8E%E9%9D%A2%E7%9A%84%E5%AF%B9%E8%AF%9D%E5%B0%86%E5%9B%B4%E7%BB%95%E7%9D%80%E4%BB%A5%E4%B8%8B%E8%AE%BA%E6%96%87%E5%86%85%E5%AE%B9%E8%BF%9B%E8%A1%8C%EF%BC%8C%E5%B7%B2%E7%BB%8F%E9%80%9A%E8%BF%87%E9%93%BE%E6%8E%A5%E7%BB%99%E5%87%BA%E4%BA%86%E8%AE%BA%E6%96%87%E7%9A%84PDF%E5%92%8C%E8%AE%BA%E6%96%87%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E3%80%82%E7%94%A8%E6%88%B7%E5%B0%86%E7%BB%A7%E7%BB%AD%E5%90%91%E4%BD%A0%E5%92%A8%E8%AF%A2%E8%AE%BA%E6%96%87%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%EF%BC%8C%E8%AF%B7%E4%BD%A0%E4%BD%9C%E5%87%BA%E4%B8%93%E4%B8%9A%E7%9A%84%E5%9B%9E%E7%AD%94%EF%BC%8C%E4%B8%8D%E8%A6%81%E5%87%BA%E7%8E%B0%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%EF%BC%8C%E5%BD%93%E6%B6%89%E5%8F%8A%E5%88%B0%E5%88%86%E7%82%B9%E5%9B%9E%E7%AD%94%E6%97%B6%EF%BC%8C%E9%BC%93%E5%8A%B1%E4%BD%A0%E4%BB%A5markdown%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA%E3%80%82&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false" target="_blank"><strong>这里 <i class="fa fa-external-link"></i></strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></div></div>
+            <hr id="fold-2403.16218" class="hr hr-fold" style="display: block;">
+        </div>
+    </div>
+    <div class="footer notranslate">
+        Designed by <a href="https://kexue.fm/" target="_blank" data-eusoft-scrollable-element="1">kexue.fm</a> | Powered by <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank" data-eusoft-scrollable-element="1">kimi.ai</a>
+    </div>
+    <div id="app-bar" class="app-bar panel notranslate" style="opacity: 0;">
+        <div id="app-bar-search" class="app-bar-content" style="display:none">
+            <div class="app-search-keywords">
+                <div class="keywords-included">
+                    <p>Include(<a id="logic-included" title="The logical relationship between keywords (OR/AND)">OR</a>):</p>
+                    <textarea id="keywords-included" class="text-input" placeholder="LLM
+Transformer
+Attention"></textarea>
+                </div>
+                <div class="keywords-excluded">
+                    <p>Exclude:</p>
+                    <textarea id="keywords-excluded" class="text-input"></textarea>
+                </div>
+            </div>
+            <div class="submit">
+                <p><button type="button">Search</button></p>
+                <p><label><input type="checkbox" id="search-filter">Filter</label></p>
+                <p><label><input type="checkbox" id="search-highlight" checked="true">Highlight</label></p>
+            </div>
+        </div>
+        <div id="app-bar-star" class="app-bar-content" style="display:none">
+            <p>Stared Paper(s):</p>
+            <div class="items">
+                <p id="app-bar-star-2403.16218" style="display: block;">
+                    <span class="i-index">#1</span>
+                    <a class="i-title" href="#2403.16218">CoverUp: Coverage-Guided LLM-Based Test Generation</a>
+                    <a class="i-star" style="display: block;"><i class="fa fa-star"></i></a>
+                    <a class="i-unstar" style="display:none"><i class="fa fa-star-o"></i></a>
+                </p>
+            </div>
+            <div class="submit">
+                <p><button type="button">Export</button></p>
+                <p id="export-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-config" class="app-bar-content" style="display:none">
+            <p>Magic Token:</p>
+            <input id="magic-token" class="text-input single-line" type="text" placeholder="If unsure, ignore it." value="">
+            <p>Kimi Language:</p>
+            <select id="kimi-lang" name="kimi-lang" class="text-input single-line">
+                <option value="zh" selected="">中文</option>
+                <option value="en">English</option>
+            </select>
+            <p>Desc Language:</p>
+            <select id="desc-lang" name="desc-lang" class="text-input single-line">
+                <option value="zh">中文</option>
+                <option value="en" selected="">English</option>
+            </select>
+            <div class="submit">
+                <p><button type="button" class="save-btn">Save</button></p>
+                <p id="config-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-bug" class="app-bar-content" style="display:none">
+            <p>Bug report? Issue submit? Please visit:</p>
+            <p id="github-url"><strong>Github: </strong><a href="https://github.com/bojone/papers.cool" target="_blank">https://github.com/bojone/papers.cool</a></p>
+            <p style="padding-top:15px">Please read our <a href="https://github.com/bojone/papers.cool/blob/main/Disclaimer/README_en.md" target="_blank">Disclaimer</a> before proceeding.</p>
+            <p>For more interesting features, please visit <a href="https://kexue.fm/" target="_blank">kexue.fm</a> and <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank">kimi.ai</a>.</p>
+        </div>
+        <a class="bar-app" href="https://papers.cool/" title="Home Page"><i class="fa fa-home" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="In-page Search"><i class="fa fa-search" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Stared Papers"><i class="fa fa-star" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Configuration"><i class="fa fa-cog" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Bug Report"><i class="fa fa-bug" data-eusoft-scrollable-element="1"></i></a>
+    </div>
+    <div id="scroll-btn" style="opacity: 0;">
+        <button id="totop" title="Go to top"><i class="fa fa-chevron-up" data-eusoft-scrollable-element="1"></i></button>
+        <button id="tobottom" title="Go to bottom"><i class="fa fa-chevron-down" data-eusoft-scrollable-element="1"></i></button>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+
+
+<!-- Google tag (gtag.js) -->
+
+
+
+
+
+<script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2787122990="" ng-version="18.2.13"><template _ngcontent-ng-c2787122990=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c2787122990="" _nghost-ng-c3386348173=""><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2787122990="" _nghost-ng-c749930229=""><template _ngcontent-ng-c749930229=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c2787122990="" class="eusoft-chrome-extension-capture-word-container ng-tns-c4033922151-0 ng-star-inserted" data-scrapbook-shadowdom="&lt;style&gt;.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}&lt;/style&gt;&lt;style&gt;.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+&lt;/style&gt;&lt;style&gt;.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}&lt;/style&gt;&lt;!----&gt;&lt;!----&gt;&lt;div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c4033922151-0&quot; data-content-script-theme=&quot;light&quot;&gt;&lt;!----&gt;&lt;/div&gt;"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2787122990="" _nghost-ng-c3081775404=""><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>

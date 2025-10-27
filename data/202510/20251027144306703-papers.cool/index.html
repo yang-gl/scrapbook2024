@@ -1,0 +1,560 @@
+<!DOCTYPE html><html data-scrapbook-source="https://papers.cool/arxiv/2503.13580" data-scrapbook-create="20251027144306703"><head><meta charset="UTF-8">
+    <title>LLM Test Generation via Iterative Hybrid Program Analysis | Cool Papers - Immersive Paper Discovery</title>
+    <meta name="description" content="Automating unit test generation remains a significant challenge, particularly for complex methods in real-world projects. While Large Language Models (LLMs) have made strides in code generation, they struggle to achieve high branch coverage due to their limited ability to reason about intricate control flow structures. To address this limitation, we introduce Panta, a technique that emulates the iterative process human developers follow when analyzing code and constructing test cases. Panta integrates static control flow analysis and dynamic code coverage analysis to systematically guide LLMs in identifying uncovered execution paths and generating better test cases. By incorporating an iterative feedback-driven mechanism, our technique continuously refines test generation based on static and dynamic path coverage insights, ensuring more comprehensive and effective testing. Our empirical evaluation, conducted on classes with high cyclomatic complexity from open-source projects, demonstrates that Panta achieves 26% higher line coverage and 23% higher branch coverage compared to the state-of-the-art.">
+    <meta name="keywords" content="Cool Papers, Immersive Discovery, arXiv Research, AI Paper Assistant, Paper FAQ, Kimi Chat, Scholarly Papers, Academic Research, Paper Screening AI, Conference Papers, Research Paper Exploration">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="citation_title" content="LLM Test Generation via Iterative Hybrid Program Analysis">
+    <meta name="citation_authors" content="Sijia Gu; Noor Nashid; Ali Mesbah">
+    <meta name="citation_abstract" content="Automating unit test generation remains a significant challenge, particularly for complex methods in real-world projects. While Large Language Models (LLMs) have made strides in code generation, they struggle to achieve high branch coverage due to their limited ability to reason about intricate control flow structures. To address this limitation, we introduce Panta, a technique that emulates the iterative process human developers follow when analyzing code and constructing test cases. Panta integrates static control flow analysis and dynamic code coverage analysis to systematically guide LLMs in identifying uncovered execution paths and generating better test cases. By incorporating an iterative feedback-driven mechanism, our technique continuously refines test generation based on static and dynamic path coverage insights, ensuring more comprehensive and effective testing. Our empirical evaluation, conducted on classes with high cyclomatic complexity from open-source projects, demonstrates that Panta achieves 26% higher line coverage and 23% higher branch coverage compared to the state-of-the-art.">
+    <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2503.13580">
+    <meta name="citation_public_url" content="https://papers.cool/arxiv/2503.13580">
+    <meta name="citation_publisher" content="cs.SE - arXiv">
+    <meta name="citation_date" content="2025-03-17">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="font-awesome.min.css">
+    <link rel="stylesheet" href="flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888; display: contents}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style>.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em 0.7em;; position: relative; display: inline-block!important;; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none; box-sizing: content-box}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_test {font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.MathJax_test.mjx-test-display {display: table!important}
+.MathJax_test.mjx-test-inline {display: inline!important; margin-right: -1px}
+.MathJax_test.mjx-test-default {display: block!important; clear: both}
+.MathJax_ex_box {display: inline-block!important; position: absolute; overflow: hidden; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0; width: 1px; height: 60ex}
+.MathJax_em_box {display: inline-block!important; position: absolute; overflow: hidden; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0; width: 1px; height: 60em}
+.mjx-test-inline .MathJax_left_box {display: inline-block; width: 0; float: left}
+.mjx-test-inline .MathJax_right_box {display: inline-block; width: 0; float: right}
+.mjx-test-display .MathJax_right_box {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url("MathJax_Main-Regular.woff") format('woff'), url("MathJax_Main-Regular.otf") format('opentype')}
+@font-face {font-family: MathJax_Main; src: url("MathJax_Main-Bold.woff") format('woff'), url("MathJax_Main-Bold.otf") format('opentype'); font-weight: bold}
+@font-face {font-family: MathJax_Main; src: url("MathJax_Main-Italic.woff") format('woff'), url("MathJax_Main-Italic.otf") format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Math; src: url("MathJax_Math-Italic.woff") format('woff'), url("MathJax_Math-Italic.otf") format('opentype'); font-style: italic}
+@font-face {font-family: MathJax_Caligraphic; src: url("") format('woff'), url("") format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url("") format('woff'), url("") format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url("") format('woff'), url("") format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url("") format('woff'), url("") format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url("") format('woff'), url("") format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","app-capture-word","app-translate-failed-retry"])</script></head>
+<body id="arxiv"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"><br><br><br><br><br></div></div><div id="MathJax_Message" style="display: none;"></div>
+    <h1 class="notranslate">2503.13580</h1>
+    <p class="info notranslate">
+        Total: 1
+    </p>
+    <div class="papers">
+        <div id="2503.13580" class="panel paper" keywords="panta,coverage,test,generation,iterative,projects,code,branch,cyclomatic,analysis">
+            <h2 class="title">
+                <a href="https://arxiv.org/abs/2503.13580" target="_blank" title="1/1" data-eusoft-scrollable-element="1"><span class="index notranslate" data-eusoft-scrollable-element="1">#1</span></a>
+                <a id="title-2503.13580" class="title-link" href="" target="_blank" data-eusoft-scrollable-element="1">LLM Test Generation via Iterative Hybrid Program Analysis</a>
+                <a id="pdf-2503.13580" class="title-pdf notranslate" data="https://arxiv.org/pdf/2503.13580" data-eusoft-scrollable-element="1">[PDF<sup id="pdf-stars-2503.13580" data-eusoft-scrollable-element="1"></sup>]</a>
+                <a id="copy-2503.13580" class="title-copy notranslate" data-eusoft-scrollable-element="1">[Copy]</a>
+                <a id="kimi-2503.13580" class="title-kimi notranslate" data-eusoft-scrollable-element="1" data-clickable="true" style="">[Kimi<sup id="kimi-stars-2503.13580" data-eusoft-scrollable-element="1">4</sup>]</a>
+                <a id="rel-2503.13580" class="title-rel notranslate" data-eusoft-scrollable-element="1">[REL]</a>
+            </h2>
+            <p id="authors-2503.13580" class="metainfo authors notranslate"><strong data-eusoft-scrollable-element="1">Authors</strong>:
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Sijia%20Gu" target="_blank" data-eusoft-scrollable-element="1">Sijia Gu</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Noor%20Nashid" target="_blank" data-eusoft-scrollable-element="1">Noor Nashid</a>,
+                <a class="author notranslate" href="https://arxiv.org/search/?searchtype=author&amp;query=Ali%20Mesbah" target="_blank" data-eusoft-scrollable-element="1">Ali Mesbah</a>
+            </p>
+            <p id="summary-2503.13580" class="summary">Automating unit test generation remains a significant challenge, particularly for complex methods in real-world projects. While Large Language Models (LLMs) have made strides in code generation, they struggle to achieve high branch coverage due to their limited ability to reason about intricate control flow structures. To address this limitation, we introduce Panta, a technique that emulates the iterative process human developers follow when analyzing code and constructing test cases. Panta integrates static control flow analysis and dynamic code coverage analysis to systematically guide LLMs in identifying uncovered execution paths and generating better test cases. By incorporating an iterative feedback-driven mechanism, our technique continuously refines test generation based on static and dynamic path coverage insights, ensuring more comprehensive and effective testing. Our empirical evaluation, conducted on classes with high cyclomatic complexity from open-source projects, demonstrates that Panta achieves 26% higher line coverage and 23% higher branch coverage compared to the state-of-the-art.</p>
+            <p id="subjects-2503.13580" class="metainfo subjects"><strong data-eusoft-scrollable-element="1">Subjects</strong>:
+                <span class="interact-item" style="margin:0">
+                    <a class="subject-1" href="https://papers.cool/arxiv/cs.SE" target="_blank" data-eusoft-scrollable-element="1">Software Engineering</a>
+                    <i class="fa fa-plus-circle right-top" title="Add to watch list" value="cs.SE"></i>
+                    <i class="fa fa-minus-circle right-bottom" title="Add to exclusion list" value="cs.SE"></i>
+                </span>,
+                <span class="interact-item" style="margin:0">
+                    <a class="subject-2" href="https://papers.cool/arxiv/cs.AI" target="_blank" data-eusoft-scrollable-element="1">Artificial Intelligence</a>
+                    <i class="fa fa-plus-circle right-top" title="Add to watch list" value="cs.AI" style="color: green;"></i>
+                    <i class="fa fa-minus-circle right-bottom" title="Add to exclusion list" value="cs.AI"></i>
+                </span>
+            </p>
+            <p id="date-2503.13580" class="metainfo date"><strong data-eusoft-scrollable-element="1">Publish</strong>: <span class="date-data" data-eusoft-scrollable-element="1">2025-03-17 16:10:38 UTC</span></p>
+            <div id="pdf-container-2503.13580" class="pdf-container" style="display:none"></div>
+            <div id="kimi-container-2503.13580" class="kimi-container notranslate" style="display: block;"><p class="faq-q"><strong>Q1</strong>: 这篇论文试图解决什么问题？</p>
+
+<div class="faq-a">
+
+<p>这篇论文试图解决自动化单元测试生成中的一个重要挑战：如何提高大型语言模型（LLMs）在复杂代码中的分支覆盖率。尽管LLMs在代码生成方面取得了显著进展，包括能够生成具有有意义变量名的测试用例，但它们在处理复杂控制流结构时仍然存在局限性，尤其是在涉及多个条件分支的复杂方法中，LLMs生成的测试用例往往无法达到足够的分支覆盖率。为了解决这一问题，论文提出了Panta技术，通过结合静态控制流分析和动态代码覆盖分析，迭代地指导LLMs生成能够覆盖更多执行路径的测试用例，从而实现更全面和有效的测试。</p>
+</div>
+
+<p class="faq-q"><strong>Q2</strong>: 有哪些相关研究？</p>
+
+<div class="faq-a">
+
+<p>以下是与本文相关的研究工作，这些研究主要集中在自动化单元测试生成领域，特别是利用大型语言模型（LLMs）进行测试生成的方法：</p>
+<h3>自动化单元测试生成方法</h3>
+<ul>
+<li><strong>搜索基础方法</strong>：<ul>
+<li><strong>EvoSuite</strong>：一种流行的搜索基础方法，用于Java语言的自动化单元测试生成。它利用进化算法生成高覆盖率的单元测试，但生成的测试用例可能难以理解且缺乏有意义的断言。</li>
+<li><strong>Pynguin</strong>：针对Python语言的自动化单元测试生成工具，也采用进化算法来生成测试用例。</li>
+</ul>
+</li>
+<li><strong>基于学习的方法</strong>：<ul>
+<li><strong>ATLAS</strong>：使用神经机器翻译模型自动生成测试方法中的有意义断言语句，以提高测试用例的质量。</li>
+<li><strong>AthenaTest</strong>：基于Transformer模型，利用开发者编写的测试用例进行训练，生成更易读且准确的测试用例。</li>
+</ul>
+</li>
+</ul>
+<h3>基于LLMs的测试生成方法</h3>
+<ul>
+<li><strong>TestGen-LLM</strong>：Meta公司开发的一种方法，利用LLMs自动增强现有的人类编写的测试用例。</li>
+<li><strong>Libro</strong>：从错误报告中直接生成测试用例。</li>
+<li><strong>Cedar</strong>：介绍了一种基于检索的演示选择方法，用于改进测试断言生成。</li>
+<li><strong>CodaMosa</strong>：通过结合LLMs，增强了基于搜索的测试生成工具Pynguin，以克服覆盖瓶颈。</li>
+<li><strong>UTGen</strong>：将基于搜索的软件测试与LLMs相结合，以提高EvoSuite生成的单元测试的可理解性。</li>
+<li><strong>ChatUniTest</strong>：遵循生成-验证-修复机制来优化LLMs生成的测试用例。</li>
+<li><strong>ASTER</strong>：描述了一个适用于多种编程语言和复杂软件系统的通用测试生成流程，这些系统需要环境模拟。</li>
+</ul>
+<h3>LLMs测试生成能力的实证研究</h3>
+<ul>
+<li><strong>JavaScript</strong>：对不同LLMs在JavaScript语言中的测试生成能力进行了评估。</li>
+<li><strong>Java</strong>：对LLMs在Java语言中的测试生成能力进行了实证研究，发现LLMs在复杂方法的测试生成中存在不足，尤其是在实际项目中难以实现足够的分支覆盖率。</li>
+<li><strong>Python</strong>：对LLMs在Python语言中的测试生成能力进行了评估。</li>
+</ul>
+<h3>提供额外程序信息以增强LLMs测试生成的方法</h3>
+<ul>
+<li><strong>HITS</strong>：提示LLMs将焦点方法分解为片段，并为每个片段生成测试用例。这些“片段”不是传统程序切片技术的结果，而是由LLMs生成的任意方法片段。</li>
+<li><strong>SymPrompt</strong>：使用符号执行从每个待测试方法中提取路径约束，然后将大量的路径约束缩减为可管理的约束子集，并逐步生成测试用例。</li>
+<li><strong>CoverUp</strong>：提供代码覆盖信息以指示代码中尚未覆盖的部分，但未指导LLMs如何有效覆盖这些未覆盖的部分。</li>
+</ul>
+</div>
+
+<p class="faq-q"><strong>Q3</strong>: 论文如何解决这个问题？</p>
+
+<div class="faq-a">
+
+<p>论文通过提出 <strong>Panta</strong> 技术来解决自动化单元测试生成中提高大型语言模型（LLMs）分支覆盖率的问题。Panta 的核心思想是模拟人类开发人员在分析代码和构建测试用例时的迭代过程，通过结合静态控制流分析和动态代码覆盖分析，系统地指导 LLMs 识别未覆盖的执行路径并生成更好的测试用例。以下是 Panta 解决问题的具体方法：</p>
+<h3>1. 静态路径近似（Static Path Approximation）</h3>
+<p>Panta 使用控制流图（CFG）来提取潜在的执行路径。具体步骤如下：</p>
+<ul>
+<li><strong>构建控制流图</strong>：利用现有的 CFG 生成技术为整个源文件构建控制流图 <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-50" style="width: 3.284em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.708em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.43em, 1002.71em, 2.747em, -1000em); top: -2.292em; left: 0em;"><span class="mrow" id="MathJax-Span-51"><span class="mi" id="MathJax-Span-52" style="font-family: MathJax_Math; font-style: italic;">C<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.045em;"></span></span><span class="mi" id="MathJax-Span-53" style="font-family: MathJax_Math; font-style: italic;">F<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.106em;"></span></span><span class="msubsup" id="MathJax-Span-54"><span style="display: inline-block; position: relative; width: 1.221em; height: 0px;"><span style="position: absolute; clip: rect(1.43em, 1000.76em, 2.47em, -1000em); top: -2.292em; left: 0em;"><span class="mi" id="MathJax-Span-55" style="font-family: MathJax_Math; font-style: italic;">G</span><span style="display: inline-block; width: 0px; height: 2.292em;"></span></span><span style="position: absolute; top: -2.033em; left: 0.781em;"><span class="mi" id="MathJax-Span-56" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">f<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.042em;"></span></span><span style="display: inline-block; width: 0px; height: 2.188em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.292em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.421em; border-left: 0px solid; width: 0px; height: 1.33em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>C</mi><mi>F</mi><msub><mi>G</mi><mi>f</mi></msub></math></span></span>。</li>
+<li><strong>识别待测试方法</strong>：从源文件中识别出待测试的方法（MUTs），排除辅助方法（如私有方法、getter 和 setter）。</li>
+<li><strong>提取方法级控制流图</strong>：对于每个 MUT，从 <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-57" style="width: 3.284em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.708em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.43em, 1002.71em, 2.747em, -1000em); top: -2.292em; left: 0em;"><span class="mrow" id="MathJax-Span-58"><span class="mi" id="MathJax-Span-59" style="font-family: MathJax_Math; font-style: italic;">C<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.045em;"></span></span><span class="mi" id="MathJax-Span-60" style="font-family: MathJax_Math; font-style: italic;">F<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.106em;"></span></span><span class="msubsup" id="MathJax-Span-61"><span style="display: inline-block; position: relative; width: 1.221em; height: 0px;"><span style="position: absolute; clip: rect(1.43em, 1000.76em, 2.47em, -1000em); top: -2.292em; left: 0em;"><span class="mi" id="MathJax-Span-62" style="font-family: MathJax_Math; font-style: italic;">G</span><span style="display: inline-block; width: 0px; height: 2.292em;"></span></span><span style="position: absolute; top: -2.033em; left: 0.781em;"><span class="mi" id="MathJax-Span-63" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">f<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.042em;"></span></span><span style="display: inline-block; width: 0px; height: 2.188em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.292em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.421em; border-left: 0px solid; width: 0px; height: 1.33em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>C</mi><mi>F</mi><msub><mi>G</mi><mi>f</mi></msub></math></span></span> 中提取其对应的方法级控制流图 <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-64" style="width: 3.596em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.969em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.43em, 1002.97em, 2.606em, -1000em); top: -2.292em; left: 0em;"><span class="mrow" id="MathJax-Span-65"><span class="mi" id="MathJax-Span-66" style="font-family: MathJax_Math; font-style: italic;">C<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.045em;"></span></span><span class="mi" id="MathJax-Span-67" style="font-family: MathJax_Math; font-style: italic;">F<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.106em;"></span></span><span class="msubsup" id="MathJax-Span-68"><span style="display: inline-block; position: relative; width: 1.481em; height: 0px;"><span style="position: absolute; clip: rect(1.43em, 1000.76em, 2.47em, -1000em); top: -2.292em; left: 0em;"><span class="mi" id="MathJax-Span-69" style="font-family: MathJax_Math; font-style: italic;">G</span><span style="display: inline-block; width: 0px; height: 2.292em;"></span></span><span style="position: absolute; top: -2.038em; left: 0.781em;"><span class="mi" id="MathJax-Span-70" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">m</span><span style="display: inline-block; width: 0px; height: 2.188em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.292em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.252em; border-left: 0px solid; width: 0px; height: 1.16em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>C</mi><mi>F</mi><msub><mi>G</mi><mi>m</mi></msub></math></span></span>。</li>
+<li><strong>计算圈复杂度</strong>：计算每个方法的圈复杂度（CYC），定义为 <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-4-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;Y&lt;/mi&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;&amp;#x0023;&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;&amp;#x0023;&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-71" style="width: 15.836em; display: inline-block;"><span style="display: inline-block; position: relative; width: 13.177em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.43em, 1013.13em, 2.653em, -1000em); top: -2.292em; left: 0em;"><span class="mrow" id="MathJax-Span-72"><span class="mi" id="MathJax-Span-73" style="font-family: MathJax_Math; font-style: italic;">C<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.045em;"></span></span><span class="mi" id="MathJax-Span-74" style="font-family: MathJax_Math; font-style: italic; text-rendering: optimizelegibility;">Y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.182em;"></span></span><span class="mi" id="MathJax-Span-75" style="font-family: MathJax_Math; font-style: italic;">C<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.045em;"></span></span><span class="mo" id="MathJax-Span-76" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="mi" id="MathJax-Span-77" style="font-family: MathJax_Main; padding-left: 0.278em;">#</span><span class="mi" id="MathJax-Span-78" style="font-family: MathJax_Math; font-style: italic;">e</span><span class="mi" id="MathJax-Span-79" style="font-family: MathJax_Math; font-style: italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mi" id="MathJax-Span-80" style="font-family: MathJax_Math; font-style: italic;">g<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mi" id="MathJax-Span-81" style="font-family: MathJax_Math; font-style: italic;">e</span><span class="mi" id="MathJax-Span-82" style="font-family: MathJax_Math; font-style: italic;">s</span><span class="mo" id="MathJax-Span-83" style="font-family: MathJax_Main; padding-left: 0.222em;">−</span><span class="mi" id="MathJax-Span-84" style="font-family: MathJax_Main; padding-left: 0.222em;">#</span><span class="mi" id="MathJax-Span-85" style="font-family: MathJax_Math; font-style: italic;">n</span><span class="mi" id="MathJax-Span-86" style="font-family: MathJax_Math; font-style: italic;">o</span><span class="mi" id="MathJax-Span-87" style="font-family: MathJax_Math; font-style: italic;">d<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mi" id="MathJax-Span-88" style="font-family: MathJax_Math; font-style: italic;">e</span><span class="mi" id="MathJax-Span-89" style="font-family: MathJax_Math; font-style: italic;">s</span><span class="mo" id="MathJax-Span-90" style="font-family: MathJax_Main; padding-left: 0.222em;">+</span><span class="mn" id="MathJax-Span-91" style="font-family: MathJax_Main; padding-left: 0.222em;">2</span></span><span style="display: inline-block; width: 0px; height: 2.292em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.308em; border-left: 0px solid; width: 0px; height: 1.217em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>C</mi><mi>Y</mi><mi>C</mi><mo>=</mo><mi mathvariant="normal">#</mi><mi>e</mi><mi>d</mi><mi>g</mi><mi>e</mi><mi>s</mi><mo>−</mo><mi mathvariant="normal">#</mi><mi>n</mi><mi>o</mi><mi>d</mi><mi>e</mi><mi>s</mi><mo>+</mo><mn>2</mn></math></span></span>。</li>
+<li><strong>路径探索</strong>：使用广度优先搜索（BFS）算法从 <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-5-Frame" tabindex="0" style="position: relative;" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-92" style="width: 3.596em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.969em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.43em, 1002.97em, 2.606em, -1000em); top: -2.292em; left: 0em;"><span class="mrow" id="MathJax-Span-93"><span class="mi" id="MathJax-Span-94" style="font-family: MathJax_Math; font-style: italic;">C<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.045em;"></span></span><span class="mi" id="MathJax-Span-95" style="font-family: MathJax_Math; font-style: italic;">F<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.106em;"></span></span><span class="msubsup" id="MathJax-Span-96"><span style="display: inline-block; position: relative; width: 1.481em; height: 0px;"><span style="position: absolute; clip: rect(1.43em, 1000.76em, 2.47em, -1000em); top: -2.292em; left: 0em;"><span class="mi" id="MathJax-Span-97" style="font-family: MathJax_Math; font-style: italic;">G</span><span style="display: inline-block; width: 0px; height: 2.292em;"></span></span><span style="position: absolute; top: -2.038em; left: 0.781em;"><span class="mi" id="MathJax-Span-98" style="font-size: 70.7%; font-family: MathJax_Math; font-style: italic;">m</span><span style="display: inline-block; width: 0px; height: 2.188em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.292em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.252em; border-left: 0px solid; width: 0px; height: 1.16em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>C</mi><mi>F</mi><msub><mi>G</mi><mi>m</mi></msub></math></span></span> 中探索路径，确保每条路径至少包含一个未访问的边，直到所有边都被访问。</li>
+</ul>
+<p>通过这种方法，Panta 能够为每个 MUT 提取一组线性独立的路径，每条路径至少包含一个新边，从而确保路径的多样性。</p>
+<h3>2. 动态路径选择（Dynamic Path Selection）</h3>
+<p>Panta 结合动态代码覆盖数据和静态路径，选择需要额外测试覆盖的路径。具体步骤如下：</p>
+<ul>
+<li><strong>执行测试并收集覆盖信息</strong>：运行当前测试套件，收集代码覆盖数据，识别未覆盖的语句和分支。</li>
+<li><strong>筛选候选路径</strong>：对于每个 MUT，过滤掉已完全覆盖或选择次数超过限制的路径，保留包含未覆盖语句或分支的路径作为候选路径。</li>
+<li><strong>计算覆盖缺陷分数</strong>：对于每条候选路径，计算其覆盖缺陷分数（missedScore），等于路径中未覆盖语句和分支的数量之和。</li>
+<li><strong>选择路径</strong>：根据 exploitation（选择覆盖缺陷分数最高的路径）和 exploration（选择之前选择次数最少的路径）策略，从候选路径中选择两条路径。</li>
+</ul>
+<p>通过这种策略，Panta 能够在每次迭代中选择最有潜力提高代码覆盖的路径，同时确保路径选择的多样性。</p>
+<h3>3. 程序分析引导的提示模板（Program Analysis Guided Prompt Template）</h3>
+<p>Panta 构建了一个结构化的提示模板，将选择的路径插入其中，指导 LLM 生成测试用例。提示模板包括以下部分：</p>
+<ul>
+<li><strong>源文件</strong>：包含完整源代码及行号，便于将路径行映射回代码中的位置。</li>
+<li><strong>测试文件</strong>：包含当前已有的测试用例。</li>
+<li><strong>测试依赖</strong>：指定测试所需的包及其版本。</li>
+<li><strong>失败测试</strong>：包含上一次迭代中失败的测试用例及其错误信息，为 LLM 提供反馈。</li>
+<li><strong>待测试方法</strong>：列出每个 MUT 及其选择的路径，指导 LLM 生成覆盖这些路径的测试用例。</li>
+</ul>
+<h3>4. 迭代测试生成框架（Iterative Test Generation Framework）</h3>
+<p>Panta 采用迭代工作流，结合动态和静态程序分析，逐步提高测试覆盖率。具体步骤如下：</p>
+<ul>
+<li><strong>初始化</strong>：准备源文件、目标测试文件和测试依赖。</li>
+<li><strong>路径提取</strong>：使用静态路径近似算法提取路径。</li>
+<li><strong>测试生成</strong>：根据当前代码覆盖率，选择合适的提示策略，引导 LLM 生成测试用例。</li>
+<li><strong>测试验证</strong>：验证生成的测试用例，将通过的测试用例添加到测试文件中，将失败的测试用例收集起来进行修复。</li>
+<li><strong>测试修复</strong>：尝试修复失败的测试用例，将修复后的测试用例重新加入测试文件。</li>
+<li><strong>反馈循环</strong>：将修复失败的测试用例及其错误信息反馈给 LLM，作为下一次迭代的输入。</li>
+</ul>
+<p>通过这种迭代过程，Panta 不断优化测试生成，直到达到预设的停止条件（如达到最大迭代次数、代码覆盖率不再提升或达到 100%）。</p>
+<h3>5. 实证评估（Empirical Evaluation）</h3>
+<p>为了验证 Panta 的有效性，作者在 Defects4J 基准中的真实世界开源项目上进行了实证评估。评估结果表明，Panta 在行覆盖率和分支覆盖率方面显著优于现有方法，平均行覆盖率提高了 26%，分支覆盖率提高了 23%。此外，Panta 在高覆盖率计数（HCC）和变异分数方面也表现出色，进一步证明了其生成测试用例的高质量和有效性。</p>
+<p>通过上述方法，Panta 成功地解决了 LLMs 在复杂代码中生成测试用例时分支覆盖率不足的问题，为自动化单元测试生成领域提供了一种有效的解决方案。</p>
+</div>
+
+<p class="faq-q"><strong>Q4</strong>: 论文做了哪些实验？</p>
+
+<div class="faq-a">
+
+<p>论文通过一系列实验来评估Panta技术在自动化单元测试生成中的有效性。实验设计旨在回答以下三个研究问题（RQs）：</p>
+<h3>RQ1: 生成测试质量比较</h3>
+<ul>
+<li><strong>目的</strong>：比较Panta与现有最先进的测试生成技术（如SymPrompt）在生成测试质量上的差异。</li>
+<li><strong>方法</strong>：作者在Defects4J基准测试中的14个真实世界开源项目上进行了实验。这些项目涵盖了130个类，包含2,971个待测试方法（MUTs）。实验中，Panta和SymPrompt都被要求为这些类生成新的测试用例，并且测试生成是在没有现有测试用例的情况下进行的。</li>
+<li><strong>评估指标</strong>：使用了行覆盖率、分支覆盖率、通过率、高覆盖率计数（HCC）和变异分数等指标来评估测试质量。</li>
+<li><strong>结果</strong>：Panta在所有项目上的行覆盖率和分支覆盖率都显著高于SymPrompt，平均行覆盖率高出26.3%，分支覆盖率高出22.7%。在高覆盖率计数（HCC）方面，Panta有45个类达到了至少75%的分支覆盖率，而SymPrompt只有16个。此外，Panta的变异分数也高于SymPrompt，表明Panta生成的测试在检测代码中的错误方面更为有效。</li>
+</ul>
+<h3>RQ2: Panta各组件的贡献</h3>
+<ul>
+<li><strong>目的</strong>：评估Panta中每个组件对整体测试质量的贡献。</li>
+<li><strong>方法</strong>：作者设计了不同的Panta变体，这些变体为LLM提供了不同程度的信息用于测试生成。具体包括：<ul>
+<li><strong>基线</strong>：仅使用基本的源文件、测试依赖和新测试文件信息，不使用迭代、测试修复或反馈机制。</li>
+<li><strong>Panta_basic</strong>：在每次迭代中仅使用基本的源文件、测试依赖和新测试文件信息，不结合任何程序分析数据。</li>
+<li><strong>Panta_cov</strong>：在基本信息的基础上增加了代码覆盖信息，但没有提供路径选择的细节。</li>
+<li><strong>Panta</strong>：完整的Panta方法，结合了代码覆盖信息和路径选择策略。</li>
+</ul>
+</li>
+<li><strong>评估指标</strong>：同样使用行覆盖率、分支覆盖率和通过率等指标。</li>
+<li><strong>结果</strong>：与基线相比，Panta_basic在行覆盖率和分支覆盖率上分别提高了27.65%和25.77%，表明迭代框架显著提高了代码覆盖率。Panta_cov在覆盖率上与Panta_basic相近，但在复杂项目中略显不足。完整的Panta方法进一步提高了覆盖率，与Panta_basic相比，行覆盖率和分支覆盖率分别提高了约10%。这表明结合代码覆盖驱动的路径选择（算法2）可以进一步提高覆盖率，尤其是在复杂项目中。</li>
+</ul>
+<h3>RQ3: 不同LLMs对Panta性能的影响</h3>
+<ul>
+<li><strong>目的</strong>：评估不同LLMs对Panta在测试生成性能上的影响。</li>
+<li><strong>方法</strong>：除了主要使用的Llama 3.3 70B模型外，作者还在三个其他模型上评估了Panta：Mistral Large 2、GPT-4o Mini和Claude 3.5 Haiku。这些模型包括开源模型和专有模型，以评估不同模型的性能差异。</li>
+<li><strong>评估指标</strong>：使用行覆盖率、分支覆盖率、通过率和变异分数等指标。</li>
+<li><strong>结果</strong>：Claude模型在行覆盖率、分支覆盖率和变异分数方面表现最佳，但作为专有模型，其API定价较高。Llama模型在覆盖率和变异分数方面表现接近Claude，且作为开源模型，成本效益更高。GPT模型在覆盖率方面表现最差。</li>
+</ul>
+<h3>实验设置</h3>
+<ul>
+<li><strong>主体程序</strong>：从Defects4J v2.0.1中选择了14个符合Java 8、Maven和JUnit兼容性的项目，排除了三个过时的项目（Chart、Mockito和Closure）。</li>
+<li><strong>评估指标</strong>：除了上述提到的覆盖率和变异分数外，还使用了通过率来衡量生成测试的成功率。</li>
+<li><strong>LLM选择</strong>：主要使用Llama 3.3 70B模型进行评估，并在RQ3中评估了其他三个模型。</li>
+</ul>
+<h3>实验结果总结</h3>
+<ul>
+<li>Panta在行覆盖率和分支覆盖率上显著优于现有的测试生成技术，平均行覆盖率高出26.3%，分支覆盖率高出22.7%。</li>
+<li>Panta的迭代框架和结合代码覆盖信息的路径选择策略对提高测试覆盖率有显著贡献。</li>
+<li>不同LLMs对Panta的性能有影响，Claude模型表现最佳，但Llama模型作为开源模型，提供了成本效益较高的解决方案。</li>
+</ul>
+</div>
+
+<p class="faq-q"><strong>Q5</strong>: 有什么可以进一步探索的点？</p>
+
+<div class="faq-a">
+
+<p>尽管Panta在自动化单元测试生成方面取得了显著进展，但仍有一些可以进一步探索和改进的点。以下是一些潜在的研究方向和改进点：</p>
+<h3>1. <strong>跨类上下文支持</strong></h3>
+<ul>
+<li><strong>问题</strong>：当前Panta技术主要关注单个类的测试生成，对于依赖继承的类，其效果可能会受到限制。这些类通常会覆盖父类方法，导致缺乏显式的方法实现，从而降低了控制流分析的有效性。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>跨类分析</strong>：扩展Panta以支持跨类上下文，考虑类之间的继承关系和方法覆盖情况，从而更全面地生成测试用例。</li>
+<li><strong>多类联合测试</strong>：研究如何同时生成多个相关类的测试用例，以更好地模拟实际项目中的复杂场景。</li>
+</ul>
+</li>
+</ul>
+<h3>2. <strong>测试修复能力增强</strong></h3>
+<ul>
+<li><strong>问题</strong>：尽管Panta包含了一个测试修复阶段，但LLMs在修复运行时错误（如<code>AssertionError</code>）方面仍存在局限性。这表明LLMs在理解项目特定的执行逻辑方面存在不足，难以推断运行时行为和预期结果。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>运行时错误修复</strong>：开发更先进的技术来增强LLMs在修复运行时错误方面的能力，例如通过引入更多的上下文信息或使用专门的修复模型。</li>
+<li><strong>错误诊断与修复</strong>：研究如何更好地诊断测试失败的原因，并提供更具体的修复建议，以提高测试修复的成功率。</li>
+</ul>
+</li>
+</ul>
+<h3>3. <strong>测试有效性提升</strong></h3>
+<ul>
+<li><strong>问题</strong>：尽管Panta在代码覆盖率方面表现出色，但其变异分数平均低于50%，表明生成的测试在检测错误方面仍有改进空间。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>断言生成</strong>：研究如何生成更有效的断言，以提高测试用例的故障检测能力。可以考虑结合符号执行或其他形式的程序分析来生成更精确的断言。</li>
+<li><strong>测试用例优化</strong>：探索如何优化生成的测试用例，以提高其在实际项目中的有效性。例如，通过引入更多的测试用例变异或使用基于模型的测试生成技术。</li>
+</ul>
+</li>
+</ul>
+<h3>4. <strong>多语言支持</strong></h3>
+<ul>
+<li><strong>问题</strong>：当前Panta的实现和评估主要集中在Java语言上，尽管其技术和方法在理论上是语言无关的，但实际应用中需要针对不同语言进行适配和验证。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>语言适配</strong>：将Panta扩展到其他编程语言，如Python、C++、JavaScript等，验证其在不同语言环境中的有效性和适用性。</li>
+<li><strong>语言特定优化</strong>：针对不同语言的特点和生态，进行特定的优化和改进，以提高测试生成的质量和效率。</li>
+</ul>
+</li>
+</ul>
+<h3>5. <strong>与现有工具的集成</strong></h3>
+<ul>
+<li><strong>问题</strong>：Panta目前作为一个独立的测试生成工具，如何更好地与现有的测试生成工具（如EvoSuite、Pynguin等）集成，以实现更全面的测试覆盖。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>工具集成</strong>：研究如何将Panta与现有的测试生成工具无缝集成，以利用各自的优势，生成更高质量的测试用例。</li>
+<li><strong>混合方法</strong>：开发混合方法，结合基于搜索的测试生成和基于LLM的测试生成，以克服单一方法的局限性。</li>
+</ul>
+</li>
+</ul>
+<h3>6. <strong>性能优化</strong></h3>
+<ul>
+<li><strong>问题</strong>：随着项目复杂度的增加，Panta的运行时间和资源消耗可能会显著增加，尤其是在处理大型项目时。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>性能优化</strong>：研究如何优化Panta的算法和数据结构，以提高其在大型项目中的运行效率。</li>
+<li><strong>并行处理</strong>：探索并行处理技术，以加速测试生成过程，例如通过并行执行路径选择和测试生成。</li>
+</ul>
+</li>
+</ul>
+<h3>7. <strong>用户交互与反馈</strong></h3>
+<ul>
+<li><strong>问题</strong>：Panta目前主要依赖自动化的程序分析和LLM生成，缺乏与开发者的交互和反馈机制。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>交互式测试生成</strong>：开发交互式测试生成工具，允许开发者在测试生成过程中提供反馈和指导，以生成更符合项目需求的测试用例。</li>
+<li><strong>反馈循环</strong>：研究如何更好地利用开发者的反馈来优化测试生成过程，例如通过调整路径选择策略或改进LLM的提示模板。</li>
+</ul>
+</li>
+</ul>
+<h3>8. <strong>模型选择与优化</strong></h3>
+<ul>
+<li><strong>问题</strong>：尽管Panta在多个LLMs上进行了评估，但不同模型的性能差异仍然显著，特别是在生成高质量测试用例方面。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>模型选择</strong>：研究如何选择最适合特定项目的LLM，例如通过评估模型在特定领域的表现。</li>
+<li><strong>模型优化</strong>：探索如何优化LLM的训练和微调，以提高其在测试生成任务中的性能。</li>
+</ul>
+</li>
+</ul>
+<h3>9. <strong>测试用例的可维护性</strong></h3>
+<ul>
+<li><strong>问题</strong>：生成的测试用例在项目演进过程中可能需要频繁更新，以保持其有效性。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>测试用例维护</strong>：研究如何自动生成测试用例的更新，以适应代码的变化。</li>
+<li><strong>版本控制</strong>：探索如何在版本控制系统中更好地管理生成的测试用例，以减少维护成本。</li>
+</ul>
+</li>
+</ul>
+<h3>10. <strong>实际项目应用</strong></h3>
+<ul>
+<li><strong>问题</strong>：尽管Panta在基准测试中表现出色，但在实际项目中的应用效果仍需进一步验证。</li>
+<li><strong>探索方向</strong>：<ul>
+<li><strong>实际项目评估</strong>：在实际的工业项目中应用Panta，评估其在真实开发环境中的有效性和适用性。</li>
+<li><strong>案例研究</strong>：通过案例研究，分析Panta在实际项目中的应用效果，收集开发者的反馈，以进一步改进工具。</li>
+</ul>
+</li>
+</ul>
+<p>通过这些进一步的探索和改进，Panta有望在自动化单元测试生成领域取得更大的突破，为软件开发过程中的测试工作提供更强大的支持。</p>
+</div>
+
+<p class="faq-q"><strong>Q6</strong>: 总结一下论文的主要内容</p>
+
+<div class="faq-a">
+
+<p>本文介绍了一种名为Panta的技术，旨在通过结合动态代码覆盖分析和静态控制流分析，迭代地指导大型语言模型（LLMs）生成能够覆盖更多执行路径的测试用例，从而提高自动化单元测试生成的质量，尤其在复杂代码的分支覆盖率方面。</p>
+<h3>背景知识</h3>
+<p>自动化单元测试生成在软件工程中扮演着重要角色，有助于提升代码的可靠性和可维护性。尽管LLMs在代码生成方面取得了显著进展，但在处理复杂控制流结构时，尤其是在涉及多个条件分支的复杂方法中，LLMs生成的测试用例往往无法达到足够的分支覆盖率。这限制了LLMs在实际项目中的应用效果。</p>
+<h3>研究方法</h3>
+<p>Panta技术的核心在于模拟人类开发人员在分析代码和构建测试用例时的迭代过程。具体方法如下：</p>
+<h4>1. 静态路径近似（Static Path Approximation）</h4>
+<p>通过控制流图（CFG）提取潜在的执行路径。Panta构建CFG，识别待测试方法（MUTs），并为每个MUT提取方法级CFG。利用广度优先搜索（BFS）算法从CFG中探索路径，确保每条路径至少包含一个未访问的边，直到所有边都被访问。这样可以为每个MUT提取一组线性独立的路径。</p>
+<h4>2. 动态路径选择（Dynamic Path Selection）</h4>
+<p>结合动态代码覆盖数据和静态路径，选择需要额外测试覆盖的路径。Panta运行当前测试套件，收集代码覆盖数据，识别未覆盖的语句和分支。对于每个MUT，过滤掉已完全覆盖或选择次数超过限制的路径，保留包含未覆盖语句或分支的路径作为候选路径。计算每条候选路径的覆盖缺陷分数（missedScore），选择覆盖缺陷分数最高的路径和之前选择次数最少的路径。</p>
+<h4>3. 程序分析引导的提示模板（Program Analysis Guided Prompt Template）</h4>
+<p>构建一个结构化的提示模板，将选择的路径插入其中，指导LLM生成测试用例。提示模板包括源文件、测试文件、测试依赖、失败测试和待测试方法等部分。</p>
+<h4>4. 迭代测试生成框架（Iterative Test Generation Framework）</h4>
+<p>采用迭代工作流，结合动态和静态程序分析，逐步提高测试覆盖率。Panta初始化源文件、目标测试文件和测试依赖，提取路径，生成测试用例，验证测试用例，修复失败的测试用例，并将修复后的测试用例重新加入测试文件。通过反馈循环，Panta不断优化测试生成，直到达到预设的停止条件。</p>
+<h3>实验</h3>
+<p>作者在Defects4J基准测试中的14个真实世界开源项目上进行了实验，涵盖了130个类和2,971个待测试方法。实验结果表明，Panta在行覆盖率和分支覆盖率方面显著优于现有方法，平均行覆盖率高出26.3%，分支覆盖率高出22.7%。此外，Panta在高覆盖率计数（HCC）和变异分数方面也表现出色，进一步证明了其生成测试用例的高质量和有效性。</p>
+<h3>关键结论</h3>
+<ul>
+<li>Panta通过结合动态代码覆盖分析和静态控制流分析，有效地提高了LLMs在复杂代码中的分支覆盖率。</li>
+<li>Panta的迭代框架和路径选择策略显著提高了测试覆盖率，尤其是在复杂项目中。</li>
+<li>不同LLMs对Panta的性能有影响，Claude模型表现最佳，但Llama模型作为开源模型，提供了成本效益较高的解决方案。</li>
+<li>Panta在实际项目中具有广泛的应用前景，可以与现有的测试生成工具集成，进一步提高测试覆盖率和测试质量。</li>
+</ul>
+<h3>未来工作</h3>
+<ul>
+<li>扩展Panta以支持跨类上下文，考虑类之间的继承关系和方法覆盖情况。</li>
+<li>增强LLMs在修复运行时错误方面的能力，提高测试修复的成功率。</li>
+<li>提高生成的测试用例在检测错误方面的能力，优化测试用例以提高其在实际项目中的有效性。</li>
+<li>将Panta扩展到其他编程语言，验证其在不同语言环境中的有效性和适用性。</li>
+<li>优化Panta的算法和数据结构，提高其在大型项目中的运行效率，并探索并行处理技术以加速测试生成过程。</li>
+</ul>
+<p class="faq-q"><strong>Q7</strong>: 想要进一步了解论文</p>
+
+<div class="faq-a">
+
+<p>以上只是了解一篇论文的几个基本FAQ。如果你还想与Kimi进一步讨论该论文，请点击 <a href="http://kimi.com/_prefill_chat?prefill_prompt=%20%E6%88%91%E4%BB%AC%E8%A6%81%E8%AE%A8%E8%AE%BA%E7%9A%84%E8%AE%BA%E6%96%87%E6%98%AFLLM%20Test%20Generation%20via%20Iterative%20Hybrid%20Program%20Analysis%EF%BC%8C%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://arxiv.org/pdf/2503.13580%20%20%EF%BC%8C%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E9%93%BE%E6%8E%A5%E6%98%AF%20%20https://papers.cool/arxiv/kimi?paper=2503.13580%20%20%E3%80%82%E8%AF%B7%E4%BB%A5%E6%AD%A4%E4%B8%BA%E5%9F%BA%E7%A1%80%EF%BC%8C%E7%BB%A7%E7%BB%AD%E5%9B%9E%E7%AD%94%E6%88%91%E5%90%8E%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82&amp;system_prompt=%E4%BD%A0%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AD%A6%E6%9C%AF%E5%8A%A9%E6%89%8B%EF%BC%8C%E5%90%8E%E9%9D%A2%E7%9A%84%E5%AF%B9%E8%AF%9D%E5%B0%86%E5%9B%B4%E7%BB%95%E7%9D%80%E4%BB%A5%E4%B8%8B%E8%AE%BA%E6%96%87%E5%86%85%E5%AE%B9%E8%BF%9B%E8%A1%8C%EF%BC%8C%E5%B7%B2%E7%BB%8F%E9%80%9A%E8%BF%87%E9%93%BE%E6%8E%A5%E7%BB%99%E5%87%BA%E4%BA%86%E8%AE%BA%E6%96%87%E7%9A%84PDF%E5%92%8C%E8%AE%BA%E6%96%87%E5%B7%B2%E6%9C%89%E7%9A%84FAQ%E3%80%82%E7%94%A8%E6%88%B7%E5%B0%86%E7%BB%A7%E7%BB%AD%E5%90%91%E4%BD%A0%E5%92%A8%E8%AF%A2%E8%AE%BA%E6%96%87%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%EF%BC%8C%E8%AF%B7%E4%BD%A0%E4%BD%9C%E5%87%BA%E4%B8%93%E4%B8%9A%E7%9A%84%E5%9B%9E%E7%AD%94%EF%BC%8C%E4%B8%8D%E8%A6%81%E5%87%BA%E7%8E%B0%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%EF%BC%8C%E5%BD%93%E6%B6%89%E5%8F%8A%E5%88%B0%E5%88%86%E7%82%B9%E5%9B%9E%E7%AD%94%E6%97%B6%EF%BC%8C%E9%BC%93%E5%8A%B1%E4%BD%A0%E4%BB%A5markdown%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA%E3%80%82&amp;send_immediately=true&amp;force_search=false&amp;enable_reasoning=false" target="_blank"><strong>这里 <i class="fa fa-external-link"></i></strong></a> 为你跳转Kimi AI网页版，并启动一个与该论文相关的新会话。</p>
+</div></div></div>
+            <hr id="fold-2503.13580" class="hr hr-fold" style="display: block;">
+        </div>
+    </div>
+    <div class="footer notranslate">
+        Designed by <a href="https://kexue.fm/" target="_blank" data-eusoft-scrollable-element="1">kexue.fm</a> | Powered by <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank" data-eusoft-scrollable-element="1">kimi.ai</a>
+    </div>
+    <div id="app-bar" class="app-bar panel notranslate" style="opacity: 0;">
+        <div id="app-bar-search" class="app-bar-content" style="display:none">
+            <div class="app-search-keywords">
+                <div class="keywords-included">
+                    <p>Include(<a id="logic-included" title="The logical relationship between keywords (OR/AND)">OR</a>):</p>
+                    <textarea id="keywords-included" class="text-input" placeholder="LLM
+Transformer
+Attention"></textarea>
+                </div>
+                <div class="keywords-excluded">
+                    <p>Exclude:</p>
+                    <textarea id="keywords-excluded" class="text-input"></textarea>
+                </div>
+            </div>
+            <div class="submit">
+                <p><button type="button">Search</button></p>
+                <p><label><input type="checkbox" id="search-filter">Filter</label></p>
+                <p><label><input type="checkbox" id="search-highlight" checked="true">Highlight</label></p>
+            </div>
+        </div>
+        <div id="app-bar-star" class="app-bar-content" style="display:none">
+            <p>Stared Paper(s):</p>
+            <div class="items">
+                <p id="app-bar-star-2503.13580" style="display: block;">
+                    <span class="i-index">#1</span>
+                    <a class="i-title" href="#2503.13580">LLM Test Generation via Iterative Hybrid Program Analysis</a>
+                    <a class="i-star" style="display: block;"><i class="fa fa-star"></i></a>
+                    <a class="i-unstar" style="display:none"><i class="fa fa-star-o"></i></a>
+                </p>
+            </div>
+            <div class="submit">
+                <p><button type="button">Export</button></p>
+                <p id="export-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-config" class="app-bar-content" style="display:none">
+            <p>Magic Token:</p>
+            <input id="magic-token" class="text-input single-line" type="text" placeholder="If unsure, ignore it." value="">
+            <p>Kimi Language:</p>
+            <select id="kimi-lang" name="kimi-lang" class="text-input single-line">
+                <option value="zh" selected="">中文</option>
+                <option value="en">English</option>
+            </select>
+            <p>Desc Language:</p>
+            <select id="desc-lang" name="desc-lang" class="text-input single-line">
+                <option value="zh">中文</option>
+                <option value="en" selected="">English</option>
+            </select>
+            <div class="submit">
+                <p><button type="button" class="save-btn">Save</button></p>
+                <p id="config-message" class="message"></p>
+            </div>
+        </div>
+        <div id="app-bar-bug" class="app-bar-content" style="display:none">
+            <p>Bug report? Issue submit? Please visit:</p>
+            <p id="github-url"><strong>Github: </strong><a href="https://github.com/bojone/papers.cool" target="_blank">https://github.com/bojone/papers.cool</a></p>
+            <p style="padding-top:15px">Please read our <a href="https://github.com/bojone/papers.cool/blob/main/Disclaimer/README_en.md" target="_blank">Disclaimer</a> before proceeding.</p>
+            <p>For more interesting features, please visit <a href="https://kexue.fm/" target="_blank">kexue.fm</a> and <a href="https://kimi.moonshot.cn/?ref=papers.cool" target="_blank">kimi.ai</a>.</p>
+        </div>
+        <a class="bar-app" href="https://papers.cool/" title="Home Page"><i class="fa fa-home" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="In-page Search"><i class="fa fa-search" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Stared Papers"><i class="fa fa-star" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Configuration"><i class="fa fa-cog" data-eusoft-scrollable-element="1"></i></a>
+        <a class="bar-app" title="Bug Report"><i class="fa fa-bug" data-eusoft-scrollable-element="1"></i></a>
+    </div>
+    <div id="scroll-btn" style="opacity: 0;">
+        <button id="totop" title="Go to top"><i class="fa fa-chevron-up" data-eusoft-scrollable-element="1"></i></button>
+        <button id="tobottom" title="Go to bottom"><i class="fa fa-chevron-down" data-eusoft-scrollable-element="1"></i></button>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+
+
+
+<!-- Google tag (gtag.js) -->
+
+
+
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; min-width: 0px; max-width: none; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-size-adjust: none; font-family: MathJax_Main, sans-serif;"></div></div><script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2787122990="" ng-version="18.2.13"><template _ngcontent-ng-c2787122990=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c2787122990="" _nghost-ng-c3386348173=""><template _ngcontent-ng-c3386348173=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2787122990="" _nghost-ng-c749930229=""><template _ngcontent-ng-c749930229=""></template><!----></app-translate-render><app-capture-word _ngcontent-ng-c2787122990="" class="eusoft-chrome-extension-capture-word-container ng-tns-c4033922151-0 ng-star-inserted" data-scrapbook-shadowdom="&lt;style&gt;.eudic-tippy-content-container[_ngcontent-ng-c2787122990]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2787122990]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2787122990]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2787122990]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2787122990]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}&lt;/style&gt;&lt;style&gt;.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+&lt;/style&gt;&lt;style&gt;.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}&lt;/style&gt;&lt;!----&gt;&lt;!----&gt;&lt;div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c4033922151-0&quot; data-content-script-theme=&quot;light&quot;&gt;&lt;!----&gt;&lt;/div&gt;"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2787122990="" _nghost-ng-c3081775404=""><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>
