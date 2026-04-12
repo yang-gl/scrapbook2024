@@ -2176,5 +2176,125 @@ scrapbook.meta({
     "modify": "20251027150232475",
     "source": "https://threadreaderapp.com/thread/1974500116393341172.html",
     "icon": "../tree/favicon/abd481d7a1c3fdaa11c225f7eacfee2f408a07a7.png"
+  },
+  "20260412033010269": {
+    "title": "台大李宏毅",
+    "type": "folder",
+    "create": "20260412033010269",
+    "modify": "20260412033010269"
+  },
+  "20260412033054079": {
+    "index": "",
+    "title": "ML 2026 Spring",
+    "type": "bookmark",
+    "create": "20260412033054079",
+    "modify": "20260412033054079",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2026-spring.php",
+    "icon": "../tree/favicon/408e420dc33d725971e6858026fe27c51df096f5.ico"
+  },
+  "20260412033102365": {
+    "title": "ML",
+    "type": "folder",
+    "create": "20260412033102365",
+    "modify": "20260412033102365"
+  },
+  "20260412033119232": {
+    "index": "202604/20260412033119232-speech.ee.ntu.edu.tw/index.html",
+    "title": "Introduction to GenAI and ML 2025 Fall",
+    "type": "",
+    "create": "20260412033119232",
+    "modify": "20260412033119232",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033156685": {
+    "index": "202604/20260412033156685-speech.ee.ntu.edu.tw/index.html",
+    "title": "Introduction to Generative AI 2024 Spring",
+    "type": "",
+    "create": "20260412033156685",
+    "modify": "20260412033156685",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033242448": {
+    "index": "202604/20260412033242448-speech.ee.ntu.edu.tw/index.html",
+    "title": "ML 2025 Spring",
+    "type": "",
+    "create": "20260412033242448",
+    "modify": "20260412033242448",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2025-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033304339": {
+    "index": "202604/20260412033304339-speech.ee.ntu.edu.tw/index.html",
+    "title": "ML 2023 Spring",
+    "type": "",
+    "create": "20260412033304339",
+    "modify": "20260412033304339",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2023-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033318739": {
+    "index": "202604/20260412033318739-speech.ee.ntu.edu.tw/index.html",
+    "title": "ML 2022 Spring",
+    "type": "",
+    "create": "20260412033318739",
+    "modify": "20260412033318739",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2022-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033331532": {
+    "index": "202604/20260412033331532-speech.ee.ntu.edu.tw/index.html",
+    "title": "ML 2021 Spring",
+    "type": "",
+    "create": "20260412033331532",
+    "modify": "20260412033331532",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033348066": {
+    "index": "202604/20260412033348066-speech.ee.ntu.edu.tw/index.html",
+    "title": "ML 2020 Spring",
+    "type": "",
+    "create": "20260412033348066",
+    "modify": "20260412033348066",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2020-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033404552": {
+    "index": "202604/20260412033404552-speech.ee.ntu.edu.tw/index.html",
+    "title": "ML 2019 Spring",
+    "type": "",
+    "create": "20260412033404552",
+    "modify": "20260412033404552",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/ml/2019-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033441250": {
+    "index": "202604/20260412033441250-speech.ee.ntu.edu.tw/index.html",
+    "title": "DLHLP 2020 Spring",
+    "type": "",
+    "create": "20260412033441250",
+    "modify": "20260412033441250",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/dlhlp/2020-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033459541": {
+    "index": "202604/20260412033459541-speech.ee.ntu.edu.tw/index.html",
+    "title": "MLDS 2018 Spring",
+    "type": "",
+    "create": "20260412033459541",
+    "modify": "20260412033459541",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/mlds/2018-spring.php",
+    "icon": "favicon.ico"
+  },
+  "20260412033525385": {
+    "index": "202604/20260412033525385-speech.ee.ntu.edu.tw/index.html",
+    "title": "MLDS 2017 Spring",
+    "type": "",
+    "create": "20260412033525385",
+    "modify": "20260412033525385",
+    "source": "https://speech.ee.ntu.edu.tw/~hylee/mlds/2017-spring.php",
+    "icon": "favicon.ico"
   }
 })

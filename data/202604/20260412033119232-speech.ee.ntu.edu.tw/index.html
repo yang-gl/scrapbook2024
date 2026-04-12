@@ -1,0 +1,1315 @@
+<!DOCTYPE html><!--
+  Twenty by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" data-eusoft-scrollable-element="1" data-scrapbook-source="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall.php" data-scrapbook-create="20260412033119232"><plasmo-csui id="codebox-csui" data-scrapbook-shadowdom="&lt;div id=&quot;plasmo-shadow-container&quot; style=&quot;z-index: 2147483647; position: relative;&quot;&gt;&lt;div id=&quot;plasmo-overlay-0&quot; class=&quot;plasmo-csui-container&quot; style=&quot;display: flex; position: absolute; top: 0px; left: 0px;&quot;&gt;&lt;/div&gt;&lt;/div&gt;"></plasmo-csui><head>
+    <title>Introduction to GenAI and ML 2025 Fall</title>
+    <meta property="og:image" content="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/ai_agent_pic.png">
+    <meta property="og:url" content="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall.php">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Introduction to AI Introduction to GenAI and ML 2025 Fall">
+    <meta property="og:description" content="Introduction to Introduction to GenAI and ML 2025 Fall">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="main.css">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="bookmark" href="https://speech.ee.ntu.edu.tw/~hylee/favicon.ico">
+    <noscript><link rel="stylesheet" href="noscript.css"></noscript>
+    <style>
+      .cool{
+        background: url("");
+        height: 16px;
+        width: 16px;
+        display: block;
+      }
+
+      * {
+        box-sizing: border-box;
+        }
+
+      /* Set a background color */
+      body{
+        background-color: #e8883a;
+      }  
+      /* The actual timeline (the vertical ruler) */
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* The actual timeline (the vertical ruler) */
+      .timeline::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        background-color: #ffbf80;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+      }
+
+      /* Container around content */
+      .container_timeline {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+      }
+
+      /* The circles on the timeline */
+      .container_timeline::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -13px;
+        background-color: white;
+        border: 4px solid #FF9F55;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      /* Place the container to the left */
+      .left {
+        left: 0;
+      }
+
+      /* Place the container to the right */
+      .right {
+        left: 50%;
+      }
+
+      /* Add arrows to the left container (pointing right) */
+      .left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid white;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent #ecf2f9;
+      }
+
+      /* Add arrows to the right container (pointing left) */
+      .right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent #ecf2f9 transparent transparent;
+      }
+
+      /* Fix the circle for containers on the right side */
+      .right::after {
+        left: -12px;
+      }
+
+      /* The actual content */
+      .content_timeline {
+        padding: 20px 30px;
+        background-color: #ecf2f9;
+        position: relative;
+        border-radius: 6px;
+      }
+
+      /* Media queries - Responsive timeline on screens less than 600px wide */
+      @media screen and (max-width: 600px) {
+      /* Place the timelime to the left */
+        .timeline::after {
+          left: 31px;
+        }
+
+      /* Full-width containers */
+        .container_timeline {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+      /* Make sure that all arrows are pointing leftwards */
+        .container_timeline::before {
+          left: 60px;
+          border: medium solid white;
+          border-width: 10px 10px 10px 0;
+          border-color: transparent #ecf2f9 transparent transparent;
+        }
+
+      /* Make sure all circles are at the same spot */
+        .left::after, .right::after {
+          left: 18px;
+        }
+
+      /* Make all right containers behave like the left ones */
+        .right {
+          left: 0%;
+        }
+      }
+    </style>
+  <style>.eudic-tippy-content-container[_ngcontent-ng-c2546567076]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2546567076]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2546567076]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2546567076]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2546567076]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}</style><style data-id="codebox-css">.codebox-current { outline: 2px solid #42b88350 !important; }</style><script data-scrapbook-elem="custom-elements-loader">(function (names) { if (!customElements) { return; } for (const name of names) { customElements.define(name, class CustomElement extends HTMLElement {}); } })(["plasmo-csui","eusoft-chrome-extension-root-en","app-word-hint-render","app-translate-render","translate-analyzer","app-capture-word","app-translate-failed-retry"])</script></head>
+
+  <body class="no-sidebar">
+    <div id="page-wrapper">
+
+      <!-- Header -->
+      <header id="header" data-eusoft-scrollable-element="1">
+        <h1 id="logo" style="font-size: medium; font-weight: 500" data-eusoft-scrollable-element="1"><a href="https://speech.ee.ntu.edu.tw/~hylee/index.html" data-eusoft-scrollable-element="1">Hung-yi Lee (李宏毅)</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="menu" style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/index.php">Home</a></li><li class="menu" style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/honor.php">Honor</a></li><li class="menu" style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/research.php">Research</a></li><li class="menu" style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/talk.php">Talk</a></li><li class="menu" style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/publication.php">Publication</a></li><li class="submenu current opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+			  <a href="#">Course</a>
+                
+              <ul style="user-select: none; display: none; position: absolute;" class="">
+                <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                  <a href="#" style="display: block;">GenAI-ML</a>
+                  <ul style="user-select: none; display: none; position: absolute;" class="dropotron">
+                    <li style="white-space: nowrap;"><a href="" style="display: block;">2025 Fall</a></li>
+                  </ul>
+                </li>
+                <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                  <a href="#" style="display: block;">Generative AI</a>
+                  <ul style="user-select: none; display: none; position: absolute;" class="dropotron">
+                    <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php" style="display: block;">2024 Spring</a></li> 
+                  </ul>
+                </li>
+                  <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="#" style="display: block;">Machine Learning</a>
+					<ul style="user-select: none; display: none; position: absolute;" class="dropotron">
+					  <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2026-spring.php" style="display: block;">2026 Spring</a></li>
+					  <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2025-spring.php" style="display: block;">2025 Spring</a></li>
+				      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2023-spring.php" style="display: block;">2023 Spring</a></li> 
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2022-spring.php" style="display: block;">2022 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php" style="display: block;">2021 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2020-spring.php" style="display: block;">2020 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2019-spring.php" style="display: block;">2019 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2017-fall.php" style="display: block;">2017 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2017-spring.php" style="display: block;">2017 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2016-fall.php" style="display: block;">2016 Fall</a></li>
+                    </ul>
+                  </li>
+                  <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="#" style="display: block;">DLHLP</a>
+                    <ul style="user-select: none; display: none; position: absolute;" class="dropotron">
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/dlhlp/2020-spring.php" style="display: block;">2020 Spring</a></li>
+                    </ul>
+                  </li>
+                  <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="#" style="display: block;">MLDS</a>
+                    <ul style="user-select: none; display: none; position: absolute;" class="dropotron">
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/mlds/2018-spring.php" style="display: block;">2018 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/mlds/2017-spring.php" style="display: block;">2017 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/mlds/2015-fall.php" style="display: block;">2015 Fall</a></li>
+                    </ul>
+                  </li>
+                  <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="#" style="display: block;">Linear Algebra</a>
+                    <ul style="user-select: none; display: none; position: absolute;" class="dropotron">
+                      <li style="white-space: nowrap;"><a href="https://voidful.github.io/LA_2023_fall/2023-fall.html" style="display: block;">2023 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://googly-mingto.github.io/LA_2022_fall/2022-fall.html" style="display: block;">2022 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/la/2021-fall.php" style="display: block;">2021 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses/LA_2020/policy.pdf" target="_blank" rel="noreferrer noopener" style="display: block;">2020 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/la/2019-fall.php" style="display: block;">2019 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/la/2018-fall.php" style="display: block;">2018 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/la/2016-spring.php" style="display: block;">2016 Spring</a></li>
+                    </ul>
+                  </li>
+                  <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/circuit/2014-fall.php" style="display: block;">Circuit</a></li>
+                </ul></li>
+              <li class="menu" style="white-space: nowrap;"><a href="https://www.youtube.com/channel/UC2ggjtuuWvxrHHHiaDH1dlQ/playlists" target="_blank" rel="noopener noreferrer">Youtube</a></li>           </ul>
+        </nav>
+      </header>
+
+      <!-- Main -->
+      <article id="main">
+
+        <header class="special container">
+        
+
+        <!-- Content -->
+        <section>
+          <div class="content">
+            <div style="text-align: center; max-width: 1200px; width: 100%; margin: 0 auto;">
+              <img src="ai_agent_pic.png" style="width: 50%" alt="">
+            </div>  
+          </div>
+        </section>
+
+        <br><br>
+        <h2 style="color:white" data-eusoft-scrollable-element="1">Introduction to GenAI and ML 2025 Fall</h2>
+        <br>
+        
+        <!--
+        <section>
+          <header style="text-align: center;  margin-top: 0px; margin-bottom: 0px;">
+            <p id="countdown" style="font-size: 2.5em;  color: #FFFFFF;">Course starts in ...</p>
+          </header>
+        </section>
+
+		
+        <script>
+          // Set the date we're counting down to
+          var countDownDate = new Date("Feb 23, 2024 14:20:00").getTime();
+
+          // Update the count down every 1 second
+          var x = setInterval(function () {
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in the element with id="countdown"
+            document.getElementById("countdown").innerHTML = "Course starts in " + days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+            // If the count down is over, write some text
+            if (distance < 0) {
+              clearInterval(x);
+              document.getElementById("countdown").innerHTML = "The course has started!";
+            }
+          }, 1000);
+        </script>
+        -->
+		  
+
+        <section class="wrapper style4 container" style="border-radius:20px;">
+            <div class="content" data-eusoft-scrollable-element="1">
+                <section data-eusoft-scrollable-element="1">
+                    <header style="text-align:center" data-eusoft-scrollable-element="1">
+                        <h3 data-eusoft-scrollable-element="1">News</h3></header>
+                </section>
+            </div>
+            <div class="row row-striped" style="border:5px solid #db9200; border-radius:20px; margin-bottom:10px">
+                <div class="col-2 text-right" style="text-align:center; margin-right:0">
+                    <h1 class="display-4"><span class="badge bg-danger">18</span></h1>
+                    <h2 data-eusoft-scrollable-element="1">Jan</h2></div>
+                <div class="col-1"></div>
+                <div class="col-9" style="text-align: left;">
+                    <h3 class="text-uppercase" data-eusoft-scrollable-element="1"><strong data-eusoft-scrollable-element="1">️學期結束</strong></h3>
+                    <p style="font-size:1.2rem"> 
+                    本學期課程已結束，不再將同學加入NTU COOL旁聽生，若有想要旁聽此課程的同學，可以在本課程網站上取得所有教學內容和學習素材，包含上課影片與完整作業
+                   </p></div>
+            </div>
+            
+    <!--        <div class="row row-striped" style="border:5px solid #db9200; border-radius:20px; margin-bottom:10px">-->
+    <!--            <div class="col-2 text-right" style="text-align:center; margin-right:0">-->
+    <!--                <h1 class="display-4"><span class="badge bg-danger">17</span></h1>-->
+    <!--                <h2>Nov</h2></div>-->
+    <!--            <div class="col-1"></div>-->
+    <!--            <div class="col-9" style="text-align: left;">-->
+				<!--    <h3 class="text-uppercase"><strong>️本週公告️️</strong></h3>-->
+				<!--    <p style="font-size:1.2rem"> -->
+				<!--        <br>同學們好，-->
+				<!--        <br>以下是本週的重要提醒：-->
+				<!--        <br>1.本週五 (11/21)是作業六的死線，這份作業也需要花較多時間訓練模型，且每天有繳交次數上限，請同學務必把握時間完成，並將訓練結果交到Judgeboi上評分。-->
+				<!--        <br>若因死線接近時，系統繁忙而無法即時獲得分數，助教和老師不會提供任何補救機會，因此請同學盡早開始作業。-->
+				<!--        <br>(註: 如果遇到colab用量限制問題，助教更新kaggle版本的sample code到作業投影片上，這裡也附上連結，供大家參考)-->
+				<!--        <br>HW6 kaggle sample code: <a href="https://www.kaggle.com/code/stevenlunar/genai-ml-homework-6"> link</a>-->
+				<!--        <br>2. Lecture 7與HW7已上傳到課程網站下方影片和作業區-->
+				<!--        <br>注意HW7分成兩個部分，第一部分SFT需要交到judgeboi系統評分，第二部分RL需要執行程式碼觀察結果後回答NTU COOL。-->
+				<!--        <br>HW7投影片有更新，請同學參考最新版本的投影片，更新重點如下：-->
+				<!--    </p>-->
+				    
+				<!--    <blockquote style="font-size:1.2rem;">-->
+				<!--        <ul style="font-size:1.2rem;">-->
+				<!--            <li>注意JudgeBoi submission是以最高public score作為最終提交的結果。</li>-->
+				<!--            <li>Phase 1 SFT我們預期大家照跑sample code可以拿到3/6分</li>-->
+				<!--            <li>關於chat template有沒有正確可以在submission的結果頁面查看</li>-->
+				<!--        </ul>-->
+				<!--    </blockquote>-->
+				    
+				<!--    <p style="font-size:1.2rem;">-->
+				<!--        另外，本週沒有課程，讓同學專心完成作業。-->
+				<!--        <br>3.如果有問題想要向助教即時詢問，可以在TA hour的時間加到google meet詢問-->
+				<!--        <br>HW6 TA hour:-->
+				<!--        <br>11/17 Monday 20:00~22:00-->
+				<!--        <br>11/21 Friday 17:30~19:30-->
+				<!--        <br>Google meet 連結: <a href="https://meet.google.com/qox-xubu-jak"> link</a>-->
+				<!--        <br>HW7 TA hour:-->
+				<!--        <br>11/17 11/24 12/1 Monday 20:00~22:00-->
+				<!--        <br>12/21 12/28 12/5 Friday 17:30~19:30-->
+				<!--        <br>Google meet 連結: <a href="https://meet.google.com/gjh-woyy-wvi"> link</a>-->
+				<!--    </p>-->
+				<!--</div>-->
+        </section> 
+        
+       
+        
+        
+        <!-- COURSE MATERIALS -->
+        <section class="wrapper style4 container" style="border-radius: 20px;">
+
+          <div id="hw" class="content">
+            <section>
+              <header style="text-align: center" data-eusoft-scrollable-element="1">
+                <h3 data-eusoft-scrollable-element="1">Course Materials</h3>
+              </header>
+
+              <!-- list -->
+              <div style="overflow-x: auto">
+                <table class="table">
+                  <thead data-eusoft-scrollable-element="1">
+                    <tr data-eusoft-scrollable-element="1">
+                      <th style="text-align: left;">Date</th>
+                      <th style="text-align: left;">Topic</th>
+                      <th style="text-align: left;">Slides (PDF)</th>
+                      <th style="text-align: left;">Slides (PPT)</th>
+                      <th style="text-align: left;width: 25%">Videos</th>
+                      <th style="text-align: left;width: 25%">Extra</th>
+                      <th style="text-align: left;">Course Live Streaming Link</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+					<!-- 9/12 -->
+                    <tr>
+                      <td align="left">9/12</td>
+                      <td align="left">課程簡介 &amp; 一堂課搞懂生成式人工智慧的基本原理</td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/LLM.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">course</a><br>
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/policy%202025%20fall.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">intro</a>
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/LLM.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">course</a><br>
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/policy%202025%20fall.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">intro</a>
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/VuQUF1VVX40" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第0講：課程簡介</a><br>
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/GuLatBvmBjY" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第0講：課程規定</a><br>
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/TigfpYPJk1s" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第1講：一堂課搞懂生成式人工智慧的原理</a>
+                      </td>
+                      <td align="left"></td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/wG8-IUtqu-s" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a><br>-->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/KdWbpl9-66k?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第一講直播連結</a>
+                      </td>
+                    </tr> 
+                    <!-- 9/12 -->
+                    
+                    <!-- 9/19 -->
+                    <tr>
+                      <td align="left">9/19</td>
+                      <td align="left">從語言模型到AI Agent</td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/Agent.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Agent</a><br>
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/Agent.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Agent</a>
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/lVdajtNpaGI" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第 2 講：上下文工程 (Context Engineering) — AI Agent 背後的關鍵技術</a><br>
+                      </td>
+                      <td align="left">
+                        <!-- Extra -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/M2Yg1kwPpts?si=Dw3UvnKQTITxNdci" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">一堂課搞懂 AI Agent 的原理</a><br>
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/bJFtcwLSNxI?si=hT-nKkFEEd-zJypH" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">大型語言模型是如何進行「深度思考」（Reasoning）的？</a>
+                      </td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/jCxb9aezG-M?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第二講直播連結</a><br>
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 9/19 -->
+                    <!-- 9/26 -->
+                    <tr>
+                      <td align="left">9/26</td>
+                      <td align="left">解析生成式人工智慧內部的運作機制</td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/LLMunderstand.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">LLMunderstand</a><br>
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/LLMunderstand.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">LLMunderstand</a><br>
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/8iFvM7WUUs8" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第3講：解剖大型語言模型</a><br>
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left">
+                        <!-- Extra -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/Xnil63UDW2o?si=HvkbgD0DgpKXxXZu" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">AI 的腦科學 — 語言模型內部運作機制剖析</a><br>
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/gjsdVi90yQo?si=3fvejM9I2Am9yiyK" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Transformer 的時代要結束了嗎？介紹 Transformer 的競爭者們</a>
+                      </td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/ANDGDnSlisw?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第三講直播連結</a><br>
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 9/26 -->
+                    <!-- 10/3 -->
+                    <tr>
+                      <td align="left">10/3</td>
+                      <td align="left"></td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pdf" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pptx" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/vCxyd_S4R24" target="_blank" rel="noopener" role="button">課程規則</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left"></td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/wG8-IUtqu-s" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a><br>-->
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 10/3 -->
+                    <!-- 10/10 -->
+                    <tr>
+                      <td align="left">10/10</td>
+                      <td align="left"></td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pdf" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pptx" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/vCxyd_S4R24" target="_blank" rel="noopener" role="button">課程規則</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left"></td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/wG8-IUtqu-s" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a><br>-->
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 10/10 -->
+                    <!-- 10/17 -->
+                    <tr>
+                      <td align="left">10/17</td>
+                      <td align="left">如何評量生成式人工智慧 </td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/Evaluation.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Evaluation</a><br>
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/Evalutaion.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Evaluation</a><br>
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/dWQVY_h0YXU" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第 4 講：評估生成式人工智慧能力時可能遇到的各種坑</a><br>
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left">
+                    	<!--Extra-->
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/MSnvknLywUc?si=jP_YZ9oZONN56FRI&amp;t=500" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">語言模型的偏見</a><br>
+                      </td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/64hQRI0MPs8?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第四講直播連結</a><br>
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 10/17 -->
+                    <!-- 10/24 -->
+                    <tr>
+                      <td align="left">10/24</td>
+                      <td align="left">	機器學習基本概念</td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/BasicML.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">BasicML</a><br>
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/BasicML.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">BasicML</a><br>
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/Taj1eHmZyWw?si=dA4Fiol3pEIju7Tq" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第 5 講：一堂課搞懂機器學習與深度學習的基本原理</a><br>
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left">
+                      <!--Extra-->
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/_j9MVVcvyZI?si=cKWY8QmyS3-wX4l9" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">寶可夢、數碼寶貝分類器 — 淺談機器學習原理</a><br>
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/ibJpTrp5mcE" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Backpropagation</a><br>
+                      </td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/Zv4MkfyJ72U?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第五講直播連結</a><br>
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 10/24 -->
+                    <!-- 10/31 -->
+                    <tr>
+                      <td align="left">10/31</td>
+                      <td align="left">深度學習基本概念</td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/TrainingTip.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Training Tip</a><br>
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/TrainingTip.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Training Tip</a><br>
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/mPWvAN4hzzY?si=tdJgKU4GXcQY_n1T" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第 6 講：一堂課搞懂訓練類神經網路的各種訣竅</a><br>
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left">
+                      <!--Extra-->
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/xki61j7z-30?si=EoF1VjcP3_L5UWI3&amp;t=4227" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Dropout</a><br>
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/lMIN1iKYNmA?si=M6hL7pKbOU_ufefo" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Pretrain 的詳細介紹</a><br>
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/ExXA05i8DEQ?si=bpmI5yogGDiJ3FUf&amp;t=508" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Pre-train 有多有用？</a><br>
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/OP5HcXJg2Aw?si=cNhXe9W-PgP45jN1&amp;t=1686" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">CNN</a><br>
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/BABPWOkSbLE?si=gzwtWMEBzbgf7slI" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Normalization</a><br>
+
+                      </td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/A5PSl7SYlzI?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第六講直播連結</a><br>
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 10/31 -->
+                    <!-- 11/7 -->
+                    <tr>
+                      <td align="left">11/7</td>
+                      <td align="left"></td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pdf" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pptx" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/vCxyd_S4R24" target="_blank" rel="noopener" role="button">課程規則</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left"></td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/wG8-IUtqu-s" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a><br>-->
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 11/7 -->
+                    <!-- 11/14 -->
+                    <tr>
+                      <td align="left">11/14</td>
+                      <td align="left">	生成式人工智慧是怎麼被訓練出來的</td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/LLMtraining.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">course</a><br>
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/LLMtraining.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">course</a><br>
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/YJoegm7kiUM" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第 7 講：大型語言模型的學習歷程 </a><br>
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left">
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/XWukX-ayIrs?si=0IVy1LR41PQne2QD" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">概述增強式學習 (Reinforcement Learning, RL)</a><br>
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/US8DFaAZcp4?si=Gv197wmuYpkvCxWJ" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Policy Gradient</a><br>
+
+                      </td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/LJbmRPArBOg?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第七講直播連結</a><br>
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 11/14 -->
+                    <!-- 11/21 -->
+                    <tr>
+                      <td align="left">11/21</td>
+                      <td align="left"></td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pdf" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pptx" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/vCxyd_S4R24" target="_blank" rel="noopener" role="button">課程規則</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left"></td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/wG8-IUtqu-s" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a><br>-->
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 11/21 -->
+                    <!-- 11/28 -->
+                    <tr>
+                      <td align="left">11/28</td>
+                      <td align="left">後訓練</td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/Post.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Post</a><br>
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/Post.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Post</a><br>
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/EnWz5XuOnIQ" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第 8 講：通用模型的終身學習</a><br>
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left">
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/Y9Jay_vxOsM?si=oIL65nIM5OkcVMrB" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">災難性遺忘(Catastrophic Forgetting)的克服之道</a><br>
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/Z6b5-77EfGk?si=t4Di3htjB9rSi1tR&amp;t=2000" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">生成式人工智慧的後訓練(Post-Training)與遺忘問題 (33:20 開始)</a><br>
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/9HPsz7F0mJg?si=B_4xRZNQtfq6gH3q&amp;t=1384" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">人工智慧的微創手術 — 淺談 Model Editing (23:04 開始)</a><br>
+
+                      </td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/wEtuqovqUSI?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第八講直播連結</a><br>
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 11/28 -->
+                    <!-- 12/5 -->
+                    <tr>
+                      <td align="left">12/5</td>
+                      <td align="left"></td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pdf" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_course.pptx" target="_blank" rel="noopener" role="button">course</a><br>-->
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/vCxyd_S4R24" target="_blank" rel="noopener" role="button">課程規則</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left"></td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/wG8-IUtqu-s" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a><br>-->
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 12/5 -->
+                    <!-- 12/12 -->
+                    <tr>
+                      <td align="left">12/12</td>
+                      <td align="left">生成式人工智慧如何產生影像 </td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/Generation.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Generation</a><br>
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/Generation.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Generation</a><br>
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/ccqCDD9LqCA" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第 9 講：影像和聲音上的生成策略</a><br>
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left">
+                        <i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/8zomhgKrsmQ" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Variational Autoencoder (VAE)</a><br>
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://www.youtube.com/watch?v=DQNNMiAP5lw&amp;list=PLJV_el3uVTsMq6JEFPW35BCiOQTsoqwNw" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Generative Adversarial Network (GAN)</a><br>
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/uXY18nzdSsM" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Normalizing Flow</a><br>
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://www.youtube.com/watch?v=azBugJzmz-o&amp;list=PLJV_el3uVTsNi7PgekEUFsyVllAJXRsP-" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">Diffusion Model</a><br>
+                      </td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/Op8zvHTFK_w?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第九講直播連結</a><br>
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 12/12 -->
+                    <!-- 12/19 -->
+                    <tr>
+                      <td align="left">12/19</td>
+                      <td align="left">生成式人工智慧如何聽與說</td>
+                      <td align="left">
+                    	<!-- PDF -->
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/SpeechLLM.pdf" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">SpeechLLM</a><br>
+                        <!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pdf" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- PPT -->
+                        <i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/SpeechLLM.pptx" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">SpeechLLM</a><br>
+                        <!--<i class="fas fa-file-powerpoint"></i> <a style="color: #000000" href="./2024-spring-course-data/0223/0223_intro_gai.pptx" target="_blank" rel="noopener" role="button">intro gai</a>-->
+                      </td>
+                      <td align="left">
+                    	<!-- YT -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtu.be/CbIPjrOj2Tc" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第10講：語音語言模型發展史</a><br>
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/AVIKFXLCPY8" target="_blank" rel="noopener" role="button">第0講：課程說明</a><br>-->
+                    	<!--<i class="fab fa-youtube"></i> <a style="color: #000000" href="https://youtu.be/JGtqpQXfJis" target="_blank" rel="noopener" role="button">第1講：生成式AI是什麼？</a>-->
+                      </td>
+                      <td align="left">
+                        <i class="fa-solid fa-file-pdf" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://arxiv.org/abs/2504.08528" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">On The Landscape of Spoken Language Models: A Comprehensive Survey</a><br>
+						</td>
+                      <td align="left">
+                        <!-- Live Streaming Link -->
+                    	<i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i> <a style="color: #000000" href="https://youtube.com/live/E01xaKppKj0?feature=share" target="_blank" rel="noopener" role="button" data-eusoft-scrollable-element="1">第十講直播連結</a><br>
+                    	<!--<i class="fa-solid fa-file-pdf"></i> <a style="color: #000000" href="https://drive.google.com/file/d/1QxQz3cjJPjwE4PfO5eXtnj736jAZPK1P/view" target="_blank" rel="noopener" role="button">80分鐘快速了解大型語言模型</a>-->
+                      </td>
+                    </tr> 
+                    <!-- 12/19 -->
+                    
+                    
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+          </div>
+
+        </section>
+        <!-- COURSE MATERIALS -->
+        
+        
+        
+
+        <!-- HOMEWORK -->
+        <section class="wrapper style4 container" style="border-radius: 20px;">
+
+          <div id="hw" class="content">
+            <section>
+              <header style="text-align: center" data-eusoft-scrollable-element="1">
+                <h3 data-eusoft-scrollable-element="1">Homework</h3>
+              </header>
+
+              <!-- Homework Policies -->
+              <div>
+                <p style="font-size: large; text-align: left">
+                  The information here is tentative and subject to change. 
+
+                  </p><div class="alert alert-danger" role="alert" style="text-align: left; font-size: large">
+                    <ul>
+                      <li>You should NOT plagiarize
+					  </li><li>You should NOT modify your prediction files manually
+					  </li><li>Do NOT share codes or prediction files with any living creatures
+					  </li><li>Do NOT use any approaches to submit your results more than 3 times a day
+					  </li><li>Please protect your own work and ensure that your answers are not accessible to others. If your work is found to have been copied by others, you will be subject to the same penalties
+					  </li><li>Your final grade x 0.9 and get a score 0 for that homework if you violate any of the above rules first time (within a semester)
+					  </li><li>Your will get F for the final grade if you violate any of the above rules multiple times (within a semester)
+					  </li><li>Prof. Lee &amp; TAs preserve the rights to change the rules &amp; grades
+                    </li></ul>		
+                  </div>
+                <p></p>
+              </div>
+
+              <!-- Homework list -->
+              <div style="overflow-x: auto">
+                <table class="table" data-eusoft-scrollable-element="1">
+                  <thead data-eusoft-scrollable-element="1">
+                    <tr data-eusoft-scrollable-element="1">
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Date</th>
+                      <th>Slides</th>
+                      <th>Code</th>
+                      <th>Video</th>
+                      <th>Deadline (UTC+8)</th>
+                      <th>TA</th>
+                    </tr>
+                  </thead>
+
+                  <tbody data-eusoft-scrollable-element="1">
+                		<!--pytorch-->
+                	<tr>
+                      <td id="Guide">Guide</td>
+                      <td>Pytorch Guide</td>
+                      <td>10/25</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/Pytorch%20Tutorial.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        N/A	
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/saZUcwonxwU?si=FwQ3ltTyD3s8vrJ4" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th>N/A</th>
+                      <th>袁紹翔</th>
+                    </tr>
+						<!--Judge Boi -->
+					<tr data-eusoft-scrollable-element="1">
+                      <td id="Guide">Guide</td>
+                      <td>Judge Boi Guide</td>
+                      <td>8/31</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/judgeboi.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        N/A	
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/YSK7Cs9hjb0" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th>N/A</th>
+                      <th data-eusoft-scrollable-element="1">吳典叡 許景淯 傅啟恩 李冠儀</th>
+                    </tr>
+                    
+                    <!--Bonus-->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="Bonus">Bonus</td>
+                      <td>Bonus HW</td>
+                      <td>9/25</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/bonus.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        N/A	
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/E0mq64kVG7U" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">12/21/2025 23:59</th>
+                      <th>李冠儀</th>
+                    </tr>
+                    
+                    <!-- HW1 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw1">HW1</td>
+                      <td data-eusoft-scrollable-element="1">Understand the fundamentals of GenAI</td>
+                      <td>9/12</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw1.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/1PjLpwbhy8A6AMugfCJZGVZwjacBfszgk?usp=sharing" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/88WzdTuQMyM" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">10/17/2025 23:59</th>
+                      <th data-eusoft-scrollable-element="1">陳竣瑋 蔡昀劭 袁紹翔</th>
+                    </tr>
+                    <!-- HW1 -->
+
+                    <!-- HW2 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw2">HW2</td>
+                      <td>Build a Basic RAG System</td>
+                      <td>9/19</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw2.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/1da73HmhCKvK20XzB-P4r95xgTK79_aTf?usp=sharing" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/AyQuAm8p7Wc" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">10/17/2025 23:59</th>
+                      <th data-eusoft-scrollable-element="1">馮柏翰 林堅壬 李梁玉軒</th>
+                    </tr>
+                    <!-- HW2 -->
+                    <!-- HW3 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw3">HW3</td>
+                      <td>Exploring Generative AI</td>
+                      <td>9/26</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw3.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/1DZN99hsBitI9fYAKoX18KCNyGybUO5TW?usp=sharing#scrollTo=eRKf5DA69b3r" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/0ZGdRYLMaPk" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <th data-eusoft-scrollable-element="1">10/17/2025 23:59</th>
+                      <th data-eusoft-scrollable-element="1">蔡昀劭 上官世昀 標彥廷</th>
+                    </tr>
+                    <!-- HW3 -->
+                   <!-- HW4 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw4">HW4</td>
+                      <td data-eusoft-scrollable-element="1">LLM Malicious Instruction Defense</td>
+                      <td>10/17</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw4.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/1Yka-Ov59Pk2a8nJdMWu40XnJHaohD-wR?usp=sharing" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/PxYg44OgRQo" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">11/07/2025 23:59</th>
+                      <th data-eusoft-scrollable-element="1">標彥廷 董家愷 林芷妤</th>
+                    </tr>
+                    <!-- HW4 -->
+                    <!-- HW5 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw5">HW5</td>
+                      <td>Regression</td>
+                      <td>10/24</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw5.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/1aCW_bF5pnkYLy6NaQ3y7Nkvvp28KjHay?usp=sharing" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/r9QnGqe6j3Y?si=3INYmIQ1qxHi-dFM" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">11/14/2025 23:59</th>
+                      <th data-eusoft-scrollable-element="1">徐啓惇 李梁玉軒 袁紹翔</th>
+                    </tr>
+                    <!-- HW5 -->
+                	<!-- HW6 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw1">HW6</td>
+                      <td data-eusoft-scrollable-element="1">Deep Learning for Image Classification</td>
+                      <td>10/31</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw6.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/19NpX5G4cfO3PJt2VeP2JI8jSF8raJ5yV?usp=sharing" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/KdoksIDqYV8" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">11/21/2025 23:59</th>
+                      <th data-eusoft-scrollable-element="1">劉建蘴 馮柏翰 李梁玉軒</th>
+                    </tr>
+                    <!-- HW6 -->
+                    <!-- HW7 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw7">HW7</td>
+                      <td>Finetuning LLM</td>
+                      <td>11/14</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw7.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/1lHJC92vFdxeZ5OMGPqmSSkV9tieV4YLX#scrollTo=8f7804c5" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/DjjAteK1xeg" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">12/05/2025 23:59</th>
+                      <th data-eusoft-scrollable-element="1">林堅壬 徐啓惇 董家愷</th>
+                    </tr>
+                    <!-- HW7 -->
+                    <!-- HW8 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw8">HW8</td>
+                      <td data-eusoft-scrollable-element="1">Fine-tuning Leads to Forgetting</td>
+                      <td>11/28</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw8.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/14mAU7b3BGqrksZEK3Pf7IuZ7hYFMB8dp?usp=sharing" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/QNbhpn2YCXo" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">12/19/2025 23:59</th>
+                      <th data-eusoft-scrollable-element="1">上官世昀 劉建蘴 陳思齊</th>
+                    </tr>
+                    <!-- HW8 -->
+                    <!-- HW9 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw9">HW9</td>
+                      <td data-eusoft-scrollable-element="1"> Diffusion Model and Its Customization</td>
+                      <td>12/12</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw9.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/1BKTZKoWWuIzQ6ON8O9hNhkianXqVG6_e?usp=sharing" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/--RkquawieM" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">01/02/2026 23:59</th>
+                      <th data-eusoft-scrollable-element="1">林熙哲 袁紹翔 林芷妤</th>
+                    </tr>
+                    <!-- HW9 -->
+                    <!-- HW10 -->
+                    <tr data-eusoft-scrollable-element="1">
+                      <td id="hw10">HW10</td>
+                      <td>Speech Generation</td>
+                      <td>12/19</td>
+                      <td>
+                        <a href="https://speech.ee.ntu.edu.tw/~hylee/GenAI-ML/2025-fall-course-data/hw10.pdf" class="btn btn-primary" style="background-color: #ffa64d; border-style: none" target="_blank" rel="noopener" role="button"><i class="fas fa-file-powerpoint" data-eusoft-scrollable-element="1"></i></a>
+                      </td>
+                      <td>
+                        <a class="btn btn-primary" style="background-color: #26353E; border-style: none" href="https://colab.research.google.com/drive/1eSVN9UeZ-ITkA74EKzMtIu9lz3HhRgBf#scrollTo=MzkttgcE_jq_" target="_blank" rel="noopener" role="button"><i class="fas fa-code" data-eusoft-scrollable-element="1"></i></a>	
+                      </td>
+                      <td>
+                        <a href="https://youtu.be/FDxg0mtFKZo" class="btn btn-primary" style="background-color: #000000; color: #ffffff;border-style: none" target="_blank" rel="noopener" role="button"><i class="fab fa-youtube" data-eusoft-scrollable-element="1"></i></a>
+                      </td>							
+                      <th data-eusoft-scrollable-element="1">01/09/2026 23:59</th>
+                      <th data-eusoft-scrollable-element="1">陳思齊 董家愷 林芷妤</th>
+                    </tr>
+                    <!-- HW10 -->
+                    
+                
+
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+          </div>
+
+        </section>
+        <!-- HOMEWORK -->
+		<!-- FAQS -->
+        <section class="wrapper style4 container" style="border-radius: 20px">
+          <!-- Content -->
+          <div class="content" style="">
+            <section>
+              <header style="text-align: center" data-eusoft-scrollable-element="1">
+                <h3 data-eusoft-scrollable-element="1">FAQs</h3>
+              </header>
+
+              <div class="alert alert-secondary" role="alert" style="text-align: left; font-size: large">
+                <span data-eusoft-scrollable-element="1">
+                Read the FAQs before emailing the TAs. 
+                We will not respond to any questions that are already answered in the FAQ.
+                Please be polite in the email.
+                <!--More information can be found in the <a-->
+                <!--href="https://course.ntu.edu.tw/courses/41f3d3d9-a6ab-45be-93be-9814316e1fd3"> official NTU course website</a>. -->
+                </span>
+                <ul>
+				<li>Q：可以旁聽嗎?
+				</li><li>A：歡迎旁聽，旁聽生可以獲取課程中幾乎所有的內容，唯一的差別只有助教不會批改旁聽生的作業。
+				<br>如果要 <strong data-eusoft-scrollable-element="1">以旁聽身份</strong> 加入NTU COOL的話，請寄信到助教信箱: ntu-gen-ai-ml-2025-fall-ta@googlegroups.com
+				<br>信件主旨以 [GenAI-ML 旁聽申請] 開頭，並在信件內容附上姓名與信箱
+			
+				</li><li>Q：上課時間是甚麼時候？
+				</li><li>A：本課程上課時間固定為週五下午 2:20 開始，本課程總共有十講，每一講的上課日期請見以下《課程進度》。
+				
+				</li><li>Q：上課方式是什麼？
+				</li><li>A：老師會在台灣大學的某一間教室進行直播，直播平台預計使用YouTube，連結已經公告在以下《課程進度》中，同學們可以線上觀看，另外課程都會錄影放到 NTU COOL 上，所以沒有參與直播還是可以聽到完整的上課內容。因為教室不大，所以鼓勵大家以線上觀看直播的方式聽課。
+				
+				</li><li>Q：這門課會學到甚麼? 教我怎麼用 ChatGPT 嗎?
+				</li><li>A：在這門課中，我們不會特別專注於特定軟體或平台的操作，而是要深入探索其背後的魔法 (也就是原理)。就好像，當你理解了魔術師是如何讓兔子從帽子中跳出來的原理後，你不僅能欣賞魔術的精彩，還能有機會在未來創造出自己的魔術。今天，使用 ChatGPT 等平台已經變得非常簡單，任何人都可以輕鬆上手，網路上也充斥著各式各樣的學習資源，但這門課的目標是帶你更進一步，讓你不僅只是使用工具，而是理解其背後的原理，修完這門課，當你再次使用 ChatGPT 或其他類似工具時，你將能夠更深入地理解它們的運作方式，利用它們的潛力和了解他們可能的極限。
+
+				</li><li>Q：我需要準備任何硬體(例如：GPU)、或是安裝任何軟體嗎？
+				</li><li>A：本課程將利用 Colab等平台提供的免費 GPU 計算資源。本課程的作業設計，正常情況下能夠在免費資源限制下順利完成作業，拿到及格（C-）以上的成績。當然，免費資源雖然方便，但有其使用上的限制，如時間限制等。總之，作業的設計是讓同學們不用花錢的情況下完成，但是有時候花點小錢可能會有不同的體驗，大家會更了解運算資源的重要性。
+
+				</li><li>Q：修這門課程，需要具備哪些先備知識？
+				</li><li>A：這門課程的目標受眾為初學者，理論上一般台灣大專院校學生都應該具備修習這門課的能力，不需要額外的先備知識。如果你對於人工智慧相關領域有興趣，這是一個絕佳的起點，我們將從基礎開始，逐步深入，讓你在完成這門課程後，可以去探索更進階的機器學習和人工智慧課程。
+
+				</li><li>Q：課程評分標準是什麼？
+				</li><li>A：本課程共有十個作業，每個作業都會教大家一個觀念，目標也都不一樣（有回答單純回答問題、有要自己訓練模型的），詳細內容等上課會再說明。我知道每一個學校開學時間不同，開學前幾週可能比較混亂，所以前三個作業會刻意把結束的時間延後，讓大家有比較充裕的時間完成作業。
+
+				</li><li>Q：如果我之前從未接觸過程式設計，我能修這門課程嗎？會不會非常困難？
+				</li><li>A：這門課程旨在引導初學者進入這個有趣的領域，作業設計的目標是「體驗」，希望學生能夠體會到生成式人工智慧可能帶來的應用以及訓練模型的過程。作業中會包含一些程式編寫的元素，但助教們會提供詳細的指導和範例，即使你以前沒有程式編寫的經驗，按照助教的指示操作，至少可以獲得及格以上的成績。
+
+				</li><li>Q：這門課跟過去的老師上的課程有什麼不同？
+				</li><li>A：這堂課將帶你從基礎概念出發，一步步體驗如何訓練生成式AI模型。本課程以《生成式人工智慧導論2024》為基礎，內容經過更新，並新增了機器學習與深度學習的核心觀念。此外，與前版課程最大的差異在於，本課程更加注重概念與實作的結合，讓你不僅學到概念，也能透過實作強化對於概念的理解。
+
+				</li><li>Q：這門課跟林軒田老師的機器學習課程有什麼不同？
+				</li><li>A：沒有什麼相同的內容。修過林軒田老師的課程在這門課也可以有收穫，也可以修完這門課後再去修林軒田老師的課，了解機器學習的原理。
+				
+				</li><li>Q：我還有其他問題怎麼辦呢？
+				</li><li>A：如果還有其他問題，請寫信到助教信箱 ntu-gen-ai-ml-2025-fall-ta@googlegroups.com
+                </li></ul>		
+              </div>
+            </section>
+          </div>
+        </section>
+        <!-- FAQS -->
+		
+
+
+        <!-- CONTACT -->
+        <section class="wrapper style4 container" style="border-radius: 20px;">
+          <!-- Content -->
+            <div class="content">
+            <section>
+              <header style="text-align: center" data-eusoft-scrollable-element="1">
+                <h3 data-eusoft-scrollable-element="1">Contact</h3>
+              </header>
+              <p style="font-size: large; text-align: center">
+                Email:<a href="mailto:ntu-gen-ai-ml-2025-fall-ta@googlegroups.com" data-eusoft-scrollable-element="1">ntu-gen-ai-ml-2025-fall-ta@googlegroups.com </a> 
+              </p>
+            </section>
+          </div>
+        </section>
+        <!-- CONTACT -->
+
+      </header></article>
+
+      <!-- Footer -->
+      <footer id="footer">
+
+        <ul class="icons">
+          <li data-eusoft-scrollable-element="1"><a href="https://www.facebook.com/profile.php?id=100000149111577" class="icon brands fa-facebook-f" data-eusoft-scrollable-element="1"><span class="label">Facebook</span></a></li>
+          <li data-eusoft-scrollable-element="1"><a href="https://www.youtube.com/channel/UC2ggjtuuWvxrHHHiaDH1dlQ/playlists" class="icon brands fa-youtube" data-eusoft-scrollable-element="1"><span class="label">Youtube</span></a></li>
+        </ul>
+
+        <ul class="copyright" data-eusoft-scrollable-element="1">
+          <li data-eusoft-scrollable-element="1">© Untitled</li><li data-eusoft-scrollable-element="1">Design: <a href="http://html5up.net/" data-eusoft-scrollable-element="1">HTML5 UP</a></li>
+        </ul>
+
+      </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <ul style="user-select: none; display: none; position: absolute; z-index: 1000;" class="dropotron level-0">
+                <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                  <a href="#" style="display: block;">GenAI-ML</a>
+                  <ul style="user-select: none; display: none; position: absolute; z-index: 1001;" class="dropotron level-1">
+                    <li style="white-space: nowrap;"><a href="" style="display: block;">2025 Fall</a></li>
+                  </ul>
+                </li>
+                <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                  <a href="#" style="display: block;">Generative AI</a>
+                  <ul style="user-select: none; display: none; position: absolute; z-index: 1001;" class="dropotron level-1">
+                    <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php" style="display: block;">2024 Spring</a></li> 
+                  </ul>
+                </li>
+                  <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="#" style="display: block;">Machine Learning</a>
+					<ul style="user-select: none; display: none; position: absolute; z-index: 1001;" class="dropotron level-1">
+					  <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2026-spring.php" style="display: block;">2026 Spring</a></li>
+					  <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2025-spring.php" style="display: block;">2025 Spring</a></li>
+				      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2023-spring.php" style="display: block;">2023 Spring</a></li> 
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2022-spring.php" style="display: block;">2022 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php" style="display: block;">2021 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2020-spring.php" style="display: block;">2020 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2019-spring.php" style="display: block;">2019 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2017-fall.php" style="display: block;">2017 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2017-spring.php" style="display: block;">2017 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2016-fall.php" style="display: block;">2016 Fall</a></li>
+                    </ul>
+                  </li>
+                  <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="#" style="display: block;">DLHLP</a>
+                    <ul style="user-select: none; display: none; position: absolute; z-index: 1001;" class="dropotron level-1">
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/dlhlp/2020-spring.php" style="display: block;">2020 Spring</a></li>
+                    </ul>
+                  </li>
+                  <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="#" style="display: block;">MLDS</a>
+                    <ul style="user-select: none; display: none; position: absolute; z-index: 1001;" class="dropotron level-1">
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/mlds/2018-spring.php" style="display: block;">2018 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/mlds/2017-spring.php" style="display: block;">2017 Spring</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/mlds/2015-fall.php" style="display: block;">2015 Fall</a></li>
+                    </ul>
+                  </li>
+                  <li class="submenu opener" style="user-select: none; cursor: pointer; white-space: nowrap;">
+                    <a href="#" style="display: block;">Linear Algebra</a>
+                    <ul style="user-select: none; display: none; position: absolute; z-index: 1001;" class="dropotron level-1">
+                      <li style="white-space: nowrap;"><a href="https://voidful.github.io/LA_2023_fall/2023-fall.html" style="display: block;">2023 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://googly-mingto.github.io/LA_2022_fall/2022-fall.html" style="display: block;">2022 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/la/2021-fall.php" style="display: block;">2021 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses/LA_2020/policy.pdf" target="_blank" rel="noreferrer noopener" style="display: block;">2020 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/la/2019-fall.php" style="display: block;">2019 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/la/2018-fall.php" style="display: block;">2018 Fall</a></li>
+                      <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/la/2016-spring.php" style="display: block;">2016 Spring</a></li>
+                    </ul>
+                  </li>
+                  <li style="white-space: nowrap;"><a href="https://speech.ee.ntu.edu.tw/~hylee/circuit/2014-fall.php" style="display: block;">Circuit</a></li>
+                </ul><div id="navButton"><a href="#navPanel" class="toggle"></a></div><div id="navPanel"><nav><a class="link depth-0" href="https://speech.ee.ntu.edu.tw/~hylee/index.php"><span class="indent-0"></span>Home</a><a class="link depth-0" href="https://speech.ee.ntu.edu.tw/~hylee/honor.php"><span class="indent-0"></span>Honor</a><a class="link depth-0" href="https://speech.ee.ntu.edu.tw/~hylee/research.php"><span class="indent-0"></span>Research</a><a class="link depth-0" href="https://speech.ee.ntu.edu.tw/~hylee/talk.php"><span class="indent-0"></span>Talk</a><a class="link depth-0" href="https://speech.ee.ntu.edu.tw/~hylee/publication.php"><span class="indent-0"></span>Publication</a><a class="link depth-0" href="#"><span class="indent-0"></span>Course</a><a class="link depth-1" href="#"><span class="indent-1"></span>GenAI-ML</a><a class="link depth-2" href=""><span class="indent-2"></span>2025 Fall</a><a class="link depth-1" href="#"><span class="indent-1"></span>Generative AI</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php"><span class="indent-2"></span>2024 Spring</a><a class="link depth-1" href="#"><span class="indent-1"></span>Machine Learning</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2026-spring.php"><span class="indent-2"></span>2026 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2025-spring.php"><span class="indent-2"></span>2025 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2023-spring.php"><span class="indent-2"></span>2023 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2022-spring.php"><span class="indent-2"></span>2022 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php"><span class="indent-2"></span>2021 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2020-spring.php"><span class="indent-2"></span>2020 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2019-spring.php"><span class="indent-2"></span>2019 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2017-fall.php"><span class="indent-2"></span>2017 Fall</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2017-spring.php"><span class="indent-2"></span>2017 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/ml/2016-fall.php"><span class="indent-2"></span>2016 Fall</a><a class="link depth-1" href="#"><span class="indent-1"></span>DLHLP</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/dlhlp/2020-spring.php"><span class="indent-2"></span>2020 Spring</a><a class="link depth-1" href="#"><span class="indent-1"></span>MLDS</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/mlds/2018-spring.php"><span class="indent-2"></span>2018 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/mlds/2017-spring.php"><span class="indent-2"></span>2017 Spring</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/mlds/2015-fall.php"><span class="indent-2"></span>2015 Fall</a><a class="link depth-1" href="#"><span class="indent-1"></span>Linear Algebra</a><a class="link depth-2" href="https://voidful.github.io/LA_2023_fall/2023-fall.html"><span class="indent-2"></span>2023 Fall</a><a class="link depth-2" href="https://googly-mingto.github.io/LA_2022_fall/2022-fall.html"><span class="indent-2"></span>2022 Fall</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/la/2021-fall.php"><span class="indent-2"></span>2021 Fall</a><a class="link depth-2" target="_blank" href="http://speech.ee.ntu.edu.tw/~tlkagk/courses/LA_2020/policy.pdf"><span class="indent-2"></span>2020 Fall</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/la/2019-fall.php"><span class="indent-2"></span>2019 Fall</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/la/2018-fall.php"><span class="indent-2"></span>2018 Fall</a><a class="link depth-2" href="https://speech.ee.ntu.edu.tw/~hylee/la/2016-spring.php"><span class="indent-2"></span>2016 Spring</a><a class="link depth-1" href="https://speech.ee.ntu.edu.tw/~hylee/circuit/2014-fall.php"><span class="indent-1"></span>Circuit</a><a class="link depth-0" target="_blank" href="https://www.youtube.com/channel/UC2ggjtuuWvxrHHHiaDH1dlQ/playlists"><span class="indent-0"></span>Youtube</a></nav></div>
+    
+
+  
+
+<script data-scrapbook-elem="basic-loader">(function () { var k1 = "data-scrapbook-shadowdom", k2 = "data-scrapbook-canvas", k3 = "data-scrapbook-input-indeterminate", k4 = "data-scrapbook-input-checked", k5 = "data-scrapbook-option-selected", k6 = "data-scrapbook-input-value", k7 = "data-scrapbook-textarea-value", k8 = "data-scrapbook-adoptedstylesheets", k9 = /^data-scrapbook-adoptedstylesheet-(\d+)$/, k10 = "data-scrapbook-shadowdom-mode", k11 = "data-scrapbook-shadowdom-clonable", k12 = "data-scrapbook-shadowdom-delegates-focus", k13 = "data-scrapbook-shadowdom-serializable", k14 = "data-scrapbook-shadowdom-slot-assignment", k15 = "data-scrapbook-slot-assigned", k16 = "data-scrapbook-slot-index", k17 = /^scrapbook-slot-index=(\d+)$/, k18 = '/scrapbook-slot-index', d = document, r = d.documentElement, $s = !!r.attachShadow, $as = !!d.adoptedStyleSheets, $c = !!window.HTMLCanvasElement, $sa = !!d.createElement('slot').assign, sle = [], sls = [], slt = function (r) { if ($sa) { var E = r.childNodes, i, e, s, m; for (i = 0; i < E.length; i++) { e = E[i]; if (e.nodeType === 8) { s = e.nodeValue; if (m = s.match(k17)) { s = e.nextSibling; if (s.nodeType === 3) { sls[m[1]] = s; } r.removeChild(e); i--; } else if (s === k18) { r.removeChild(e); i--; } } } } }, sl = function () { var i = sle.length, j, d, e; while (i--) { d = sle[i]; e = d.elem; d = d.value.split(','); j = d.length; while (j--) { d[j] = sls[parseInt(d[j], 10)]; } try { try { e.assign.apply(e, d); } catch (ex) { if (ex.message.includes('must have a callable @@iterator')) { e.assign(d); } else { throw ex; } } } catch (ex) { console.error(ex); } } }, asl = (function (r) { var l = [], E, i, e, m, c, j; if ($as) { E = r.attributes; i = E.length; while (i--) { e = E[i]; if (!(m = e.nodeName.match(k9))) { continue; } c = l[m[1]] = new CSSStyleSheet(); r.removeAttribute(m[0]); m = e.nodeValue.split('\n\n'); j = m.length; while (j--) { try { m[j] && c.insertRule(m[j]); } catch (ex) { console.error(ex); } } } } return l; })(r), as = function (d, e) { var l, i, I; if ($as && (l = e.getAttribute(k8)) !== null) { l = l.split(',').map(i => asl[i]); d.adoptedStyleSheets = d.adoptedStyleSheets.concat(l); e.removeAttribute(k8); } }, fn = function (r) { var E = r.querySelectorAll ? r.querySelectorAll("*") : r.getElementsByTagName("*"), i = E.length, e, d, s, m; while (i--) { e = E[i]; s = e.shadowRoot; if ($s && (d = e.getAttribute(k1))) { if (!s) { try { s = e.attachShadow({ mode: (m = e.getAttribute(k10)) !== null ? m : 'open', clonable: e.hasAttribute(k11), delegatesFocus: e.hasAttribute(k12), serializable: e.hasAttribute(k13), slotAssignment: (m = e.getAttribute(k14)) !== null ? m : void 0, }); s.innerHTML = d; } catch (ex) { console.error(ex); } } e.removeAttribute(k1); e.removeAttribute(k10); e.removeAttribute(k11); e.removeAttribute(k12); e.removeAttribute(k13); e.removeAttribute(k14); } if ($c && (d = e.getAttribute(k2)) !== null) { (function () { var c = e, g = new Image(); g.onload = function () { c.getContext('2d').drawImage(g, 0, 0); }; g.src = d; })(); e.removeAttribute(k2); } if ((d = e.getAttribute(k3)) !== null) { e.indeterminate = true; e.removeAttribute(k3); } if ((d = e.getAttribute(k4)) !== null) { e.checked = d === 'true'; e.removeAttribute(k4); } if ((d = e.getAttribute(k5)) !== null) { e.selected = d === 'true'; e.removeAttribute(k5); } if ((d = e.getAttribute(k6)) !== null) { e.value = d; e.removeAttribute(k6); } if ((d = e.getAttribute(k7)) !== null) { e.value = d; e.removeAttribute(k7); } if ($sa && (d = e.getAttribute(k15)) !== null) { sle.push({elem: e, value: d}); e.removeAttribute(k15); } if ($sa && (d = e.getAttribute(k16)) !== null) { sls[d] = e; e.removeAttribute(k16); } if (s) { slt(e); as(s, e); fn(s); } } }; as(d, r); fn(d); sl(); })()</script></body><eusoft-chrome-extension-root-en id="eusoft-chrome-extension-id-en" _nghost-ng-c2546567076="" ng-version="18.2.13"><template _ngcontent-ng-c2546567076=""></template><!----><!----><!----><app-word-hint-render _ngcontent-ng-c2546567076="" _nghost-ng-c3319869249=""><template _ngcontent-ng-c3319869249=""></template><!----><!----></app-word-hint-render><app-translate-render _ngcontent-ng-c2546567076="" _nghost-ng-c2607817495=""><template _ngcontent-ng-c2607817495=""></template><!----><translate-analyzer _ngcontent-ng-c2607817495=""><template></template></translate-analyzer></app-translate-render><app-capture-word _ngcontent-ng-c2546567076="" class="eusoft-chrome-extension-capture-word-container ng-tns-c2615027859-0 ng-star-inserted" data-scrapbook-shadowdom="&lt;style&gt;.eudic-tippy-content-container[_ngcontent-ng-c2546567076]{max-width:250px!important}.eusoft-chrome-extension-popup-menu[_ngcontent-ng-c2546567076]{position:fixed;z-index:2147483647;top:50%}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-left[_ngcontent-ng-c2546567076]{left:4px}.eusoft-chrome-extension-popup-menu.eusoft-chrome-extension-popup-menu-right[_ngcontent-ng-c2546567076]{right:4px}.eusoft-chrome-extension-mask-container[_ngcontent-ng-c2546567076]{background-color:transparent;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483646}&lt;/style&gt;&lt;style&gt;.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;width:8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-expand-button,.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+&lt;/style&gt;&lt;style&gt;.eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #595959!important;background-color:#212125!important}html.sepia-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.sepia-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-en   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-fr   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-de   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.green-es   [_nghost-ng-c3081775404]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c3081775404]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}&lt;/style&gt;&lt;!----&gt;&lt;!----&gt;&lt;div class=&quot;eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c2615027859-0&quot; data-content-script-theme=&quot;light&quot;&gt;&lt;!----&gt;&lt;/div&gt;"></app-capture-word><app-translate-failed-retry _ngcontent-ng-c2546567076="" _nghost-ng-c3081775404=""><!----></app-translate-failed-retry><!----><!----></eusoft-chrome-extension-root-en></html>
