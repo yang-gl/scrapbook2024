@@ -2315,5 +2315,235 @@ scrapbook.meta({
     "modify": "20260412034815516",
     "source": "https://speech.ee.ntu.edu.tw/~hylee/mlds/2018-spring.php",
     "icon": "favicon.ico"
+  },
+  "20260420151552193": {
+    "title": "202604",
+    "type": "folder",
+    "create": "20260420151552193",
+    "modify": "20260420151552193"
+  },
+  "20260420151742561": {
+    "index": "202604/20260420151742561-zhuanlan.zhihu.com/index.html",
+    "title": "机器人系统架构：（一）概览 - 知乎",
+    "type": "",
+    "create": "20260420151742561",
+    "modify": "20260420151742561",
+    "source": "https://zhuanlan.zhihu.com/p/24452845",
+    "icon": "favicon.ico"
+  },
+  "20260420152015855": {
+    "index": "202604/20260420152015855-x.com/index.html",
+    "title": "安利一个11万Star的必装插件，能让你的Agent体验直接质变",
+    "type": "",
+    "create": "20260420152015855",
+    "modify": "20260420152015855",
+    "source": "https://x.com/Khazix0918/article/2037015170091016257",
+    "icon": "twitter.3.ico",
+    "charset": "UTF-8"
+  },
+  "20260420152519151": {
+    "index": "202604/20260420152519151-x.com/index.html",
+    "title": "From \"Reasoning\" Thinking to \"Agentic\" Thinking ",
+    "type": "",
+    "create": "20260420152519151",
+    "modify": "20260420152519151",
+    "source": "https://x.com/JustinLin610/article/2037116325210829168",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152545152": {
+    "index": "202604/20260420152545152-x.com/index.html",
+    "title": "一文了解 Anthropic 的 Claude Code 源码：为什么它就是比别人好用？",
+    "type": "",
+    "create": "20260420152545152",
+    "modify": "20260420152545152",
+    "source": "https://x.com/YukerX/article/2038959908968919297",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152609314": {
+    "index": "202604/20260420152609314-x.com/index.html",
+    "title": "为什么你的\"AI 优先\"战略可能大错特错？",
+    "type": "",
+    "create": "20260420152609314",
+    "modify": "20260420152609314",
+    "source": "https://x.com/dotey/article/2043953753921847582",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152633238": {
+    "index": "202604/20260420152633238-x.com/index.html",
+    "title": "从Prompt到Context到Harness AI工程三次范式转移",
+    "type": "",
+    "create": "20260420152633238",
+    "modify": "20260420152633238",
+    "source": "https://x.com/GoSailGlobal/article/2037805864367911394",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152646379": {
+    "index": "202604/20260425135227683-x.com/index.html",
+    "title": "为什么 AI 会“忘记”中间的信息",
+    "type": "",
+    "create": "20260420152646379",
+    "modify": "20260425135229221",
+    "source": "https://x.com/jakevin7/article/2032779857952645477",
+    "icon": "twitter.3.ico",
+    "charset": "UTF-8"
+  },
+  "20260420152801404": {
+    "index": "202604/20260420152801404-x.com/index.html",
+    "title": "AI Memory 的真正难点：为什么 Vector Store + Embedding 远远不够",
+    "type": "",
+    "create": "20260420152801404",
+    "modify": "20260420152801404",
+    "source": "https://x.com/jakevin7/article/2032342979890016561",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152948050": {
+    "title": "RAG",
+    "type": "folder",
+    "create": "20250915145452711",
+    "modify": "20250915145452711"
+  },
+  "20260420152948051": {
+    "title": "embeddings",
+    "type": "folder",
+    "create": "20250923134606429",
+    "modify": "20250923134606429"
+  },
+  "20260420152948052": {
+    "index": "20260420152948052/index.html",
+    "title": "什么是向量嵌入 one-small-step/20250307-what-is-vector-embedding/what-is-vector-embedding.md at main · karminski/one-small-step",
+    "type": "",
+    "create": "20250923134530309",
+    "modify": "20250923134530309",
+    "source": "https://github.com/karminski/one-small-step/blob/main/20250307-what-is-vector-embedding/what-is-vector-embedding.md",
+    "icon": "favicon.png"
+  },
+  "20260420152948666": {
+    "index": "20260420152948666/index.html",
+    "title": "meng shao on X: \"你在Meta的面试中被问到「如何选择向量数据库？」，该怎么回答？ \" / X",
+    "type": "",
+    "create": "20250927133950597",
+    "modify": "20250927133950597",
+    "source": "https://x.com/shao__meng/status/1971382375797174302",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152948971": {
+    "index": "20260420152948971/index.html",
+    "title": "Thread by @asmah2107: The interviewer asks : \"How do you choose a vector database?\"",
+    "type": "",
+    "create": "20250927134310886",
+    "modify": "20250927134310886",
+    "source": "https://threadreaderapp.com/thread/1971037909601104080.html",
+    "icon": "favicon-32x32.png"
+  },
+  "20260420152949262": {
+    "index": "",
+    "title": "吴恩达大佬又出新课了！《构建和评估高级的RAG模型应用》双语字幕，6讲全！bilibili",
+    "type": "bookmark",
+    "create": "20250915145502389",
+    "modify": "20250915145502389",
+    "source": "https://www.bilibili.com/video/BV1RB421z7rS/?spm_id_from=333.1387.favlist.content.click&vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20260420152949263": {
+    "index": "20260420152949263/index.html",
+    "title": "Lance Martin on X: \"RAG From Scratch Here's a set of short (5-10 min videos) \" / X",
+    "type": "",
+    "create": "20250915145656829",
+    "modify": "20250915145656829",
+    "source": "https://x.com/RLanceMartin/status/1776301631652741167",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152949586": {
+    "index": "",
+    "title": "NirDiamant/RAG_Techniques: This repository showcases various advanced techniques for Retrieval-Augmented Generation (RAG) systems.",
+    "type": "bookmark",
+    "create": "20250915145713378",
+    "modify": "20250915145713378",
+    "source": "https://github.com/NirDiamant/RAG_Techniques",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png",
+    "comment": "一个RAG的集合库：RAG_Techniques，涵盖了从基础RAG到复杂任务处理的多种方法\n\n有详细文档、实现指南和示例，对需要深入了解RAG技术的开发者来说是个不错的选择\n\n包含比如，上下文丰富技术、多方面过滤、融合检索、智能重新排序、查询转换、分层索引、假设性问题 (HyDE方法)、自RAG等"
+  },
+  "20260420152949587": {
+    "index": "20260420152949587/index.html",
+    "title": "Victoria Slocum on X: \" 𝗔𝗴𝗲𝗻𝘁𝗶𝗰 𝗥𝗔𝗚 is probably the only way RAG is 𝘢𝘤𝘵𝘶𝘢𝘭𝘭𝘺 going to be useful. ",
+    "type": "",
+    "create": "20250915145953456",
+    "modify": "20250915145953456",
+    "source": "https://x.com/victorialslocum/status/1960297539820720365",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152949884": {
+    "index": "20260420152949884/index.html",
+    "title": "Thread by @dotey: 对于搭建企业本地知识库来说，比如使用 RAG 方式，关键在于应用端的调教” on Thread Reader App – Thread Reader App",
+    "type": "",
+    "create": "20250915150159583",
+    "modify": "20250915150159583",
+    "source": "https://threadreaderapp.com/thread/1780271840507654247?refresh=1757948500",
+    "icon": "favicon-32x32.png"
+  },
+  "20260420152951033": {
+    "index": "",
+    "title": "【大模型教程】RAG 工作机制详解，20分钟带你详细解读RAG，一看就懂的知识库架构解读_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250916143053010",
+    "modify": "20250916143053010",
+    "source": "https://www.bilibili.com/video/BV1S9u4zYE53/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20260420152951034": {
+    "index": "",
+    "title": "手把手教你用Dify搭建一个基于知识图谱的RAG系统，原理讲解+技术教学！_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250916143140137",
+    "modify": "20250916143140137",
+    "source": "https://www.bilibili.com/video/BV1xmT7zfE3T/?vd_source=cee0683ceb5dae994b8fec1ec29d3c9b",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20260420152951035": {
+    "index": "",
+    "title": "【大模型教程】RAG 工作机制详解，20分钟带你详细解读RAG，一看就懂的知识库架构解读_哔哩哔哩_bilibili",
+    "type": "bookmark",
+    "create": "20250916143950618",
+    "modify": "20250916143950618",
+    "source": "https://www.bilibili.com/video/BV1S9u4zYE53/",
+    "icon": "../tree/favicon/9566a02d9d66bbeaea16df206ea4d9add214826f.ico"
+  },
+  "20260420152951036": {
+    "index": "20260420152951036/index.html",
+    "title": "Daily Dose of Data Science on X: \"Traditional RAG vs Graph RAG, visually explained: https://t.co/XZ8MN0hW8q\" / X",
+    "type": "",
+    "create": "20250916145415295",
+    "modify": "20250916145415295",
+    "source": "https://x.com/DailyDoseOfDS_/status/1967521314631299381",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152951335": {
+    "index": "20260420152951335/index.html",
+    "title": "GitHubDaily on X: \"在 GitHub 上看到一份学习 RAG（检索增强生成）比较好的教程：arxiv-paper-curator https://t.co/UAlWu5Om0m\" / X",
+    "type": "",
+    "create": "20250922234534090",
+    "modify": "20250922234534090",
+    "source": "https://x.com/GitHub_Daily/status/1969920181171552527",
+    "icon": "twitter.3.ico"
+  },
+  "20260420152951551": {
+    "index": "",
+    "title": "HKUDS/RAG-Anything: \"RAG-Anything: All-in-One RAG Framework\"",
+    "type": "bookmark",
+    "create": "20250923132659667",
+    "modify": "20250923132659667",
+    "source": "https://github.com/HKUDS/RAG-Anything",
+    "icon": "../tree/favicon/323b99430dd424604ae57a19a91f25376e209759.png"
+  },
+  "20260425135411264": {
+    "index": "202604/20260425135411264-zhuanlan.zhihu.com/index.html",
+    "title": "机器人系统架构：（一）概览 - 知乎",
+    "type": "",
+    "create": "20260425135411264",
+    "modify": "20260425135411264",
+    "source": "https://zhuanlan.zhihu.com/p/24452845",
+    "icon": "favicon.ico",
+    "parent": "root",
+    "recycled": "20260425135434137"
   }
 })
