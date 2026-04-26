@@ -2329,7 +2329,8 @@ scrapbook.meta({
     "create": "20260420151742561",
     "modify": "20260420151742561",
     "source": "https://zhuanlan.zhihu.com/p/24452845",
-    "icon": "favicon.ico"
+    "icon": "favicon.ico",
+    "charset": "UTF-8"
   },
   "20260420152015855": {
     "index": "202604/20260420152015855-x.com/index.html",
@@ -2378,14 +2379,16 @@ scrapbook.meta({
     "icon": "twitter.3.ico"
   },
   "20260420152646379": {
-    "index": "202604/20260425135227683-x.com/index.html",
+    "index": "202604/20260426135843726-x.com/index.html",
     "title": "为什么 AI 会“忘记”中间的信息",
     "type": "",
     "create": "20260420152646379",
-    "modify": "20260425135229221",
+    "modify": "20260426135844807",
     "source": "https://x.com/jakevin7/article/2032779857952645477",
     "icon": "twitter.3.ico",
-    "charset": "UTF-8"
+    "charset": "UTF-8",
+    "parent": "20260420151552193",
+    "recycled": "20260426140033147"
   },
   "20260420152801404": {
     "index": "202604/20260420152801404-x.com/index.html",
@@ -2545,5 +2548,59 @@ scrapbook.meta({
     "icon": "favicon.ico",
     "parent": "root",
     "recycled": "20260425135434137"
+  },
+  "20260426135912039": {
+    "index": "202604/20260426135912039-x.com/index.html",
+    "title": "为什么 AI 会“忘记”中间的信息 / X",
+    "type": "",
+    "create": "20260426135912039",
+    "modify": "20260426135912039",
+    "source": "https://x.com/jakevin7/article/2032779857952645477",
+    "icon": "twitter.3.ico"
+  },
+  "20260426140800182": {
+    "index": "202604/20260426140800182-x.com/index.html",
+    "title": "CrewAI，Python写的多Agent协作框架",
+    "type": "",
+    "create": "20260426140800182",
+    "modify": "20260426140800182",
+    "source": "https://x.com/NFTCPS/status/2040257691105513962",
+    "icon": "twitter.3.ico"
+  },
+  "20260426141017072": {
+    "index": "202604/20260426141017072-x.com/index.html",
+    "title": "Google 这个科技和 AI 绝对巨头，团队内部 AI 普及度到底如何？",
+    "type": "",
+    "create": "20260426141017072",
+    "modify": "20260426141017072",
+    "source": "https://x.com/shao__meng/status/2043850796748681314",
+    "icon": "twitter.3.ico"
+  },
+  "20260426141613382": {
+    "index": "202604/20260426141613382-x.com/index.html",
+    "title": "LangChain 官方团队开源了一套从零到一打造 AI Agent 的实战教程：Agents From Scratch",
+    "type": "",
+    "create": "20260426141613382",
+    "modify": "20260426141613382",
+    "source": "https://x.com/wsl8297/status/2045004596217790959",
+    "icon": "twitter.3.ico"
+  },
+  "20260426142103496": {
+    "index": "202604/20260426142103496-x.com/index.html",
+    "title": "关于Agent SDK的选择，主流其实就两个，其他的可以不看",
+    "type": "",
+    "create": "20260426142103496",
+    "modify": "20260426142103496",
+    "source": "https://x.com/wquguru/status/2044743543500284415",
+    "icon": "twitter.3.ico"
+  },
+  "20260426142327070": {
+    "index": "202604/20260426142327070-x.com/index.html",
+    "title": "终于要开始做 AI Agent开发了，请教下大家: 应该用哪个框架？",
+    "type": "",
+    "create": "20260426142327070",
+    "modify": "20260426142327070",
+    "source": "https://x.com/dotey/status/2044429284131951084",
+    "icon": "twitter.3.ico"
   }
 })
